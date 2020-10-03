@@ -36,6 +36,7 @@ export default {
         async attempt ({ commit, state } , token) {
             if(token) {
                 commit('SET_TOKEN', token)
+                commit('notifications/ADD_NOTIFICATION', {text: 'test', type: 'success'}, { root: true  })
             }
 
             if(!state.token) {
@@ -46,14 +47,14 @@ export default {
                 let response = await api.get('user');
 
                 commit('SET_USER', response.data);
-            } catch (e) {
+            } catch (   e) {
                 commit('SET_TOKEN', null)
                 commit('SET_USER', null)
             }
         },
 
         signOut({ commit }) {
-            return api.post('auth/signout').then(() => {
+            return api.post('logout').then(() => {
                 commit('SET_TOKEN', null)
                 commit('SET_USER', null)
             })

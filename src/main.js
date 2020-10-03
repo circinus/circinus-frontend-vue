@@ -8,6 +8,8 @@ import 'bootstrap/js/dist/dropdown';
 
 require('./store/subscriber');
 
+import iziToast from './helpers/toaster'
+Vue.use(iziToast);
 
 import interceptorsSetup from './helpers/interceptors'
 interceptorsSetup();

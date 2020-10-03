@@ -40,6 +40,9 @@
       </main>
 
       <Footer/>
+
+      <notifications></notifications>
+
     </div>
   </div>
 </template>
@@ -48,12 +51,22 @@
 import Navigation from './components/Navigation';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Notifications from './components/Notifications';
+
+import { mapGetters } from 'vuex';
 
 export default {
     components: {
         Navigation,
         Header,
-        Footer
-    }
+        Footer,
+        Notifications
+    },
+
+    computed: {
+        ...mapGetters({
+            notifications: 'notifications/list',
+        }),
+    },
 }
 </script>
