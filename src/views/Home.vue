@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <section id="current-news" class="habbo--section mt-4">
       <div class="d-flex flex-row mb-4">
         <img class="mr-2 object-contain image-pixelated" src="/assets/images/icons/news.png" alt="News" />
@@ -10,80 +11,25 @@
       </div>
 
       <div class="row">
-        <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
-          <a href="#" class="opacity-1">
+
+        <div v-for="(stories, index) in newStories" class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
+          <a :href="[stories.slug]" class="opacity-1">
             <div class="card card--news d-flex flex-column p-4 mb-4" style="background-image: url('/assets/images/news/news_img.png')">
               <div class="flex-fill d-inline-flex flex-row justify-content-center">
                 <div class="flex-fill">
-                  <span class="news--category">Allgemein</span>
+                  <span class="news--category">Algemeen</span>
                 </div>
-                <p>vor 2 Stunden</p>
               </div>
 
-              <span class="news--title">Habbo Festivals 2020!</span>
+              <span class="news--title">{{ stories.title }}</span>
               <span class="news--description">
-                                    Bereitet euch auf einen Monat voller Überraschungen vor. Für weitere Informationen...
-                                </span>
+                {{ stories.description }}
+            </span>
             </div>
           </a>
-        </div>
-
-        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-          <a href="#" class="opacity-1">
-            <div class="card card--news d-flex flex-column p-4 mb-4" style="background-image: url('/assets/images/news/news_img.png')">
-              <div class="flex-fill d-inline-flex flex-row justify-content-center">
-                <div class="flex-fill">
-                  <span class="news--category">Allgemein</span>
-                </div>
-                <p>vor 2 Stunden</p>
-              </div>
-
-              <span class="news--title">Habbo Festivals 2020!</span>
-              <span class="news--description">
-                                    Bereitet euch auf einen Monat voller Überraschungen vor. Für weitere Informationen...
-                                </span>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-          <div class="d-flex flex-column news--row-end">
-            <a href="#" class="opacity-1">
-              <div class="card card--news d-flex flex-column p-4 mb-3"
-                   style="background-image: url('/assets/images/news/news_img.png')">
-                <div class="flex-fill d-inline-flex flex-row justify-content-center">
-                  <div class="flex-fill">
-                    <span class="news--category">Allgemein</span>
-                  </div>
-                  <p>vor 2 Stunden</p>
-                </div>
-
-                <span class="news--title">Habbo Festivals 2020!</span>
-                <span class="news--description">
-                                        Bereitet euch auf einen Monat voller Überraschungen vor. Für weitere Informationen...
-                                    </span>
-              </div>
-            </a>
-
-            <a href="#" class="opacity-1">
-              <div class="card card--news d-flex flex-column p-4"
-                   style="background-image: url('/assets/images/news/news_img.png')">
-                <div class="flex-fill d-inline-flex flex-row justify-content-center">
-                  <div class="flex-fill">
-                    <span class="news--category">Allgemein</span>
-                  </div>
-                  <p>vor 2 Stunden</p>
-                </div>
-
-                <span class="news--title">Habbo Festivals 2020!</span>
-                <span class="news--description">
-                                        Bereitet euch auf einen Monat voller Überraschungen vor. Für weitere Informationen...
-                                    </span>
-              </div>
-            </a>
-          </div>
         </div>
       </div>
+
     </section>
 
     <section id="popular-news" class="habbo--section">
@@ -224,9 +170,20 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'Home',
-  components: {
+
+  computed: {
+    ...mapState('articles', {
+        newStories: 'stories'
+    })
+  },
+
+  created: function () {
+      this.$store.dispatch('articles/getStories');
   }
+
 }
 </script>

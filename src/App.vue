@@ -36,12 +36,13 @@
       </header>
 
       <main class="flex-fill container">
+        <notifications></notifications>
+
         <router-view />
       </main>
 
       <Footer/>
 
-      <notifications></notifications>
 
     </div>
   </div>
@@ -67,6 +68,6 @@ export default {
         ...mapGetters({
             notifications: 'notifications/list',
         }),
-    },
+    }
 }
 </script>

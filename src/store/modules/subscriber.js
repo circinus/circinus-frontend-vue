@@ -1,5 +1,5 @@
-import store from '../store'
-import api from '../helpers/api'
+import store from '../index'
+import api from '../../helpers/api'
 
 store.subscribe((mutation => {
     switch (mutation.type) {

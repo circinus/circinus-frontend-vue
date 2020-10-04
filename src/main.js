@@ -6,7 +6,7 @@ import store from './store'
 import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dist/dropdown';
 
-require('./store/subscriber');
+require('./store/modules/subscriber');
 
 import iziToast from './helpers/toaster'
 Vue.use(iziToast);
