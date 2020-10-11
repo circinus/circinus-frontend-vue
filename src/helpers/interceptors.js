@@ -12,5 +12,8 @@ export default function setup() {
     api.interceptors.response.use(function (response) {
         loader.loaderEnd();
         return response.data;
+    }, function (error) {
+        //this.$store.dispatch('notifications/ADD_NOTIFICATION', {text: 'test', type: 'success'})
+        //return Promise.reject(error.response);
     });
 }

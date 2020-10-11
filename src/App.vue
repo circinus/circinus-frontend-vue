@@ -2,9 +2,9 @@
   <div id="app">
     <div>
       <header class="bg-primary mb-4">
+
         <Navigation/>
         <Header/>
-
 
         <nav id="navbar--secondary" class="navbar navbar-expand-md navbar-light bg-light">
           <div class="container">
@@ -49,9 +49,9 @@
 </template>
 
 <script>
-import Navigation from './components/Navigation';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Navigation from './components/Layout/Navigation';
+import Header from './components/Layout/Header';
+import Footer from './components/Layout/Footer';
 import Notifications from './components/Notifications';
 
 import { mapGetters } from 'vuex';

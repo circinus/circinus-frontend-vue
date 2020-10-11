@@ -49,6 +49,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import api from '../../helpers/api'
 
 export default {
   computed: {
@@ -56,6 +57,12 @@ export default {
       authenticated: 'auth/authenticated',
       user: 'auth/user'
     })
+  },
+
+  created() {
+      //api.post('articles/list').then((response) => {
+        //console.log(response)
+      //});
   }
 }
 </script>

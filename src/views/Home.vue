@@ -1,33 +1,22 @@
 <template>
   <div>
 
-    <section id="current-news" class="habbo--section mt-4">
+    <section id="current-news" class="habbo--section mt-5">
       <div class="d-flex flex-row mb-4">
         <img class="mr-2 object-contain image-pixelated" src="/assets/images/icons/news.png" alt="News" />
         <div class="d-inline-flex flex-column justify-content-center">
-          <span class="section-title">Aktuelle Neugikeiten</span>
-          <span class="section-description">Die aktuellen Neugikeiten auf einen Blick</span>
+          <span class="section-title">Actuele nieuws</span>
+          <span class="section-description">Wat zijn de hoogtepunten binnen ons hotel?</span>
         </div>
       </div>
 
       <div class="row">
-
-        <div v-for="(stories, index) in newStories" class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
-          <a :href="[stories.slug]" class="opacity-1">
-            <div class="card card--news d-flex flex-column p-4 mb-4" style="background-image: url('/assets/images/news/news_img.png')">
-              <div class="flex-fill d-inline-flex flex-row justify-content-center">
-                <div class="flex-fill">
-                  <span class="news--category">Algemeen</span>
-                </div>
-              </div>
-
-              <span class="news--title">{{ stories.title }}</span>
-              <span class="news--description">
-                {{ stories.description }}
-            </span>
-            </div>
-          </a>
-        </div>
+        <articles
+            v-for="(stories, index) in newStories"
+            :key="index"
+            :articles="stories"
+            :index="index"
+        ></articles>
       </div>
 
     </section>
@@ -172,17 +161,23 @@
 <script>
 import { mapState } from 'vuex'
 
+import Articles from '../components/Home/Articles';
+
 export default {
   name: 'Home',
 
+  components: {
+    Articles
+  },
+
   computed: {
     ...mapState('articles', {
-        newStories: 'stories'
+      newStories: 'stories'
     })
   },
 
   created: function () {
-      this.$store.dispatch('articles/getStories');
+    this.$store.dispatch('articles/getStories');
   }
 
 }
