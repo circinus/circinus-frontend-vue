@@ -57,8 +57,8 @@
       </div>
     </div>
     <div class="container d-flex flex-column py-3">
-      <strong>&copy; 2020 by necmi</strong>
-      <small>Das Design wurde von necmi speziell für Raizer entwickelt.</small>
+      <strong>&copy; 2020 by Raizer</strong>
+      <small>Das Design wurde von Raizer speziell für Raizer entwickelt.</small>
     </div>
   </footer>
 </template>

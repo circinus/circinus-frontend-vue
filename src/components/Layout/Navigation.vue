@@ -20,41 +20,39 @@
 
 
         <template v-if="!authenticated">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4">
-            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inloggen</a>
-            <div class="dropdown-menu user--login p-4" aria-labelledby="dropdownMenuLink">
-              <form class="d-flex flex-column" @submit.prevent="submit">
-                <div class="form-label-group">
-                  <input type="text" class="form-control" name="username" id="username" v-model="form.username">
-                  <label for="username">Gebruikersnaam</label>
-                </div>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4">
+              <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inloggen</a>
+              <div class="dropdown-menu user--login p-4" aria-labelledby="dropdownMenuLink">
 
-                <div class="form-label-group mb-3">
-                  <input type="password" class="form-control" name="password" id="password" v-model="form.password">
-                  <label for="password">Wachtwoord</label>
-                </div>
+                <ValidationObserver v-slot="{ handleSubmit }">
+                  <form class="d-flex flex-column " @submit.prevent="handleSubmit(submit)">
 
-                <div class="custom-control custom-checkbox mb-4">
-                  <input type="checkbox" class="custom-control-input" id="rememberMeInput">
-                  <label class="custom-control-label" for="rememberMeInput">Eingeloggt bleiben</label>
-                </div>
+                    <ValidationProvider name="username" rules="required" v-slot="{ classes, errors, invalid }">
+                      <div class="form-label-group">
+                        <input type="text" class="form-control" :class="classes" id="username" placeholder="Username" v-model="form.username" required="" autofocus="">
+                        <label for="username">Username</label>
+                      </div>
+                    </ValidationProvider>
 
-                <button class="btn btn-primary btn-block" type="submit">
-                  <span>Login</span>
-                </button>
+                    <ValidationProvider name="password" rules="required|max:16|min:6" v-slot="{ classes, invalid, errors }">
+                      <div class="form-label-group">
+                        <input type="password" class="form-control" :class="classes" placeholder="Password" name="username" id="password" v-model="form.password">
+                        <label for="password">Password</label>
+                      </div>
+                    </ValidationProvider>
 
-                <div class="d-inline-flex flex-row mt-4">
-                  <i class="fas fa-info-circle mr-2 pt-1"></i>
-                  <p class="mb-0">Beim Einloggen, akzeptierst du die <a href="#">AGB</a> von Habbo und bestätigst, dass du die <a href="#">Datenschutzrichtlinien</a> gelesen hast.</p>
-                </div>
-              </form>
-            </div>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link btn btn-warning" :to="{ name: 'register' }">Maak account</router-link>
-          </li>
-        </ul>
+                    <button class="btn btn-primary btn-block" type="submit">
+                      <span>Login</span>
+                    </button>
+                  </form>
+                </ValidationObserver>
+              </div>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link btn btn-warning" :to="{ name: 'register' }">Maak account</router-link>
+            </li>
+          </ul>
         </template>
         <template v-else>
           <ul class="navbar-nav ml-auto">
@@ -69,43 +67,43 @@
 </template>
 
 <script>
-    import { mapGetters, mapActions } from 'vuex';
-    export default {
-        data() {
-            return {
-                form: {
-                    username: '',
-                    password: ''
-                }
-            }
-        },
-        computed: {
-            ...mapGetters({
-                authenticated: 'auth/authenticated',
-                user: 'auth/user'
-            })
-        },
-        methods: {
-            ...mapActions({
-                signIn: 'auth/signIn',
-                signOutAction: 'auth/signOut'
-            }),
-
-            submit() {
-                this.signIn(this.form).then(() => {
-                    this.$router.replace({
-                        name: 'dashboard'
-                    })
-                })
-            },
-
-            signOut () {
-                this.signOutAction().then(() => {
-                    this.$router.replace({
-                        name: 'home'
-                    })
-                })
-            }
-        }
+import { mapGetters, mapActions } from 'vuex';
+export default {
+  data() {
+    return {
+      form: {
+        username: '',
+        password: ''
+      }
     }
+  },
+  computed: {
+    ...mapGetters({
+      authenticated: 'auth/authenticated',
+      user: 'auth/user'
+    })
+  },
+  methods: {
+    ...mapActions({
+      signIn: 'auth/signIn',
+      signOutAction: 'auth/signOut'
+    }),
+
+    submit() {
+      this.signIn(this.form).then(() => {
+        this.$router.replace({
+          name: 'dashboard'
+        })
+      })
+    },
+
+    signOut () {
+      this.signOutAction().then(() => {
+        this.$router.replace({
+          name: 'home'
+        })
+      })
+    }
+  }
+}
 </script>

@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from '../views/Home'
-import SignIn from '../views/Signin'
+import Register from '../views/Register'
 import Dashboard from '../views/Dashboard'
+import Client from '../views/Client'
 
 import store from '../store'
 
@@ -18,10 +19,15 @@ let router = new Router({
       component: Home
     },
     {
-      path: '/signin',
-      name: 'signin',
-      component: SignIn
+      path: '/register',
+      name: 'register',
+      component: Register
     },
+  {
+      path: '/client',
+      name: 'client',
+      component: Client
+  },
     {
       path: '/dashboard',
       name: 'dashboard',

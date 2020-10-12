@@ -2,12 +2,12 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 d-flex flex-column my-4">
-        <h2 id="header--title" class="mb-3">
-          HabboMP ermöglicht es dir, mit anderen Spielern in Verbindung zu treten und Inhalte mit diesen zu teilen.
-        </h2>
+        <h3 id="header--title" class="mb-3">
+          Meteor: Leuke Meteor's, vriendelijk, gezelligheid! Wees er snel bij en maak vrienden!
+        </h3>
 
         <p id="header--description">
-          Wir bieten dir viel mehr als nur chatten und bauen, werde ein Teil von uns und lasse dich überraschen.
+          Maak vandaag nog je account aan en ontvang een welkomst- bonus, waar wacht je op?
         </p>
 
         <router-link class="btn btn--light w-50" :to="{ name: 'register' }">Register</router-link>

@@ -37,12 +37,10 @@
 
       <main class="flex-fill container">
         <notifications></notifications>
-
         <router-view />
       </main>
 
       <Footer/>
-
 
     </div>
   </div>
