@@ -19,10 +19,8 @@ import { configure } from 'vee-validate';
 configure({
     classes: {
         valid: 'is-valid',
-        invalid: 'is-invalid',
-        dirty: ['is-dirty', 'is-dirty'], // multiple classes per flag!
-        // ...
-    }
+        invalid: 'is-invalid'
+    },
 })
 
 import { ValidationProvider } from 'vee-validate/dist/vee-validate.full'

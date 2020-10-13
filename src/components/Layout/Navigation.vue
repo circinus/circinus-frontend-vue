@@ -28,16 +28,16 @@
                 <ValidationObserver v-slot="{ handleSubmit }">
                   <form class="d-flex flex-column " @submit.prevent="handleSubmit(submit)">
 
-                    <ValidationProvider name="username" rules="required" v-slot="{ classes, errors, invalid }">
+                    <ValidationProvider name="username" rules="required|max:16" v-slot="{ classes, invalid, valid }">
                       <div class="form-label-group">
-                        <input type="text" class="form-control" :class="classes" id="username" placeholder="Username" v-model="form.username" required="" autofocus="">
+                        <input type="text" class="form-control" :class="{'is-invalid': invalid, 'is-valid': valid }" id="username" placeholder="Username" v-model="form.username" required="" autofocus="">
                         <label for="username">Username</label>
                       </div>
                     </ValidationProvider>
 
-                    <ValidationProvider name="password" rules="required|max:16|min:6" v-slot="{ classes, invalid, errors }">
+                    <ValidationProvider name="password" rules="required|min:6" v-slot="{ classes, invalid, valid }">
                       <div class="form-label-group">
-                        <input type="password" class="form-control" :class="classes" placeholder="Password" name="username" id="password" v-model="form.password">
+                        <input type="password" class="form-control" :class="{'is-invalid': invalid, 'is-valid': valid }" name="password" id="password" v-model="form.password">
                         <label for="password">Password</label>
                       </div>
                     </ValidationProvider>

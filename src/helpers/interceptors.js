@@ -1,5 +1,6 @@
 import api from './api';
 import loader from './loader';
+import store from '../store'
 
 export default function setup() {
     api.interceptors.request.use(function(config) {
@@ -13,7 +14,10 @@ export default function setup() {
         loader.loaderEnd();
         return response.data;
     }, function (error) {
-        //this.$store.dispatch('notifications/ADD_NOTIFICATION', {text: 'test', type: 'success'})
-        //return Promise.reject(error.response);
+        error.response.data.errors.map(function(value, key) {
+            if(value !== '')  store.commit('notifications/ADD_NOTIFICATION', {text: value.message, type: error.response.data.status});
+        });
+        loader.loaderEnd();
+        return Promise.reject(error.response);
     });
 }
