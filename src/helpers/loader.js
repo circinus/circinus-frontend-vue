@@ -4,8 +4,14 @@ import "vue-loading-overlay/dist/vue-loading.css";
 
 Vue.use(Loading);
 
-let loader = null;
+let count = 0;
+let loader;
+
 function loaderStart() {
+    if(count > 0){
+        loader.hide();
+    }
+    count++
     loader = Vue.$loading.show({
         color: "#ACACAC",
         backgroundColor: '#EAF2F5',
@@ -15,9 +21,11 @@ function loaderStart() {
         width: 94,
         height: 94
     });
+
 }
 function loaderEnd() {
     loader.hide();
+    count = 0;
 }
 
 export default { loaderStart, loaderEnd };
