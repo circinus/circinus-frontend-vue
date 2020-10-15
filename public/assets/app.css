@@ -10115,6 +10115,11 @@ a:hover {
   opacity: 1;
 }
 
+.iziToast-icon {
+  opacity: 1 !important;
+  display: inline !important;
+}
+
 .loading-indicator:before {
   content: "";
   background: #000000cc;

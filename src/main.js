@@ -6,10 +6,16 @@ import store from './store'
 import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dist/dropdown';
 
+import '@fortawesome/fontawesome-free/css/all.css'
+import '@fortawesome/fontawesome-free/js/all.js'
+
 require('./store/modules/subscriber');
 
 import iziToast from './helpers/toaster'
 Vue.use(iziToast);
+
+import VueSwal from 'vue-swal'
+Vue.use(VueSwal)
 
 import interceptorsSetup from './helpers/interceptors'
 interceptorsSetup();

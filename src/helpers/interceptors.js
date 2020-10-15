@@ -2,6 +2,8 @@ import api from './api';
 import loader from './loader';
 import store from '../store'
 
+import Vue from 'vue'
+
 export default function setup() {
     api.interceptors.request.use(function(config) {
 
@@ -35,6 +37,9 @@ export default function setup() {
 
         // close loading instance
         loader.loaderEnd();
+
+        // custom error handling
+        //Vue.$swal('Error', 'Some kind of error', 'error')
 
         //return error
         return Promise.reject(error.response);
