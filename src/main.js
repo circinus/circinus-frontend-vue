@@ -14,20 +14,8 @@ require('./store/modules/subscriber');
 import iziToast from './helpers/toaster'
 Vue.use(iziToast);
 
-import VueSwal from 'vue-swal'
-Vue.use(VueSwal)
-
 import interceptorsSetup from './helpers/interceptors'
 interceptorsSetup();
-
-import { configure } from 'vee-validate';
-
-configure({
-    classes: {
-        valid: 'is-valid',
-        invalid: 'is-invalid'
-    },
-})
 
 import { ValidationProvider } from 'vee-validate/dist/vee-validate.full'
 import { ValidationObserver } from 'vee-validate'
@@ -35,10 +23,21 @@ import { ValidationObserver } from 'vee-validate'
 Vue.component('ValidationProvider', ValidationProvider)
 Vue.component('ValidationObserver', ValidationObserver)
 
-Vue.config.productionTip = false
+import VueConfig from 'vue-configuration';
+import appConfig from '../config';
+
+Vue.use(VueConfig, {
+    config: appConfig
+});
+
+Vue.config.productionTip = false;
+
+import i18n from './helpers/locale'
+
 store.dispatch('auth/attempt', localStorage.getItem('token')).then(() => {
     new Vue({
         router,
+        i18n,
         store,
         render: h => h(App)
     }).$mount('#app')

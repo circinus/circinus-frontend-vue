@@ -36,7 +36,6 @@ export default {
         async attempt ({ commit, state } , token) {
             if(token) {
                 commit('SET_TOKEN', token)
-                commit('notifications/ADD_NOTIFICATION', {text: 'test', type: 'success'}, { root: true  })
             }
 
             if(!state.token) {
@@ -58,6 +57,11 @@ export default {
                 commit('SET_TOKEN', null)
                 commit('SET_USER', null)
             })
-        }
+        },
+
+        async register({ dispatch }, form) {
+            let response = await api.post('register', form);
+            return dispatch('attempt', response.data.token)
+        },
     }
 }

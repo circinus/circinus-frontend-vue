@@ -8,14 +8,50 @@
             <hr>
             <div class="row text-left">
               <div class="col-md-12">
-                <input type="text" placeholder="Emailadres..." name="username" value="" id="username" class="form-control">
-                <input type="email" placeholder="Emailadres..." name="mail" value="" id="mail" class="form-control">
-                <input type="password" placeholder="Wachtwoord..." name="password" class="form-control">
-                <input type="password" placeholder="Wachtwoord herhalen..." name="repeatpassword" class="form-control">
-                <select class="form-control display" name="gender" id="gender">
-                  <option value="M">Man</option>
-                  <option value="F">Woman</option>
-                </select>
+                <ValidationObserver v-slot="{ handleSubmit }">
+                  <form class="d-flex flex-column " @submit.prevent="handleSubmit(submit)">
+
+                    <ValidationProvider name="username" rules="required|min:6" v-slot="{ classes, errors }">
+                      <div class="form-label-group">
+                        <input type="text" class="form-control" :class="classes" id="usernameRegister" v-model="form.username" autofocus="">
+                        <label for="usernameRegister">Username</label>
+                        <span class="error">{{ errors[0] }}</span>
+                      </div>
+
+                    </ValidationProvider>
+
+                    <ValidationProvider name="password" :rules="{required: true, min: 6, regex: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).*$/}" v-slot="{ classes, errors }" vid="passwordRegister">
+                      <div class="form-label-group">
+                        <input type="password" class="form-control" :class="classes" id="passwordRegister"  v-model="form.password" required="" autofocus="">
+                        <label for="passwordRegister">Password</label>
+                        <span class="error">{{ errors[0] }}</span>
+                      </div>
+                    </ValidationProvider>
+
+                    <ValidationProvider name="passwordRepeat" :rules="{required: true, min: 6, confirmed: 'passwordRegister', regex: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).*$/}"  v-slot="{ classes, errors }">
+                      <div class="form-label-group">
+                        <input type="password" class="form-control" :class="classes" id="passwordRepeatRegister" v-model="form.password_confirmation" required="" autofocus="">
+                        <label for="passwordRepeatRegister">Password</label>
+                        <span class="error">{{ errors[0] }}</span>
+                      </div>
+                    </ValidationProvider>
+
+                    <ValidationProvider name="email" rules="required|email" v-slot="{ classes, errors }">
+                      <div class="form-label-group">
+                        <input type="email" class="form-control" :class="classes" id="emailRegister" v-model="form.mail" required="" autofocus="">
+                        <label for="emailRegister">Email adress</label>
+                        <span class="error">{{ errors[0] }}</span>
+                      </div>
+                    </ValidationProvider>
+
+                    <select class="form-control display" name="gender" id="gender" v-model="form.gender">
+                      <option value="M">Man</option>
+                      <option value="F">Woman</option>
+                    </select>
+
+                    <button type="submit" class="btn btn-primary btn-block mt-4"><span>Create Account</span></button>
+                  </form>
+                </ValidationObserver>
               </div>
             </div>
           </div>
@@ -36,20 +72,6 @@
               </div>
             </div>
           </div>
-          <div class="card flex-column mt-3">
-            <div class="card-body">
-              <div class="row mt-3">
-                <div class="col-md-12">
-                  <input type="submit" class="btn btn-outline-info w-100" value="Registreren">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 col-xs-12 col-md-12">
-                  <a href="/" class="btn btn-outline-warning w-100">INLOGGEN?</a>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -57,7 +79,34 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
-  name: "Register"
+
+  name: "Register",
+  data() {
+    return {
+      form: {
+        username: '',
+        password: '',
+        password_confirmation: '',
+        mail: '',
+        gender: ''
+      }
+    }
+  },
+  methods: {
+    ...mapActions({
+      register: 'auth/register'
+    }),
+
+    submit() {
+      this.register(this.form).then(() => {
+        this.$router.replace({
+          name: 'dashboard'
+        })
+      })
+    },
+  }
 }
 </script>

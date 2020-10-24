@@ -1,5 +1,6 @@
 import axios from "axios";
+import config from "../../config";
 
 export default axios.create({
-    baseURL: 'https://ares.projectmeteor.online/api/en/',
+    baseURL: config.API.base_url
 });

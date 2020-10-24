@@ -15,19 +15,22 @@
             <div class="collapse navbar-collapse" id="navbar--secondary-collapse">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <router-link class="nav-link" :to="{ name: 'home' }">Homepagina</router-link>
+                  <router-link class="nav-link" :to="{ name: 'home' }">{{ $t("nav.link_1") }}</router-link>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Community</a>
+                  <a class="nav-link" href="#">{{ $t("nav.link_2") }}</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Neugikeiten</a>
+                  <a class="nav-link" href="#">{{ $t("nav.link_3") }}</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Community</a>
+                  <a class="nav-link" href="#">{{ $t("nav.link_4") }}</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Itemshop</a>
+                  <a class="nav-link" href="#">{{ $t("nav.link_5") }}</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">{{ $t("nav.link_6") }}</a>
                 </li>
               </ul>
             </div>
@@ -52,7 +55,7 @@ import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
 import Notifications from './components/Notifications';
 
-import { mapGetters, mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
     components: {

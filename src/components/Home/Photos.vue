@@ -18,12 +18,7 @@
           <div class="card-img-top" v-bind:style="{ backgroundImage: 'url(' + this.photo.url + ')', backgroundSize: 'auto !important' }"></div>
 
           <div class="card-body d-flex flex-column">
-            <span class="news--title">Habbo Festivals 2020!</span>
-            <span class="news--description">
-                                        Bereitet euch auf einen Monat voller Überraschungen vor. Für weitere Informationen...
-                                    </span>
-
-            <div class="d-inline-flex flex-row mt-3 align-items-center">
+            <div class="d-inline-flex flex-row align-items-center">
               <i class="far fa-heart mr-2"></i>
               <span class="mr-3 font-weight-bold">1337</span>
 

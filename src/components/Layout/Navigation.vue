@@ -22,22 +22,22 @@
         <template v-if="!authenticated">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4">
-              <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inloggen</a>
+              <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $t("header.login") }}</a>
               <div class="dropdown-menu user--login p-4" aria-labelledby="dropdownMenuLink">
 
                 <ValidationObserver v-slot="{ handleSubmit }">
                   <form class="d-flex flex-column " @submit.prevent="handleSubmit(submit)">
 
-                    <ValidationProvider name="username" rules="required|max:16" v-slot="{ classes, invalid, valid }">
+                    <ValidationProvider name="username" rules="required|max:16" v-slot="{ classes }">
                       <div class="form-label-group">
-                        <input type="text" class="form-control" :class="{'is-invalid': invalid, 'is-valid': valid }" id="username" placeholder="Username" v-model="form.username" required="" autofocus="">
+                        <input type="text" class="form-control" :class="classes" id="username" placeholder="Username" v-model="form.username" required="" autofocus="">
                         <label for="username">Username</label>
                       </div>
                     </ValidationProvider>
 
-                    <ValidationProvider name="password" rules="required|min:6" v-slot="{ classes, invalid, valid }">
+                    <ValidationProvider name="password" rules="required|min:6" v-slot="{ classes }">
                       <div class="form-label-group">
-                        <input type="password" class="form-control" :class="{'is-invalid': invalid, 'is-valid': valid }" name="password" id="password" v-model="form.password">
+                        <input type="password" class="form-control" :class="classes" name="password" placeholder="Password" id="password" v-model="form.password">
                         <label for="password">Password</label>
                       </div>
                     </ValidationProvider>
@@ -50,14 +50,14 @@
               </div>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link btn btn-warning" :to="{ name: 'register' }">Maak account</router-link>
+              <router-link class="nav-link btn btn-warning" :to="{ name: 'register' }">{{ $t("header.create_account") }}</router-link>
             </li>
           </ul>
         </template>
         <template v-else>
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a href="#" class="nav-link btn btn-warning" @click.prevent="signOut">Uitloggen</a>
+              <a href="#" class="nav-link btn btn-warning" @click.prevent="signOut">{{ $t("header.logout") }}</a>
             </li>
           </ul>
         </template>
