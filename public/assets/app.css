@@ -10308,13 +10308,15 @@ header #header--description {
   text-align: center;
 }
 header #header--image {
-  background-image: url(https://projectmeteor.online/assets/images/public.png), linear-gradient(-135deg, transparent, #15B3DB), url(https://projectmeteor.online/assets/images/tile.png);
-  background-repeat: no-repeat, repeat, repeat;
-  background-position: calc(50% + 180px) -140px, center;
+  background-image: url(https://www.leet.ws/assets/images/topbg.png), linear-gradient(-135deg, transparent, #15B3DB), url(https://projectmeteor.online/assets/images/tile.png);
+  /* background-repeat: no-repeat, repeat, repeat; */
+  background-position: center;
   -ms-interpolation-mode: nearest-neighbor;
-      image-rendering: -moz-crisp-edges;
-      image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: pixelated;
   height: 180px;
+  position: -webkit-sticky;
+  position: sticky;
 }
 header #header--image::before {
   content: "";
@@ -10327,6 +10329,57 @@ header #header--image::before {
 }
 
 /* main */
+main .register--body .looks {
+  background-color: #dadada;
+  border-radius: 32px;
+  transition: background-color 0.2s ease 0s;
+}
+main .register--body .selected {
+  border: 3px solid #b1b1b1;
+  background-color: #0000007a;
+}
+main .register--body .selected-look {
+  background-image: url(https://global.ax/shine.180f90a03335018c8800.png);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  position: relative;
+}
+main .register--body .selected-look[data-random]:before {
+  background-image: url(https://cosmicproject.online/assets/images/web/pages/registration/clouds.png);
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: block;
+  content: "";
+}
+main .register--body .selected-look[data-random="8"]:before {
+  display: none;
+}
+main .register--body .selected-look[data-random="7"]:before {
+  background-position: center 0;
+}
+main .register--body .selected-look[data-random="6"]:before {
+  background-position: center -284px;
+}
+main .register--body .selected-look[data-random="5"]:before {
+  background-position: center -568px;
+}
+main .register--body .selected-look[data-random="4"]:before {
+  background-position: center -852px;
+}
+main .register--body .selected-look[data-random="3"]:before {
+  background-position: center -1136px;
+}
+main .register--body .selected-look[data-random="2"]:before {
+  background-position: center -1420px;
+}
+main .register--body .selected-look[data-random="1"]:before {
+  background-position: center -1704px;
+}
 main .habbo--section {
   margin-bottom: 1.5rem;
 }
@@ -10356,19 +10409,6 @@ main .habbo--section .news--info .user--rounded-image {
 main .habbo--section .news--info .user--rounded-image > img {
   top: -0.8rem;
   left: -0.3rem;
-}
-
-.looks {
-  background-color: #dadada;
-  border-radius: 32px;
-  transition: background-color 0.2s ease 0s;
-}
-
-.selected-look {
-  background-image: url(https://global.ax/shine.180f90a03335018c8800.png);
-  background-repeat: no-repeat;
-  background-position: 50%;
-  position: relative;
 }
 
 /* footer */

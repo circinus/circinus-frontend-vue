@@ -31,11 +31,11 @@ let router = new Router({
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: Dashboard,
+      component: Home,
       beforeEnter: (to, from, next) => {
           if(!store.getters['auth/authenticated']) {
               return next({
-                  name: 'signin'
+                  name: 'register'
               })
           }
           next()

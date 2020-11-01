@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row">
+    <div class="row register--body">
       <div class="col-md-6 mt-5">
         <div class="card card--content">
           <div class="card-body">
@@ -71,18 +71,16 @@
                 Na het aanmaken van je account wordt doorgelinkt naar ons hotel. Daar kun je je Meteor poppetje en naam geven en persionaliseren van je uiterlijk.
                 Ook kun je een startkamer kiezen waar je eerste meubeltjes in staan om zo een beeld te geven wat je hier allemaal kunt doen!
 
-                <div class="mt-4">
-                  <looks
-                      v-for="(looks, index) in getLooks"
-                      :key="index"
-                      :looks="looks"
-                  >
-                  </looks>
+                <div class="row mt-4">
+                  <div class="pl-5" v-for="(item, index) in looks" :key="index" @click="changeAvatar(item)">
+                    <img :class="{selected:item === selected}" class="looks" v-bind:src="'https://www.habbo.com/habbo-imaging/avatarimage?figure=' + item + '&headonly=1'" />
+                  </div>
                 </div>
+
               </div>
               <div class="col-md-4">
-                  <div class="selected-look">
-                    <img style="margin-left: 35px;" src="https://www.habbo.com.tr/habbo-imaging/avatarimage?figure=ch-660-64.ea-1401-63.hd-600-8.hr-3920-33-1345.lg-700-73.fa-1212-63.sh-725-90&amp;size=l">
+                  <div class="selected-look" :data-random="avatarPreload">
+                    <img style="margin-left: 35px;" v-if="selected" :src="'https://www.habbo.com/habbo-imaging/avatarimage?figure=' + selected + '&amp;size=l'">
                   </div>
                   </div>
             </div>
@@ -112,7 +110,10 @@ export default {
         mail: '',
         gender: '',
         look: 'empty'
-      }
+      },
+      looks: [],
+      selected: undefined,
+      avatarPreload: 8
     }
   },
 
@@ -143,10 +144,29 @@ export default {
       })
     },
 
+    changeAvatar(item) {
+        this.selected = item
+        this.preLoad()
+    },
+
     changeGender: function(event) {
-      this.look(event.target.value).then(response => {
-        console.log(response)
+        this.look(event.target.value).then(response => {
+        this.looks = response
+        this.selected = response[1] ?? response[5]
+        this.preLoad()
       })
+    },
+
+    preLoad() {
+
+      if(this.avatarPreload > 0) {
+          setTimeout(() => {
+              this.avatarPreload -= 1
+              this.preLoad()
+          }, 50)
+      } else {
+          this.avatarPreload = 8
+      }
     }
   }
 }

@@ -20,6 +20,12 @@ export default {
                 .then((response) => {
                     commit('APPEND_PHOTOS', response.data.data)
                 });
+        },
+        async likePhoto ({ commit }) {
+            await api.get('photos/list/1/10')
+                .then((response) => {
+                    commit('APPEND_PHOTOS', response.data.data)
+                });
         }
     }
 }
