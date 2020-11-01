@@ -11,5 +11,10 @@
     "link_4": "Highscores",
     "link_5": "Medewerkers",
     "link_6": "Helptool"
+  },
+  "DASHBOARD": {
+    "CREDITS": "Credits",
+    "POINTS": "Diamonds",
+    "PIXELS": "Meteors"
   }
 }

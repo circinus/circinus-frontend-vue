@@ -11,7 +11,7 @@ $navbar-light-hover-color:    #2C3039;
 $navbar-light-active-color:   #2C3039;
 
 $theme-colors: (
-        'primary': #71D1F4,
+        'primary': #7DD4E5,
         'danger': #ff4136,
         'orange': #EEB425,
         'light': #fff
@@ -94,11 +94,6 @@ header {
   color: var(--header-color);
 
   #navbar--primary {
-    background-image: url('../../assets/images/logo.png');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: 6%;
-
 
     @include media-breakpoint-down(md) {
       background: none;
@@ -113,6 +108,63 @@ header {
     }
 
     .navbar-nav {
+
+      .dropdown-item {
+        font-size: 14px;
+      }
+
+      .avatar {
+        background-color: rgba(0,0,0,0.1);
+        width: 32px;
+        min-width: 32px;
+        height: 32px;
+        border-radius: 40%;
+        overflow: hidden;
+      }
+
+      .user--statics {
+
+        color: #000;
+        padding: 5px;
+        width: 220px;
+
+        .icon {
+          width: 30px;
+          height: 30px;
+          background-repeat: no-repeat;
+          background-position: center;
+          float: left;
+        }
+
+        .credits {
+          box-shadow: inset 0 0 0 2px #e9e9e9;
+          margin-left: 3px;
+          border-radius: 15px;
+          background: url(https://www.leet.ws/assets/images/icons/credits.png) no-repeat center center #b68c1d;
+        }
+
+        .DUCKETS {
+          box-shadow: inset 0 0 0 2px #e9e9e9;
+          margin-left: 3px;
+          border-radius: 15px;
+          background: url(https://www.leet.ws/assets/images/icons/duckets.png) no-repeat center center #985c9b;
+        }
+
+        .DIAMONDS {
+          box-shadow: inset 0 0 0 2px #e9e9e9;
+          margin-left: 3px;
+          border-radius: 15px;
+          background: url(https://www.leet.ws/assets/images/icons/diamonds.png) no-repeat center center #77a2a2;
+        }
+
+        .GOTW {
+          box-shadow: inset 0 0 0 2px #e9e9e9;
+          margin-left: 3px;
+          border-radius: 15px;
+          background: url(https://www.leet.ws/assets/images/icons/belcredits.png) no-repeat center center #6c9c67;
+        }
+      }
+
       .nav-item {
 
         &:not(:last-child) {
@@ -226,13 +278,27 @@ header {
   #header--description {
     font-size: 1rem;
     font-weight: 300;
+    z-index: 5;
+    width: 30%;
+    text-align: center;
   }
 
   #header--image {
-    background-image: url('../../assets/images/header.png');
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-image: url(https://projectmeteor.online/assets/images/public.png), linear-gradient(-135deg, transparent, #15B3DB), url(https://projectmeteor.online/assets/images/tile.png);
+    background-repeat: no-repeat, repeat, repeat;
+    background-position: calc(50% + 180px) -140px, center;
+    image-rendering: pixelated;
+    height: 180px;
+  }
+
+  #header--image::before {
+    content: ""; // ::before and ::after both require content
+    top: 67px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://www.leet.ws/assets/images/pattern.png), linear-gradient(120deg, #585858, #1a2123);
+    opacity: .7;
   }
 }
 
@@ -277,6 +343,21 @@ main {
       }
     }
   }
+}
+.looks {
+  background-color: #dadada;
+  -webkit-border-radius: 32px;
+  -moz-border-radius: 32px;
+  border-radius: 32px;
+  -webkit-transition: background-color .2s ease 0s;
+  transition: background-color .2s ease 0s;
+}
+
+.selected-look {
+  background-image: url(https://global.ax/shine.180f90a03335018c8800.png);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  position: relative;
 }
 
 /* footer */
@@ -398,6 +479,12 @@ footer {
 .btn {
   padding: .6rem;
   font-size: 14px
+}
+
+.btn--light-dark {
+  color: #000 !important;
+  background-color: #efefef;
+  border-color: #e6e6e647;
 }
 
 .btn--light {

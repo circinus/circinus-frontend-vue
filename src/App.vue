@@ -54,7 +54,6 @@ import Navigation from './components/Layout/Navigation';
 import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
 import Notifications from './components/Notifications';
-
 import { mapGetters } from 'vuex';
 
 export default {

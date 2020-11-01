@@ -9,7 +9,7 @@ import 'bootstrap/js/dist/dropdown';
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
 
-require('./store/modules/subscriber');
+require('./store/modules/user/subscriber');
 
 import iziToast from './helpers/toaster'
 Vue.use(iziToast);

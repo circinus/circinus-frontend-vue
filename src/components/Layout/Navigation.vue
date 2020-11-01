@@ -1,23 +1,27 @@
 <template>
   <nav id="navbar--primary" class="navbar navbar-expand-md navbar-light bg-light">
     <div class="container">
-      <div class="navbar-brand d-xl-none d-lg-none d-md-none d-block">
-        <img src="/../../assets/images/logo.png" alt="Habbo Logo" />
-      </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar--primary-collapse"
               aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbar--primary-collapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Wieso HabboMP?</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">HabboMP Desktop App</a>
-          </li>
+        <ul class="navbar-nav mr-auto" v-if="authenticated">
+          <div class="row">
+            <div class="col user--statics">
+              <div class="icon credits"></div>
+              <div class="pt-1" style="margin-left: 50px;">
+                <div class="font-weight-bold">{{user.credits}}</div> <span>CREDITS</span>
+              </div>
+            </div>
+            <div v-for="currency in user.currencies" :key="currency.name" class="col user--statics">
+              <div class="icon" :class="currency.name"></div>
+              <div class="pt-1" style="margin-left: 50px;">
+                <div class="font-weight-bold">{{currency.amount}}</div> <span>{{ currency.name }}</span>
+              </div>
+            </div>
+          </div>
         </ul>
-
 
         <template v-if="!authenticated">
           <ul class="navbar-nav ml-auto">
@@ -57,7 +61,17 @@
         <template v-else>
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a href="#" class="nav-link btn btn-warning" @click.prevent="signOut">{{ $t("header.logout") }}</a>
+              <div class="dropdown">
+                <button type="button" class="btn btn--light-dark dropdown-toggle" data-toggle="dropdown">
+                  <img src="https://habbo.com.br/habbo-imaging/avatarimage?figure=hr-802-37.hd-185-1.ch-804-82.lg-280-73.sh-3068-1408-1408.wa-2001&amp;gesture=sml&size=s&amp;headonly=1" alt="Raizers" class="pixelated">
+                  {{ user.username }}
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Link 1</a>
+                  <a class="dropdown-item" href="#">Link 2</a>
+                  <a class="dropdown-item"  @click.prevent="signOut">{{ $t("header.logout") }}</a>
+                </div>
+              </div>
             </li>
           </ul>
         </template>

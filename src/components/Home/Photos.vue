@@ -2,11 +2,11 @@
     <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12">
       <div class="news--info d-flex flex-row align-items-center mb-3">
         <div class="user--rounded-image bg-white mr-2">
-          <img v-bind:src="'https://www.habbo.com/habbo-imaging/avatarimage?figure=' + this.photo.creator.look + '&action=std&gesture=std&direction=3&head_direction=3'" alt="necmi" />
+          <img v-bind:src="'https://www.habbo.com/habbo-imaging/avatarimage?figure=' + this.photo.user.look + '&action=std&gesture=std&direction=3&head_direction=3'" alt="necmi" />
         </div>
 
         <div class="flex-fill d-inline-flex flex-column">
-          <strong class="mb-0">{{ this.photo.creator.username }}</strong>
+          <strong class="mb-0">{{ this.photo.user.username }}</strong>
 
           <div class="d-inline-flex flex-row">
             <span>{{moment(this.photo.timestamp).fromNow()}}</span>
