@@ -5,7 +5,7 @@
       <div class="d-flex flex-row mb-4">
         <img class="mr-2 object-contain image-pixelated" src="/assets/images/icons/news.png" alt="News" />
         <div class="d-inline-flex flex-column justify-content-center">
-          <span class="section-title">Actuele nnieuws</span>
+          <span class="section-title">Actuele Nieuws</span>
           <span class="section-description">Wat zijn de hoogtepunten binnen ons hotel?</span>
         </div>
       </div>

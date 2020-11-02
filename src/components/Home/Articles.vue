@@ -1,6 +1,6 @@
 <template>
     <div class="col-xl-4 col-lg-5 col-md-12 col-sm-12">
-      <a v-bind:href="'articles/' + this.articles.slug" class="opacity-1">
+      <a v-bind:href="'articles/' + this.articles.id + '/' +this.articles.slug" class="opacity-1">
         <div class="card card--news d-flex flex-column p-4 mb-4" v-bind:style="{ backgroundImage: 'url(' + this.articles.image + ')' }">
           <div class="flex-fill d-inline-flex flex-row justify-content-center" >
             <div class="flex-fill">
