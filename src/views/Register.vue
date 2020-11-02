@@ -45,10 +45,9 @@
                     </ValidationProvider>
 
                     <ValidationProvider name="gender" rules="required" v-slot="{ classes, errors }">
-                      <select class="form-control display" v-model="form.gender" @change="changeGender">
+                      <select class="form-control display" v-model="form.gender" @change="changeGender($event)">
                         <option value="" disabled>Gender</option>
-                        <option value="boys">Man</option>
-                        <option value="girls">Woman</option>
+                        <option v-for="gender in genders" :value="gender.value" :data-gender="gender.gender">{{ gender.text }}</option>
                       </select>
                     </ValidationProvider>
 
@@ -73,14 +72,14 @@
 
                 <div class="row mt-4">
                   <div class="pl-5" v-for="(item, index) in looks" :key="index" @click="changeAvatar(item)">
-                    <img :class="{selected:item === selected}" class="looks" v-bind:src="'https://www.habbo.com/habbo-imaging/avatarimage?figure=' + item + '&headonly=1'" />
+                    <img :class="{selected:item === form.look}" class="looks" v-bind:src="'https://www.habbo.com/habbo-imaging/avatarimage?figure=' + item + '&headonly=1'" />
                   </div>
                 </div>
 
               </div>
               <div class="col-md-4">
                   <div class="selected-look" :data-random="avatarPreload">
-                    <img style="margin-left: 35px;" v-if="selected" :src="'https://www.habbo.com/habbo-imaging/avatarimage?figure=' + selected + '&amp;size=l'">
+                    <img style="margin-left: 35px;" v-if="form.look" :src="'https://www.habbo.com/habbo-imaging/avatarimage?figure=' + form.look + '&amp;size=l'">
                   </div>
                   </div>
             </div>
@@ -102,29 +101,32 @@ export default {
   name: "Register",
 
   data() {
-    return {
-      form: {
-        username: '',
-        password: '',
-        password_confirmation: '',
-        mail: '',
-        gender: '',
-        look: 'empty'
-      },
-      looks: [],
-      selected: undefined,
-      avatarPreload: 8
-    }
+      return {
+          looks: [],
+          avatarPreload: 8,
+          genders: [
+            { value: 'M', text: 'Boys', 'gender': 'boys' },
+            { value: 'F', text: 'Girls', 'gender': 'girls' }
+          ],
+          form: {
+              username: '',
+              password: '',
+              password_confirmation: '',
+              mail: '',
+              gender: '',
+              look: ''
+          },
+      }
   },
 
   components: {
-    Looks
+      Looks
   },
 
   computed: {
 
     ...mapState('register', {
-      getLooks: 'looks'
+        getLooks: 'looks'
     })
 
   },
@@ -132,29 +134,29 @@ export default {
   methods: {
 
     ...mapActions({
-      register: 'auth/register',
-      look: 'register/getLooks'
+        register: 'auth/register',
+        look: 'register/getLooks'
     }),
 
     submit() {
-      this.register(this.form).then(() => {
-        this.$router.replace({
-          name: 'dashboard'
+        this.register(this.form).then(() => {
+            this.$router.replace({
+              name: 'dashboard'
+            })
         })
-      })
     },
 
     changeAvatar(item) {
-        this.selected = item
+        this.form.look = item
         this.preLoad()
     },
 
     changeGender: function(event) {
-        this.look(event.target.value).then(response => {
-        this.looks = response
-        this.selected = response[1] ?? response[5]
-        this.preLoad()
-      })
+      this.look(event.target.selectedOptions[0].dataset.gender).then(response => {
+            this.form.look = response[1] ?? response[5];
+            this.looks = response
+            this.preLoad()
+        })
     },
 
     preLoad() {
