@@ -43,6 +43,7 @@
         <router-view />
       </main>
 
+      <Client/>
       <Footer/>
 
     </div>
@@ -54,6 +55,8 @@ import Navigation from './components/Layout/Navigation';
 import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
 import Notifications from './components/Notifications';
+import Client from './components/Client/Client';
+
 import { mapGetters } from 'vuex';
 
 export default {
@@ -61,12 +64,13 @@ export default {
         Navigation,
         Header,
         Footer,
-        Notifications
+        Notifications,
+        Client
     },
 
     computed: {
         ...mapGetters({
-            notifications: 'notifications/list',
+            notifications: 'notifications/list'
         })
     }
 }

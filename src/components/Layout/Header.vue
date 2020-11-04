@@ -6,29 +6,35 @@
           Chatten, vrienden maken en lekker jezelf zijn, dat bieden wij op de gezelligste community van Nederland! Kom jij ook?
         </p>
 
-        <a href="#" class="btn btn--light w-25" v-if="!authenticated">Meld je aan!</a>
-        <a href="#" class="btn btn--light w-25" v-if="authenticated">Ga naar binnen</a>
+        <button href="#" class="btn btn--light w-25" v-if="!authenticated">Meld je aan!</button>
+        <button class="btn btn--light w-25" v-if="authenticated" @click="toggleClientLoader">Ga naar binnen</button>
       </div>
     </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import api from '../../helpers/api'
+
+import {mapActions, mapGetters} from 'vuex';
 
 export default {
-  computed: {
-    ...mapGetters({
-      authenticated: 'auth/authenticated',
-      user: 'auth/user'
-    })
-  },
 
-  created() {
-      //api.post('articles/list').then((response) => {
-        //console.log(response)
-      //});
-  }
+    computed: {
+      ...mapGetters({
+          authenticated: 'auth/authenticated',
+          user: 'auth/user',
+          client: 'client/loaded'
+      })
+    },
+
+    methods: {
+        ...mapActions({
+            loadClient: 'client/setstate'
+        }),
+
+        toggleClientLoader() {
+            this.loadClient(!this.client)
+        }
+    }
 }
 </script>
 

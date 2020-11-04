@@ -23,13 +23,6 @@ import { ValidationObserver } from 'vee-validate'
 Vue.component('ValidationProvider', ValidationProvider)
 Vue.component('ValidationObserver', ValidationObserver)
 
-import VueConfig from 'vue-configuration';
-import appConfig from '../config';
-
-Vue.use(VueConfig, {
-    config: appConfig
-});
-
 Vue.config.productionTip = false;
 
 import i18n from './helpers/locale'

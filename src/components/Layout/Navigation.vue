@@ -69,7 +69,7 @@
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="#">Link 1</a>
                   <a class="dropdown-item" href="#">Link 2</a>
-                  <a class="dropdown-item"  @click.prevent="signOut">{{ $t("header.logout") }}</a>
+                  <a href="#" class="dropdown-item"  @click.prevent="signOut">{{ $t("header.logout") }}</a>
                 </div>
               </div>
             </li>

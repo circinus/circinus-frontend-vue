@@ -1,5 +1,5 @@
 import api from "../../../helpers/api";
-import config from "../../../../config";
+import {environment} from "../../../../config"
 
 export default {
     namespaced: true,
@@ -57,7 +57,7 @@ export default {
                 let response = await api.get('user');
 
                 response.data.currencies.forEach((item) => {
-                    item.name = Object.keys(config.POINTS).filter(k=>config.POINTS[k] === item.type).toString()
+                    item.name = Object.keys(environment.POINTS).filter(k=>environment.POINTS[k] === item.type).toString()
                 })
 
                 commit('SET_USER', response.data)

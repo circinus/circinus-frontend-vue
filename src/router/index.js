@@ -4,7 +4,6 @@ import Router from 'vue-router'
 import Home from '../views/Home'
 import Register from '../views/Register'
 import Dashboard from '../views/Dashboard'
-import Client from '../views/Client'
 
 import store from '../store'
 
@@ -24,9 +23,11 @@ let router = new Router({
       component: Register
     },
   {
-      path: '/client',
-      name: 'client',
-      component: Client
+      path: '/hotel',
+      name: 'hotel',
+      beforeEnter: (to, from, next) => {
+          console.log(from)
+      }
   },
     {
       path: '/dashboard',

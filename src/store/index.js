@@ -6,6 +6,7 @@ import notifications from './modules/notifications';
 import articles from './modules/home/articles';
 import photos from './modules/home/photos';
 import register from './modules/user/register';
+import client from './modules/client/client';
 
 Vue.use(Vuex)
 
@@ -21,6 +22,7 @@ export default new Vuex.Store({
       notifications,
       articles,
       photos,
-      register
+      register,
+      client
   }
 })
