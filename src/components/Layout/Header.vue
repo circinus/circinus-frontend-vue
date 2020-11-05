@@ -6,7 +6,7 @@
           Chatten, vrienden maken en lekker jezelf zijn, dat bieden wij op de gezelligste community van Nederland! Kom jij ook?
         </p>
 
-        <button href="#" class="btn btn--light w-25" v-if="!authenticated">Meld je aan!</button>
+        <button class="btn btn--light w-25" v-if="!authenticated">Meld je aan!</button>
         <button class="btn btn--light w-25" v-if="authenticated" @click="toggleClientLoader">Ga naar binnen</button>
       </div>
     </div>

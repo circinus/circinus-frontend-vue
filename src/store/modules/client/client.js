@@ -5,7 +5,8 @@ export default {
     namespaced: true,
 
     state: {
-        clientLoaded: false
+        clientLoaded: false,
+        lastUrl: null
     },
 
     getters: {
@@ -15,17 +16,23 @@ export default {
     },
 
     mutations: {
-        APPEND_CHANGE_STATE: (state, action) => {
-            state.clientLoaded = action
-        }
+        APPEND_CHANGE_LOADED: (state, loaded) => state.clientLoaded = loaded,
+        APPEND_CHANGE_URL: (state, url) => state.lastUrl = url,
     },
 
     actions: {
         setstate ({ commit, state }, action) {
-            commit('APPEND_CHANGE_STATE', action)
+
+            commit('APPEND_CHANGE_LOADED', action)
+            commit('APPEND_CHANGE_URL', router.currentRoute.name)
 
             if(state.clientLoaded) {
-                router.replace({name: "hotel"}).then(r => console.log(r))
+                router.replace({name: "hotel"})
+            } else {
+                if(state.lastUrl == "hotel") {
+                    state.lastUrl = "home"
+                }
+                router.replace({name: state.lastUrl})
             }
         }
     }

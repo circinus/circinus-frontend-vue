@@ -1,5 +1,5 @@
 import api from "../../../helpers/api";
-import {environment} from "../../../../config"
+import {environment} from "../../../../environment"
 
 export default {
     namespaced: true,

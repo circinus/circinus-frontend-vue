@@ -3,7 +3,6 @@ import Router from 'vue-router'
 
 import Home from '../views/Home'
 import Register from '../views/Register'
-import Dashboard from '../views/Dashboard'
 
 import store from '../store'
 
@@ -22,13 +21,16 @@ let router = new Router({
       name: 'register',
       component: Register
     },
-  {
+    {
       path: '/hotel',
       name: 'hotel',
       beforeEnter: (to, from, next) => {
-          console.log(from)
+          if(!store.getters['client/loaded']) {
+              store.dispatch('client/setstate', true)
+          }
+          next()
       }
-  },
+    },
     {
       path: '/dashboard',
       name: 'dashboard',
