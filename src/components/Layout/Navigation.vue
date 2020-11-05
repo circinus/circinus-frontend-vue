@@ -67,9 +67,7 @@
                   {{ user.username }}
                 </button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Link 1</a>
-                  <a class="dropdown-item" href="#">Link 2</a>
-                  <a href="#" class="dropdown-item"  @click.prevent="signOut">{{ $t("header.logout") }}</a>
+                    <router-link class="dropdown-item" :to="{ name: 'logout' }"  v-on:click.native="signOut">{{ $t("header.logout") }}</router-link>
                 </div>
               </div>
             </li>
@@ -113,9 +111,7 @@ export default {
 
     signOut () {
       this.signOutAction().then(() => {
-        this.$router.replace({
-          name: 'home'
-        })
+          this.$router.push('/')
       })
     }
   }

@@ -21,6 +21,15 @@ const router = new Router({
       component: Home
     },
     {
+      path: '/logout',
+      name: 'logout',
+      meta: {
+          middleware: [
+              auth
+          ]
+      }
+    },
+    {
       path: '/register',
       name: 'register',
       component: Register,
