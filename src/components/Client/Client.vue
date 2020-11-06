@@ -1,6 +1,6 @@
 <template>
-    <div id="client-loader" v-if="client" v-bind:class="classObject">
-        <div id="hotel-container">
+    <div id="client-loader" v-bind:class="classObject">
+        <div id="hotel-container" v-show="client">
             <div id="game" class="client-frame"></div>
             <div class="client-buttons">
                 <button class="client-close rounded-button blue plain" @click="hideClient">
@@ -22,6 +22,7 @@ export default {
 
     computed: {
         ...mapGetters({
+            user: 'auth/user',
             client: 'client/loaded'
         }),
 
@@ -40,18 +41,20 @@ export default {
         hideClient() {
             this.loadClient(!this.client)
         }
+
     },
 
     mounted() {
 
-        swfObject.embedSWF(client.swf,
-            document.getElementById('game'),
+        swfObject.embedSWF('https://images.projectmeteor.online/gordon/PRODUCTION-202003262139-739075797/ske.swf',
+            'game',
             '100%',
             '100%',
             11,
             '',
             client.vars,
             client.params);
+
     }
 }
 </script>
