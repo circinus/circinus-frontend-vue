@@ -26,7 +26,7 @@
                 <template v-if="!authenticated">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4">
-                            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $t("header.login") }}</a>
+                            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-t="'layout.header.login'"></a>
                             <div class="dropdown-menu user--login p-4" aria-labelledby="dropdownMenuLink">
 
                                 <ValidationObserver v-slot="{ handleSubmit }">
@@ -54,7 +54,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link btn btn-warning" :to="{ name: 'register' }">{{ $t("header.create_account") }}</router-link>
+                            <router-link class="nav-link btn btn-warning" :to="{ name: 'register' }" v-t="'layout.header.create_account'"></router-link>
                         </li>
                     </ul>
                 </template>
@@ -67,7 +67,7 @@
                                     {{ user.username }}
                                 </button>
                                 <div class="dropdown-menu">
-                                    <router-link class="dropdown-item" :to="{ name: 'logout' }"  v-on:click.native="signOut">{{ $t("header.logout") }}</router-link>
+                                    <router-link class="dropdown-item" :to="{ name: 'logout' }"  v-on:click.native="signOut" v-t="'layout.header.logout'"></router-link>
                                 </div>
                             </div>
                         </li>

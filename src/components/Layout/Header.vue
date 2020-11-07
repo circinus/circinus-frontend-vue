@@ -3,11 +3,11 @@
         <div class="d-flex flex-column justify-content-center align-items-center my-4" style="position: absolute; width: 100%;">
 
             <p id="header--description">
-                Chatten, vrienden maken en lekker jezelf zijn, dat bieden wij op de gezelligste community van Nederland! Kom jij ook?
+                {{$t("layout.header.description")}}
             </p>
 
-            <button class="btn btn--light w-25" v-if="!authenticated">Meld je aan!</button>
-            <button class="btn btn--light w-25" v-if="authenticated" @click="toggleClientLoader">Ga naar binnen</button>
+            <button class="btn btn--light w-25" v-if="!authenticated" v-t="'layout.header.create_account'"></button>
+            <button class="btn btn--light w-25" v-if="authenticated" @click="toggleClientLoader" v-t="'layout.header.go_hotel'"></button>
         </div>
     </div>
 </template>

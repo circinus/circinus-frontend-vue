@@ -3,15 +3,15 @@
         <div id="hotel-container">
             <div :id="flashDetect" v-if="flashDetect" class="row d-block align-items-center text-center">
                 <div class="flash-illustration"></div>
-                <div class="flash-title mb-1 mt-5 d-block">Oh Bollocks!</div>
-                <span class="flash-description w-25">
-                    Click <a href="https://get.adobe.com/en/flashplayer" target="_blank">here</a> and then on "Activate Flash" as soon as you are prompted to do so . See you soon!
-                </span>
+                <div class="flash-title mb-1 mt-5 d-block" v-t="'client.flash_detected.message'"></div>
+                <span class="flash-description w-25" v-html="$t('client.flash_detected.description', {
+                    url: `<a href='https://get.adobe.com/en/flashplayer' target='_blank'>${$t('client.flash_detected.here')}</a>`
+                  })"
+                />
             </div>
             <div class="client-buttons">
                 <button class="client-close rounded-button blue plain" @click="hideClient">
                     <i class="client-icon fas fa fa-backspace"></i>
-                    <span class="client-close-expand"><span>Web</span></span>
                 </button>
             </div>
         </div>

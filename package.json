@@ -45,6 +45,7 @@
     "vee-validate": "^3.4.0",
     "vue-axios": "^2.1.5",
     "vue-configuration": "^1.0.3",
+    "vue-headful": "^2.1.0",
     "vue-i18n": "^8.22.1",
     "vue-izitoast": "^1.2.1",
     "vue-loading-overlay": "^3.4.1",

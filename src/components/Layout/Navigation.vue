@@ -8,23 +8,8 @@
             <div class="collapse navbar-collapse" id="navbar--secondary-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <router-link class="nav-link" :to="{ name: 'home' }">{{ $t("nav.link_1") }}</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ $t("nav.link_2") }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ $t("nav.link_3") }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ $t("nav.link_4") }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ $t("nav.link_5") }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ $t("nav.link_6") }}</a>
-                    </li>
+                        <router-link class="nav-link" :to="{ name: 'home' }" v-t="'layout.nav.homepage'"></router-link>
+                    </li>>
                 </ul>
             </div>
         </div>

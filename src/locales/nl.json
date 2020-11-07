@@ -1,0 +1,40 @@
+{
+    "layout": {
+        "header": {
+            "login": "Inloggen",
+            "logout": "Uitloggen",
+            "create_account": "Maak account",
+            "go_hotel": "Ga naar binnen",
+            "description": "Chatten, vrienden maken en lekker jezelf zijn, dat bieden wij op de gezelligste community van Nederland! Kom jij ook?"
+        },
+        "nav": {
+            "homepage": "Homepage",
+            "community": "Community",
+            "gallery": "Gallerij",
+            "highscores": "Highscores",
+            "members": "Medewerkers",
+            "helptool": "Helptool"
+        },
+        "dashboard": {
+            "news": {
+                "title": "Actuele nieuws",
+                "description": "Wat zijn de hoogtepunten binnen ons hotel?"
+            },
+            "photos": {
+                "title": "FOTO- BERICHTEN",
+                "description": "Zie hier collage van leuke momenten!"
+            }
+        },
+        "footer": {
+            "credits": "© 2020 door Raizer",
+            "description": "Alle rechten voorbehouden"
+        }
+    },
+    "client": {
+        "flash_detected": {
+            "message": "OH BOLLOCKS!",
+            "description": "Click {url} and then on \"Activate Flash\" as soon as you are prompted to do so . See you soon!",
+            "here": "here"
+        }
+    }
+}

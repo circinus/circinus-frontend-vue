@@ -12,7 +12,7 @@ export const environment  = {
         "DIAMONDS": 5,
         "GOTW": 103
     },
-    Locale: require('./src/locales/en.json'),
+    Locale: require('./src/locales/nl.json'),
 };
 
 export const client = {

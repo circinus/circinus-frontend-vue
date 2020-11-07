@@ -17,6 +17,9 @@ Vue.use(iziToast);
 import interceptorsSetup from './helpers/interceptors'
 interceptorsSetup();
 
+import vueHeadful from 'vue-headful';
+Vue.component('vue-headful', vueHeadful);
+
 import { ValidationProvider } from 'vee-validate/dist/vee-validate.full'
 import { ValidationObserver } from 'vee-validate'
 
