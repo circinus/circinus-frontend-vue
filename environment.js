@@ -1,7 +1,11 @@
 export const environment  = {
     API: {
-        base_url: 'https://api.circinus.dev/en/',
-        client_url: 'https://client.circinus.dev'
+        base_url: 'https://api.circinus.dev/en/'
+    },
+    CLIENT: {
+        path: 'https://client.circinus.dev',
+        ip: '185.224.90.218',
+        port: 3000
     },
     POINTS: {
         "DUCKETS": 0,
@@ -12,37 +16,37 @@ export const environment  = {
 };
 
 export const client = {
-    swf: `${environment.client_url}/gordon/PRODUCTION-201601012205-226667486/Habbo.swf`,
+    swf: `${environment.CLIENT.path}/gordon/PRODUCTION-202006192205-424220153/Habbo.swf`,
 
     vars: {
         'client.allow.cross.domain': '1',
         'client.notify.cross.domain': '1',
-        'connection.info.host': 'ip',
-        'connection.info.port': 'port',
+        'connection.info.host': `${environment.CLIENT.ip}`,
+        'connection.info.port': `${environment.CLIENT.port}`,
         'site.url': `${environment.API.base_url}/client`,
         'url.prefix': `${environment.API.base_url}/client`,
         'client.reload.url': `${environment.API.base_url}/client`,
         'client.fatal.error.url': `${environment.API.base_url}/client`,
         'client.connection.failed.url': `${environment.API.base_url}/client`,
-        'external.override.texts.txt': `${environment.API.client_url}/gamedata/override/external_flash_override_texts.txt`,
-        'external.override.variables.txt': `${environment.API.client_url}/gamedata/override/external_override_variables.txt`,
-        'external.variables.txt': `${environment.API.client_url}/gamedata/external_variables.txt?tdest`,
-        'external.texts.txt': `${environment.API.client_url}/gamedata/external_flash_texts.txt`,
-        'external.figurepartlist.txt': `${environment.API.client_url}/gamedata/figuredata.xml?test`,
-        'flash.dynamic.avatar.configuration': `${environment.API.client_url}/gamedata/figuremap.xml`,
-        'productdata.load.url': `${environment.API.client_url}/gamedata/productdata.txt`,
-        'furnidata.load.url': `${environment.API.client_url}/gamedata/furnidata.xml?ss`,
+        'external.override.texts.txt': `${environment.CLIENT.path}/gamedata/override/external_flash_override_texts.txt`,
+        'external.override.variables.txt': `${environment.CLIENT.path}/gamedata/override/external_override_variables.txt`,
+        'external.variables.txt': `${environment.CLIENT.path}/gamedata/external_variables.txt`,
+        'external.texts.txt': `${environment.CLIENT.path}/gamedata/external_flash_texts.txt`,
+        'external.figurepartlist.txt': `${environment.CLIENT.path}/gamedata/figuredata.xml`,
+        'flash.dynamic.avatar.configuration': `${environment.CLIENT.path}/gamedata/figuremap.xml`,
+        'productdata.load.url': `${environment.CLIENT.path}/gamedata/productdata.txt`,
+        'furnidata.load.url': `${environment.CLIENT.path}/gamedata/furnidata.xml`,
         'use.sso.ticket': '1',
         'sso.ticket': '',
         'processlog.enabled': '1',
-        'flash.client.url': `$environment.API.client_url}/gordon/PRODUCTION-201601012205-226667486/`,
+        'flash.client.url': `${environment.CLIENT.path}/gordon/PRODUCTION-202006192205-424220153/`,
         'diamonds.enabled': '1',
-        'logout.url': `${environment.API.client_url}/logout`,
+        'logout.url': `${environment.CLIENT.path}/logout`,
         'spaweb': '1'
     },
 
     params: {
-        base: `${environment.API.client_url}/gordon/PRODUCTION-201601012205-226667486/`,
+        base: `${environment.CLIENT.path}/gordon/PRODUCTION-202006192205-424220153/`,
         allowScriptAccess: 'always',
         wmode: 'opaque'
     }

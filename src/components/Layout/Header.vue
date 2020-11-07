@@ -1,14 +1,14 @@
 <template>
     <div id="header--image" class="row">
-      <div class="d-flex flex-column justify-content-center align-items-center my-4" style="position: absolute; width: 100%;">
+        <div class="d-flex flex-column justify-content-center align-items-center my-4" style="position: absolute; width: 100%;">
 
-        <p id="header--description">
-          Chatten, vrienden maken en lekker jezelf zijn, dat bieden wij op de gezelligste community van Nederland! Kom jij ook?
-        </p>
+            <p id="header--description">
+                Chatten, vrienden maken en lekker jezelf zijn, dat bieden wij op de gezelligste community van Nederland! Kom jij ook?
+            </p>
 
-        <button class="btn btn--light w-25" v-if="!authenticated">Meld je aan!</button>
-        <button class="btn btn--light w-25" v-if="authenticated" @click="toggleClientLoader">Ga naar binnen</button>
-      </div>
+            <button class="btn btn--light w-25" v-if="!authenticated">Meld je aan!</button>
+            <button class="btn btn--light w-25" v-if="authenticated" @click="toggleClientLoader">Ga naar binnen</button>
+        </div>
     </div>
 </template>
 
@@ -19,20 +19,20 @@ import bus from '../../helpers/bus'
 export default {
 
     computed: {
-      ...mapGetters({
-          authenticated: 'auth/authenticated',
-          user: 'auth/user',
-          client: 'client/loaded'
-      })
+        ...mapGetters({
+            authenticated: 'auth/authenticated',
+            user: 'auth/user',
+            client: 'client/loaded'
+        })
     },
 
     methods: {
         ...mapActions({
-            loadClient: 'client/setstate'
+            setClient: 'client/setClient'
         }),
 
         toggleClientLoader() {
-            this.loadClient(!this.client)
+            this.setClient(!this.client)
             bus.$emit('loadClient');
         }
     }

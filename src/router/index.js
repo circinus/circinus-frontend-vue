@@ -49,7 +49,7 @@ const router = new Router({
         },
       beforeEnter: (to, from, next) => {
           if(!store.getters['client/loaded']) {
-              store.dispatch('client/setstate', true)
+              store.dispatch('client/setClient', true)
           }
           next()
       }

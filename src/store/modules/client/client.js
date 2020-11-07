@@ -1,4 +1,5 @@
 import router from '../../../router'
+import api from "../../../helpers/api";
 
 export default {
 
@@ -26,7 +27,7 @@ export default {
     },
 
     actions: {
-        setstate ({ commit, state }, action) {
+        setClient ({ commit, state }, action) {
 
             commit('APPEND_CHANGE_LOADED', action)
             commit('APPEND_CHANGE_URL', router.currentRoute.name)
@@ -41,8 +42,15 @@ export default {
             }
         },
 
-        active ({ commit  }, action) {
+        setActive ({ commit  }, action) {
             commit('APPEND_PAGE_ACTIVE', action)
+        },
+
+        async setTicket ({} ) {
+            return await api.post('user/ticket')
+                .then((response) => {
+                    return response.data;
+                });
         }
     }
 }

@@ -21,6 +21,12 @@ import bus from '../../helpers/bus'
 export default {
     name: "Client",
 
+    data() {
+        return {
+            ticket: null
+        }
+    },
+
     computed: {
         ...mapGetters({
             user: 'auth/user',
@@ -31,27 +37,46 @@ export default {
 
     methods: {
         ...mapActions({
-            loadClient: 'client/setstate',
-            setActive: 'client/active'
+            setClient: 'client/setClient',
+            setActive: 'client/setActive',
+            setTicket: 'client/setTicket'
         }),
 
         hideClient() {
-            this.loadClient(!this.client);
+            this.setClient(!this.client);
+        },
+
+        getTicket() {
+            return this.setTicket().then(response => {
+                this.ticket = response.ticket
+            })
         },
 
         initializeClient: function () {
 
             if(!this.active) {
-                swfObject.embedSWF('https://images.projectmeteor.online/gordon/PRODUCTION-202003262139-739075797/ske.swf',
-                    'game',
-                    '100%',
-                    '100%',
-                    11,
-                    '',
-                    client.vars,
-                    client.params);
-            }
+                this.getTicket().then(() => {
 
+                    client.vars["sso.ticket"] = this.ticket
+                    swfObject.embedSWF(client.swf,
+                        'game',
+                        '100%',
+                        '100%',
+                        11,
+                        '',
+                        client.vars,
+                        client.params);
+
+                    window.FlashExternalInterface = {};
+                    window.FlashExternalGameInterface = {};
+
+                    window.FlashExternalInterface.logLoginStep = (e) => {
+                        console.log(e)
+                        //window.FlashExternalInterface.disconnect = () => this.zone.run(() => this.isDisconnected = true);
+                    };
+
+                })
+            }
             this.setActive(true)
         }
     },
