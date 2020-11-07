@@ -6,18 +6,23 @@ export default {
 
     state: {
         clientLoaded: false,
-        lastUrl: null
+        lastUrl: null,
+        pageActive: false
     },
 
     getters: {
         loaded(state) {
             return state.clientLoaded;
+        },
+        active(state) {
+            return state.pageActive;
         }
     },
 
     mutations: {
         APPEND_CHANGE_LOADED: (state, loaded) => state.clientLoaded = loaded,
         APPEND_CHANGE_URL: (state, url) => state.lastUrl = url,
+        APPEND_PAGE_ACTIVE: (state, url) => state.pageActive = url,
     },
 
     actions: {
@@ -29,11 +34,15 @@ export default {
             if(state.clientLoaded) {
                 router.replace({name: "hotel"})
             } else {
-                if(state.lastUrl == "hotel") {
+                if(state.lastUrl === "hotel") {
                     state.lastUrl = "home"
                 }
                 router.replace({name: state.lastUrl})
             }
+        },
+
+        active ({ commit  }, action) {
+            commit('APPEND_PAGE_ACTIVE', action)
         }
     }
 }

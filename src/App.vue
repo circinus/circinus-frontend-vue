@@ -7,7 +7,6 @@
             <Navigation/>
         </header>
 
-
         <main class="flex-fill container">
             <notifications></notifications>
             <router-view />

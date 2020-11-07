@@ -13,8 +13,8 @@
 </template>
 
 <script>
-
 import {mapActions, mapGetters} from 'vuex';
+import bus from '../../helpers/bus'
 
 export default {
 
@@ -33,6 +33,7 @@ export default {
 
         toggleClientLoader() {
             this.loadClient(!this.client)
+            bus.$emit('loadClient');
         }
     }
 }
