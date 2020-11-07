@@ -10659,7 +10659,7 @@ footer > .footer--secondary p {
 }
 
 #hotel-container {
-  background-color: #000;
+  background-color: #676767;
   position: fixed;
   top: 0;
   left: -9999px;
@@ -10667,7 +10667,7 @@ footer > .footer--secondary p {
   width: 100%;
   height: 100%;
 }
-#hotel-container .client-frame {
+#hotel-container #game {
   background-color: #000;
   width: 100%;
   height: 100%;
@@ -10677,6 +10677,36 @@ footer > .footer--secondary p {
   z-index: 0;
   display: block;
   border: 0;
+}
+#hotel-container #flash-detect .flash-illustration {
+  margin-top: 10em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 212px;
+  height: 174px;
+  background: url(https://global.ax/flash.7df581c9d634b60d9728.png);
+}
+#hotel-container #flash-detect .flash-title {
+  position: relative;
+  color: #fff;
+  font-size: 310%;
+  text-transform: uppercase;
+}
+#hotel-container #flash-detect .flash-description {
+  color: #fff;
+  font-size: 16px;
+}
+#hotel-container #flash-detect:after {
+  content: "";
+  left: 18rem;
+  top: 12rem;
+  width: 32px;
+  height: 44px;
+  position: absolute;
+  opacity: 1;
+  -webkit-animation: pointer 1.1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+  animation: pointer 1.1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+  background: url(https://global.ax/pointer.a0e63b843de475f8977d.png);
 }
 #hotel-container .client-buttons {
   position: absolute;

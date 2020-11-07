@@ -39,6 +39,7 @@
     "bootstrap-vue": "^2.17.3",
     "cors": "^2.8.5",
     "es-swfobject": "^3.0.0",
+    "flash-detect": "^1.1.1",
     "material-design-icons": "^3.0.1",
     "moment": "^2.29.1",
     "vee-validate": "^3.4.0",
