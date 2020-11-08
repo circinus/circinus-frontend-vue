@@ -11,7 +11,8 @@ iziToast.settings({
     timeout: 5000,
     progressBar: true,
     layout: 2,
-    position: 'topRight'
+    position: 'topRight',
+    maxWidth: 260
 })
 
 export default function install () {

@@ -21,10 +21,10 @@ export default {
                     commit('APPEND_PHOTOS', response.data.data)
                 });
         },
-        async likePhoto ({ commit }) {
-            await api.get('photos/list/1/10')
+        async votePhoto ({}, action) {
+            return await api.post('votes/create', action)
                 .then((response) => {
-                    commit('APPEND_PHOTOS', response.data.data)
+                    return action.vote_type
                 });
         }
     }
