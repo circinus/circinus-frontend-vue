@@ -46,11 +46,11 @@ export default {
 
     computed: {
 
-        ...mapGetters('votes', {
-            EntityType: 'EntityType',
-            VoteType: 'VoteType',
-            getVotes: 'getVotes',
-            exists: 'exists'
+        ...mapGetters({
+            authenticated: 'auth/authenticated',
+            EntityType: 'votes/EntityType',
+            VoteType: 'votes/VoteType',
+            exists: 'votes/exists',
         }),
     },
 
@@ -61,8 +61,10 @@ export default {
         }),
 
         voted(type) {
-            const voteColor = type === 1 ? 'green' : 'red'
-            return this.exists(this.photo.id, type) ? voteColor : 'black'
+            if(this.authenticated) {
+                const voteColor = type === 1 ? 'green' : 'red'
+                return this.exists(this.photo.id, type) ? voteColor : 'black'
+            }
         },
 
         votePhoto (vote) {

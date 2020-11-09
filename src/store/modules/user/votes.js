@@ -8,7 +8,7 @@ export default {
             article_vote_entity: 1,
             article_comment_vote_entity: 2,
             forum_vote_entity: 3,
-            form_vote_community_entity: 4,
+            forum_vote_community_entity: 4,
             guestbook_vote_entity: 5,
             photo_vote_entity: 6
         },
@@ -26,10 +26,6 @@ export default {
 
         VoteType(state) {
             return state.VoteType
-        },
-
-        getVotes(state) {
-            return state.votes
         },
 
         exists: (state) => (id, type) => {
@@ -61,7 +57,7 @@ export default {
             });
         },
 
-        create: async function ({ commit }, action) {
+        create: async function ({ commit, state }, action) {
             return await api.post('votes/create', action)
                 .then((response) => {
                     commit('ADD_VOTE', response.data)
