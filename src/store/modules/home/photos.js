@@ -20,12 +20,6 @@ export default {
                 .then((response) => {
                     commit('APPEND_PHOTOS', response.data.data)
                 });
-        },
-        async votePhoto ({}, action) {
-            return await api.post('votes/create', action)
-                .then((response) => {
-                    return action.vote_type
-                });
         }
     }
 }

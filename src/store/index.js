@@ -2,11 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import auth from './modules/user/auth';
+import votes from './modules/user/votes';
+import client from './modules/client/client';
+
 import notifications from './modules/notifications';
 import articles from './modules/home/articles';
 import photos from './modules/home/photos';
 import register from './modules/user/register';
-import client from './modules/client/client';
 
 Vue.use(Vuex)
 
@@ -23,6 +25,7 @@ export default new Vuex.Store({
       articles,
       photos,
       register,
-      client
+      client,
+      votes
   }
 })

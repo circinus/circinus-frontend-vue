@@ -22,12 +22,12 @@
                     <div class="d-inline-flex flex-row align-items-center">
 
                         <span class="mr-3 font-weight-bold" @click="votePhoto('likes')">
-                            <i class="far fa-thumbs-up mr-2"></i>
+                            <i :style="{color: voted(1)}" class="far fa-thumbs-down mr-2"></i>
                             {{ this.photo.likes }}
                         </span>
 
                         <span class="mr-3 font-weight-bold" @click="votePhoto('dislikes')">
-                            <i class="far fa-thumbs-down mr-2"></i>
+                            <i :style="{color: voted(0)}" class="far fa-thumbs-down mr-2"></i>
                             {{ this.photo.dislikes }}
                         </span>
                     </div>
@@ -38,28 +38,44 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import {mapActions,mapGetters} from "vuex";
 
 export default {
 
     props: ['photo'],
 
+    computed: {
+
+        ...mapGetters('votes', {
+            EntityType: 'EntityType',
+            VoteType: 'VoteType',
+            getVotes: 'getVotes',
+            exists: 'exists'
+        }),
+    },
+
     methods: {
+
         ...mapActions({
-            setVote: 'photos/votePhoto'
+            setVote: 'votes/create'
         }),
 
-        async votePhoto (vote) {
+        voted(type) {
+            const voteColor = type === 1 ? 'green' : 'red'
+            return this.exists(this.photo.id, type) ? voteColor : 'black'
+        },
+
+        votePhoto (vote) {
+
             const form_data = {
                 entity_id: this.photo.id,
-                vote_entity: 6,
-                vote_type: vote === 'likes' ? 1 : 0
+                vote_entity: this.EntityType.photo_vote_entity,
+                vote_type: this.VoteType[vote]
             }
 
-            const result = await this.setVote(form_data)
-            if(result) {
+            this.setVote(form_data).then(() => {
                 this.photo[vote] = this.photo[vote] + 1
-            }
+            })
         }
     }
 }

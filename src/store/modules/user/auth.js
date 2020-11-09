@@ -44,7 +44,7 @@ export default {
             return dispatch('attempt', response.data.token)
         },
 
-        async attempt ({ commit, state } , token) {
+        async attempt ({ commit, state, dispatch } , token) {
             if(token) {
                 commit('SET_TOKEN', token)
             }
@@ -60,6 +60,7 @@ export default {
                     item.name = Object.keys(environment.POINTS).filter(k=>environment.POINTS[k] === item.type).toString()
                 })
 
+                dispatch('votes/total', null, {root:true})
                 commit('SET_USER', response.data)
             } catch (e) {
                 commit('SET_TOKEN', null)
