@@ -67,7 +67,7 @@ export default {
             isSessionActive: false,
             loadingWidth: 0,
             hideLoader: true,
-            loadingText: 'De client wordt geladen..'
+            loadingText: this.$t('layout.client.starting')
         }
     },
 
@@ -148,8 +148,8 @@ export default {
                     }
 
                     if (args === "client.init.core.init") {
+                        this.loadingText = this.$t('layout.client.almost')
                         this.loadingWidth = 45
-                        this.loadingText = 'We zijn er bijna...'
                     }
 
                     if (args === "client.init.handshake.start") {

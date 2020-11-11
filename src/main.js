@@ -30,11 +30,6 @@ Vue.config.productionTip = false;
 
 import i18n from './helpers/locale'
 
-import VuePromiseBtn from 'vue-promise-btn'
-import 'vue-promise-btn/dist/vue-promise-btn.css'
-
-Vue.use(VuePromiseBtn) // or with global options Vue.use(VuePromiseBtn, {})
-
 store.dispatch('auth/attempt', localStorage.getItem('token')).then(() => {
     new Vue({
         router,

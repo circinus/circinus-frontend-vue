@@ -15,6 +15,10 @@
             "members": "Medewerkers",
             "helptool": "Helptool"
         },
+        "client" : {
+            "starting": "Hotel wordt geladen...",
+            "almost": "We zijn er bijna..."
+        },
         "dashboard": {
             "news": {
                 "title": "Actuele nieuws",
