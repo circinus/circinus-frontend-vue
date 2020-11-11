@@ -8,6 +8,12 @@ export default {
         photos: null
     },
 
+    getters: {
+        photos(state) {
+            return state.photos
+        },
+    },
+
     mutations: {
         APPEND_PHOTOS: (state, photos) => {
             state.photos = photos

@@ -1,6 +1,38 @@
 <template>
     <div id="client-loader" v-bind:class="classObject">
         <div id="hotel-container">
+
+            <div v-if="client && hideLoader && flashDetect !== 'flash-detect'" class="loading-container">
+                <div id="loading-background"></div>
+                <div class="loading-content" >
+
+                    <div class="container vertical-center" v-if="this.photo">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="photo" style="margin-left: 130px;" v-bind:style="{ backgroundImage: 'url(' + this.photo[random()].url + ')' }"></div>
+                            </div>
+                            <div class="col-4">
+                                <div class="photo" style="margin-top: -85px;z-index: 2;position: inherit;" v-bind:style="{ backgroundImage: 'url(' + this.photo[random()].url + ')' }"></div>
+                            </div>
+                            <div class="col-4">
+                                <div class="photo" style="margin-left: -115px;" v-bind:style="{ backgroundImage: 'url(' + this.photo[random()].url + ')' }"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container vertical-center" style="min-height: 0% !important;">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="loading_bar">
+                                    <div class="text">{{this.loadingText}}</div>
+                                    <div class="percent" id="loader_bar" :style="{width: loadingWidth + '%'}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div :id="flashDetect" v-if="flashDetect" class="row d-block align-items-center text-center">
                 <div class="flash-illustration"></div>
                 <div class="flash-title mb-1 mt-5 d-block" v-t="'client.flash_detected.message'"></div>
@@ -9,6 +41,7 @@
                   })"
                 />
             </div>
+
             <div class="client-buttons">
                 <button class="client-close rounded-button blue plain" @click="hideClient">
                     <i class="client-icon fas fa fa-backspace"></i>
@@ -32,8 +65,9 @@ export default {
         return {
             ticket: null,
             isSessionActive: false,
-            isFlashInstalled: false
-
+            loadingWidth: 0,
+            hideLoader: true,
+            loadingText: 'De client wordt geladen..'
         }
     },
 
@@ -41,7 +75,8 @@ export default {
         ...mapGetters({
             user: 'auth/user',
             client: 'client/loaded',
-            active: 'client/active'
+            active: 'client/active',
+            photo: 'photos/photos'
         }),
 
         classObject: function () {
@@ -60,20 +95,25 @@ export default {
         ...mapActions({
             setClient: 'client/setClient',
             setActive: 'client/setActive',
-            setTicket: 'client/setTicket'
+            setTicket: 'client/setTicket',
+            setPhotos: 'photos/getPhotos'
         }),
 
-        hideClient() {
+        random: function () {
+            return Math.floor(Math.random() * this.photo.length);
+        },
+
+        hideClient: function () {
             this.setClient(!this.client);
         },
 
-        getTicket() {
+        getTicket: function () {
             return this.setTicket().then(response => {
                 this.ticket = response.ticket
             })
         },
 
-        initialize() {
+        initialize: function () {
             this.isSessionActive = this.user.online === 1;
             if (!this.isSessionActive) {
                 this.loadClient()
@@ -88,6 +128,7 @@ export default {
 
             this.getTicket().then(() => {
                 client.vars["sso.ticket"] = this.ticket
+
                 swfObject.embedSWF(client.swf,
                     'game',
                     '100%',
@@ -100,9 +141,29 @@ export default {
                 window.FlashExternalInterface = {};
                 window.FlashExternalGameInterface = {};
 
-                window.FlashExternalInterface.logLoginStep = (e) => {
-                    console.log(e)
-                    //window.FlashExternalInterface.disconnect = () => this.zone.run(() => this.isDisconnected = true);
+                window.FlashExternalInterface.logLoginStep = (args) => {
+
+                    if (args === "client.init.swf.loaded") {
+                        this.loadingWidth = 25
+                    }
+
+                    if (args === "client.init.core.init") {
+                        this.loadingWidth = 45
+                        this.loadingText = 'We zijn er bijna...'
+                    }
+
+                    if (args === "client.init.handshake.start") {
+                        this.loadingWidth = 76
+                    }
+
+                    if (args === "client.init.auth.ok") {
+                        this.loadingWidth = 90
+                    }
+
+                    if (args === "client.init.room.ready") {
+                        this.loadingWidth = 100
+                        this.hideLoader = false
+                    }
                 };
 
             })
@@ -118,6 +179,7 @@ export default {
 
     mounted() {
         if(this.$router.currentRoute.name === "hotel") {
+            this.setPhotos();
             this.initialize();
         }
     }

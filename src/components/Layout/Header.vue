@@ -6,7 +6,7 @@
                 {{$t("layout.header.description")}}
             </p>
 
-            <button class="btn btn--light w-25" v-if="!authenticated" v-t="'layout.header.create_account'"></button>
+            <router-link class="btn btn--light w-25" v-if="!authenticated" :to="{ name: 'register' }" v-t="'layout.header.create_account'"></router-link>
             <button class="btn btn--light w-25" v-if="authenticated" @click="toggleClientLoader" v-t="'layout.header.go_hotel'"></button>
         </div>
     </div>
@@ -30,6 +30,10 @@ export default {
         ...mapActions({
             setClient: 'client/setClient'
         }),
+
+        getData() {
+            console.log(1)
+        },
 
         toggleClientLoader() {
             this.setClient(!this.client)

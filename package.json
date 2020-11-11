@@ -51,10 +51,12 @@
     "vue-izitoast": "^1.2.1",
     "vue-loading-overlay": "^3.4.1",
     "vue-material-design-icons": "^4.6.0",
+    "vue-promise-btn": "^2.1.0",
     "vue-router": "^3.4.3",
     "vue-simple-spinner": "^1.2.10",
     "vue-swal": "^1.0.0",
     "vuejs-service-container": "^1.1.1",
-    "vuex": "^3.1.2"
+    "vuex": "^3.1.2",
+    "webpack": "^5.4.0"
   }
 }
