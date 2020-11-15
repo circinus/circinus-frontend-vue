@@ -16,15 +16,15 @@ export const environment  = {
 };
 
 export const client = {
-    swf: `${environment.CLIENT.path}/gordon/PRODUCTION-202006192205-424220153/Habbo.swf`,
+    swf: `${environment.CLIENT.path}/gordon/PRODUCTION-202006192205-424220153/Circinus.swf`,
 
     vars: {
         'client.allow.cross.domain': '1',
         'client.notify.cross.domain': '1',
         'connection.info.host': `${environment.CLIENT.ip}`,
         'connection.info.port': `${environment.CLIENT.port}`,
-        'site.url': `${environment.API.base_url}/client`,
-        'url.prefix': `${environment.API.base_url}/client`,
+        'site.url': `jabbo.st`,
+        'url.prefix': `jabbo.st`,
         'client.reload.url': `${environment.API.base_url}/client`,
         'client.fatal.error.url': `${environment.API.base_url}/client`,
         'client.connection.failed.url': `${environment.API.base_url}/client`,

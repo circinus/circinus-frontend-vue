@@ -389,6 +389,26 @@ main {
       color: #222;
     }
 
+    .article--card {
+      .card-header {
+        line-height: 2rem;
+        font-size: 14px;
+        font-weight: 600;
+        background-color: transparent;
+
+        .author--look {
+          background-color: $body-bg;
+          border-radius: 50rem;
+          overflow: hidden;
+          height: 2rem;
+
+          img {
+            margin-top: -.5rem;
+          }
+        }
+      }
+    }
+
     .news--row-end {
       .card--news {
         height: 9.7rem;
@@ -505,8 +525,11 @@ footer {
   }
 }
 
-.card--content {
+.card {
   border: none;
+}
+
+.card--content {
 
   .btn {
     color: #fff
@@ -521,6 +544,17 @@ footer {
     padding: 2px;
     display: block;
   }
+}
+
+/* sprites */
+.sprite {
+  background-image: url(/assets/images/sprites.png);
+}
+
+.sprite--date {
+  background-position: 1.2rem -6.35rem;
+  height: 20px;
+  width: 20px;
 }
 
 /* validations */

@@ -47,7 +47,7 @@ export default {
         },
 
         async setTicket ({} ) {
-            return await api.post('user/ticket')
+            return await api.put('user/ticket')
                 .then((response) => {
                     return response.data;
                 });

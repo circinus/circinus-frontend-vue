@@ -9,6 +9,7 @@ import middlewarePipeline from './middlewarePipeline'
 
 import Home from '../views/Home'
 import Register from '../views/Register'
+import Article from '../views/Article'
 
 Vue.use(Router);
 
@@ -63,6 +64,11 @@ const router = new Router({
                 auth
             ]
         }
+    },
+    {
+      path: '/articles/:id/:slug',
+      name: 'article',
+      component: Article
     }
   ]
 });

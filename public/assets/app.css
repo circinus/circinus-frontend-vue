@@ -10391,6 +10391,21 @@ main .habbo--section .section-title {
 main .habbo--section .section-description {
   color: #222;
 }
+main .habbo--section .article--card .card-header {
+  line-height: 2rem;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: transparent;
+}
+main .habbo--section .article--card .card-header .author--look {
+  background-color: #EAF2F5;
+  border-radius: 50rem;
+  overflow: hidden;
+  height: 2rem;
+}
+main .habbo--section .article--card .card-header .author--look img {
+  margin-top: -0.5rem;
+}
 main .habbo--section .news--row-end .card--news {
   height: 9.7rem;
 }
@@ -10483,9 +10498,10 @@ footer > .footer--secondary p {
   font-size: 1.1rem;
 }
 
-.card--content {
+.card {
   border: none;
 }
+
 .card--content .btn {
   color: #fff;
 }
@@ -10496,6 +10512,17 @@ footer > .footer--secondary p {
 .card--content span .error {
   padding: 2px;
   display: block;
+}
+
+/* sprites */
+.sprite {
+  background-image: url(/assets/images/sprites.png);
+}
+
+.sprite--date {
+  background-position: 1.2rem -6.35rem;
+  height: 20px;
+  width: 20px;
 }
 
 /* validations */

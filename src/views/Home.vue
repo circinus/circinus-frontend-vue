@@ -12,7 +12,7 @@
 
             <div class="row">
                 <articles
-                    v-for="(stories, index) in newStories"
+                    v-for="(stories, index) in articles"
                     :key="index"
                     :articles="stories"
                     :index="index"
@@ -33,7 +33,7 @@
 
             <div class="row">
                 <photos
-                v-for="(photos, index) in getPhotos"
+                v-for="(photos, index) in photos"
                 :key="index"
                 :photo="photos"
                 >
@@ -44,33 +44,30 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import {mapGetters} from 'vuex'
 
-import Articles from '../components/Home/Articles';
-import Photos from '../components/Home/Photos';
+import Articles from '../components/Home/Dashboard/Articles';
+import Photos from '../components/Home/Dashboard/Photos';
 
 export default {
-  name: 'Home',
+    name: 'Home',
 
-  components: {
-    Articles,
-    Photos
-  },
+    components: {
+        Articles,
+        Photos
+    },
 
-  computed: {
-    ...mapState('articles', {
-      newStories: 'stories'
-    }),
+    computed: {
+      ...mapGetters({
+          articles: 'articles/articles',
+          photos: 'photos/photos',
+      })
+    },
 
-    ...mapState('photos', {
-      getPhotos: 'photos'
-    })
-  },
-
-  created: function () {
-    this.$store.dispatch('articles/getStories');
-    this.$store.dispatch('photos/getPhotos');
-  }
+    created: function () {
+        this.$store.dispatch('articles/getArticles');
+        this.$store.dispatch('photos/getPhotos');
+    }
 
 }
 </script>
