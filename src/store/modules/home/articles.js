@@ -5,8 +5,9 @@ export default {
     namespaced: true,
 
     state: {
+        article: null,
         articles: null,
-        article: null
+        comments: []
     },
 
     getters: {
@@ -16,6 +17,9 @@ export default {
         articles(state) {
             return state.articles
         },
+        comments(state) {
+            return state.comments
+        }
     },
 
     mutations: {
@@ -24,6 +28,9 @@ export default {
         },
         CURRENT_STORY: (state, article) => {
             state.article = article
+        },
+        CURRENT_COMMENTS: (state, comments) => {
+            state.comments = comments
         },
     },
 
@@ -39,6 +46,12 @@ export default {
             await api.get('articles/' + slug)
                 .then((response) => {
                     commit('CURRENT_STORY', response.data)
+                });
+        },
+        getComments: async function ({commit}, id) {
+            await api.get('comments/' + id + '/list/1/3')
+                .then((response) => {
+                    commit('CURRENT_COMMENTS', response.data.data)
                 });
         }
     }

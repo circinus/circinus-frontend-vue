@@ -10391,6 +10391,36 @@ main .habbo--section .section-title {
 main .habbo--section .section-description {
   color: #222;
 }
+main .habbo--section .card--article {
+  transition: all 0.25s;
+}
+main .habbo--section .card--article .article--info {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+main .habbo--section .card--article .article--title {
+  font-size: 16px;
+}
+main .habbo--section .card--article .article--description {
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+main .habbo--section .card--article img {
+  -o-object-fit: none;
+  object-fit: none;
+  height: 3.5rem;
+  width: 3.5rem;
+  float: right;
+  border-radius: 4px;
+  -o-object-position: right;
+  object-position: right;
+  image-rendering: -moz-crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
+      image-rendering: pixelated;
+}
 main .habbo--section .article--card .card-header {
   line-height: 2rem;
   font-size: 14px;
@@ -10477,6 +10507,30 @@ footer > .footer--secondary p {
   font-weight: 600;
 }
 
+.card--comments .comments {
+  overflow-y: auto;
+  max-height: 20rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.card--comments .comments .comment {
+  background-color: #f3f3f3;
+  line-height: 1rem;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+}
+.card--comments .comments .comment img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 4rem;
+  transition: all 0.35s;
+  height: 4rem;
+  image-rendering: -moz-crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
+      image-rendering: pixelated;
+}
+
 .card--popular-news {
   color: #222;
 }
@@ -10519,10 +10573,27 @@ footer > .footer--secondary p {
   background-image: url(/assets/images/sprites.png);
 }
 
+#sprite--container {
+  background-color: #FF0000;
+  border-radius: 50em;
+  height: 4rem;
+  width: 4rem;
+  padding: 0.7rem 0 0 0.7rem;
+  box-shadow: inset 0 0 3px 1px #000;
+  position: relative;
+  left: -0.2rem;
+}
+
 .sprite--date {
   background-position: 1.2rem -6.35rem;
   height: 20px;
   width: 20px;
+}
+
+.sprite.sprite--comments {
+  background-position: -10.5rem 0;
+  height: 3rem;
+  width: 2.5rem;
 }
 
 /* validations */
