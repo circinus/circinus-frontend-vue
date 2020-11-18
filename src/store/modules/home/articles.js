@@ -36,20 +36,22 @@ export default {
 
 
     actions: {
-        getArticles: async function ({commit}) {
+        getArticles: async function ({commit, dispatch}) {
             await api.get('articles/list/1/3')
                 .then((response) => {
+                    dispatch('loader/change', 'getArticles', {root:true})
                     commit('APPEND_NEW_STORY', response.data.data)
                 });
         },
-        getArticle: async function ({commit}, slug) {
+        getArticle: async function ({commit, dispatch}, slug) {
             await api.get('articles/' + slug)
                 .then((response) => {
+                    dispatch('loader/change', 'getArticle', {root:true})
                     commit('CURRENT_STORY', response.data)
                 });
         },
-        getComments: async function ({commit}, id) {
-            await api.get('comments/' + id + '/list/1/3')
+        getComments: async function ({commit, dispatch}, form) {
+            await api.get('comments/' + form.id + '/list/' + form.page + '/' + form.offset + '')
                 .then((response) => {
                     commit('CURRENT_COMMENTS', response.data.data)
                 });

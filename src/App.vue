@@ -9,7 +9,7 @@
 
         <main class="flex-fill container">
             <notifications></notifications>
-            <router-view />
+            <router-view :key="$route.fullPath" />
         </main>
 
         <Client/>

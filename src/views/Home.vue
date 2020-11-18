@@ -10,15 +10,17 @@
                 </div>
             </div>
 
-            <div class="row">
-                <articles
-                    v-for="(stories, index) in articles"
-                    :key="index"
-                    :articles="stories"
-                    :index="index"
-                >
-                </articles>
-            </div>
+            <load-component module="getArticles">
+                <div class="row">
+                    <articles
+                        v-for="(stories, index) in articles"
+                        :key="index"
+                        :articles="stories"
+                        :index="index"
+                    >
+                    </articles>
+                </div>
+            </load-component>
 
         </section>
 
@@ -31,14 +33,16 @@
                 </div>
             </div>
 
-            <div class="row">
-                <photos
-                v-for="(photos, index) in photos"
-                :key="index"
-                :photo="photos"
-                >
-                </photos>
-            </div>
+            <load-component module="getPhotos">
+                <div class="row">
+                    <photos
+                        v-for="(photos, index) in photos"
+                        :key="index"
+                        :photo="photos"
+                    >
+                    </photos>
+                </div>
+            </load-component>
         </section>
     </div>
 </template>
@@ -60,13 +64,17 @@ export default {
     computed: {
       ...mapGetters({
           articles: 'articles/articles',
-          photos: 'photos/photos',
+          photos: 'photos/photos'
       })
     },
 
-    created: function () {
+    mounted() {
         this.$store.dispatch('articles/getArticles');
         this.$store.dispatch('photos/getPhotos');
+    },
+
+    created() {
+        console.log(this)
     }
 
 }

@@ -10391,8 +10391,8 @@ main .habbo--section .section-title {
 main .habbo--section .section-description {
   color: #222;
 }
-main .habbo--section .card--article {
-  transition: all 0.25s;
+main .habbo--section .card--article a {
+  color: #000;
 }
 main .habbo--section .card--article .article--info {
   overflow: hidden;

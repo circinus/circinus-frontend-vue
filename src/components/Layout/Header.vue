@@ -31,10 +31,6 @@ export default {
             setClient: 'client/setClient'
         }),
 
-        getData() {
-            console.log(1)
-        },
-
         toggleClientLoader() {
             this.setClient(!this.client)
             bus.$emit('loadClient');

@@ -21,9 +21,10 @@ export default {
     },
 
     actions: {
-        async getPhotos ({ commit }) {
+        async getPhotos ({ commit, dispatch }) {
             await api.get('photos/list/1/10')
                 .then((response) => {
+                    dispatch('loader/change', 'getPhotos', {root:true})
                     commit('APPEND_PHOTOS', response.data.data)
                 });
         }

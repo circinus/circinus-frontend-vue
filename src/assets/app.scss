@@ -390,7 +390,10 @@ main {
     }
 
     .card--article {
-      transition: all .25s;
+
+      a {
+        color: #000;
+      }
 
       .article--info {
         overflow: hidden;

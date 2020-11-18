@@ -1,12 +1,14 @@
 <template>
     <div>
-        <article-content
-            v-if="article"
-            :article="article"
-            :articles="articles"
-            :comments="comments"
-        >
-        </article-content>
+        <load-component module="getArticle">
+            <article-content
+                v-if="article"
+                :article="article"
+                :articles="articles"
+                :comments="comments"
+            >
+            </article-content>
+        </load-component>
     </div>
 </template>
 
@@ -31,8 +33,15 @@ export default {
     },
 
     created: function () {
+
+        const pagination = {
+            id: this.$route.params.id,
+            page: 1,
+            offset: 8
+        }
+
         this.$store.dispatch('articles/getArticle', this.$route.params.slug);
-        this.$store.dispatch('articles/getComments', this.$route.params.id);
+        this.$store.dispatch('articles/getComments', pagination);
         this.$store.dispatch('articles/getArticles');
     }
 

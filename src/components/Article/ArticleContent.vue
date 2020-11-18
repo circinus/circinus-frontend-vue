@@ -34,13 +34,13 @@
                         </div>
                     </div>
                     <div class="comments row mx-4">
-                        <article-comments
-                            v-for="(stories, index) in this.comments"
-                            :key="index"
-                            :comment="stories"
-                            :index="index"
-                            >
-                        </article-comments>
+                            <article-comments
+                                v-for="(stories, index) in this.comments"
+                                :key="index"
+                                :comment="stories"
+                                :index="index"
+                                >
+                            </article-comments>
                     </div>
                 </div>
             </div>

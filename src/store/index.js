@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import auth from './modules/user/auth';
 import votes from './modules/user/votes';
 import client from './modules/client/client';
+import loader from './modules/loader';
 
 import notifications from './modules/notifications';
 import articles from './modules/home/articles';
@@ -26,6 +27,7 @@ export default new Vuex.Store({
       photos,
       register,
       client,
-      votes
+      votes,
+      loader
   }
 })

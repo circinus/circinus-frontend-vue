@@ -26,6 +26,9 @@ import { ValidationObserver } from 'vee-validate'
 Vue.component('ValidationProvider', ValidationProvider)
 Vue.component('ValidationObserver', ValidationObserver)
 
+import ComponentLoader from './components/ComponentLoader'
+Vue.component('load-component', ComponentLoader)
+
 Vue.config.productionTip = false;
 
 import i18n from './helpers/locale'
