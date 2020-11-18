@@ -13,7 +13,7 @@
 </template>
 
 <script>
-
+import { environment } from "../../environment"
 import {mapActions, mapGetters} from "vuex";
 
 export default {
@@ -23,7 +23,7 @@ export default {
     data() {
         return {
             timeout: true,
-            seconds: 200
+            seconds: environment.componentLoader
         }
     },
 
@@ -40,7 +40,7 @@ export default {
     },
 
     mounted() {
-        this.add({component: this.$route.name, module: this.module, loading: true})
+        this.add({component: this.$route.name, module: this.module, loading: true});
     },
 
     created() {

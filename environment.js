@@ -12,6 +12,7 @@ export const environment  = {
         "DIAMONDS": 5,
         "GOTW": 103
     },
+    componentLoader: 200,
     Locale: require('./src/locales/nl.json'),
 };
 

@@ -72,10 +72,5 @@ export default {
         this.$store.dispatch('articles/getArticles');
         this.$store.dispatch('photos/getPhotos');
     },
-
-    created() {
-        console.log(this)
-    }
-
 }
 </script>
