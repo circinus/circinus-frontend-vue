@@ -19,12 +19,13 @@
 </template>
 
 <script>
-import Login from './components/Layout/Login';
-import Navigation from './components/Layout/Navigation';
-import Header from './components/Layout/Header';
-import Footer from './components/Layout/Footer';
+import Login from './components/Home/Login';
+import Navigation from './views/Layout/Navigation';
+import Header from './views/Layout/Header';
+import Footer from './views/Layout/Footer';
 import Notifications from './components/Notifications';
 import Client from './components/Client/Client';
+
 
 import { mapGetters } from 'vuex';
 

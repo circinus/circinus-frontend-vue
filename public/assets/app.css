@@ -10383,6 +10383,9 @@ main .register--body .selected-look[data-random="1"]:before {
 main .habbo--section {
   margin-bottom: 1.5rem;
 }
+main .habbo--section .form-control {
+  font-size: 14px !important;
+}
 main .habbo--section .section-title {
   text-transform: uppercase;
   font-weight: 800;

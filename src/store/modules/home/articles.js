@@ -55,6 +55,12 @@ export default {
                 .then((response) => {
                     commit('CURRENT_COMMENTS', response.data.data)
                 });
+        },
+        storeComment: async function ({commit, dispatch}, form) {
+            return await api.post('comments/create', form)
+                .then((response) => {
+                    return response
+                });
         }
     }
 }

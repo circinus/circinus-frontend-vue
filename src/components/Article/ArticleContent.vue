@@ -26,13 +26,20 @@
                 </div>
 
                 <div class="card card--comments mb-4">
-                    <div class="d-flex flex-row mb-3">
-                        <i class="ml-5 mr-3 my-4 sprite sprite--comments"></i>
-                        <div class="d-inline-flex flex-column">
-                            <h5 class="mt-4 mb-0">Reacties</h5>
-                            <span>Join the conversation</span>
+
+
+                    <div class="card article--card d-flex px-4 py-2 mb-4">
+                        <div class="card-header d-inline-flex align-items-center flex-row px-0">
+                            <i class="sprite sprite--comments"></i>
+
+                            <h5 class="mt-3 p-1 flex-fill">Reacties</h5>
+
+                            <div class="d-inline-flex flex-row align-items-center mr-2" v-if="authenticated">
+                                <button class="nav-link btn btn-warning" style="color:#fff" @click="$refs.articleComment.openClose()">Plaats comment</button>
+                            </div>
                         </div>
                     </div>
+
                     <div class="comments row mx-4">
                             <article-comments
                                 v-for="(stories, index) in this.comments"
@@ -63,6 +70,14 @@
                 </article-sidebar>
             </div>
 
+            <modal ref="articleComment" title="Reageren op nieuwsbericht" v-if="authenticated">
+                <template v-slot:body>
+                    <div class="form-group">
+                        <textarea v-model="articleComment"  class="form-control display-1" rows="3"></textarea>
+                    </div>
+                </template>
+            </modal>
+
         </div>
 
 
@@ -74,14 +89,63 @@
 <script>
 import ArticleSidebar from '../../components/Article/ArticleSidebar';
 import ArticleComments from '../../components/Article/ArticleComments';
+import Modal from '../../components/Modal';
+import bus from "../../helpers/bus";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: "Article",
-    props: ['article', 'articles', 'comments'],
+    props: ['article', 'articles'],
+
+    data() {
+        return {
+            comment: {
+                id: this.article.id,
+                page: 1,
+                offset: 8
+            },
+            articleComment: null
+        }
+    },
 
     components: {
         ArticleSidebar,
-        ArticleComments
+        ArticleComments,
+        Modal
+    },
+
+    computed: {
+        ...mapGetters({
+            authenticated: 'auth/authenticated',
+            comments: 'articles/comments'
+        })
+    },
+
+    methods: {
+        ...mapActions({
+            storeComment: 'articles/storeComment'
+        }),
+
+        getComments() {
+            this.$store.dispatch('articles/getComments', this.comment);
+        }
+    },
+
+    mounted() {
+        this.getComments()
+    },
+
+    created() {
+
+        bus.$on('saveModal', () => {
+
+            const form_data = { content: this.articleComment, article_id: this.article.id }
+
+            this.storeComment(form_data).then(() => {
+                this.getComments()
+                this.$refs.articleComment.openClose();
+            })
+        })
     }
 }
 </script>
