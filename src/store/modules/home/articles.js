@@ -19,6 +19,9 @@ export default {
         },
         comments(state) {
             return state.comments
+        },
+        user(state, getters, rootState, rootGetters) {
+            return rootGetters["auth/user"];
         }
     },
 
@@ -56,7 +59,14 @@ export default {
                     commit('CURRENT_COMMENTS', response.data.data)
                 });
         },
-        storeComment: async function ({commit, dispatch}, form) {
+        storeComment: async function ({getters  }, form) {
+
+            let comment = getters.comments.slice(-1)[0];
+
+            if(typeof comment !== "undefined" && comment.user_id === getters.user.id) {
+                return
+            }
+
             return await api.post('comments/create', form)
                 .then((response) => {
                     return response
