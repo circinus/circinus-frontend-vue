@@ -5,7 +5,6 @@
                 v-if="article"
                 :article="article"
                 :articles="articles"
-                :comments="comments"
             >
             </article-content>
         </load-component>

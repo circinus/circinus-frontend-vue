@@ -168,6 +168,11 @@ export default {
     },
 
     changeAvatar(item) {
+
+        if(this.form.look === item) {
+            return
+        }
+
         this.form.look = item
         this.preLoad()
     },
