@@ -46,6 +46,7 @@ export default {
                     commit('APPEND_NEW_STORY', response.data.data)
                 });
         },
+
         getArticle: async function ({commit, dispatch}, slug) {
             await api.get('articles/' + slug)
                 .then((response) => {
@@ -53,21 +54,26 @@ export default {
                     commit('CURRENT_STORY', response.data)
                 });
         },
+
         getComments: async function ({commit, dispatch}, form) {
             await api.get('comments/' + form.id + '/list/' + form.page + '/' + form.offset + '')
                 .then((response) => {
                     commit('CURRENT_COMMENTS', response.data.data)
                 });
         },
-        storeComment: async function ({getters  }, form) {
+
+        storeComment: async function ({getters}, form) {
 
             let comment = getters.comments.slice(-1)[0];
 
-            if(typeof comment !== "undefined" && comment.user_id === getters.user.id) {
+            if(typeof comment !== "undefined"
+                && comment.user_id === getters.user.id)
+            {
                 return
             }
 
-            return await api.post('comments/create', form)
+            return await
+                api.post('comments/create', form)
                 .then((response) => {
                     return response
                 });

@@ -27,21 +27,12 @@ export default {
     computed: {
         ...mapGetters({
             article: 'articles/article',
-            articles: 'articles/articles',
-            comments: 'articles/comments'
+            articles: 'articles/articles'
         })
     },
 
     created: function () {
-
-        const pagination = {
-            id: this.$route.params.id,
-            page: 1,
-            offset: 8
-        }
-
         this.$store.dispatch('articles/getArticle', this.$route.params.slug);
-        this.$store.dispatch('articles/getComments', pagination);
         this.$store.dispatch('articles/getArticles');
     }
 
