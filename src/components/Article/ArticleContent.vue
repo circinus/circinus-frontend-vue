@@ -32,10 +32,10 @@
                         <div class="card-header d-inline-flex align-items-center flex-row px-0">
                             <i class="sprite sprite--comments"></i>
 
-                            <h5 class="mt-3 p-1 flex-fill">Reacties</h5>
+                            <h5 class="mt-3 p-1 flex-fill" v-t="'layout.article.reactions'"></h5>
 
                             <div class="d-inline-flex flex-row align-items-center mr-2" v-if="authenticated">
-                                <button class="nav-link btn btn-warning" style="color:#fff" @click="$refs.articleComment.openClose()">Plaats comment</button>
+                                <button class="nav-link btn btn-warning" style="color:#fff" @click="$refs.articleComment.openClose()" v-t="'layout.article.react'"></button>
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                 <div class="d-flex flex-row mb-4">
                     <img class="mr-2 object-contain image-pixelated" src="/assets/images/icons/news.png" alt="News" />
                     <div class="d-inline-flex flex-column justify-content-center">
-                        <span class="section-title">Meer nieuwsberichten</span>
+                        <span class="section-title" v-t="'layout.article.more_news'"></span>
                     </div>
 
                 </div>
@@ -70,7 +70,7 @@
                 </article-sidebar>
             </div>
 
-            <modal ref="articleComment" title="Reageren op nieuwsbericht" v-if="authenticated">
+            <modal ref="articleComment" :title="$t('layout.article.react_on')" v-if="authenticated">
                 <template v-slot:body>
                     <div class="form-group">
                         <textarea v-model="articleComment"  class="form-control display-1" rows="3"></textarea>
@@ -91,6 +91,7 @@ import ArticleSidebar from '../../components/Article/ArticleSidebar';
 import ArticleComments from '../../components/Article/ArticleComments';
 import Modal from '../../components/Modal';
 import bus from "../../helpers/bus";
+
 import {mapActions, mapGetters} from "vuex";
 
 export default {

@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="modal__footer">
-                    <button @click="saveModal" class="btn btn--light-dark btn-block">Save</button>
+                    <button @click.prevent="saveModal" class="btn btn--light-dark btn-block">Save</button>
                 </div>
             </div>
         </div>

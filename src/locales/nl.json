@@ -29,6 +29,12 @@
                 "description": "Zie hier collage van leuke momenten!"
             }
         },
+        "article": {
+            "react": "Reageren",
+            "reactions": "Reacties",
+            "more_news": "MEER NIEUWSBERICHTEN",
+            "react_on": "Reageren op nieuwsbericht"
+        },
         "footer": {
             "credits": "© 2020 door Raizer",
             "description": "Alle rechten voorbehouden"
