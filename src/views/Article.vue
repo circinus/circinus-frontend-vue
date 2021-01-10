@@ -14,7 +14,7 @@
 <script>
 import {mapGetters} from 'vuex'
 
-import ArticleContent from '../components/Article/ArticleContent';
+import ArticleContent from '@/components/Article/ArticleContent';
 
 export default {
     name: 'ArticleView',

@@ -10,7 +10,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import Notification from './Notification';
+import Notification from '@/components/Notification';
 
 export default {
     components: {

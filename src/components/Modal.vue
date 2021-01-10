@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import bus from '../helpers/bus'
+import bus from '@/helpers/bus'
 
 export default {
     name: "Modal",
@@ -57,7 +57,7 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
+<style>
 textarea {
     font-size: 12px !important;
 }

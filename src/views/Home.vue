@@ -1,9 +1,8 @@
 <template>
     <div>
-        <vue-headful title="Homepage" />
         <section id="current-news" class="habbo--section mt-5">
             <div class="d-flex flex-row mb-4">
-                <img class="mr-2 object-contain image-pixelated" src="/assets/images/icons/news.png" alt="News" />
+                <img class="mr-2 object-contain image-pixelated" src="@/assets/icons/news.png" alt="News" />
                 <div class="d-inline-flex flex-column justify-content-center">
                     <span class="section-title" v-t="'layout.dashboard.news.title'"></span>
                     <span class="section-description" v-t="'layout.dashboard.news.description'"></span>
@@ -26,7 +25,7 @@
 
         <section id="popular-news" class="habbo--section">
             <div class="d-flex flex-row mb-4">
-                <img class="mr-2 object-contain image-pixelated" src="/assets/images/icons/news.png" alt="News" />
+                <img class="mr-2 object-contain image-pixelated" src="@/assets/icons/news.png" alt="News" />
                 <div class="d-inline-flex flex-column justify-content-center">
                     <span class="section-title" v-t="'layout.dashboard.photos.title'"></span>
                     <span class="section-description" v-t="'layout.dashboard.photos.description'"></span>
@@ -50,8 +49,8 @@
 <script>
 import {mapGetters} from 'vuex'
 
-import Articles from '../components/Home/Dashboard/Articles';
-import Photos from '../components/Home/Dashboard/Photos';
+import Articles from '@/components/Home/Dashboard/Articles';
+import Photos from '@/components/Home/Dashboard/Photos';
 
 export default {
     name: 'Home',

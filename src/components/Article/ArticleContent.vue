@@ -87,10 +87,10 @@
 </template>
 
 <script>
-import ArticleSidebar from '../../components/Article/ArticleSidebar';
-import ArticleComments from '../../components/Article/ArticleComments';
-import Modal from '../../components/Modal';
-import bus from "../../helpers/bus";
+import ArticleSidebar from '@/components/Article/ArticleSidebar';
+import ArticleComments from '@/components/Article/ArticleComments';
+import Modal from '@/components/Modal';
+import bus from "@/helpers/bus";
 
 import {mapActions, mapGetters} from "vuex";
 

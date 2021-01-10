@@ -56,7 +56,7 @@ import {mapActions, mapGetters} from 'vuex';
 import { client } from "../../../environment"
 import * as FlashDetect from 'flash-detect';
 import * as swfObject from 'es-swfobject';
-import bus from '../../helpers/bus'
+import bus from '@/helpers/bus'
 
 export default {
     name: "Client",

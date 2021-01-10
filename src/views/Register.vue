@@ -7,7 +7,7 @@
         <div class="col-md-6">
 
           <div class="d-flex flex-row mb-4">
-            <img class="mr-2 object-contain image-pixelated" src="/assets/images/web/register/hotel-button-medium-icon.gif" alt="Register" />
+            <img class="mr-2 object-contain image-pixelated" src="@/assets/web/register/hotel-button-medium-icon.gif" alt="Register" />
             <div class="d-inline-flex flex-column justify-content-center">
               <span class="section-title">Registreren op Meteor</span>
               <span class="section-description">Maak je eigen account aan!</span>
@@ -74,7 +74,7 @@
       <div class="col-md-6">
 
         <div class="d-flex flex-row mb-4">
-          <img class="mr-2 object-contain image-pixelated" src="/assets/images/web/register/progress_habbos.gif" alt="Look" />
+          <img class="mr-2 object-contain image-pixelated" src="@/assets/web/register/progress_habbos.gif" alt="Look" />
           <div class="d-inline-flex flex-column justify-content-center">
             <span class="section-title">Creeër je persoonlijkheid</span>
             <span class="section-description">Kies de look die bij jouw past!</span>
@@ -115,7 +115,7 @@
 <script>
 import {mapActions, mapState} from "vuex";
 
-import Looks from "../components/Register/Looks";
+import Looks from "@/components/Register/Looks";
 
 export default {
 

@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import { environment } from "../../environment"
 import {mapActions, mapGetters} from "vuex";
 
 export default {
@@ -23,7 +22,7 @@ export default {
     data() {
         return {
             timeout: true,
-            seconds: environment.componentLoader
+            seconds: process.env.VUE_APP_COMPONENT_LOADING_TIME
         }
     },
 

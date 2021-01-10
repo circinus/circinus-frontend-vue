@@ -14,7 +14,7 @@
 
 <script>
 import {mapActions, mapGetters} from 'vuex';
-import bus from '../../helpers/bus'
+import bus from '@/helpers/bus'
 
 export default {
 

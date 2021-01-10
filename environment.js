@@ -1,53 +1,35 @@
-export const environment  = {
-    API: {
-        base_url: 'https://api.circinus.dev/en/'
-    },
-    CLIENT: {
-        path: 'https://client.circinus.dev',
-        ip: '185.224.90.218',
-        port: 3000
-    },
-    POINTS: {
-        "DUCKETS": 0,
-        "DIAMONDS": 5,
-        "GOTW": 103
-    },
-    componentLoader: 200,
-    Locale: require('./src/locales/nl.json'),
-};
-
 export const client = {
-    swf: `${environment.CLIENT.path}/gordon/PRODUCTION-202006192205-424220153/Circinus.swf`,
+    swf: `${ process.env.VUE_HOTEL_DOMAIN }/${ process.env.VUE_HOTEL_PRODUCTION }/${ process.env.VUE_HOTEL_SWF }`,
 
     vars: {
         'client.allow.cross.domain': '1',
         'client.notify.cross.domain': '1',
-        'connection.info.host': `${environment.CLIENT.ip}`,
-        'connection.info.port': `${environment.CLIENT.port}`,
+        'connection.info.host': `${ process.env.VUE_HOTEL_HOST }`,
+        'connection.info.port': `${ process.env.VUE_HOTEL_PORT }`,
         'site.url': `jabbo.st`,
         'url.prefix': `jabbo.st`,
-        'client.reload.url': `${environment.API.base_url}/client`,
-        'client.fatal.error.url': `${environment.API.base_url}/client`,
-        'client.connection.failed.url': `${environment.API.base_url}/client`,
-        'external.override.texts.txt': `${environment.CLIENT.path}/gamedata/override/external_flash_override_texts.txt`,
-        'external.override.variables.txt': `${environment.CLIENT.path}/gamedata/override/external_override_variables.txt`,
-        'external.variables.txt': `${environment.CLIENT.path}/gamedata/external_variables.txt`,
-        'external.texts.txt': `${environment.CLIENT.path}/gamedata/external_flash_texts.txt`,
-        'external.figurepartlist.txt': `${environment.CLIENT.path}/gamedata/figuredata.xml`,
-        'flash.dynamic.avatar.configuration': `${environment.CLIENT.path}/gamedata/figuremap.xml`,
-        'productdata.load.url': `${environment.CLIENT.path}/gamedata/productdata.txt`,
-        'furnidata.load.url': `${environment.CLIENT.path}/gamedata/furnidata.xml`,
+        'client.reload.url': `${ process.env.VUE_APP_URL }/client`,
+        'client.fatal.error.url': `${ process.env.VUE_APP_URL }/client`,
+        'client.connection.failed.url': `${ process.env.VUE_APP_URL }/client`,
+        'external.override.texts.txt': `${ process.env.VUE_HOTEL_OVERRIDE_EXTERNAL_FLASH_TEXTS }`,
+        'external.override.variables.txt': `${ process.env.VUE_HOTEL_OVERRIDE_EXTERNAL_VARIABLES }`,
+        'external.variables.txt': `${ process.env.VUE_HOTEL_EXTERNAL_VARIABLES }`,
+        'external.texts.txt': `${ process.env.VUE_HOTEL_EXTERNAL_FLASH_TEXTS }`,
+        'external.figurepartlist.txt': `${ process.env.VUE_HOTEL_FIGUREDATA }`,
+        'flash.dynamic.avatar.configuration': `${ process.env.VUE_HOTEL_FIGUREMAP }`,
+        'productdata.load.url': `${ process.env.VUE_HOTEL_PRODUCTDATA }`,
+        'furnidata.load.url': `${ process.env.VUE_HOTEL_FURNIDATA }`,
         'use.sso.ticket': '1',
         'sso.ticket': '',
         'processlog.enabled': '1',
-        'flash.client.url': `${environment.CLIENT.path}/gordon/PRODUCTION-202006192205-424220153/`,
+        'flash.client.url': `${ process.env.VUE_HOTEL_DOMAIN }/${ process.env.VUE_HOTEL_PRODUCTION }/`,
         'diamonds.enabled': '1',
-        'logout.url': `${environment.CLIENT.path}/logout`,
+        'logout.url': `${ process.env.VUE_APP_URL }/logout`,
         'spaweb': '1'
     },
 
     params: {
-        base: `${environment.CLIENT.path}/gordon/PRODUCTION-202006192205-424220153/`,
+        base: `${ process.env.VUE_HOTEL_DOMAIN }/${ process.env.VUE_HOTEL_PRODUCTION }/`,
         allowScriptAccess: 'always',
         wmode: 'opaque'
     }

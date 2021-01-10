@@ -19,14 +19,14 @@
 </template>
 
 <script>
-import Login from './components/Home/Login';
-import Navigation from './views/Layout/Navigation';
-import Header from './views/Layout/Header';
-import Footer from './views/Layout/Footer';
-import Notifications from './components/Notifications';
-import Client from './components/Client/Client';
+import "@/assets/app.scss"
 
-
+import Login from '@/components/Home/Login';
+import Navigation from '@/views/Layout/Navigation';
+import Header from '@/views/Layout/Header';
+import Footer from '@/views/Layout/Footer';
+import Notifications from '@/components/Notifications';
+import Client from '@/components/Client/Client';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -38,7 +38,6 @@ export default {
         Notifications,
         Client
     },
-
     computed: {
         ...mapGetters({
             notifications: 'notifications/list'
@@ -46,4 +45,3 @@ export default {
     }
 }
 </script>
-

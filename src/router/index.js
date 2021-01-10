@@ -5,7 +5,7 @@ import store from '../store'
 
 import guest from './middleware/guest'
 import auth from './middleware/auth'
-import middlewarePipeline from './middlewarePipeline'
+import middlewarePipeline from './middleware/middlewarePipeline'
 
 import Home from '../views/Home'
 import Register from '../views/Register'
@@ -25,45 +25,45 @@ const router = new Router({
       path: '/logout',
       name: 'logout',
       meta: {
-          middleware: [
-              auth
-          ]
+        middleware: [
+          auth
+        ]
       }
     },
     {
       path: '/register',
       name: 'register',
       component: Register,
-        meta: {
-            middleware: [
-                guest
-            ]
-        }
+      meta: {
+        middleware: [
+          guest
+        ]
+      }
     },
     {
       path: '/hotel',
       name: 'hotel',
-        meta: {
-            middleware: [
-                auth
-            ]
-        },
+      meta: {
+        middleware: [
+          auth
+        ]
+      },
       beforeEnter: (to, from, next) => {
-          if(!store.getters['client/loaded']) {
-              store.dispatch('client/setClient', true)
-          }
-          next()
+        if(!store.getters['client/loaded']) {
+          store.dispatch('client/setClient', true)
+        }
+        next()
       }
     },
     {
       path: '/dashboard',
       name: 'dashboard',
       component: Home,
-        meta: {
-            middleware: [
-                auth
-            ]
-        }
+      meta: {
+        middleware: [
+          auth
+        ]
+      }
     },
     {
       path: '/articles/:id/:slug',
@@ -74,23 +74,28 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-    if (!to.meta.middleware) {
-        return next()
+  if (!to.meta.middleware) {
+    let documentTitle = `${ process.env.VUE_APP_TITLE } - ${ to.name }`
+    if(to.params.title) {
+      documentTitle += ` - ${ to.params.title }`
     }
-    const middleware = to.meta.middleware
+    document.title = documentTitle
+    return next()
+  }
+  const middleware = to.meta.middleware
 
-    const context = {
-        to,
-        from,
-        next,
-        store
-    }
+  const context = {
+    to,
+    from,
+    next,
+    store
+  }
 
 
-    return middleware[0]({
-        ...context,
-        next: middlewarePipeline(context, middleware, 1)
-    })
+  return middleware[0]({
+    ...context,
+    next: middlewarePipeline(context, middleware, 1)
+  })
 
 })
 

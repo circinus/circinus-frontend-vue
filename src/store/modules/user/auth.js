@@ -1,5 +1,4 @@
-import api from "../../../helpers/api";
-import {environment} from "../../../../environment"
+import api from "@/helpers/api";
 
 export default {
     namespaced: true,
@@ -56,9 +55,9 @@ export default {
             try {
                 let response = await api.get('user');
 
-                response.data.currencies.forEach((item) => {
-                    item.name = Object.keys(environment.POINTS).filter(k=>environment.POINTS[k] === item.type).toString()
-                })
+                //response.data.currencies.forEach((item) => {
+                    //item.name = Object.keys(environment.POINTS).filter(k=>environment.POINTS[k] === item.type).toString()
+                //})
 
                 dispatch('votes/total', null, {root:true})
                 commit('SET_USER', response.data)
