@@ -1,3 +1,5 @@
+require('./store/modules/user/subscriber');
+
 import '@babel/polyfill'
 import 'mutationobserver-shim'
 
