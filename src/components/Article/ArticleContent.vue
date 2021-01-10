@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-xl-8 col-lg-8 col-sm-12">
                 <div class="d-flex flex-row mb-4">
-                    <img class="mr-2 object-contain image-pixelated" src="/assets/images/icons/news.png" alt="News" />
+                    <img class="mr-2 object-contain image-pixelated" src="@/assets/images/icons/news.png" alt="News" />
                     <div class="d-inline-flex flex-column justify-content-center">
                         <span class="section-title">{{this.article.title}}</span>
                         <span class="section-description">{{this.article.description}}</span>
@@ -55,7 +55,7 @@
 
             <div class="col-xl-4 col-lg-4 col-sm-12">
                 <div class="d-flex flex-row mb-4">
-                    <img class="mr-2 object-contain image-pixelated" src="/assets/images/icons/news.png" alt="News" />
+                    <img class="mr-2 object-contain image-pixelated" src="@/assets/images/icons/news.png" alt="News" />
                     <div class="d-inline-flex flex-column justify-content-center">
                         <span class="section-title" v-t="'layout.article.more_news'"></span>
                     </div>

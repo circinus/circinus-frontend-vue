@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import "@/assets/app.scss"
+import "@/assets/css/app.scss"
 
 import Login from '@/components/Home/Login';
 import Navigation from '@/views/Layout/Navigation';
