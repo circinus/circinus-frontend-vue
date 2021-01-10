@@ -27,7 +27,7 @@
                         </span>
 
                         <span class="mr-3 font-weight-bold" @click="votePhoto('dislikes')">
-                            <font-awesome-icon :style="{color: voted(1)}" icon="thumbs-down" class="mr-2"></font-awesome-icon>
+                            <font-awesome-icon :style="{color: voted(0)}" icon="thumbs-down" class="mr-2"></font-awesome-icon>
                             {{ this.photo.dislikes }}
                         </span>
                     </div>

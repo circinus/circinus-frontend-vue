@@ -1,3 +1,12 @@
+export const environment  = {
+    POINTS: {
+        "DUCKETS": 0,
+        "DIAMONDS": 5,
+        "GOTW": 103
+    }
+};
+
+
 export const client = {
     swf: `${ process.env.VUE_HOTEL_DOMAIN }/${ process.env.VUE_HOTEL_PRODUCTION }/${ process.env.VUE_HOTEL_SWF }`,
 
