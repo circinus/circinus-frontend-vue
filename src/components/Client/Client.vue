@@ -2,7 +2,7 @@
     <div id="client-loader" v-bind:class="classObject">
         <div id="hotel-container">
 
-            <div v-if="client && hideLoader && flashDetect !== 'flash-detect'" class="loading-container">
+            <div v-if="client && hideLoader" class="loading-container">
                 <div id="loading-background"></div>
                 <div class="loading-content" >
 
@@ -34,17 +34,12 @@
             </div>
 
             <div :id="flashDetect" v-if="flashDetect" class="row d-block align-items-center text-center">
-                <div class="flash-illustration"></div>
-                <div class="flash-title mb-1 mt-5 d-block" v-t="'client.flash_detected.message'"></div>
-                <span class="flash-description w-25" v-html="$t('client.flash_detected.description', {
-                    url: `<a href='https://get.adobe.com/en/flashplayer' target='_blank'>${$t('client.flash_detected.here')}</a>`
-                  })"
-                />
+                <iframe v-if="ticket !== null" id="game" :src="url + '/?sso=' + ticket" />
             </div>
 
             <div class="client-buttons">
                 <button class="client-close rounded-button blue plain" @click="hideClient">
-                    <i class="client-icon fas fa fa-backspace"></i>
+                    <font-awesome-icon icon="backspace" class="client-icon f"></font-awesome-icon>
                 </button>
             </div>
         </div>
@@ -55,7 +50,6 @@
 import {mapActions, mapGetters} from 'vuex';
 import { client } from "../../../environment"
 import * as FlashDetect from 'flash-detect';
-import * as swfObject from 'es-swfobject';
 import bus from '@/helpers/bus'
 
 export default {
@@ -66,8 +60,9 @@ export default {
             ticket: null,
             isSessionActive: false,
             loadingWidth: 0,
-            hideLoader: true,
-            loadingText: this.$t('layout.client.starting')
+            hideLoader: false,
+            loadingText: this.$t('layout.client.starting'),
+            url: process.env.VUE_APP_NITRO_ASSETS_URL
         }
     },
 
@@ -87,7 +82,7 @@ export default {
 
         flashDetect() {
             const flashDetected = new FlashDetect();
-            return flashDetected.installed === false ? 'flash-detect' : 'game'
+            return flashDetected.installed === false ? 'game' : 'game'
         }
     },
 
@@ -127,45 +122,8 @@ export default {
             }
 
             this.getTicket().then(() => {
-                client.vars["sso.ticket"] = this.ticket
-
-                swfObject.embedSWF(client.swf,
-                    'game',
-                    '100%',
-                    '100%',
-                    11,
-                    '',
-                    client.vars,
-                    client.params);
-
-                window.FlashExternalInterface = {};
-                window.FlashExternalGameInterface = {};
-
-                window.FlashExternalInterface.logLoginStep = (args) => {
-
-                    if (args === "client.init.swf.loaded") {
-                        this.loadingWidth = 25
-                    }
-
-                    if (args === "client.init.core.init") {
-                        this.loadingText = this.$t('layout.client.almost')
-                        this.loadingWidth = 45
-                    }
-
-                    if (args === "client.init.handshake.start") {
-                        this.loadingWidth = 76
-                    }
-
-                    if (args === "client.init.auth.ok") {
-                        this.loadingWidth = 90
-                    }
-
-                    if (args === "client.init.room.ready") {
-                        this.loadingWidth = 100
-                        this.hideLoader = false
-                    }
-                };
-
+                console.log(this.ticket)
+                this.hideLoader = false
             })
             this.setActive(true)
         }
