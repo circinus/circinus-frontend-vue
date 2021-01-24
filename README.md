@@ -1,4 +1,4 @@
-# circinus
+# Circinus
 
 ## Project setup
 ```
