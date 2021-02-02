@@ -10,6 +10,7 @@ import notifications from './modules/notifications';
 import articles from './modules/home/articles';
 import photos from './modules/home/photos';
 import register from './modules/user/register';
+import permissions from './modules/user/permissions';
 
 Vue.use(Vuex)
 
@@ -28,6 +29,7 @@ export default new Vuex.Store({
       register,
       client,
       votes,
-      loader
+      loader,
+      permissions
   }
 })
