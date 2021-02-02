@@ -7,9 +7,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbar--secondary-collapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <router-link class="nav-link" :to="{ name: 'home' }" v-t="'layout.nav.homepage'"></router-link>
                     </li>
+                  <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'staff' }" v-t="'layout.nav.community'"></router-link>
+                  </li>
                 </ul>
             </div>
         </div>

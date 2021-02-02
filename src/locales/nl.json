@@ -15,6 +15,9 @@
       "members": "Medewerkers",
       "helptool": "Helptool"
     },
+    "staff" : {
+      "subtitle" : "Bekijk hier al onze medewerkers"
+    },
     "client" : {
       "starting": "Hotel wordt geladen...",
       "almost": "We zijn er bijna..."
@@ -36,7 +39,7 @@
       "react_on": "Reageren op nieuwsbericht"
     },
     "footer": {
-      "credits": "© 2020 door Raizer",
+      "credits": "© 2021 door Raizer & Highrun",
       "description": "Alle rechten voorbehouden"
     }
   },
