@@ -9,7 +9,6 @@ import router from './router'
 import store from './store'
 
 import '@/plugins/fontawesome'
-//import '@/plugins/bootstrap-vue'
 import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dist/dropdown';
 import i18n from '@/plugins/i18n'
@@ -32,6 +31,9 @@ Vue.component('ValidationObserver', ValidationObserver)
 
 import ComponentLoader from '@/components/ComponentLoader'
 Vue.component('load-component', ComponentLoader)
+
+import DropdownMenu from '@innologica/vue-dropdown-menu'
+Vue.component('dropdown-menu', DropdownMenu)
 
 Vue.config.productionTip = false
 

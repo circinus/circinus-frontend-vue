@@ -9,7 +9,10 @@
     },
     "nav": {
       "homepage": "Homepage",
-      "community": "Community",
+      "community": {
+          "nav": "Community",
+          "staff": "Medewerkers"
+      },
       "gallery": "Gallerij",
       "highscores": "Highscores",
       "members": "Medewerkers",

@@ -1086,8 +1086,11 @@ footer {
 
 .offlineDot {
   margin-bottom: 1px;
-  height: 12px;
-  width: 12px;
+  height: 18px;
+  z-index: 100000;
+  margin-top: -20px;
+  margin-left: -20px;
+  width: 18px;
   background-color: #723030;
   border-radius: 50%;
   display: inline-block;
@@ -1096,4 +1099,10 @@ footer {
 
 .rankCardFooter{
   background: #2a2a2bd1!important;
+}
+
+.rankTitle {
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 1rem;
 }

@@ -11,7 +11,18 @@
                         <router-link class="nav-link" :to="{ name: 'home' }" v-t="'layout.nav.homepage'"></router-link>
                     </li>
                   <li class="nav-item">
-                    <router-link class="nav-link" :to="{ name: 'staff' }" v-t="'layout.nav.community'"></router-link>
+
+                      <dropdown-menu
+                          v-model="show"
+                          :hover="hover"
+                      >
+                          <a class="nav-link dropdown-toggle">
+                              <span v-t="'layout.nav.community.nav'"></span>
+                          </a>
+                          <div slot="dropdown">
+                              <router-link class="nav-link" :to="{ name: 'staff' }" v-t="'layout.nav.community.staff'"></router-link>
+                          </div>
+                      </dropdown-menu>
                   </li>
                 </ul>
             </div>
@@ -20,5 +31,12 @@
 </template>
 
 <script>
-
+export default {
+    data() {
+        return {
+            show: false,
+            hover: true
+        }
+    }
+}
 </script>
