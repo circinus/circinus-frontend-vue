@@ -1106,3 +1106,18 @@ footer {
   font-weight: 800;
   font-size: 1rem;
 }
+
+.dropdown {
+  cursor: pointer;
+
+  .dropdown-menu {
+    padding: 5px;
+    border: none;
+    top: 58px;
+  }
+
+  .nav-dropdown {
+    color: #222;
+    font-size: 14px
+  }
+}

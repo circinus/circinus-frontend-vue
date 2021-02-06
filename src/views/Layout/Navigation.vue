@@ -20,7 +20,7 @@
                               <span v-t="'layout.nav.community.nav'"></span>
                           </a>
                           <div slot="dropdown">
-                              <router-link class="nav-link" :to="{ name: 'staff' }" v-t="'layout.nav.community.staff'"></router-link>
+                              <router-link class="nav-dropdown" :to="{ name: 'staff' }" v-t="'layout.nav.community.staff'"></router-link>
                           </div>
                       </dropdown-menu>
                   </li>
@@ -32,6 +32,9 @@
 
 <script>
 export default {
+
+    name: 'navigation',
+
     data() {
         return {
             show: false,
