@@ -115,7 +115,7 @@
 <script>
 import {mapActions, mapState} from "vuex";
 
-import Looks from "@/components/Register/Looks";
+import Looks from "@/components/Auth/Register/Looks";
 
 export default {
 

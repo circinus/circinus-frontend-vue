@@ -2,7 +2,7 @@
     <div id="app">
 
         <header class="bg-primary mb-4">
-            <Login/>
+            <Top/>
             <Header/>
             <Navigation/>
         </header>
@@ -21,7 +21,7 @@
 <script>
 import "@/assets/css/app.scss"
 
-import Login from '@/components/Home/Login';
+import Top from '@/views/Layout/Top';
 import Navigation from '@/views/Layout/Navigation';
 import Header from '@/views/Layout/Header';
 import Footer from '@/views/Layout/Footer';
@@ -31,7 +31,7 @@ import { mapGetters } from 'vuex';
 
 export default {
     components: {
-        Login,
+        Top,
         Navigation,
         Header,
         Footer,

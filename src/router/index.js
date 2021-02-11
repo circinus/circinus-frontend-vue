@@ -8,8 +8,8 @@ import auth from './middleware/auth'
 import middlewarePipeline from './middleware/middlewarePipeline'
 
 import Home from '../views/Home'
-import Register from '../views/Register'
-import Article from '../views/Article'
+import Register from '../views/Auth/Register'
+import Article from '../views/Community/Article'
 
 //Commmunity
 import CommunityStaff from '../views/Community/Staff'
