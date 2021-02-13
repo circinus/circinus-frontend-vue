@@ -29,30 +29,24 @@
     </transition>
 </template>
 
-<script>
+<script lang="ts">
 import "@/assets/css/modal.scss"
 import bus from '@/helpers/bus'
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
-export default {
-    name: "Modal",
-    props: {
-        title: {
-            type: String,
-            required: true,
-        }
-    },
-    data() {
-        return {
-            show: false
-        };
-    },
-    methods: {
-        openClose() {
-            this.show = !this.show;
-        },
-        saveModal() {
-            bus.$emit('saveModal');
-        }
+@Component({
+    name: 'Modal'
+})
+export default class Modal extends Vue {
+    @Prop({ required: true }) private title!: string;
+    private show = false;
+
+    private openClose(): void {
+        this.show = !this.show;
     }
-};
+
+    private saveModal(): void {
+        bus.$emit('saveModal');
+    }
+}
 </script>

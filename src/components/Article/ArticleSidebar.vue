@@ -16,16 +16,16 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "ArticleSidebar",
-    props: ['articles'],
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { IArticle } from '@/store/modules/home/IArticle';
 
-    data() {
-        return {
-            name: this.$route.params.name
-        }
-    }
+@Component({
+    name: 'ArticleSidebar'
+})
+export default class ArticleSidebar extends Vue {
+    @Prop() private articles!: Array<IArticle>;
+    private name: string = this.$route.params.name
 }
 </script>
 

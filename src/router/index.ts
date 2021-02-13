@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import Router, { NavigationGuardNext, Route } from 'vue-router'
 
 import store from '../store'
 
@@ -7,12 +7,12 @@ import guest from './middleware/guest'
 import auth from './middleware/auth'
 import middlewarePipeline from './middleware/middlewarePipeline'
 
-import Home from '../views/Home'
-import Register from '../views/Auth/Register'
-import Article from '../views/Community/Article'
-
 //Commmunity
-import CommunityStaff from '../views/Community/Staff'
+import { IContext } from '@/router/IContext';
+import CommunityStaff from '@/views/Community/Staff.vue';
+import Home from '@/views/Home.vue';
+import Register from '@/views/Auth/Register.vue';
+import Article from '@/views/Community/Article.vue';
 
 
 Vue.use(Router);
@@ -82,7 +82,7 @@ const router = new Router({
     ]
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to: Route, from: Route, next:NavigationGuardNext) => {
     if (!to.meta.middleware) {
         let documentTitle = `${process.env.VUE_APP_TITLE} - ${to.name}`
         if (to.params.title) {
@@ -93,7 +93,7 @@ router.beforeEach((to, from, next) => {
     }
     const middleware = to.meta.middleware
 
-    const context = {
+    const context: IContext = {
         to,
         from,
         next,

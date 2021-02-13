@@ -86,67 +86,60 @@
 
 </template>
 
-<script>
-import ArticleSidebar from '@/components/Article/ArticleSidebar';
-import ArticleComments from '@/components/Article/ArticleComments';
-import Modal from '@/components/Modal';
-import bus from "@/helpers/bus";
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { ComponentOptions } from 'vue';
+import { IArticle } from '@/store/modules/home/IArticle';
+import { mapActions, mapGetters } from 'vuex';
+import bus from '@/helpers/bus';
+import { Action, Getter } from 'vuex-class';
+import { IComment } from '@/store/modules/home/IComment';
+import { AxiosResponse } from 'axios';
+import ArticleSidebar from '@/components/Article/ArticleSidebar.vue';
+import ArticleComments from '@/components/Article/ArticleComments.vue';
 
-import {mapActions, mapGetters} from "vuex";
-
-export default {
-    name: "Article",
-    props: ['article', 'articles'],
-
-    data() {
-        return {
-            comment: {
-                id: this.article.id,
-                page: 1,
-                offset: 8
-            },
-            articleComment: null
-        }
-    },
-
-    components: {
+@Component({
+    name: 'article-content',
+    components: [
         ArticleSidebar,
         ArticleComments,
         Modal
-    },
+    ]
+})
+export default class ArticleContent extends Vue implements ComponentOptions<Vue> {
+    @Prop() private article!: IArticle;
+    @Prop() private articles!: Array<IArticle>;
+    @Getter('auth/authenticated') private authenticated!: boolean;
+    @Getter('articles/comments') private comments!: Array<IComment>;
+    @Action('articles/storeComment') storeComment!: (form: any) => Promise<AxiosResponse | undefined>;
+    private comment = {
+        id: this.article.id,
+        page: 1,
+        offset: 8
+    }
+    private articleComment: string = '';
 
-    computed: {
-        ...mapGetters({
-            authenticated: 'auth/authenticated',
-            comments: 'articles/comments'
-        })
-    },
-
-    methods: {
-        ...mapActions({
-            storeComment: 'articles/storeComment'
-        }),
-
-        getComments() {
-            this.$store.dispatch('articles/getComments', this.comment);
-        }
-    },
-
-    mounted() {
+    public mounted(): void {
         this.getComments()
-    },
+    }
 
-    created() {
-
+    public created(): void {
         bus.$on('saveModal', () => {
 
-            const form_data = { content: this.articleComment, article_id: this.article.id }
+            const form_data = {
+                content: this.articleComment,
+                article_id: this.article.id
+            }
 
             this.storeComment(form_data).then(() => {
                 this.getComments()
                 this.$refs.articleComment.openClose();
             })
         })
+    }
+
+    private getComments(): void {
+        this.$store.dispatch('articles/getComments', this.comment);
     }
 }
 </script>

@@ -6,11 +6,13 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: ['looks'],
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
-  created: function() {
-  }
+@Component({
+    name: 'Looks'
+})
+export default class Looks extends Vue {
+    @Prop() private looks!: Array<string>;
 }
 </script>

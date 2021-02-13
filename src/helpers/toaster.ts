@@ -15,7 +15,7 @@ iziToast.settings({
     maxWidth: 260
 })
 
-export default function install () {
+export default function install(): void {
     Object.defineProperties(Vue.prototype, {
         $iziToast: {
             get () {

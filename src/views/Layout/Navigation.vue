@@ -29,16 +29,15 @@
     </nav>
 </template>
 
-<script>
-export default {
+<script lang="ts">
 
-    name: 'navigation',
+import { Component, Vue } from 'vue-property-decorator';
 
-    data() {
-        return {
-            show: false,
-            hover: true
-        }
-    }
+@Component({
+    name: 'Navigation'
+})
+export default class Navigation extends Vue {
+    private show = false;
+    private hover = true;
 }
 </script>

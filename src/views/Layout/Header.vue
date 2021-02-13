@@ -12,29 +12,24 @@
     </div>
 </template>
 
-<script>
-import {mapActions, mapGetters} from 'vuex';
+<script lang="ts">
 import bus from '@/helpers/bus'
+import { Component, Vue } from 'vue-property-decorator';
+import { Action, Getter } from 'vuex-class';
+import { IUser } from '@/store/modules/user/IUser';
 
-export default {
+@Component({
+    name: 'Header'
+})
+export default class Header extends Vue {
+    @Getter('auth/authenticated') private authenticated!: boolean;
+    @Getter('auth/user') private user!: IUser | null;
+    @Getter('client/loaded') private client!: boolean;
+    @Action('client/setClient') private setClient!: (loaded: boolean) => void;
 
-    computed: {
-        ...mapGetters({
-            authenticated: 'auth/authenticated',
-            user: 'auth/user',
-            client: 'client/loaded'
-        })
-    },
-
-    methods: {
-        ...mapActions({
-            setClient: 'client/setClient'
-        }),
-
-        toggleClientLoader() {
-            this.setClient(!this.client)
-            bus.$emit('loadClient');
-        }
+    private toggleClientLoader() {
+        this.setClient(!this.client)
+        bus.$emit('loadClient');
     }
 }
 </script>

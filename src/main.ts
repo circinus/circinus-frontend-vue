@@ -23,17 +23,10 @@ import moment from 'moment';
 import VueMoment from 'vue-moment';
 Vue.use(VueMoment, { moment });
 
-import { ValidationProvider } from 'vee-validate/dist/vee-validate.full'
-import { ValidationObserver } from 'vee-validate'
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
 Vue.component('ValidationProvider', ValidationProvider)
 Vue.component('ValidationObserver', ValidationObserver)
-
-import ComponentLoader from '@/components/ComponentLoader'
-Vue.component('load-component', ComponentLoader)
-
-import DropdownMenu from '@innologica/vue-dropdown-menu'
-Vue.component('dropdown-menu', DropdownMenu)
 
 Vue.config.productionTip = false
 

@@ -49,46 +49,37 @@
     </ul>
 </template>
 
-<script>
+<script lang="ts">
 import { mapGetters, mapActions } from 'vuex';
+import { Component, Vue } from 'vue-property-decorator';
+import { Action, Getter } from 'vuex-class';
+import { IUser } from '@/store/modules/user/IUser';
+import { ICredentials } from '@/store/modules/user/auth';
 
-export default {
-
-        data() {
-            return {
-                form: {
-                    username: '',
-                    password: ''
-                }
-            }
-        },
-
-        computed: {
-            ...mapGetters({
-                authenticated: 'auth/authenticated',
-                user: 'auth/user'
-            })
-        },
-
-        methods: {
-        ...mapActions({
-            signIn: 'auth/signIn',
-            signOutAction: 'auth/signOut'
-        }),
-
-        submit() {
-            this.signIn(this.form).then(() => {
-                this.$router.replace({
-                    name: 'dashboard'
-                })
-            })
-        },
-
-        signOut () {
-            this.signOutAction().then(() => {
-                this.$router.push('/')
-            })
-        }
+@Component
+export default class Login extends Vue {
+    @Getter('auth/authenticated') private authenticated!: boolean;
+    @Getter('auth/user') private user!: IUser | null;
+    @Action('auth/signIn') private signIn!: (credentials: ICredentials) => Promise<void>;
+    @Action('auth/signOut') private signOutAction!: () => Promise<void>;
+    private form: ICredentials = {
+        username: '',
+        password: ''
     }
+
+    private submit(): void {
+        this.signIn(this.form).then(() => {
+            this.$router.replace({
+                name: 'dashboard'
+            })
+        })
+    }
+
+    private signOut() {
+        this.signOutAction().then(() => {
+            this.$router.push('/')
+        })
+    }
+
 }
 </script>

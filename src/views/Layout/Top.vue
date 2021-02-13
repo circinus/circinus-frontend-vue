@@ -29,20 +29,20 @@
     </nav>
 </template>
 
-<script>
-import Login from "@/components/Auth/Login/Login";
-import {mapGetters} from "vuex";
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import { Getter } from 'vuex-class';
+import { IUser } from '@/store/modules/user/IUser';
+import Login from '@/components/Auth/Login/Login.vue';
 
-export default {
+@Component({
     components: {
         Login
-    },
-    computed: {
-        ...mapGetters({
-            authenticated: 'auth/authenticated',
-            user: 'auth/user'
-        })
-    },
+    }
+})
+export default class Top extends Vue {
+    @Getter('auth/authenticated') private authenticated!: boolean;
+    @Getter('auth/user') private user!: IUser | null;
 }
 </script>
 

@@ -12,9 +12,11 @@ import photos from './modules/home/photos';
 import register from './modules/user/register';
 import permissions from './modules/user/permissions';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
-export default new Vuex.Store({
+export type IRootState = unknown;
+
+export default new Vuex.Store<IRootState>({
   state: {
   },
   mutations: {

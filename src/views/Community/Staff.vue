@@ -65,21 +65,20 @@
     </div>
 </template>
 
-<script>
-import {mapGetters} from 'vuex'
+<script lang="ts">
+import {mapGetters} from 'vuex';
+import {Component, Vue} from "vue-property-decorator";
+import { ComponentOptions } from 'vue';
+import { Getter } from 'vuex-class';
 
-export default {
-    name: 'Staff',
+export default class CommunityStaff extends Vue implements ComponentOptions<Vue> {
+    @Getter('permissions/list') public list!: Array<any>;
 
-    computed: {
-        ...mapGetters({
-            list: 'permissions/list'
-        })
-    },
-
-    created() {
+    public created(): void {
         this.$store.dispatch('permissions/getStafflist');
     }
+
+
 }
 </script>
 

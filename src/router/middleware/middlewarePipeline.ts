@@ -1,4 +1,6 @@
-function middlewarePipeline (context, middleware, index) {
+import { IContext } from '@/router/IContext';
+
+function middlewarePipeline (context: IContext, middleware: any, index: number) {
     const nextMiddleware = middleware[index]
 
     if(!nextMiddleware){

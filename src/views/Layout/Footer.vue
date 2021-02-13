@@ -7,9 +7,15 @@
   </footer>
 </template>
 
-<script>
-export default {
-name: "Footer.vue"
+<script lang="ts">
+import Vue from 'vue';
+import Component from 'vue-class-component';
+
+@Component({
+    name: 'Footer'
+})
+export default class Footer extends Vue {
+
 }
 </script>
 

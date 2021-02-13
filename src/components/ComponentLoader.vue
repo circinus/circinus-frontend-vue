@@ -12,38 +12,47 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import {mapActions, mapGetters} from "vuex";
+import Component from "vue-class-component";
+import { Prop, Vue } from "vue-property-decorator";
+import { Action, Getter } from 'vuex-class';
+import { ComponentOptions } from 'vue';
+import { IIdentifier } from '@/store/modules/loader';
 
-export default {
-    name: "Spinner",
-    props: ['component', 'module'],
-
-    data() {
-        return {
-            timeout: true,
-            seconds: process.env.VUE_APP_COMPONENT_LOADING_TIME
-        }
-    },
-
-    computed: {
-        ...mapGetters({
-            loader: 'loader/exists'
-        })
-    },
+@Component({
+    name: 'load-component',
 
     methods: {
         ...mapActions({
             add: 'loader/add'
         })
     },
+})
+export class ComponentLoader extends Vue implements ComponentOptions<Vue>{
+    @Prop({ required: true }) private module!: string;
+    @Getter('loader/exists') private loader!: any;
+    @Action('loader/add') private add!: (action: IIdentifier) => void;
 
-    mounted() {
+    private timeout = true;
+    private seconds = 100;
+
+    public mounted(): void {
+        this.add({
+            component: this.$route.name,
+            module: this.module,
+            loading: true
+        });
+    }
+
+    public mounted(): void {
         this.add({component: this.$route.name, module: this.module, loading: true});
-    },
+    }
 
-    created() {
-        setTimeout(() => this.timeout = false, this.seconds);
+    public created(): void {
+        setTimeout(() => {
+            this.timeout = false
+        }, this.seconds);
     }
 }
 </script>

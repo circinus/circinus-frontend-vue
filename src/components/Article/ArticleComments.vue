@@ -12,10 +12,15 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "ArticleComments",
-    props: ['comment']
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { IComment } from '@/store/modules/home/IComment';
+
+@Component({
+    name: 'ArticleComments'
+})
+export default class ArticleComments extends Vue {
+    @Prop() private comment!: IComment;
 }
 </script>
 
