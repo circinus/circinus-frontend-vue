@@ -1,5 +1,5 @@
-<template v-if="!authenticated">
-    <ul class="navbar-nav ml-auto">
+<template>
+    <ul class="navbar-nav ml-auto" v-if="!authenticated">
         <li class="nav-item dropdown mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4">
             <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-t="'layout.header.login'"></a>
             <div class="dropdown-menu user--login p-4" aria-labelledby="dropdownMenuLink">
@@ -32,9 +32,8 @@
             <router-link class="nav-link btn btn-warning" :to="{ name: 'register' }" v-t="'layout.header.create_account'"></router-link>
         </li>
     </ul>
-</template>
-<template v-else>
-    <ul class="navbar-nav ml-auto">
+
+    <ul v-else class="navbar-nav ml-auto">
         <li class="nav-item">
             <div class="dropdown">
                 <button type="button" class="btn btn--light-dark dropdown-toggle" data-toggle="dropdown">
@@ -54,23 +53,23 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
 
-        data() {
-            return {
-                form: {
-                    username: '',
-                    password: ''
-                }
+    data() {
+        return {
+            form: {
+                username: '',
+                password: ''
             }
-        },
+        }
+    },
 
-        computed: {
-            ...mapGetters({
-                authenticated: 'auth/authenticated',
-                user: 'auth/user'
-            })
-        },
+    computed: {
+        ...mapGetters({
+            authenticated: 'auth/authenticated',
+            user: 'auth/user'
+        })
+    },
 
-        methods: {
+    methods: {
         ...mapActions({
             signIn: 'auth/signIn',
             signOutAction: 'auth/signOut'
