@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import {mapActions, mapGetters} from "vuex";
+import {mapActions} from "vuex";
 import Component from "vue-class-component";
 import { Prop, Vue } from "vue-property-decorator";
 import { Action, Getter } from 'vuex-class';
@@ -31,8 +31,8 @@ import { IIdentifier } from '@/store/modules/loader';
 })
 export class ComponentLoader extends Vue implements ComponentOptions<Vue>{
     @Prop({ required: true }) private module!: string;
-    @Getter('loader/exists') private loader!: any;
-    @Action('loader/add') private add!: (action: IIdentifier) => void;
+    @Getter('loader/exists') private loader!: (name: string, module: string) => void;
+    @Action('loader/add') private add!: (identifier: IIdentifier) => void;
 
     private timeout = true;
     private seconds = 100;
@@ -43,10 +43,6 @@ export class ComponentLoader extends Vue implements ComponentOptions<Vue>{
             module: this.module,
             loading: true
         });
-    }
-
-    public mounted(): void {
-        this.add({component: this.$route.name, module: this.module, loading: true});
     }
 
     public created(): void {

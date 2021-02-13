@@ -88,30 +88,32 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { ComponentOptions } from 'vue';
 import { IArticle } from '@/store/modules/home/IArticle';
-import { mapActions, mapGetters } from 'vuex';
 import bus from '@/helpers/bus';
 import { Action, Getter } from 'vuex-class';
 import { IComment } from '@/store/modules/home/IComment';
 import { AxiosResponse } from 'axios';
 import ArticleSidebar from '@/components/Article/ArticleSidebar.vue';
 import ArticleComments from '@/components/Article/ArticleComments.vue';
+import Modal from '@/components/Modal.vue';
 
 @Component({
     name: 'article-content',
-    components: [
+    components: {
         ArticleSidebar,
         ArticleComments,
         Modal
-    ]
+    }
 })
-export default class ArticleContent extends Vue implements ComponentOptions<Vue> {
+export default class ArticleContent extends Vue {
     @Prop() private article!: IArticle;
     @Prop() private articles!: Array<IArticle>;
     @Getter('auth/authenticated') private authenticated!: boolean;
     @Getter('articles/comments') private comments!: Array<IComment>;
     @Action('articles/storeComment') storeComment!: (form: any) => Promise<AxiosResponse | undefined>;
+    public $refs!: {
+        articleComment: Modal;
+    }
     private comment = {
         id: this.article.id,
         page: 1,

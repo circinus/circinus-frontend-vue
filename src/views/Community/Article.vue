@@ -29,7 +29,7 @@ export default class Article extends Vue implements ComponentOptions<Vue> {
     @Getter('articles/article') private article!: IArticle | null;
     @Getter('articles/articles') private articles!: Array<IArticle>;
 
-    public created() {
+    public created(): void {
         this.$store.dispatch('articles/getArticle', this.$route.params.slug);
         this.$store.dispatch('articles/getArticles');
     }

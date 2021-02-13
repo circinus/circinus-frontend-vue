@@ -3,6 +3,7 @@ import { ActionContext, Module } from 'vuex';
 import { IRootState } from '@/store';
 
 export interface IIdentifier {
+    component?: string | null;
     module: string;
     loading: boolean;
 }
@@ -37,7 +38,11 @@ const loader: Module<IState, IRootState> = {
 
     getters: {
         exists(state: IState) {
-            return (_: any, module: string) => {
+            return (name: string | null, module: string): boolean => {
+                if (!name) {
+                    return false;
+                }
+
                 const result = state.identifier.find((identifier: IIdentifier) => identifier.module === module)
                 return result ? result.loading : false;
             }

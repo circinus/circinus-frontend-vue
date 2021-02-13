@@ -41,7 +41,7 @@ export default class Modal extends Vue {
     @Prop({ required: true }) private title!: string;
     private show = false;
 
-    private openClose(): void {
+    public openClose(): void {
         this.show = !this.show;
     }
 
