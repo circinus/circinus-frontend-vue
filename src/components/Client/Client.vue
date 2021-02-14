@@ -1,5 +1,5 @@
 <template>
-    <div id="client-loader" v-bind:class="classObject">
+    <div id="client-loader" :class="this.client && 'hotel-visible'">
         <div id="hotel-container">
 
             <div v-if="client && hideLoader" class="loading-container">
@@ -89,12 +89,6 @@ export default class Client extends Vue implements ComponentOptions<Vue> {
         }
     }
 
-    private classObject(): Record<string, boolean> {
-        return {
-            'hotel-visible': this.client
-        }
-    }
-
     private flashDetect(): string {
         const flashDetected = new FlashDetect();
         return flashDetected.installed === false ? 'game' : 'game';
@@ -120,7 +114,6 @@ export default class Client extends Vue implements ComponentOptions<Vue> {
         }
 
         this.getTicket().then(() => {
-            console.log(this.ticket)
             this.hideLoader = false
         })
         this.setActive(true)

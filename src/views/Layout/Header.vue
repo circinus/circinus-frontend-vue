@@ -28,7 +28,7 @@ export default class Header extends Vue {
     @Action('client/setClient') private setClient!: (loaded: boolean) => void;
 
     private toggleClientLoader() {
-        this.setClient(!this.client)
+        this.setClient(!this.client);
         bus.$emit('loadClient');
     }
 }
