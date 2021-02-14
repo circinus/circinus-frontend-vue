@@ -1,6 +1,6 @@
 <template>
   <div>
-    <load-component module="getList">
+    <LoadComponent module="getList">
 
       <div class="row">
         <div class="col-md-8 mt-0 pt-0">
@@ -40,7 +40,7 @@
           </div>
         </div>
       </div>
-    </load-component>
+    </LoadComponent>
   </div>
 </template>
 
@@ -50,9 +50,11 @@ import { Component, Vue } from 'vue-property-decorator';
 import { IPermission } from '@/store/modules/permissions/IPermission';
 import { Getter } from 'vuex-class';
 import ComponentLoader from '@/components/ComponentLoader.vue';
+import LoadComponent from '@/components/ComponentLoader.vue';
 
 @Component({
     components: {
+        LoadComponent,
         ComponentLoader
     }
 })

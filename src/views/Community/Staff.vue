@@ -1,6 +1,6 @@
 <template>
     <div>
-        <load-component module="getList">
+        <LoadComponent module="getList">
 
             <div class="row">
                 <div class="col-md-12 text-center">
@@ -61,16 +61,23 @@
                     </div>
                 </div>
             </div>
-        </load-component>
+        </LoadComponent>
     </div>
 </template>
 
 <script lang="ts">
-import {mapGetters} from 'vuex';
 import {Component, Vue} from "vue-property-decorator";
 import { ComponentOptions } from 'vue';
 import { Getter } from 'vuex-class';
+import ComponentLoader from '@/components/ComponentLoader.vue';
+import LoadComponent from '@/components/ComponentLoader.vue';
 
+@Component({
+    components: {
+        LoadComponent,
+        ComponentLoader
+    }
+})
 export default class CommunityStaff extends Vue implements ComponentOptions<Vue> {
     @Getter('permissions/list') public list!: Array<any>;
 

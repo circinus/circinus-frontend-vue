@@ -1,13 +1,13 @@
 <template>
     <div>
-        <load-component module="getArticle">
+        <LoadComponent module="getArticle">
             <article-content
                 v-if="article"
                 :article="article"
                 :articles="articles"
             >
             </article-content>
-        </load-component>
+        </LoadComponent>
     </div>
 </template>
 
@@ -18,11 +18,15 @@ import { ComponentOptions } from 'vue';
 import { IArticle } from '@/store/modules/home/IArticle';
 import { Getter } from 'vuex-class';
 import ArticleContent from '@/components/Article/ArticleContent.vue';
+import ComponentLoader from '@/components/ComponentLoader.vue';
+import LoadComponent from '@/components/ComponentLoader.vue';
 
 @Component({
     name: 'Article',
     components: {
-        ArticleContent
+        LoadComponent,
+        ArticleContent,
+        ComponentLoader
     }
 })
 export default class Article extends Vue implements ComponentOptions<Vue> {

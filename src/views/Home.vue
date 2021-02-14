@@ -9,7 +9,7 @@
                 </div>
             </div>
 
-            <load-component module="getArticles">
+            <LoadComponent module="getArticles">
                 <div class="row">
                     <articles
                         v-for="(article, index) in articles"
@@ -19,7 +19,7 @@
                     >
                     </articles>
                 </div>
-            </load-component>
+            </LoadComponent>
 
         </section>
 
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <load-component module="getPhotos">
+            <LoadComponent module="getPhotos">
                 <div class="row">
                     <photos
                         v-for="(photos, index) in photos"
@@ -41,7 +41,7 @@
                     >
                     </photos>
                 </div>
-            </load-component>
+            </LoadComponent>
         </section>
     </div>
 </template>
@@ -55,9 +55,11 @@ import { IPhoto } from '@/store/modules/home/photos';
 import { ComponentOptions } from 'vue';
 import Photos from '@/components/Home/Dashboard/Photos.vue';
 import ComponentLoader from '@/components/ComponentLoader.vue';
+import LoadComponent from '@/components/ComponentLoader.vue';
 
 @Component({
     components: {
+        LoadComponent,
         Articles,
         Photos,
         ComponentLoader
@@ -69,7 +71,7 @@ export default class Home extends Vue implements ComponentOptions<Vue> {
 
     public mounted(): void {
         this.$store.dispatch('articles/getArticles');
-        this.$store.dispatch('photos/getPhotos');
+        this.$store.dispatch('photos/setPhotos');
     }
 }
 </script>

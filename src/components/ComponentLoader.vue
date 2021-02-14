@@ -13,7 +13,6 @@
 </template>
 
 <script lang="ts">
-import {mapActions} from "vuex";
 import Component from "vue-class-component";
 import { Prop, Vue } from "vue-property-decorator";
 import { Action, Getter } from 'vuex-class';

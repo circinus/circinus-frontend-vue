@@ -33,13 +33,13 @@
         </li>
     </ul>
 </template>
-<template v-else>
+<template v-else-if="user">
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <div class="dropdown">
                 <button type="button" class="btn btn--light-dark dropdown-toggle" data-toggle="dropdown">
                     <img src="https://habbo.com.br/habbo-imaging/avatarimage?figure=hr-802-37.hd-185-1.ch-804-82.lg-280-73.sh-3068-1408-1408.wa-2001&amp;gesture=sml&size=s&amp;headonly=1" alt="Raizers" class="pixelated">
-                    {{ user.username }}
+<!--                    {{ user.username }}-->
                 </button>
                 <div class="dropdown-menu">
                     <router-link class="dropdown-item" :to="{ name: 'logout' }"  v-on:click.native="signOut" v-t="'layout.header.logout'"></router-link>
@@ -50,19 +50,24 @@
 </template>
 
 <script lang="ts">
-import { mapGetters, mapActions } from 'vuex';
 import { Component, Vue } from 'vue-property-decorator';
 import { Action, Getter } from 'vuex-class';
-import { IUser } from '@/store/modules/user/IUser';
 import { ICredentials } from '@/store/modules/user/auth';
+import { IUser } from '@/store/modules/user/IUser';
+import ComponentLoader from '@/components/ComponentLoader.vue';
 
-@Component
+@Component({
+    components: {
+        ComponentLoader
+    }
+})
 export default class Login extends Vue {
     @Getter('auth/authenticated') private authenticated!: boolean;
-    @Getter('auth/user') private user!: IUser | null;
     @Action('auth/signIn') private signIn!: (credentials: ICredentials) => Promise<void>;
     @Action('auth/signOut') private signOutAction!: () => Promise<void>;
-    private form: ICredentials = {
+    @Getter('auth/user') private user!: IUser;
+
+    public form: ICredentials = {
         username: '',
         password: ''
     }
@@ -80,6 +85,5 @@ export default class Login extends Vue {
             this.$router.push('/')
         })
     }
-
 }
 </script>
