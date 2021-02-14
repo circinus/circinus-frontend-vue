@@ -17,14 +17,13 @@ export default function setup(): void {
         //return data
         return response.data;
     }, (error) => {
-        console.log(error.response);
         // custom error handling
         if(error.response.status === 404) {
 
         } else {
             // check if notifications exists and show
             error.response.data.errors.map((value: any): void => {
-                if(value !== '') {
+                if(value?.message) {
                     store.commit('notifications/ADD_NOTIFICATION', {
                         text: value.message,
                         type: error.response.data.status

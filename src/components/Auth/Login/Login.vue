@@ -72,7 +72,6 @@ export default class Login extends Vue {
     }
 
     private submit(): void {
-        console.log(1);
         this.signIn(this.form).then(() => {
             this.$router.replace({
                 name: 'dashboard'

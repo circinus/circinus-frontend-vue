@@ -31,7 +31,6 @@ const auth: Module<IAuthState, IRootState> = {
 
     getters: {
         authenticated(state: IAuthState): boolean {
-            console.log(!!state.token && !!state.user);
             return !!state.token && !!state.user;
         },
 
