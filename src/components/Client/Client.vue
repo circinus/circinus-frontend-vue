@@ -57,10 +57,11 @@ import { ITicketResponse } from '@/store/modules/client/ITicketResponse';
 import { ComponentOptions } from 'vue';
 import { TranslateResult } from 'vue-i18n';
 import { IPhoto } from '@/store/modules/home/IPhoto';
+import number from "vue-i18n/src/components/number";
 
 @Component
 export default class Client extends Vue implements ComponentOptions<Vue> {
-    private ticket: string = '';
+    private ticket: string | null = null;
     private isSessionActive = false;
     private loadingWidth = 0;
     private hideLoader = false;
@@ -94,7 +95,7 @@ export default class Client extends Vue implements ComponentOptions<Vue> {
         return flashDetected.installed === false ? 'game' : 'game';
     }
 
-    private random() {
+    private random(): number {
         return Math.floor(Math.random() * this.photo.length);
     }
 

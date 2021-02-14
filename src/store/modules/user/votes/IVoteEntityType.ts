@@ -1,4 +1,4 @@
-export interface IEntityType {
+export interface IVoteEntityType {
     article_vote_entity: number;
     article_comment_vote_entity: number;
     forum_vote_entity: number;

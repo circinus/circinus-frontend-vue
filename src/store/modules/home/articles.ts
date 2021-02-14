@@ -74,8 +74,8 @@ const articles: Module<IState, IRootState> = {
             await api.get<IResponse<Array<IComment>>>(
                 'comments/' + form.id + '/list/' + form.page + '/' + form.offset + ''
             ).then((response: AxiosResponse<IResponse<Array<IComment>>>): void => {
-                    commit('CURRENT_COMMENTS', response.data.data)
-                });
+                commit(ArticleTypes.SET_CURRENT_ARTICLE, response.data.data)
+            });
         },
 
         async storeComment({getters}: ActionContext<IState, IRootState>, form): Promise<AxiosResponse | undefined> {

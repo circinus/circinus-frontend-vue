@@ -5,10 +5,10 @@ import { AxiosResponse } from 'axios';
 import { INewVote } from '@/store/modules/home/INewVote';
 import { IVote } from '@/store/modules/user/votes/IVote';
 import { IVoteType } from '@/store/modules/user/votes/IVoteType';
-import { IEntityType } from '@/store/modules/user/votes/IEntityType';
+import { IVoteEntityType } from '@/store/modules/user/votes/IVoteEntityType';
 
 export interface IState {
-    EntityType: IEntityType,
+    EntityType: IVoteEntityType,
     VoteType: IVoteType,
     votes: Array<IVote>;
 }
@@ -37,7 +37,7 @@ const votes: Module<IState, IRootState> = {
     },
 
     getters: {
-        EntityType(state: IState): IEntityType {
+        EntityType(state: IState): IVoteEntityType {
             return state.EntityType
         },
 
@@ -63,14 +63,14 @@ const votes: Module<IState, IRootState> = {
             const total = await api.get<IVote[]>('votes/total')
 
             total.data.forEach((vote: IVote): void => {
-                commit('ADD_VOTE', vote)
+                commit(VoteTypes.ADD_VOTE, vote)
             });
         },
 
         async create({ commit, state }: ActionContext<IState, IRootState>, action: INewVote): Promise<IVote> {
             return api.post('votes/create', action)
                 .then((response: AxiosResponse<IVote>) => {
-                    commit('ADD_VOTE', response.data)
+                    commit(VoteTypes.ADD_VOTE, response.data)
                     return response.data
                 });
         }
