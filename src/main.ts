@@ -1,3 +1,5 @@
+import { required } from 'vee-validate/dist/rules';
+
 require('./store/modules/user/subscriber');
 
 import '@babel/polyfill'
@@ -23,10 +25,7 @@ import moment from 'moment';
 import VueMoment from 'vue-moment';
 Vue.use(VueMoment, { moment });
 
-import { ValidationObserver, ValidationProvider } from 'vee-validate'
-
-Vue.component('ValidationProvider', ValidationProvider)
-Vue.component('ValidationObserver', ValidationObserver)
+import '@/plugins/validation';
 
 Vue.config.productionTip = false
 

@@ -1,5 +1,5 @@
-<template v-if="!authenticated">
-    <ul class="navbar-nav ml-auto">
+<template>
+    <ul class="navbar-nav ml-auto" v-if="!authenticated">
         <li class="nav-item dropdown mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4">
             <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-t="'layout.header.login'"></a>
             <div class="dropdown-menu user--login p-4" aria-labelledby="dropdownMenuLink">
@@ -32,14 +32,13 @@
             <router-link class="nav-link btn btn-warning" :to="{ name: 'register' }" v-t="'layout.header.create_account'"></router-link>
         </li>
     </ul>
-</template>
-<template v-else-if="user">
-    <ul class="navbar-nav ml-auto">
+
+    <ul v-else class="navbar-nav ml-auto">
         <li class="nav-item">
             <div class="dropdown">
                 <button type="button" class="btn btn--light-dark dropdown-toggle" data-toggle="dropdown">
                     <img src="https://habbo.com.br/habbo-imaging/avatarimage?figure=hr-802-37.hd-185-1.ch-804-82.lg-280-73.sh-3068-1408-1408.wa-2001&amp;gesture=sml&size=s&amp;headonly=1" alt="Raizers" class="pixelated">
-<!--                    {{ user.username }}-->
+                    {{ user.username }}
                 </button>
                 <div class="dropdown-menu">
                     <router-link class="dropdown-item" :to="{ name: 'logout' }"  v-on:click.native="signOut" v-t="'layout.header.logout'"></router-link>
