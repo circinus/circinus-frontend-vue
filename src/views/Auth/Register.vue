@@ -155,6 +155,7 @@ import Looks from '@/components/Auth/Register/Looks.vue';
 })
 export default class Register extends Vue {
     private avatarPreload = 8;
+    private looks: Array<string> = [];
     private genders = [
         { value: 'M', text: 'Boys', 'gender': 'boys' },
         { value: 'F', text: 'Girls', 'gender': 'girls' }
@@ -199,12 +200,13 @@ export default class Register extends Vue {
         this.preLoad()
     }
 
-    private changeGender(_event: Event) {
-          // this.look(event.target.selectedOptions[0].dataset.gender).then((response) => {
-          //       this.form.look = response[1] ?? response[5];
-          //       this.looks = response;
-          //       this.preLoad()
-          //   })
+    private changeGender(event: Event) {
+        // @ts-ignore
+      this.look(event.target.selectedOptions[0].dataset.gender).then((response) => {
+            this.form.look = response[1] ?? response[5];
+            this.looks = response;
+            this.preLoad()
+        })
     }
 }
 </script>

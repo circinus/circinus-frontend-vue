@@ -7,14 +7,14 @@
                 <ValidationObserver v-slot="{ handleSubmit }">
                     <form class="d-flex flex-column " @submit.prevent="handleSubmit(submit)">
 
-                        <ValidationProvider name="username" rules="required|max:16" v-slot="{ classes }">
+                        <ValidationProvider name="username" rules="required" v-slot="{ classes }">
                             <div class="form-label-group">
                                 <input type="text" class="form-control" :class="classes" id="username" placeholder="Username" v-model="form.username" required="" autofocus="">
                                 <label for="username">Username</label>
                             </div>
                         </ValidationProvider>
 
-                        <ValidationProvider name="password" rules="required|min:6" v-slot="{ classes }">
+                        <ValidationProvider name="password" rules="required" v-slot="{ classes }">
                             <div class="form-label-group">
                                 <input type="password" class="form-control" :class="classes" name="password" placeholder="Password" id="password" v-model="form.password">
                                 <label for="password">Password</label>
@@ -72,6 +72,7 @@ export default class Login extends Vue {
     }
 
     private submit(): void {
+        console.log(1);
         this.signIn(this.form).then(() => {
             this.$router.replace({
                 name: 'dashboard'
