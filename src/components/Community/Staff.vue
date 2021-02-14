@@ -44,22 +44,24 @@
   </div>
 </template>
 
-<script>
-import {mapGetters} from 'vuex'
-export default {
-  name: 'Staff',
-  data() {
-    return {
-      title: process.env.VUE_APP_TITLE
-    };
-  },
-  computed: {
-    ...mapGetters({
-      list: 'permissions/list'
-    })
-  },
-  created() {
-    this.$store.dispatch('permissions/getStafflist');
-  },
+<script lang="ts">
+
+import { Component, Vue } from 'vue-property-decorator';
+import { IPermission } from '@/store/modules/permissions/IPermission';
+import { Getter } from 'vuex-class';
+import ComponentLoader from '@/components/ComponentLoader.vue';
+
+@Component({
+    components: {
+        ComponentLoader
+    }
+})
+export default class Staff extends Vue {
+    private title = process.env.VUE_APP_TITLE;
+    @Getter('permissions/list') private list: Array<IPermission> = [];
+
+    public created(): void {
+        this.$store.dispatch('permissions/getStafflist');
+    }
 }
 </script>

@@ -47,7 +47,6 @@
 </template>
 
 <script lang="ts">
-import {mapGetters} from 'vuex'
 import {Component, Vue } from "vue-property-decorator";
 import Articles from "@/components/Home/Dashboard/Articles.vue";
 import {Getter} from "vuex-class";
@@ -55,11 +54,13 @@ import { IArticle } from '@/store/modules/home/IArticle';
 import { IPhoto } from '@/store/modules/home/photos';
 import { ComponentOptions } from 'vue';
 import Photos from '@/components/Home/Dashboard/Photos.vue';
+import ComponentLoader from '@/components/ComponentLoader.vue';
 
 @Component({
     components: {
         Articles,
-        Photos
+        Photos,
+        ComponentLoader
     }
 })
 export default class Home extends Vue implements ComponentOptions<Vue> {

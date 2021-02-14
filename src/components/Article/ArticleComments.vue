@@ -20,7 +20,7 @@ import { IComment } from '@/store/modules/home/IComment';
     name: 'ArticleComments'
 })
 export default class ArticleComments extends Vue {
-    @Prop() private comment!: IComment;
+    @Prop() private comment: IComment | null = null;
 }
 </script>
 

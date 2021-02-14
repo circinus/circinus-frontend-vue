@@ -21,15 +21,9 @@ import { ComponentOptions } from 'vue';
 import { IIdentifier } from '@/store/modules/loader';
 
 @Component({
-    name: 'load-component',
-
-    methods: {
-        ...mapActions({
-            add: 'loader/add'
-        })
-    },
+    name: 'load-component'
 })
-export class ComponentLoader extends Vue implements ComponentOptions<Vue>{
+export default class ComponentLoader extends Vue implements ComponentOptions<Vue>{
     @Prop({ required: true }) private module!: string;
     @Getter('loader/exists') private loader!: (name: string, module: string) => void;
     @Action('loader/add') private add!: (identifier: IIdentifier) => void;

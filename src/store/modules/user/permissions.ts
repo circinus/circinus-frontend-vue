@@ -1,9 +1,10 @@
 import api from "../../../helpers/api";
 import { ActionContext, Module } from 'vuex';
 import { IRootState } from '@/store';
+import { IPermission } from '@/store/modules/permissions/IPermission';
 
 export interface IState {
-    list: null;
+    list: Array<IPermission>;
 }
 
 export enum PermissionTypes {
@@ -14,11 +15,11 @@ const permissions: Module<IState, IRootState> = {
     namespaced: true,
 
     state: {
-        list: null
+        list: []
     },
 
     getters: {
-        list(state: IState) {
+        list(state: IState): Array<IPermission> {
             return state.list
         }
     },

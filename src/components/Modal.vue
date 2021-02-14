@@ -38,7 +38,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
     name: 'Modal'
 })
 export default class Modal extends Vue {
-    @Prop({ required: true }) private title!: string;
+    @Prop({ required: true }) private title: string = '';
     private show = false;
 
     public openClose(): void {

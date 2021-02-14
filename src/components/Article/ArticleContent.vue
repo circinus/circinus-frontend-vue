@@ -96,6 +96,7 @@ import { AxiosResponse } from 'axios';
 import ArticleSidebar from '@/components/Article/ArticleSidebar.vue';
 import ArticleComments from '@/components/Article/ArticleComments.vue';
 import Modal from '@/components/Modal.vue';
+import { ComponentOptions } from 'vue';
 
 @Component({
     name: 'article-content',

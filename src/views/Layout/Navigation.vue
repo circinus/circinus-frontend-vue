@@ -30,11 +30,15 @@
 </template>
 
 <script lang="ts">
-
+// @ts-ignore
+import DropdownMenu from '@innologica/vue-dropdown-menu';
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
-    name: 'Navigation'
+    name: 'Navigation',
+    components: {
+        DropdownMenu
+    }
 })
 export default class Navigation extends Vue {
     private show = false;

@@ -41,8 +41,8 @@ import Login from '@/components/Auth/Login/Login.vue';
     }
 })
 export default class Top extends Vue {
-    @Getter('auth/authenticated') private authenticated!: boolean;
-    @Getter('auth/user') private user!: IUser | null;
+    @Getter('auth/authenticated') private authenticated: boolean = false;
+    @Getter('auth/user') private user!: IUser;
 }
 </script>
 
