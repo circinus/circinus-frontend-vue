@@ -1,6 +1,6 @@
 <template>
     <transition name="fade">
-        <div class="modal" v-if="show">
+        <div class="modal" v-if="show" style="display: block">
             <div class="modal__backdrop" @click="openClose()"/>
 
             <div class="modal__dialog">
