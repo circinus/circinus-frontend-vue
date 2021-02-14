@@ -25,7 +25,7 @@ import Navigation from '@/views/Layout/Navigation.vue';
 import Header from '@/views/Layout/Header.vue';
 import { Component, Vue } from 'vue-property-decorator';
 import Client from '@/components/Client/Client.vue';
-import { Notifications } from '@/components/Notifications.vue';
+import Notifications from '@/components/Notifications.vue';
 import Footer from '@/views/Layout/Footer.vue';
 @Component({
     components: {
