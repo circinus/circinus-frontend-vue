@@ -75,7 +75,7 @@ const auth: Module<IAuthState, IRootState> = {
             try {
                 let response = await api.get<ICurrencyResponse>('user');
 
-                response.data.currencies.map((item: ICurrency) => ({
+                response.data.currencies = response.data.currencies.map((item: ICurrency) => ({
                     ...item,
                     name: Object.keys(environment.POINTS)
                         .filter((k: string): boolean => environment.POINTS[k] === item.type).toString()
