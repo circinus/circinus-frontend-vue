@@ -6,7 +6,7 @@ import votes from './modules/user/votes';
 import client from './modules/client/client';
 import loader from './modules/loader';
 
-import notifications from './modules/notifications';
+import notifications from './modules/notifications/notifications';
 import articles from './modules/home/articles';
 import photos from './modules/home/photos';
 import register from './modules/user/register';

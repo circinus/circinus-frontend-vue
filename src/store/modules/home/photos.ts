@@ -3,9 +3,13 @@ import { ActionContext, Module } from 'vuex';
 import { IRootState } from '@/store';
 import { IResponse } from '@/helpers/IResponse';
 import { AxiosResponse } from 'axios';
+import { IUser } from '@/store/modules/user/IUser';
 
 export interface IPhoto {
-
+    id: number;
+    user: IUser;
+    likes: number;
+    dislikes: number;
 }
 
 export interface IState {
@@ -36,7 +40,7 @@ const photos: Module<IState, IRootState> = {
     },
 
     actions: {
-        async getPhotos({ commit, dispatch }: ActionContext<IState, IRootState>): Promise<void> {
+        async setPhotos({ commit, dispatch }: ActionContext<IState, IRootState>): Promise<void> {
             await api.get<IResponse<Array<IPhoto>>>('photos/list/1/10')
                 .then((response: AxiosResponse<IResponse<Array<IPhoto>>>): void => {
                     dispatch('loader/change', 'getPhotos', {root:true})

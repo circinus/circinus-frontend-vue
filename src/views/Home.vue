@@ -1,18 +1,74 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+    <div>
+        <section id="current-news" class="habbo--section mt-5">
+            <div class="d-flex flex-row mb-4">
+                <img class="mr-2 object-contain image-pixelated" src="@/assets/images/icons/news.png" alt="News" />
+                <div class="d-inline-flex flex-column justify-content-center">
+                    <span class="section-title" v-t="'layout.dashboard.news.title'"></span>
+                    <span class="section-description" v-t="'layout.dashboard.news.description'"></span>
+                </div>
+            </div>
+
+            <load-component module="getArticles">
+                <div class="row">
+                    <articles
+                        v-for="(article, index) in articles"
+                        :key="index"
+                        :article="article"
+                        :index="index"
+                    >
+                    </articles>
+                </div>
+            </load-component>
+
+        </section>
+
+        <section id="popular-news" class="habbo--section">
+            <div class="d-flex flex-row mb-4">
+                <img class="mr-2 object-contain image-pixelated" src="@/assets/images/icons/news.png" alt="News" />
+                <div class="d-inline-flex flex-column justify-content-center">
+                    <span class="section-title" v-t="'layout.dashboard.photos.title'"></span>
+                    <span class="section-description" v-t="'layout.dashboard.photos.description'"></span>
+                </div>
+            </div>
+
+            <load-component module="getPhotos">
+                <div class="row">
+                    <photos
+                        v-for="(photos, index) in photos"
+                        :key="index"
+                        :photo="photos"
+                    >
+                    </photos>
+                </div>
+            </load-component>
+        </section>
+    </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import {mapGetters} from 'vuex'
+import {Component, Vue } from "vue-property-decorator";
+import Articles from "@/components/Home/Dashboard/Articles.vue";
+import {Getter} from "vuex-class";
+import { IArticle } from '@/store/modules/home/IArticle';
+import { IPhoto } from '@/store/modules/home/photos';
+import { ComponentOptions } from 'vue';
+import Photos from '@/components/Home/Dashboard/Photos.vue';
 
 @Component({
-  components: {
-    HelloWorld,
-  },
+    components: {
+        Articles,
+        Photos
+    }
 })
-export default class Home extends Vue {}
+export default class Home extends Vue implements ComponentOptions<Vue> {
+    @Getter('articles/articles') private articles!: Array<IArticle>;
+    @Getter('photos/photos') private photos!: Array<IPhoto>;
+
+    public mounted(): void {
+        this.$store.dispatch('articles/getArticles');
+        this.$store.dispatch('photos/getPhotos');
+    }
+}
 </script>

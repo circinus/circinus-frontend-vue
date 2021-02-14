@@ -2,6 +2,7 @@ import api from "../../../helpers/api";
 import { ActionContext, Module } from 'vuex';
 import { IRootState } from '@/store';
 import { AxiosResponse } from 'axios';
+import { INewVote } from '@/store/modules/home/INewVote';
 
 export interface IVote {
     id: number;
@@ -84,9 +85,9 @@ const votes: Module<IState, IRootState> = {
             });
         },
 
-        async create({ commit, state }: ActionContext<IState, IRootState>, action): Promise<AxiosResponse> {
+        async create({ commit, state }: ActionContext<IState, IRootState>, action: INewVote): Promise<IVote> {
             return api.post('votes/create', action)
-                .then((response: AxiosResponse) => {
+                .then((response: AxiosResponse<IVote>) => {
                     commit('ADD_VOTE', response.data)
                     return response.data
                 });

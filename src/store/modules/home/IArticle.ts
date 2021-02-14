@@ -5,4 +5,6 @@ export interface IArticle {
     title: string;
     description: string;
     user: IUser;
+    slug: string;
+    image: string;
 }

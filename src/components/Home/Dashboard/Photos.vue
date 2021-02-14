@@ -37,47 +37,42 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import {mapActions,mapGetters} from "vuex";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { IPhoto } from '@/store/modules/home/photos';
+import { Action, Getter } from 'vuex-class';
+import { EntityType, IVote, VoteType } from '@/store/modules/user/votes';
+import { INewVote } from '@/store/modules/home/INewVote';
 
-export default {
+@Component
+export default class Photos extends Vue {
+    @Prop({ required: true }) private photo!: IPhoto;
+    @Getter('auth/authenticated') private authenticated!: boolean;
+    @Getter('votes/EntityType') private EntityType!: EntityType;
+    @Getter('votes/VoteType') private VoteType!: VoteType;
+    @Getter('votes/exists') private exists!: (id: number, type: number) => IVote | undefined;
+    @Action('votes/create') private setVote!: (vote: INewVote) => Promise<IVote>;
 
-    props: ['photo'],
-
-    computed: {
-        ...mapGetters({
-            authenticated: 'auth/authenticated',
-            EntityType: 'votes/EntityType',
-            VoteType: 'votes/VoteType',
-            exists: 'votes/exists',
-        }),
-    },
-
-    methods: {
-
-        ...mapActions({
-            setVote: 'votes/create'
-        }),
-
-        voted(type) {
-            if(this.authenticated) {
-                const voteColor = type === 1 ? 'green' : 'red'
-                return this.exists(this.photo.id, type) ? voteColor : 'black'
-            }
-        },
-
-        votePhoto (vote) {
-
-            const form_data = {
-                entity_id: this.photo.id,
-                vote_entity: this.EntityType.photo_vote_entity,
-                vote_type: this.VoteType[vote]
-            }
-
-            this.setVote(form_data).then(() => {
-                this.photo[vote] = this.photo[vote] + 1
-            })
+    private voted(type: number): string {
+        if(this.authenticated) {
+            const voteColor = type === 1 ? 'green' : 'red'
+            return this.exists(this.photo.id, type) ? voteColor : 'black'
         }
+
+        return 'black';
+    }
+
+    private votePhoto (vote: 'likes' | 'dislikes') {
+        const form_data: INewVote = {
+            entity_id: this.photo.id,
+            vote_entity: this.EntityType.photo_vote_entity,
+            vote_type: this.VoteType[vote]
+        }
+
+        this.setVote(form_data).then(() => {
+            this.photo[vote] = this.photo[vote] + 1
+        })
     }
 }
 </script>

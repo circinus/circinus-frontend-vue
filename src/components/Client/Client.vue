@@ -46,99 +46,90 @@
     </div>
 </template>
 
-<script>
-import {mapActions, mapGetters} from 'vuex';
-import { client } from "../../../environment"
+<script lang="ts">
+// @ts-ignore
 import * as FlashDetect from 'flash-detect';
 import bus from '@/helpers/bus'
+import {Component, Vue} from "vue-property-decorator";
+import { Action, Getter } from 'vuex-class';
+import { IUser } from '@/store/modules/user/IUser';
+import { IPhoto } from '@/store/modules/home/photos';
+import { ITicketResponse } from '@/store/modules/client/ITicketResponse';
+import { ComponentOptions } from 'vue';
+import { TranslateResult } from 'vue-i18n';
 
-export default {
-    name: "Client",
+@Component
+export default class Client extends Vue implements ComponentOptions<Vue> {
+    private ticket: string = '';
+    private isSessionActive = false;
+    private loadingWidth = 0;
+    private hideLoader = false;
+    private loadingText: TranslateResult = this.$t('layout.client.starting');
+    private url = process.env.VUE_APP_NITRO_ASSETS_URL;
+    @Getter('auth/user') private user!: IUser;
+    @Getter('client/loaded') private client!: boolean;
+    @Getter('client/active') private active!: boolean;
+    @Getter('photos/photos') private photo!: Array<IPhoto>;
 
-    data() {
-        return {
-            ticket: null,
-            isSessionActive: false,
-            loadingWidth: 0,
-            hideLoader: false,
-            loadingText: this.$t('layout.client.starting'),
-            url: process.env.VUE_APP_NITRO_ASSETS_URL
-        }
-    },
+    @Action('client/setClient') private setClient!: (loaded: boolean) => void;
+    @Action('client/setActive') private setActive!: (active: boolean) => void;
+    @Action('client/setTicket') private setTicket!: () => Promise<ITicketResponse>;
+    @Action('photos/setPhotos') private setPhotos!: () => void;
 
-    computed: {
-        ...mapGetters({
-            user: 'auth/user',
-            client: 'client/loaded',
-            active: 'client/active',
-            photo: 'photos/photos'
-        }),
-
-        classObject: function () {
-            return {
-                'hotel-visible': this.client
-            }
-        },
-
-        flashDetect() {
-            const flashDetected = new FlashDetect();
-            return flashDetected.installed === false ? 'game' : 'game'
-        }
-    },
-
-    methods: {
-        ...mapActions({
-            setClient: 'client/setClient',
-            setActive: 'client/setActive',
-            setTicket: 'client/setTicket',
-            setPhotos: 'photos/getPhotos'
-        }),
-
-        random: function () {
-            return Math.floor(Math.random() * this.photo.length);
-        },
-
-        hideClient: function () {
-            this.setClient(!this.client);
-        },
-
-        getTicket: function () {
-            return this.setTicket().then(response => {
-                this.ticket = response.ticket
-            })
-        },
-
-        initialize: function () {
-            this.isSessionActive = this.user.online === 1;
-            if (!this.isSessionActive) {
-                this.loadClient()
-            }
-        },
-
-        loadClient: function () {
-
-            if (this.active) {
-                return;
-            }
-
-            this.getTicket().then(() => {
-                console.log(this.ticket)
-                this.hideLoader = false
-            })
-            this.setActive(true)
-        }
-    },
-
-    created() {
+    public created(): void {
         bus.$on('loadClient', () => {
             this.initialize();
         })
-    },
+    }
 
-    mounted() {
+    public mounted(): void {
         if(this.$router.currentRoute.name === "hotel") {
             this.setPhotos();
             this.initialize();
+        }
+    }
+
+    private classObject(): Record<string, boolean> {
+        return {
+            'hotel-visible': this.client
+        }
+    }
+
+    private flashDetect(): string {
+        const flashDetected = new FlashDetect();
+        return flashDetected.installed === false ? 'game' : 'game';
+    }
+
+    private random() {
+        return Math.floor(Math.random() * this.photo.length);
+    }
+
+    private hideClient(): void {
+        this.setClient(!this.client);
+    }
+
+    private getTicket(): Promise<void> {
+        return this.setTicket().then((response: ITicketResponse) => {
+            this.ticket = response.ticket
+        })
+    }
+
+    private loadClient(): void {
+        if (this.active) {
+            return;
+        }
+
+        this.getTicket().then(() => {
+            console.log(this.ticket)
+            this.hideLoader = false
+        })
+        this.setActive(true)
+    }
+
+    private initialize(): void {
+        this.isSessionActive = this.user.online === 1;
+        if (!this.isSessionActive) {
+            this.loadClient()
         }
     }
 }

@@ -1,9 +1,6 @@
 import { Module } from 'vuex';
 import { IRootState } from '@/store';
-
-export interface INotification {
-    text: string;
-}
+import { INotification } from '@/store/modules/notifications/INotification';
 
 export interface IState {
     list: Array<INotification>;

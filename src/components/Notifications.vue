@@ -8,25 +8,22 @@
     ></notification>
   </div>
 </template>
-<script>
-import { mapGetters } from 'vuex'
-import Notification from '@/components/Notification';
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import { Getter } from "vuex-class";
+import { INotification } from '@/store/modules/notifications/INotification';
+import Notification from '@/components/Notification.vue';
 
-export default {
+@Component({
     components: {
         Notification
-    },
+    }
+})
+export default class Notifications extends Vue {
+    @Getter('notifications/list') private notifications!: Array<INotification>;
 
-    computed: {
-        ...mapGetters({
-            notifications: 'notifications/list',
-        }),
-    },
-
-    methods: {
-        removeNotification: function (notification) {
-            this.$store.commit('notifications/REMOVE_NOTIFICATION', notification);
-        },
-    },
+    private removeNotification(notification: INotification): void {
+        this.$store.commit('notifications/REMOVE_NOTIFICATION', notification);
+    }
 }
 </script>

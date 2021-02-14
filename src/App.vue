@@ -18,18 +18,16 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import "@/assets/css/app.scss"
-
-import Top from '@/views/Layout/Top';
-import Navigation from '@/views/Layout/Navigation';
-import Header from '@/views/Layout/Header';
-import Footer from '@/views/Layout/Footer';
-import Notifications from '@/components/Notifications';
-import Client from '@/components/Client/Client';
-import { mapGetters } from 'vuex';
-
-export default {
+import Top from '@/views/Layout/Top.vue';
+import Navigation from '@/views/Layout/Navigation.vue';
+import Header from '@/views/Layout/Header.vue';
+import { Component, Vue } from 'vue-property-decorator';
+import Client from '@/components/Client/Client.vue';
+import { Notifications } from '@/components/Notifications.vue';
+import Footer from '@/views/Layout/Footer.vue';
+@Component({
     components: {
         Top,
         Navigation,
@@ -37,11 +35,7 @@ export default {
         Footer,
         Notifications,
         Client
-    },
-    computed: {
-        ...mapGetters({
-            notifications: 'notifications/list'
-        })
     }
-}
+})
+export default class App extends Vue {}
 </script>

@@ -3,6 +3,7 @@ import api from '../../../helpers/api';
 import { ActionContext, Module } from 'vuex';
 import { IRootState } from '@/store';
 import { AxiosResponse } from 'axios';
+import { ITicketResponse } from '@/store/modules/client/ITicketResponse';
 
 export interface IState {
     clientLoaded: boolean;
@@ -66,9 +67,9 @@ const client: Module<IState, IRootState> = {
             commit(ClientTypes.APPEND_PAGE_ACTIVE, active)
         },
 
-        async setTicket({}): Promise<any> {
-            return await api.put('user/ticket')
-                .then((response: AxiosResponse<any>) => {
+        async setTicket(): Promise<ITicketResponse> {
+            return await api.put<ITicketResponse>('user/ticket')
+                .then((response: AxiosResponse<ITicketResponse>) => {
                     return response.data;
                 });
         }
