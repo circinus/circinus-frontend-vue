@@ -10,7 +10,7 @@ import notifications from './modules/notifications/notifications';
 import articles from './modules/home/articles';
 import photos from './modules/home/photos';
 import register from './modules/user/register';
-import permissions from './modules/user/permissions';
+import permissions from './modules/permissions/permissions';
 
 Vue.use(Vuex);
 

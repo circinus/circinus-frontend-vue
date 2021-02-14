@@ -38,19 +38,20 @@
 </template>
 
 <script lang="ts">
-import {mapActions,mapGetters} from "vuex";
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { IPhoto } from '@/store/modules/home/photos';
 import { Action, Getter } from 'vuex-class';
-import { EntityType, IVote, VoteType } from '@/store/modules/user/votes';
 import { INewVote } from '@/store/modules/home/INewVote';
+import { IVote } from '@/store/modules/user/votes/IVote';
+import { IVoteType } from '@/store/modules/user/votes/IVoteType';
+import { IEntityType } from '@/store/modules/user/votes/IEntityType';
 
 @Component
 export default class Photos extends Vue {
     @Prop({ required: true }) private photo!: IPhoto;
     @Getter('auth/authenticated') private authenticated!: boolean;
-    @Getter('votes/EntityType') private EntityType!: EntityType;
-    @Getter('votes/VoteType') private VoteType!: VoteType;
+    @Getter('votes/EntityType') private EntityType!: IEntityType;
+    @Getter('votes/VoteType') private VoteType!: IVoteType;
     @Getter('votes/exists') private exists!: (id: number, type: number) => IVote | undefined;
     @Action('votes/create') private setVote!: (vote: INewVote) => Promise<IVote>;
 

@@ -3,31 +3,13 @@ import { ActionContext, Module } from 'vuex';
 import { IRootState } from '@/store';
 import { AxiosResponse } from 'axios';
 import { INewVote } from '@/store/modules/home/INewVote';
-
-export interface IVote {
-    id: number;
-    entity_id: number;
-    vote_entity: any;
-    vote_type: number;
-}
-
-export interface EntityType {
-    article_vote_entity: number;
-    article_comment_vote_entity: number;
-    forum_vote_entity: number;
-    forum_vote_community_entity: number;
-    guestbook_vote_entity: number;
-    photo_vote_entity: number;
-}
-
-export interface VoteType {
-    likes: number;
-    dislikes: number;
-}
+import { IVote } from '@/store/modules/user/votes/IVote';
+import { IVoteType } from '@/store/modules/user/votes/IVoteType';
+import { IEntityType } from '@/store/modules/user/votes/IEntityType';
 
 export interface IState {
-    EntityType: EntityType,
-    VoteType: VoteType,
+    EntityType: IEntityType,
+    VoteType: IVoteType,
     votes: Array<IVote>;
 }
 
@@ -55,11 +37,11 @@ const votes: Module<IState, IRootState> = {
     },
 
     getters: {
-        EntityType(state: IState): EntityType {
+        EntityType(state: IState): IEntityType {
             return state.EntityType
         },
 
-        VoteType(state: IState): VoteType {
+        VoteType(state: IState): IVoteType {
             return state.VoteType
         },
 
