@@ -57,7 +57,6 @@ import { ITicketResponse } from '@/store/modules/client/ITicketResponse';
 import { ComponentOptions } from 'vue';
 import { TranslateResult } from 'vue-i18n';
 import { IPhoto } from '@/store/modules/home/IPhoto';
-import number from "vue-i18n/src/components/number";
 
 @Component
 export default class Client extends Vue implements ComponentOptions<Vue> {
