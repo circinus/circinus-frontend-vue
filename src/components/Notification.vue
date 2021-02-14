@@ -2,7 +2,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
 import { ComponentOptions } from 'vue';
 import { INotification } from '@/store/modules/notifications/INotification';
 
