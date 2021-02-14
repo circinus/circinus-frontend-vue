@@ -1,11 +1,11 @@
 <template>
   <div class="notifications">
-    <notification
+    <Notification
         v-for="(notification, index) in notifications"
-        :key="notification.text + index"
+        :key="(notification.text || '') + index"
         :notification="notification"
         @close-notification="removeNotification"
-    ></notification>
+    ></Notification>
   </div>
 </template>
 <script lang="ts">

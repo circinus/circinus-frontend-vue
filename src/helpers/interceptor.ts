@@ -17,7 +17,7 @@ export default function setup(): void {
         //return data
         return response.data;
     }, (error) => {
-
+        console.log(error.response);
         // custom error handling
         if(error.response.status === 404) {
 

@@ -8,7 +8,7 @@
         </header>
 
         <main class="flex-fill container">
-            <notifications></notifications>
+            <Notifications></Notifications>
             <router-view :key="$route.fullPath" />
         </main>
 

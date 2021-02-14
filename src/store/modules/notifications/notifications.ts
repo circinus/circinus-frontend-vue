@@ -21,6 +21,7 @@ const notifications: Module<IState, IRootState> = {
     mutations: {
         [NotificationTypes.ADD_NOTIFICATION](state: IState, payload: INotification) {
             state.list.push(payload);
+            console.log(state.list);
         },
 
         [NotificationTypes.REMOVE_NOTIFICATION](state: IState, payload: INotification) {
