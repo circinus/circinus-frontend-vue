@@ -9,9 +9,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-@Component({
-    name: 'Looks'
-})
+@Component
 export default class Looks extends Vue {
     @Prop() private looks!: Array<string>;
 }

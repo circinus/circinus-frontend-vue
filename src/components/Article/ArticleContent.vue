@@ -41,13 +41,13 @@
                     </div>
 
                     <div class="comments row mx-4">
-                            <article-comments
-                                v-for="(stories, index) in this.comments"
+                            <ArticleComments
+                                v-for="(stories, index) in this.articleComments"
                                 :key="index"
                                 :comment="stories"
                                 :index="index"
                                 >
-                            </article-comments>
+                            </ArticleComments>
                     </div>
                 </div>
             </div>
@@ -99,18 +99,17 @@ import Modal from '@/components/Modal.vue';
 import { ComponentOptions } from 'vue';
 
 @Component({
-    name: 'article-content',
     components: {
         ArticleSidebar,
         ArticleComments,
         Modal
     }
 })
-export default class ArticleContent extends Vue {
+export default class ArticleContent extends Vue implements ComponentOptions<Vue> {
     @Prop() private article!: IArticle;
     @Prop() private articles!: Array<IArticle>;
     @Getter('auth/authenticated') private authenticated!: boolean;
-    @Getter('articles/comments') private comments!: Array<IComment>;
+    @Getter('articles/comments') private articleComments!: Array<IComment>;
     @Action('articles/storeComment') storeComment!: (form: any) => Promise<AxiosResponse | undefined>;
     public $refs!: {
         articleComment: Modal;

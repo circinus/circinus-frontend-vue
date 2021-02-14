@@ -16,11 +16,9 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { IComment } from '@/store/modules/home/IComment';
 
-@Component({
-    name: 'ArticleComments'
-})
+@Component
 export default class ArticleComments extends Vue {
-    @Prop() private comment: IComment | null = null;
+    @Prop() private comment!: IComment;
 }
 </script>
 

@@ -19,9 +19,7 @@ import { Action, Getter } from 'vuex-class';
 import { ComponentOptions } from 'vue';
 import { IIdentifier } from '@/store/modules/loader';
 
-@Component({
-    name: 'load-component'
-})
+@Component
 export default class ComponentLoader extends Vue implements ComponentOptions<Vue>{
     @Prop({ required: true }) private module!: string;
     @Getter('loader/exists') private loader!: (name: string, module: string) => void;

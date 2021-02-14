@@ -22,7 +22,6 @@ import ComponentLoader from '@/components/ComponentLoader.vue';
 import LoadComponent from '@/components/ComponentLoader.vue';
 
 @Component({
-    name: 'Article',
     components: {
         LoadComponent,
         ArticleContent,

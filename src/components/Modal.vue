@@ -34,14 +34,13 @@ import "@/assets/css/modal.scss"
 import bus from '@/helpers/bus'
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-@Component({
-    name: 'Modal'
-})
+@Component
 export default class Modal extends Vue {
-    @Prop({ required: true }) private title: string = '';
+    @Prop({ required: true }) private title!: string;
     private show = false;
 
     public openClose(): void {
+        console.log(this.show);
         this.show = !this.show;
     }
 

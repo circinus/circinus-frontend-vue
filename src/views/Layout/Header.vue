@@ -18,9 +18,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Action, Getter } from 'vuex-class';
 import { IUser } from '@/store/modules/user/IUser';
 
-@Component({
-    name: 'Header'
-})
+@Component
 export default class Header extends Vue {
     @Getter('auth/authenticated') private authenticated!: boolean;
     @Getter('auth/user') private user!: IUser | null;

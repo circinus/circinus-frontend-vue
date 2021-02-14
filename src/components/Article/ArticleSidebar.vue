@@ -20,9 +20,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { IArticle } from '@/store/modules/home/IArticle';
 
-@Component({
-    name: 'ArticleSidebar'
-})
+@Component
 export default class ArticleSidebar extends Vue {
     @Prop() private articles!: Array<IArticle>;
     private name: string = this.$route.params.name

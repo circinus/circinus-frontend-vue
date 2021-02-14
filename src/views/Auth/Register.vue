@@ -148,7 +148,6 @@ import { INewUser } from '@/store/modules/user/INewUser';
 import Looks from '@/components/Auth/Register/Looks.vue';
 
 @Component({
-    name: 'Register',
     components: {
         Looks
     }

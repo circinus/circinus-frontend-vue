@@ -35,7 +35,6 @@ import DropdownMenu from '@innologica/vue-dropdown-menu';
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
-    name: 'Navigation',
     components: {
         DropdownMenu
     }
