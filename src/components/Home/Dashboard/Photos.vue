@@ -39,12 +39,12 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { IPhoto } from '@/store/modules/home/photos';
 import { Action, Getter } from 'vuex-class';
 import { INewVote } from '@/store/modules/home/INewVote';
 import { IVote } from '@/store/modules/user/votes/IVote';
 import { IVoteType } from '@/store/modules/user/votes/IVoteType';
 import { IEntityType } from '@/store/modules/user/votes/IEntityType';
+import { IPhoto } from '@/store/modules/home/IPhoto';
 
 @Component
 export default class Photos extends Vue {
