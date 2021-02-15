@@ -6,8 +6,8 @@
                 {{$t("layout.header.description")}}
             </p>
 
-            <router-link class="btn btn--light w-25" v-if="!authenticated" :to="{ name: 'register' }" v-t="'layout.header.create_account'"></router-link>
-            <button class="btn btn--light w-25" v-if="authenticated" @click="toggleClientLoader" v-t="'layout.header.go_hotel'"></button>
+            <router-link class="btn btn--light w-25" v-if="!authModule.authenticated" :to="{ name: 'register' }" v-t="'layout.header.create_account'"></router-link>
+            <button class="btn btn--light w-25" v-if="authModule.authenticated" @click="toggleClientLoader" v-t="'layout.header.go_hotel'"></button>
         </div>
     </div>
 </template>
@@ -17,11 +17,14 @@ import bus from '@/helpers/bus'
 import { Component, Vue } from 'vue-property-decorator';
 import { Action, Getter } from 'vuex-class';
 import { IUser } from '@/store/modules/user/IUser';
+import { authModule } from '@/store/modules/auth/AuthModule';
+import { Observer } from 'mobx-vue';
 
+@Observer
 @Component
 export default class Header extends Vue {
-    @Getter('auth/authenticated') private authenticated!: boolean;
-    @Getter('auth/user') private user!: IUser | null;
+    private authModule = authModule;
+
     @Getter('client/loaded') private client!: boolean;
     @Action('client/setClient') private setClient!: (loaded: boolean) => void;
 

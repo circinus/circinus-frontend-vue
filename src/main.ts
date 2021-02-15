@@ -26,10 +26,11 @@ import VueMoment from 'vue-moment';
 Vue.use(VueMoment, { moment });
 
 import '@/plugins/validation';
+import { authModule } from '@/store/modules/auth/AuthModule';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-store.dispatch('auth/attempt', localStorage.getItem('token')).then(() => {
+authModule.attempt(localStorage.getItem('token')).then(() => {
   new Vue({
     router,
     i18n,
