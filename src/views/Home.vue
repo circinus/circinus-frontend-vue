@@ -2,7 +2,7 @@
     <div>
         <section id="current-news" class="habbo--section mt-5">
             <div class="d-flex flex-row mb-4">
-                <img class="mr-2 object-contain image-pixelated" src="@/assets/images/icons/news.png" alt="News" />
+                <img class="mr-2 object-contain image-pixelated" src="@/assets/images/icons/news.png" alt="News"/>
                 <div class="d-inline-flex flex-column justify-content-center">
                     <span class="section-title" v-t="'layout.dashboard.news.title'"></span>
                     <span class="section-description" v-t="'layout.dashboard.news.description'"></span>
@@ -25,7 +25,7 @@
 
         <section id="popular-news" class="habbo--section">
             <div class="d-flex flex-row mb-4">
-                <img class="mr-2 object-contain image-pixelated" src="@/assets/images/icons/news.png" alt="News" />
+                <img class="mr-2 object-contain image-pixelated" src="@/assets/images/icons/news.png" alt="News"/>
                 <div class="d-inline-flex flex-column justify-content-center">
                     <span class="section-title" v-t="'layout.dashboard.photos.title'"></span>
                     <span class="section-description" v-t="'layout.dashboard.photos.description'"></span>
@@ -47,15 +47,15 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue } from "vue-property-decorator";
-import Articles from "@/components/Home/Dashboard/Articles.vue";
-import {Getter} from "vuex-class";
-import { IArticle } from '@/store/modules/home/IArticle';
-import { ComponentOptions } from 'vue';
-import Photos from '@/components/Home/Dashboard/Photos.vue';
-import ComponentLoader from '@/components/ComponentLoader.vue';
-import LoadComponent from '@/components/ComponentLoader.vue';
-import { IPhoto } from '@/store/modules/home/IPhoto';
+import { Component, Vue } from 'vue-property-decorator'
+import Articles from '@/components/Home/Dashboard/Articles.vue'
+import { Getter } from 'vuex-class'
+import { IArticle } from '@/store/modules/home/IArticle'
+import { ComponentOptions } from 'vue'
+import Photos from '@/components/Home/Dashboard/Photos.vue'
+import ComponentLoader from '@/components/ComponentLoader.vue'
+import LoadComponent from '@/components/ComponentLoader.vue'
+import { IPhoto } from '@/store/modules/home/IPhoto'
 
 @Component({
     components: {
@@ -70,8 +70,8 @@ export default class Home extends Vue implements ComponentOptions<Vue> {
     @Getter('photos/photos') private photos!: Array<IPhoto>;
 
     public mounted(): void {
-        this.$store.dispatch('articles/getArticles');
-        this.$store.dispatch('photos/setPhotos');
+        this.$store.dispatch('articles/getArticles')
+        this.$store.dispatch('photos/setPhotos')
     }
 }
 </script>

@@ -18,8 +18,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import { IArticle } from '@/store/modules/home/IArticle';
+import { Component, Prop, Vue } from 'vue-property-decorator'
+import { IArticle } from '@/store/modules/home/IArticle'
 
 @Component
 export default class Articles extends Vue {

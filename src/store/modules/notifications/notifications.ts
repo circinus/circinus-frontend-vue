@@ -1,6 +1,6 @@
-import { Module } from 'vuex';
-import { IRootState } from '@/store';
-import { INotification } from '@/store/modules/notifications/INotification';
+import { Module } from 'vuex'
+import { IRootState } from '@/store'
+import { INotification } from '@/store/modules/notifications/INotification'
 
 export interface IState {
     list: Array<INotification>;
@@ -20,13 +20,13 @@ const notifications: Module<IState, IRootState> = {
 
     mutations: {
         [NotificationTypes.ADD_NOTIFICATION](state: IState, payload: INotification) {
-            state.list.push(payload);
+            state.list.push(payload)
         },
 
         [NotificationTypes.REMOVE_NOTIFICATION](state: IState, payload: INotification) {
             state.list = state.list.filter(
                 (notification: INotification) => notification.text !== payload.text
-            );
+            )
         }
     },
 
@@ -37,4 +37,4 @@ const notifications: Module<IState, IRootState> = {
     }
 }
 
-export default notifications;
+export default notifications

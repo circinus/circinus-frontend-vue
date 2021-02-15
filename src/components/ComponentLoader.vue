@@ -1,26 +1,32 @@
 <template>
     <div v-if="this.timeout === false">
         <div v-if="this.loader(this.$route.name, this.module)">
-            <div class="lds-ripple"><div></div><div></div></div>
+            <div class="lds-ripple">
+                <div></div>
+                <div></div>
+            </div>
         </div>
         <div v-else>
             <slot v-if="loader"></slot>
         </div>
     </div>
     <div v-else>
-        <div class="lds-ripple"><div></div><div></div></div>
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
-import Component from "vue-class-component";
-import { Prop, Vue } from "vue-property-decorator";
-import { Action, Getter } from 'vuex-class';
-import { ComponentOptions } from 'vue';
-import { IIdentifier } from '@/store/modules/loader';
+import Component from 'vue-class-component'
+import { Prop, Vue } from 'vue-property-decorator'
+import { Action, Getter } from 'vuex-class'
+import { ComponentOptions } from 'vue'
+import { IIdentifier } from '@/store/modules/loader'
 
 @Component
-export default class ComponentLoader extends Vue implements ComponentOptions<Vue>{
+export default class ComponentLoader extends Vue implements ComponentOptions<Vue> {
     @Prop({ required: true }) private module!: string;
     @Getter('loader/exists') private loader!: (name: string, module: string) => void;
     @Action('loader/add') private add!: (identifier: IIdentifier) => void;
@@ -33,13 +39,13 @@ export default class ComponentLoader extends Vue implements ComponentOptions<Vue
             component: this.$route.name,
             module: this.module,
             loading: true
-        });
+        })
     }
 
     public created(): void {
         setTimeout(() => {
             this.timeout = false
-        }, this.seconds);
+        }, this.seconds)
     }
 }
 </script>
@@ -51,6 +57,7 @@ export default class ComponentLoader extends Vue implements ComponentOptions<Vue
     width: 80px;
     height: 80px;
 }
+
 .lds-ripple div {
     position: absolute;
     border: 4px solid #fff;
@@ -59,9 +66,11 @@ export default class ComponentLoader extends Vue implements ComponentOptions<Vue
     border-radius: 50%;
     animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
+
 .lds-ripple div:nth-child(2) {
     animation-delay: -0.5s;
 }
+
 @keyframes lds-ripple {
     0% {
         top: 36px;

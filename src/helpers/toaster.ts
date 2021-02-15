@@ -1,8 +1,8 @@
-import Vue from 'vue';
-import iziToast from 'izitoast';
+import Vue from 'vue'
+import iziToast from 'izitoast'
 
-import 'izitoast/dist/css/iziToast.css';
-import 'izitoast/dist/css/iziToast.min.css';
+import 'izitoast/dist/css/iziToast.css'
+import 'izitoast/dist/css/iziToast.min.css'
 
 iziToast.settings({
     close: false,
@@ -18,7 +18,7 @@ iziToast.settings({
 export default function install(): void {
     Object.defineProperties(Vue.prototype, {
         $iziToast: {
-            get () {
+            get() {
                 return iziToast
             }
         }

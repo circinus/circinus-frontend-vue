@@ -7,15 +7,14 @@ import guest from './middleware/guest'
 import auth from './middleware/auth'
 import middlewarePipeline from './middleware/middlewarePipeline'
 
-//Commmunity
-import { IContext } from '@/router/IContext';
-import CommunityStaff from '@/views/Community/Staff.vue';
-import Home from '@/views/Home.vue';
-import Register from '@/views/Auth/Register.vue';
-import Article from '@/views/Community/Article.vue';
+// Commmunity
+import { IContext } from '@/router/IContext'
+import CommunityStaff from '@/views/Community/Staff.vue'
+import Home from '@/views/Home.vue'
+import Register from '@/views/Auth/Register.vue'
+import Article from '@/views/Community/Article.vue'
 
-
-Vue.use(Router);
+Vue.use(Router)
 
 const router = new Router({
     mode: 'history',
@@ -47,7 +46,7 @@ const router = new Router({
         {
             path: '/community/staff',
             name: 'staff',
-            component: CommunityStaff,
+            component: CommunityStaff
         },
         {
             path: '/hotel',
@@ -80,9 +79,9 @@ const router = new Router({
             component: Article
         }
     ]
-});
+})
 
-router.beforeEach((to: Route, from: Route, next:NavigationGuardNext) => {
+router.beforeEach((to: Route, from: Route, next: NavigationGuardNext) => {
     if (!to.meta.middleware) {
         let documentTitle = `${process.env.VUE_APP_TITLE} - ${to.name}`
         if (to.params.title) {
@@ -100,12 +99,10 @@ router.beforeEach((to: Route, from: Route, next:NavigationGuardNext) => {
         store
     }
 
-
     return middleware[0]({
         ...context,
         next: middlewarePipeline(context, middleware, 1)
     })
-
 })
 
-export default router;
+export default router

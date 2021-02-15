@@ -91,7 +91,6 @@
                     </div>
                 </div>
 
-
                 <div class="col-md-6">
 
                     <div class="d-flex flex-row mb-4">
@@ -141,11 +140,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator'
 
-import { Action, State } from 'vuex-class';
-import { INewUser } from '@/store/modules/user/INewUser';
-import Looks from '@/components/Auth/Register/Looks.vue';
+import { Action, State } from 'vuex-class'
+import { INewUser } from '@/store/modules/user/INewUser'
+import Looks from '@/components/Auth/Register/Looks.vue'
 
 @Component({
     components: {
@@ -156,9 +155,10 @@ export default class Register extends Vue {
     private avatarPreload = 8;
     private looks: Array<string> = [];
     private genders = [
-        { value: 'M', text: 'Boys', 'gender': 'boys' },
-        { value: 'F', text: 'Girls', 'gender': 'girls' }
+        { value: 'M', text: 'Boys', gender: 'boys' },
+        { value: 'F', text: 'Girls', gender: 'girls' }
     ];
+
     private form: INewUser = {
         username: '',
         password: '',
@@ -167,6 +167,7 @@ export default class Register extends Vue {
         gender: '',
         look: ''
     };
+
     @Action('auth/register') private register!: (user: INewUser) => Promise<void>;
     @Action('register/getLooks') private look!: (gender: string) => Promise<Array<string>>;
     @State('register/looks') private getLooks!: Array<string>;
@@ -192,18 +193,18 @@ export default class Register extends Vue {
 
     private changeAvatar(chosenLook: string): void {
         if (this.form.look === chosenLook) {
-            return;
+            return
         }
 
-        this.form.look = chosenLook;
+        this.form.look = chosenLook
         this.preLoad()
     }
 
     private changeGender(event: Event) {
         // @ts-ignore
-      this.look(event.target.selectedOptions[0].dataset.gender).then((response) => {
-            this.form.look = response[1] ?? response[5];
-            this.looks = response;
+        this.look(event.target.selectedOptions[0].dataset.gender).then((response) => {
+            this.form.look = response[1] ?? response[5]
+            this.looks = response
             this.preLoad()
         })
     }

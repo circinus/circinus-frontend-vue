@@ -1,10 +1,10 @@
-import { NavigationGuardNext, Route } from 'vue-router';
-import { Store } from 'vuex';
-import { IRootState } from '@/store';
+import { NavigationGuardNext, Route } from 'vue-router'
+import { Store } from 'vuex'
+import { IRootState } from '@/store'
 
 export interface IContext {
     to: Route;
     from: Route;
-    next: NavigationGuardNext
+    next: NavigationGuardNext;
     store: Store<IRootState>;
 }

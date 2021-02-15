@@ -1,38 +1,37 @@
 import Vue from 'vue'
-import api from '@/helpers/api';
+import api from '@/helpers/api'
 import store from '@/store'
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 export default function setup(): void {
     api.interceptors.request.use((config: AxiosRequestConfig) => {
-        //return config
-        return config;
-    }, function(err) {
-
+        // return config
+        return config
+    }, function (err) {
         // return error
-        return Promise.reject(err);
-    });
+        return Promise.reject(err)
+    })
 
     api.interceptors.response.use((response: AxiosResponse) => {
-        //return data
-        return response.data;
+        // return data
+        return response.data
     }, (error) => {
         // custom error handling
-        if(error.response.status === 404) {
+        if (error.response.status === 404) {
 
         } else {
             // check if notifications exists and show
             error.response.data.errors.map((value: any): void => {
-                if(value?.message) {
+                if (value?.message) {
                     store.commit('notifications/ADD_NOTIFICATION', {
                         text: value.message,
                         type: error.response.data.status
-                    });
+                    })
                 }
-            });
+            })
         }
 
-        //return error
-        return Promise.reject(error.response);
-    });
+        // return error
+        return Promise.reject(error.response)
+    })
 }

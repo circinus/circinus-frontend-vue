@@ -1,6 +1,6 @@
 // vuex typings
-import { AxiosInstance } from 'axios';
-import { IziToast } from 'izitoast';
+import { AxiosInstance } from 'axios'
+import { IziToast } from 'izitoast'
 
 declare module 'vue/types/vue' {
     interface Vue {
@@ -13,4 +13,3 @@ declare module 'vue/types/vue' {
         $iziToast: IziToast;
     }
 }
-

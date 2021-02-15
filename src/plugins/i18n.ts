@@ -7,7 +7,7 @@ export interface Messages {
     [key: string]: Record<string, string>;
 }
 
-function loadLocaleMessages () {
+function loadLocaleMessages() {
     const locales = require.context('@/locales', true, /[A-Za-z0-9-_,\s]+\.json$/i)
     const messages: Messages = {}
     locales.keys().forEach(key => {

@@ -1,9 +1,9 @@
-import { IContext } from '@/router/IContext';
+import { IContext } from '@/router/IContext'
 
-function middlewarePipeline (context: IContext, middleware: any, index: number) {
+function middlewarePipeline(context: IContext, middleware: any, index: number) {
     const nextMiddleware = middleware[index]
 
-    if(!nextMiddleware){
+    if (!nextMiddleware) {
         return context.next
     }
 
@@ -13,7 +13,6 @@ function middlewarePipeline (context: IContext, middleware: any, index: number) 
         )
 
         nextMiddleware({ ...context, next: nextPipeline })
-
     }
 }
 

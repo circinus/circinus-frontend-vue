@@ -1,7 +1,7 @@
-import api from "../../../helpers/api";
-import { ActionContext, Module } from 'vuex';
-import { IRootState } from '@/store';
-import { IPermission } from '@/store/modules/permissions/IPermission';
+import api from '../../../helpers/api'
+import { ActionContext, Module } from 'vuex'
+import { IRootState } from '@/store'
+import { IPermission } from '@/store/modules/permissions/IPermission'
 
 export interface IState {
     list: Array<IPermission>;
@@ -30,16 +30,15 @@ const permissions: Module<IState, IRootState> = {
         }
     },
 
-
     actions: {
-        async getStafflist({commit, dispatch}: ActionContext<IState, IRootState>): Promise<void> {
+        async getStafflist({ commit, dispatch }: ActionContext<IState, IRootState>): Promise<void> {
             await api.get('/permissions/staff/list')
                 .then((response) => {
-                    dispatch('loader/change', 'getList', {root:true})
+                    dispatch('loader/change', 'getList', { root: true })
                     commit(PermissionTypes.APPEND_LIST, response.data)
-                });
+                })
         }
     }
 }
 
-export default permissions;
+export default permissions

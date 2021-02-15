@@ -1,10 +1,10 @@
-import api from "@/helpers/api";
-import { environment } from "../../../../environment";
-import { ActionContext, Module } from 'vuex';
-import { IUser } from '@/store/modules/user/IUser';
-import { IRootState } from '@/store';
-import { ICurrency } from '@/store/modules/currencies/ICurrency';
-import { ICurrencyResponse } from '@/store/modules/currencies/ICurrencyResponse';
+import api from '@/helpers/api'
+import { environment } from '../../../../environment'
+import { ActionContext, Module } from 'vuex'
+import { IUser } from '@/store/modules/user/IUser'
+import { IRootState } from '@/store'
+import { ICurrency } from '@/store/modules/currencies/ICurrency'
+import { ICurrencyResponse } from '@/store/modules/currencies/ICurrencyResponse'
 
 export interface IAuthState {
     token: string | null;
@@ -31,31 +31,31 @@ const auth: Module<IAuthState, IRootState> = {
 
     getters: {
         authenticated(state: IAuthState): boolean {
-            return !!state.token && !!state.user;
+            return !!state.token && !!state.user
         },
 
         user(state: IAuthState): IUser | null {
-            return state.user;
+            return state.user
         }
     },
 
     mutations: {
         [AuthTypes.SET_TOKEN](state: IAuthState, token: string): void {
-            state.token = token;
+            state.token = token
         },
         [AuthTypes.SET_USER](state: IAuthState, user: IUser): void {
-            state.user = user;
+            state.user = user
         }
     },
 
     actions: {
         async signIn({ dispatch }: ActionContext<IAuthState, IRootState>, credentials: ICredentials): Promise<void> {
-            let response = await api.post('login', credentials);
+            const response = await api.post('login', credentials)
             return dispatch('attempt', response.data.token)
         },
 
         async register({ dispatch }: ActionContext<IAuthState, IRootState>, form): Promise<void> {
-            let response = await api.post('register', form);
+            const response = await api.post('register', form)
             return dispatch('attempt', response.data.token)
         },
 
@@ -63,28 +63,28 @@ const auth: Module<IAuthState, IRootState> = {
             { commit, state, dispatch }: ActionContext<IAuthState, IRootState>,
             token: string
         ): Promise<void> {
-            if(token) {
+            if (token) {
                 commit(AuthTypes.SET_TOKEN, token)
             }
 
-            if(!state.token) {
+            if (!state.token) {
                 return
             }
 
             try {
-                let response = await api.get<ICurrencyResponse>('user');
+                const response = await api.get<ICurrencyResponse>('user')
 
                 response.data.currencies = response.data.currencies.map((item: ICurrency) => ({
                     ...item,
                     name: Object.keys(environment.POINTS)
                         .filter((k: string): boolean => environment.POINTS[k] === item.type).toString()
-                }));
+                }))
 
-                dispatch('votes/total', null, { root:true })
+                dispatch('votes/total', null, { root: true })
                 commit(AuthTypes.SET_USER, response.data)
             } catch (e) {
-                commit(AuthTypes.SET_TOKEN, null);
-                commit(AuthTypes.SET_USER, null);
+                commit(AuthTypes.SET_TOKEN, null)
+                commit(AuthTypes.SET_USER, null)
             }
         },
 
@@ -97,4 +97,4 @@ const auth: Module<IAuthState, IRootState> = {
     }
 }
 
-export default auth;
+export default auth

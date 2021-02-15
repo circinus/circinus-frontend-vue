@@ -4,18 +4,21 @@
 
             <div v-if="client && hideLoader" class="loading-container">
                 <div id="loading-background"></div>
-                <div class="loading-content" >
+                <div class="loading-content">
 
                     <div class="container vertical-center" v-if="this.photo">
                         <div class="row">
                             <div class="col-4">
-                                <div class="photo" style="margin-left: 130px;" v-bind:style="{ backgroundImage: 'url(' + this.photo[random()].url + ')' }"></div>
+                                <div class="photo" style="margin-left: 130px;"
+                                     v-bind:style="{ backgroundImage: 'url(' + this.photo[random()].url + ')' }"></div>
                             </div>
                             <div class="col-4">
-                                <div class="photo" style="margin-top: -85px;z-index: 2;position: inherit;" v-bind:style="{ backgroundImage: 'url(' + this.photo[random()].url + ')' }"></div>
+                                <div class="photo" style="margin-top: -85px;z-index: 2;position: inherit;"
+                                     v-bind:style="{ backgroundImage: 'url(' + this.photo[random()].url + ')' }"></div>
                             </div>
                             <div class="col-4">
-                                <div class="photo" style="margin-left: -115px;" v-bind:style="{ backgroundImage: 'url(' + this.photo[random()].url + ')' }"></div>
+                                <div class="photo" style="margin-left: -115px;"
+                                     v-bind:style="{ backgroundImage: 'url(' + this.photo[random()].url + ')' }"></div>
                             </div>
                         </div>
                     </div>
@@ -24,7 +27,7 @@
                         <div class="row">
                             <div class="col-4">
                                 <div class="loading_bar">
-                                    <div class="text">{{this.loadingText}}</div>
+                                    <div class="text">{{ this.loadingText }}</div>
                                     <div class="percent" id="loader_bar" :style="{width: loadingWidth + '%'}"></div>
                                 </div>
                             </div>
@@ -34,7 +37,7 @@
             </div>
 
             <div :id="flashDetect" v-if="flashDetect" class="row d-block align-items-center text-center">
-                <iframe v-if="ticket !== null" id="game" :src="url + '/?sso=' + ticket" />
+                <iframe v-if="ticket !== null" id="game" :src="url + '/?sso=' + ticket"/>
             </div>
 
             <div class="client-buttons">
@@ -48,15 +51,15 @@
 
 <script lang="ts">
 // @ts-ignore
-import * as FlashDetect from 'flash-detect';
+import * as FlashDetect from 'flash-detect'
 import bus from '@/helpers/bus'
-import {Component, Vue} from "vue-property-decorator";
-import { Action, Getter } from 'vuex-class';
-import { IUser } from '@/store/modules/user/IUser';
-import { ITicketResponse } from '@/store/modules/client/ITicketResponse';
-import { ComponentOptions } from 'vue';
-import { TranslateResult } from 'vue-i18n';
-import { IPhoto } from '@/store/modules/home/IPhoto';
+import { Component, Vue } from 'vue-property-decorator'
+import { Action, Getter } from 'vuex-class'
+import { IUser } from '@/store/modules/user/IUser'
+import { ITicketResponse } from '@/store/modules/client/ITicketResponse'
+import { ComponentOptions } from 'vue'
+import { TranslateResult } from 'vue-i18n'
+import { IPhoto } from '@/store/modules/home/IPhoto'
 
 @Component
 export default class Client extends Vue implements ComponentOptions<Vue> {
@@ -78,28 +81,28 @@ export default class Client extends Vue implements ComponentOptions<Vue> {
 
     public created(): void {
         bus.$on('loadClient', () => {
-            this.initialize();
+            this.initialize()
         })
     }
 
     public mounted(): void {
-        if(this.$router.currentRoute.name === "hotel") {
-            this.setPhotos();
-            this.initialize();
+        if (this.$router.currentRoute.name === 'hotel') {
+            this.setPhotos()
+            this.initialize()
         }
     }
 
     private flashDetect(): string {
-        const flashDetected = new FlashDetect();
-        return flashDetected.installed === false ? 'game' : 'game';
+        const flashDetected = new FlashDetect()
+        return flashDetected.installed === false ? 'game' : 'game'
     }
 
     private random(): number {
-        return Math.floor(Math.random() * this.photo.length);
+        return Math.floor(Math.random() * this.photo.length)
     }
 
     private hideClient(): void {
-        this.setClient(!this.client);
+        this.setClient(!this.client)
     }
 
     private getTicket(): Promise<void> {
@@ -110,7 +113,7 @@ export default class Client extends Vue implements ComponentOptions<Vue> {
 
     private loadClient(): void {
         if (this.active) {
-            return;
+            return
         }
 
         this.getTicket().then(() => {
@@ -120,7 +123,7 @@ export default class Client extends Vue implements ComponentOptions<Vue> {
     }
 
     private initialize(): void {
-        this.isSessionActive = this.user.online === 1;
+        this.isSessionActive = this.user.online === 1
         if (!this.isSessionActive) {
             this.loadClient()
         }
