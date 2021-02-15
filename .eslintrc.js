@@ -47,7 +47,7 @@ module.exports = {
             },
             {
                 "selector": "property",
-                "format": ["snake_case", "strictCamelCase"]
+                "format": ["snake_case", "strictCamelCase", "PascalCase"]
             }
         ],
         "@typescript-eslint/member-delimiter-style": ["error", {
