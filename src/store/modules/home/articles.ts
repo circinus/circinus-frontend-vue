@@ -1,11 +1,11 @@
-import api from '../../../helpers/api'
-import { ActionContext, Module } from 'vuex'
-import { IRootState } from '@/store'
-import { IArticle } from '@/store/modules/home/IArticle'
-import { IComment } from '@/store/modules/home/IComment'
-import { IUser } from '@/store/modules/user/IUser'
-import { IResponse } from '@/helpers/IResponse'
-import { AxiosResponse } from 'axios'
+import api from '../../../helpers/api';
+import { ActionContext, Module } from 'vuex';
+import { IRootState } from '@/store';
+import { IArticle } from '@/store/modules/home/IArticle';
+import { IComment } from '@/store/modules/home/IComment';
+import { IUser } from '@/store/modules/user/IUser';
+import { IResponse } from '@/helpers/IResponse';
+import { AxiosResponse } from 'axios';
 
 export interface IState {
     article: IArticle | null;
@@ -29,70 +29,70 @@ const articles: Module<IState, IRootState> = {
 
     getters: {
         article(state: IState): IArticle | null {
-            return state.article
+            return state.article;
         },
         articles(state: IState): Array<IArticle> {
-            return state.articles
+            return state.articles;
         },
         comments(state: IState): Array<IComment> {
-            return state.comments
+            return state.comments;
         },
         user(state: IState, getters, rootState, rootGetters): IUser {
-            return rootGetters['auth/user']
+            return rootGetters['auth/user'];
         }
     },
 
     mutations: {
         [ArticleTypes.SET_ARTICLES](state: IState, article: Array<IArticle>): void {
-            state.articles = article
+            state.articles = article;
         },
         [ArticleTypes.SET_CURRENT_ARTICLE](state: IState, article: IArticle): void {
-            state.article = article
+            state.article = article;
         },
         [ArticleTypes.SET_CURRENT_COMMENTS](state: IState, comments: Array<IComment>): void {
-            state.comments = comments
+            state.comments = comments;
         }
     },
     actions: {
         async getArticles({ commit, dispatch }: ActionContext<IState, IRootState>): Promise<void> {
             await api.get<IResponse<Array<IArticle>>>('articles/list/1/3')
                 .then((response): void => {
-                    dispatch('loader/change', 'getArticles', { root: true })
-                    commit(ArticleTypes.SET_ARTICLES, response.data.data)
-                })
+                    dispatch('loader/change', 'getArticles', { root: true });
+                    commit(ArticleTypes.SET_ARTICLES, response.data.data);
+                });
         },
 
         async getArticle({ commit, dispatch }: ActionContext<IState, IRootState>, slug: string): Promise<void> {
             await api.get<IArticle>('articles/' + slug)
                 .then((response): void => {
-                    dispatch('loader/change', 'getArticle', { root: true })
-                    commit(ArticleTypes.SET_CURRENT_ARTICLE, response.data)
-                })
+                    dispatch('loader/change', 'getArticle', { root: true });
+                    commit(ArticleTypes.SET_CURRENT_ARTICLE, response.data);
+                });
         },
 
-        async getComments({ commit, dispatch }: ActionContext<IState, IRootState>, form): Promise<void> {
+        async getComments({ commit }: ActionContext<IState, IRootState>, form): Promise<void> {
             await api.get<IResponse<Array<IComment>>>(
                 'comments/' + form.id + '/list/' + form.page + '/' + form.offset + ''
             ).then((response: AxiosResponse<IResponse<Array<IComment>>>): void => {
-                commit(ArticleTypes.SET_CURRENT_ARTICLE, response.data.data)
-            })
+                commit(ArticleTypes.SET_CURRENT_ARTICLE, response.data.data);
+            });
         },
 
         async storeComment({ getters }: ActionContext<IState, IRootState>, form): Promise<AxiosResponse | undefined> {
-            const comment = getters.comments.slice(-1)[0]
+            const comment = getters.comments.slice(-1)[0];
 
             if (comment !== undefined &&
                 comment.user_id === getters.user.id) {
-                return
+                return;
             }
 
             return await
-                api.post<IComment>('comments/create', form)
-                    .then((response: AxiosResponse<IComment>) => {
-                        return response
-                    })
+            api.post<IComment>('comments/create', form)
+                .then((response: AxiosResponse<IComment>) => {
+                    return response;
+                });
         }
     }
-}
+};
 
-export default articles
+export default articles;

@@ -15,19 +15,28 @@ module.exports = {
         'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
         'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
         'indent': ["error", 4],
-        '@typescript-eslint/interface-name-prefix': ["error", "always"],
+        '@typescript-eslint/interface-name-prefix': ["off"],
         'space-before-function-paren': ["off"],
         "@typescript-eslint/ban-ts-ignore": ["off"],
         '@typescript-eslint/naming-convention': [
             "error",
             {
                 "selector": "default",
-                "format": ["camelCase",]
+                "format": ["camelCase"]
             },
 
             {
                 "selector": "variable",
-                "format": ["camelCase", "UPPER_CASE"]
+                "format": ["camelCase", "UPPER_CASE", "PascalCase"],
+                "leadingUnderscore": "allow"
+            },
+            {
+                "selector": "method",
+                "format": ["camelCase", "PascalCase"] //@TODO disable PascalCase when everything is converted to mobx
+            },
+            {
+                "selector": "enumMember",
+                "format": ['UPPER_CASE']
             },
             {
                 "selector": "parameter",
@@ -38,7 +47,7 @@ module.exports = {
             {
                 "selector": "memberLike",
                 "modifiers": ["private"],
-                "format": ["camelCase"],
+                "format": ["camelCase", "snake_case"],
             },
 
             {
@@ -59,6 +68,8 @@ module.exports = {
                 "delimiter": "semi",
                 "requireLast": true
             }
-        }]
+        }],
+        "@typescript-eslint/camelcase": ["off"],
+        "semi": ["error", "always"]
     }
 }

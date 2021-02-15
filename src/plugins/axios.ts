@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
-import _Vue from 'vue'
-import axios from 'axios'
+import Vue, { PluginObject } from 'vue';
+import axios from 'axios';
 
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
@@ -12,52 +12,51 @@ const config = {
     // baseURL: process.env.baseURL || process.env.apiUrl || ""
     // timeout: 60 * 1000, // Timeout
     // withCredentials: true, // Check cross-site Access-Control
-}
+};
 
-const _axios = axios.create(config)
+const _axios = axios.create(config);
 
 _axios.interceptors.request.use(
     function (config) {
         // Do something before request is sent
-        return config
+        return config;
     },
     function (error) {
         // Do something with request error
-        return Promise.reject(error)
+        return Promise.reject(error);
     }
-)
+);
 
 // Add a response interceptor
 _axios.interceptors.response.use(
     function (response) {
         // Do something with response data
-        return response
+        return response;
     },
     function (error) {
         // Do something with response error
-        return Promise.reject(error)
+        return Promise.reject(error);
     }
-)
+);
 
-const Plugin = () => {
-}
-
-Plugin.install = function (Vue: typeof _Vue) {
-    Vue.axios = _axios
-    Object.defineProperties(Vue.prototype, {
-        axios: {
-            get() {
-                return _axios
+const Plugin: PluginObject<unknown> = {
+    install(vm: typeof Vue): void {
+        vm.axios = _axios;
+        Object.defineProperties(vm.prototype, {
+            axios: {
+                get() {
+                    return _axios;
+                }
+            },
+            $axios: {
+                get() {
+                    return _axios;
+                }
             }
-        },
-        $axios: {
-            get() {
-                return _axios
-            }
-        }
-    })
-}
+        });
+    }
+};
 
-_Vue.use(Plugin)
+Vue.use(Plugin);
 
-export default Plugin
+export default Plugin;

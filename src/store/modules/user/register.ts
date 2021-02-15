@@ -1,8 +1,8 @@
-import api from '../../../helpers/api'
-import { Module } from 'vuex'
-import { IRootState } from '@/store'
-import { AxiosResponse } from 'axios'
-import { ILooksResponse } from '@/store/modules/user/ILooksResponse'
+import api from '../../../helpers/api';
+import { Module } from 'vuex';
+import { IRootState } from '@/store';
+import { AxiosResponse } from 'axios';
+import { ILooksResponse } from '@/store/modules/user/ILooksResponse';
 
 export interface IState {
     looks: Record<string, string[]>;
@@ -16,13 +16,13 @@ const register: Module<IState, IRootState> = {
     },
 
     actions: {
-        async getLooks({}, gender: string): Promise<string[]> {
+        async getLooks(_, gender: string): Promise<string[]> {
             return api.get<ILooksResponse>('register/looks')
                 .then((response: AxiosResponse<ILooksResponse>): string[] => {
-                    return response.data.looks[gender]
-                })
+                    return response.data.looks[gender];
+                });
         }
     }
-}
+};
 
-export default register
+export default register;

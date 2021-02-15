@@ -1,20 +1,20 @@
-import Vue from 'vue'
-import Router, { NavigationGuardNext, Route } from 'vue-router'
+import Vue from 'vue';
+import Router, { NavigationGuardNext, Route } from 'vue-router';
 
-import store from '../store'
+import store from '../store';
 
-import guest from './middleware/guest'
-import auth from './middleware/auth'
-import middlewarePipeline from './middleware/middlewarePipeline'
+import guest from './middleware/guest';
+import auth from './middleware/auth';
+import middlewarePipeline from './middleware/middlewarePipeline';
 
 // Commmunity
-import { IContext } from '@/router/IContext'
-import CommunityStaff from '@/views/Community/Staff.vue'
-import Home from '@/views/Home.vue'
-import Register from '@/views/Auth/Register.vue'
-import Article from '@/views/Community/Article.vue'
+import { IContext } from '@/router/IContext';
+import CommunityStaff from '@/views/Community/Staff.vue';
+import Home from '@/views/Home.vue';
+import Register from '@/views/Auth/Register.vue';
+import Article from '@/views/Community/Article.vue';
 
-Vue.use(Router)
+Vue.use(Router);
 
 const router = new Router({
     mode: 'history',
@@ -58,9 +58,9 @@ const router = new Router({
             },
             beforeEnter: (to, from, next) => {
                 if (!store.getters['client/loaded']) {
-                    store.dispatch('client/setClient', true)
+                    store.dispatch('client/setClient', true);
                 }
-                next()
+                next();
             }
         },
         {
@@ -79,30 +79,30 @@ const router = new Router({
             component: Article
         }
     ]
-})
+});
 
 router.beforeEach((to: Route, from: Route, next: NavigationGuardNext) => {
     if (!to.meta.middleware) {
-        let documentTitle = `${process.env.VUE_APP_TITLE} - ${to.name}`
+        let documentTitle = `${process.env.VUE_APP_TITLE} - ${to.name}`;
         if (to.params.title) {
-            documentTitle += ` - ${to.params.title}`
+            documentTitle += ` - ${to.params.title}`;
         }
-        document.title = documentTitle
-        return next()
+        document.title = documentTitle;
+        return next();
     }
-    const middleware = to.meta.middleware
+    const middleware = to.meta.middleware;
 
     const context: IContext = {
         to,
         from,
         next,
         store
-    }
+    };
 
     return middleware[0]({
         ...context,
         next: middlewarePipeline(context, middleware, 1)
-    })
-})
+    });
+});
 
-export default router
+export default router;

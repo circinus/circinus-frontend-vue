@@ -1,8 +1,8 @@
-import Vue from 'vue'
-import iziToast from 'izitoast'
+import Vue from 'vue';
+import iziToast from 'izitoast';
 
-import 'izitoast/dist/css/iziToast.css'
-import 'izitoast/dist/css/iziToast.min.css'
+import 'izitoast/dist/css/iziToast.css';
+import 'izitoast/dist/css/iziToast.min.css';
 
 iziToast.settings({
     close: false,
@@ -13,14 +13,14 @@ iziToast.settings({
     layout: 2,
     position: 'topRight',
     maxWidth: 260
-})
+});
 
 export default function install(): void {
     Object.defineProperties(Vue.prototype, {
         $iziToast: {
             get() {
-                return iziToast
+                return iziToast;
             }
         }
-    })
+    });
 }

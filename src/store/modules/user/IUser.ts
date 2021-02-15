@@ -1,4 +1,4 @@
-import { ICurrency } from '@/store/modules/currencies/ICurrency'
+import { ICurrency } from '@/store/modules/currencies/ICurrency';
 
 export interface IUser {
     username: string;
