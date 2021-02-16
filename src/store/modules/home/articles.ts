@@ -72,11 +72,12 @@ const articles: Module<IState, IRootState> = {
                 });
         },
 
-        async getComments({ commit }: ActionContext<IState, IRootState>, form: IGetCommentCriteria): Promise<void> {
+        async getComments({ commit, dispatch }: ActionContext<IState, IRootState>, form: IGetCommentCriteria): Promise<void> {
             await api.get<IResponse<Array<IComment>>>(
                 'comments/' + form.id + '/list/' + form.page + '/' + form.offset + ''
             ).then((response: AxiosResponse<IResponse<Array<IComment>>>): void => {
-                commit(ArticleTypes.SET_CURRENT_ARTICLE, response.data.data);
+                dispatch('loader/change', 'getComments', { root: true });
+                commit(ArticleTypes.SET_CURRENT_COMMENTS, response.data.data);
             });
         },
 

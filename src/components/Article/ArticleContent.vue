@@ -42,7 +42,7 @@
                         </div>
                     </div>
 
-                    <div class="comments row mx-4">
+                    <div class="comments row mx-4" v-if="this.articleComments.length">
                         <ArticleComments
                             v-for="(stories, index) in this.articleComments"
                             :key="index"
@@ -98,16 +98,18 @@ import Modal from '@/components/Modal.vue';
 import { ComponentOptions } from 'vue';
 import { IGetCommentCriteria } from '@/store/modules/articles/IGetCommentCriteria';
 import { INewComment } from '@/store/modules/home/INewComment';
+import ComponentLoader from '@/components/ComponentLoader.vue';
 
 @Component({
     components: {
         ArticleSidebar,
         ArticleComments,
-        Modal
+        Modal,
+        ComponentLoader
     }
 })
 export default class ArticleContent extends Vue implements ComponentOptions<Vue> {
-    @Prop() private article!: IArticle;
+    @Prop({ required: true }) private article!: IArticle;
     @Prop() private articles!: Array<IArticle>;
     @Getter('auth/authenticated') private authenticated!: boolean;
     @Getter('articles/comments') private articleComments!: Array<IComment>;

@@ -1,12 +1,12 @@
 <template>
     <div>
         <ComponentLoader module="getArticle">
-            <article-content
+            <ArticleContent
                 v-if="article"
                 :article="article"
                 :articles="articles"
             >
-            </article-content>
+            </ArticleContent>
         </ComponentLoader>
     </div>
 </template>
