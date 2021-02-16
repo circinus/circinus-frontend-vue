@@ -19,7 +19,6 @@
 import bus from '@/helpers/bus';
 import { Component, Vue } from 'vue-property-decorator';
 import { Action, Getter } from 'vuex-class';
-import { IUser } from '@/store/modules/user/IUser';
 import { authModule } from '@/store/modules/auth/AuthModule';
 import { Observer } from 'mobx-vue';
 

@@ -47,7 +47,7 @@ module.exports = {
             {
                 "selector": "memberLike",
                 "modifiers": ["private"],
-                "format": ["camelCase", "snake_case"],
+                "format": ["camelCase", "snake_case"]
             },
 
             {
@@ -56,7 +56,8 @@ module.exports = {
             },
             {
                 "selector": "property",
-                "format": ["snake_case", "strictCamelCase", "PascalCase"]
+                "format": ["snake_case", "strictCamelCase", "PascalCase"],
+                "leadingUnderscore": "allow"
             }
         ],
         "@typescript-eslint/member-delimiter-style": ["error", {

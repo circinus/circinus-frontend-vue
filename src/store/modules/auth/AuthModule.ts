@@ -1,4 +1,4 @@
-import { action, computed, observable } from 'mobx';
+import { computed, observable } from 'mobx';
 import { AxiosInstance } from 'axios';
 import { IUser } from '@/store/modules/user/IUser';
 import { ICredentials } from '@/store/modules/auth/ICredentials';
@@ -28,10 +28,10 @@ export class AuthModule {
 
     public setToken(token: string | null): AuthModule {
         if (token) {
-            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            api.defaults.headers.common.Authorization = `Bearer ${token}`;
             localStorage.setItem('token', token);
         } else {
-            api.defaults.headers.common['Authorization'] = undefined;
+            api.defaults.headers.common.Authorization = undefined;
             localStorage.removeItem('token');
         }
 

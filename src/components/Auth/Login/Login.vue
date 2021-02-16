@@ -72,7 +72,7 @@ export default class Login extends Vue {
 
     public form: ICredentials = {
         username: '',
-        password: '',
+        password: ''
     }
 
     private submit(): void {
@@ -85,7 +85,7 @@ export default class Login extends Vue {
 
     private signOut() {
         this.authModule.signOut().then(() => {
-            this.$router.push('/')
+            this.$router.push('/');
         });
     }
 }

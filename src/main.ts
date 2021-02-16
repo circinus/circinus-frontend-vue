@@ -31,10 +31,10 @@ Vue.config.productionTip = false;
 Vue.config.productionTip = false;
 
 authModule.attempt(localStorage.getItem('token')).then(() => {
-  new Vue({
-    router,
-    i18n,
-    store,
-    render: h => h(App)
-  }).$mount('#app')
+    new Vue({
+        router,
+        i18n,
+        store,
+        render: h => h(App)
+    }).$mount('#app');
 });
