@@ -1,6 +1,6 @@
 <template>
     <div>
-        <LoadComponent module="getList">
+        <ComponentLoader module="getList">
 
             <div class="row">
                 <div class="col-md-12 text-center">
@@ -67,7 +67,7 @@
                     </div>
                 </div>
             </div>
-        </LoadComponent>
+        </ComponentLoader>
     </div>
 </template>
 
@@ -84,6 +84,7 @@ import { IPermission } from '@/store/modules/permissions/IPermission';
     }
 })
 export default class CommunityStaff extends Vue implements ComponentOptions<Vue> {
+    private title = process.env.VUE_APP_TITLE;
     @Getter('permissions/list') public list!: Array<IPermission>;
 
     public created(): void {

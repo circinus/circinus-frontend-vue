@@ -97,6 +97,7 @@ import ArticleComments from '@/components/Article/ArticleComments.vue';
 import Modal from '@/components/Modal.vue';
 import { ComponentOptions } from 'vue';
 import { IGetCommentCriteria } from '@/store/modules/articles/IGetCommentCriteria';
+import { INewComment } from '@/store/modules/home/INewComment';
 
 @Component({
     components: {
@@ -110,7 +111,7 @@ export default class ArticleContent extends Vue implements ComponentOptions<Vue>
     @Prop() private articles!: Array<IArticle>;
     @Getter('auth/authenticated') private authenticated!: boolean;
     @Getter('articles/comments') private articleComments!: Array<IComment>;
-    @Action('articles/storeComment') storeComment!: (form: e) => Promise<AxiosResponse | undefined>;
+    @Action('articles/storeComment') storeComment!: (form: INewComment) => Promise<AxiosResponse | undefined>;
     public $refs!: {
         articleComment: Modal;
     }
@@ -129,7 +130,7 @@ export default class ArticleContent extends Vue implements ComponentOptions<Vue>
 
     public created(): void {
         bus.$on('saveModal', () => {
-            const formData: { content: string; article_id: number; } = {
+            const formData: INewComment = {
                 content: this.articleComment,
                 article_id: this.article.id
             };

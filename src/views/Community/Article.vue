@@ -1,13 +1,13 @@
 <template>
     <div>
-        <LoadComponent module="getArticle">
+        <ComponentLoader module="getArticle">
             <article-content
                 v-if="article"
                 :article="article"
                 :articles="articles"
             >
             </article-content>
-        </LoadComponent>
+        </ComponentLoader>
     </div>
 </template>
 

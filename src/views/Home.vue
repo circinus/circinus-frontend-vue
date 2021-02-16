@@ -9,7 +9,7 @@
                 </div>
             </div>
 
-            <LoadComponent module="getArticles">
+            <ComponentLoader module="getArticles">
                 <div class="row">
                     <articles
                         v-for="(article, index) in articles"
@@ -19,7 +19,7 @@
                     >
                     </articles>
                 </div>
-            </LoadComponent>
+            </ComponentLoader>
 
         </section>
 
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <LoadComponent module="getPhotos">
+            <ComponentLoader module="getPhotos">
                 <div class="row">
                     <photos
                         v-for="(photos, index) in photos"
@@ -41,7 +41,7 @@
                     >
                     </photos>
                 </div>
-            </LoadComponent>
+            </ComponentLoader>
         </section>
     </div>
 </template>

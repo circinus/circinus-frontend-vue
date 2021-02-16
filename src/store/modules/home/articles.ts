@@ -7,6 +7,7 @@ import { IUser } from '@/store/modules/user/IUser';
 import { IResponse } from '@/helpers/IResponse';
 import { AxiosResponse } from 'axios';
 import { IGetCommentCriteria } from '@/store/modules/articles/IGetCommentCriteria';
+import { INewComment } from '@/store/modules/home/INewComment';
 
 export interface IState {
     article: IArticle | null;
@@ -79,7 +80,7 @@ const articles: Module<IState, IRootState> = {
             });
         },
 
-        async storeComment({ getters }: ActionContext<IState, IRootState>, form): Promise<AxiosResponse | undefined> {
+        async storeComment({ getters }: ActionContext<IState, IRootState>, form: INewComment): Promise<AxiosResponse | undefined> {
             const comment = getters.comments.slice(-1)[0];
 
             if (comment !== undefined &&
