@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
 import auth from './modules/user/auth';
 import votes from './modules/user/votes';
@@ -17,21 +17,21 @@ Vue.use(Vuex);
 export type IRootState = unknown;
 
 export default new Vuex.Store<IRootState>({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-      auth,
-      notifications,
-      articles,
-      photos,
-      register,
-      client,
-      votes,
-      loader,
-      permissions
-  }
-})
+    state: {
+    },
+    mutations: {
+    },
+    actions: {
+    },
+    modules: {
+        auth,
+        notifications,
+        articles,
+        photos,
+        register,
+        client,
+        votes,
+        loader,
+        permissions
+    }
+});

@@ -13,14 +13,14 @@ iziToast.settings({
     layout: 2,
     position: 'topRight',
     maxWidth: 260
-})
+});
 
 export default function install(): void {
     Object.defineProperties(Vue.prototype, {
         $iziToast: {
-            get () {
-                return iziToast
+            get() {
+                return iziToast;
             }
         }
-    })
+    });
 }

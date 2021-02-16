@@ -1,5 +1,5 @@
-import api from "@/helpers/api";
-import { environment } from "../../../../environment";
+import api from '@/helpers/api';
+import { environment } from '../../../../environment';
 import { ActionContext, Module } from 'vuex';
 import { IUser } from '@/store/modules/user/IUser';
 import { IRootState } from '@/store';
@@ -50,29 +50,29 @@ const auth: Module<IAuthState, IRootState> = {
 
     actions: {
         async signIn({ dispatch }: ActionContext<IAuthState, IRootState>, credentials: ICredentials): Promise<void> {
-            let response = await api.post('login', credentials);
-            return dispatch('attempt', response.data.token)
+            const response = await api.post('login', credentials);
+            return dispatch('attempt', response.data.token);
         },
 
         async register({ dispatch }: ActionContext<IAuthState, IRootState>, form): Promise<void> {
-            let response = await api.post('register', form);
-            return dispatch('attempt', response.data.token)
+            const response = await api.post('register', form);
+            return dispatch('attempt', response.data.token);
         },
 
         async attempt(
             { commit, state, dispatch }: ActionContext<IAuthState, IRootState>,
             token: string
         ): Promise<void> {
-            if(token) {
-                commit(AuthTypes.SET_TOKEN, token)
+            if (token) {
+                commit(AuthTypes.SET_TOKEN, token);
             }
 
-            if(!state.token) {
-                return
+            if (!state.token) {
+                return;
             }
 
             try {
-                let response = await api.get<ICurrencyResponse>('user');
+                const response = await api.get<ICurrencyResponse>('user');
 
                 response.data.currencies = response.data.currencies.map((item: ICurrency) => ({
                     ...item,
@@ -80,8 +80,8 @@ const auth: Module<IAuthState, IRootState> = {
                         .filter((k: string): boolean => environment.POINTS[k] === item.type).toString()
                 }));
 
-                dispatch('votes/total', null, { root:true })
-                commit(AuthTypes.SET_USER, response.data)
+                dispatch('votes/total', null, { root: true });
+                commit(AuthTypes.SET_USER, response.data);
             } catch (e) {
                 commit(AuthTypes.SET_TOKEN, null);
                 commit(AuthTypes.SET_USER, null);
@@ -90,11 +90,11 @@ const auth: Module<IAuthState, IRootState> = {
 
         signOut({ commit }: ActionContext<IAuthState, IRootState>): Promise<void> {
             return api.post('logout').then(() => {
-                commit(AuthTypes.SET_TOKEN, null)
-                commit(AuthTypes.SET_TOKEN, null)
-            })
+                commit(AuthTypes.SET_TOKEN, null);
+                commit(AuthTypes.SET_TOKEN, null);
+            });
         }
     }
-}
+};
 
 export default auth;

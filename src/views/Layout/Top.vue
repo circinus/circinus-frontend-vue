@@ -11,19 +11,21 @@
                         <div class="col user--statics">
                             <div class="icon icon--credits"></div>
                             <div class="pt-1" style="margin-left: 50px;">
-                                <div class="font-weight-bold">{{user.credits}}</div> <span>CREDITS</span>
+                                <div class="font-weight-bold">{{ user.credits }}</div>
+                                <span>CREDITS</span>
                             </div>
                         </div>
                         <div v-for="currency in user.currencies" :key="currency.name" class="col user--statics">
                             <div class="icon" :class="'icon--' + currency.name"></div>
                             <div class="pt-1" style="margin-left: 50px;">
-                                <div class="font-weight-bold">{{currency.amount}}</div> <span>{{ currency.name }}</span>
+                                <div class="font-weight-bold">{{ currency.amount }}</div>
+                                <span>{{ currency.name }}</span>
                             </div>
                         </div>
                     </div>
                 </ul>
 
-                <Login />
+                <Login/>
             </div>
         </div>
     </nav>
@@ -45,4 +47,3 @@ export default class Top extends Vue {
     @Getter('auth/user') private user!: IUser;
 }
 </script>
-

@@ -1,4 +1,4 @@
-import router from "../../router";
+import router from '../../router';
 import { ActionContext, Module } from 'vuex';
 import { IRootState } from '@/store';
 
@@ -30,10 +30,10 @@ const loader: Module<IState, IRootState> = {
         },
         [LoaderTypes.CHANGE_IDENTIFIER](state: IState, payload: IIdentifier): void {
             const item = state.identifier.find((item: IIdentifier): boolean => item.module === payload.module);
-            if(item) {
+            if (item) {
                 Object.assign(item, { loading: false });
             }
-        },
+        }
     },
 
     getters: {
@@ -43,26 +43,25 @@ const loader: Module<IState, IRootState> = {
                     return false;
                 }
 
-                const result = state.identifier.find((identifier: IIdentifier) => identifier.module === module)
+                const result = state.identifier.find((identifier: IIdentifier) => identifier.module === module);
                 return result ? result.loading : false;
-            }
+            };
         }
     },
 
     actions: {
-        add({commit}: ActionContext<IState, IRootState>, action: IIdentifier): void {
-            commit('ADD_IDENTIFIER', action)
+        add({ commit }: ActionContext<IState, IRootState>, action: IIdentifier): void {
+            commit('ADD_IDENTIFIER', action);
         },
-        change({commit}: ActionContext<IState, IRootState>, action: IIdentifier): void {
-
+        change({ commit }: ActionContext<IState, IRootState>, action: IIdentifier): void {
             const parameters = {
                 route: router.currentRoute.name,
                 module: action
-            }
+            };
 
-            commit(LoaderTypes.CHANGE_IDENTIFIER, parameters)
-        },
+            commit(LoaderTypes.CHANGE_IDENTIFIER, parameters);
+        }
     }
-}
+};
 
 export default loader;

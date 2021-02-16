@@ -13,4 +13,3 @@ declare module 'vue/types/vue' {
         $iziToast: IziToast;
     }
 }
-

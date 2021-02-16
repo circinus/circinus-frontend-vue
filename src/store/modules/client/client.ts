@@ -1,4 +1,4 @@
-import router from '../../../router'
+import router from '../../../router';
 import api from '../../../helpers/api';
 import { ActionContext, Module } from 'vuex';
 import { IRootState } from '@/store';
@@ -37,7 +37,7 @@ const client: Module<IState, IRootState> = {
 
     mutations: {
         [ClientTypes.APPEND_CHANGE_LOADED](state: IState, loaded: boolean): void {
-            state.clientLoaded = loaded
+            state.clientLoaded = loaded;
         },
         [ClientTypes.APPEND_CHANGE_URL](state: IState, url: string): void {
             state.lastUrl = url;
@@ -49,22 +49,21 @@ const client: Module<IState, IRootState> = {
 
     actions: {
         setClient({ commit, state }: ActionContext<IState, IRootState>, loaded: boolean): void {
-
-            commit(ClientTypes.APPEND_CHANGE_LOADED, loaded)
-            commit(ClientTypes.APPEND_CHANGE_URL, router.currentRoute.name)
+            commit(ClientTypes.APPEND_CHANGE_LOADED, loaded);
+            commit(ClientTypes.APPEND_CHANGE_URL, router.currentRoute.name);
 
             if (state.clientLoaded) {
-                router.replace({ name: 'hotel' })
+                router.replace({ name: 'hotel' });
             } else {
                 if (state.lastUrl === 'hotel') {
-                    state.lastUrl = 'home'
+                    state.lastUrl = 'home';
                 }
-                router.replace({ name: state.lastUrl || '' })
+                router.replace({ name: state.lastUrl || '' });
             }
         },
 
         setActive({ commit }: ActionContext<IState, IRootState>, active: boolean) {
-            commit(ClientTypes.APPEND_PAGE_ACTIVE, active)
+            commit(ClientTypes.APPEND_PAGE_ACTIVE, active);
         },
 
         async setTicket(): Promise<ITicketResponse> {
@@ -74,6 +73,6 @@ const client: Module<IState, IRootState> = {
                 });
         }
     }
-}
+};
 
 export default client;
