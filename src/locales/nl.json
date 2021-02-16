@@ -42,15 +42,8 @@
       "react_on": "Reageren op nieuwsbericht"
     },
     "footer": {
-      "credits": "© 2021 door Raizer & Highrun",
+      "credits": "© 2021 door Raizer & Eran",
       "description": "Alle rechten voorbehouden"
-    }
-  },
-  "client": {
-    "flash_detected": {
-      "message": "OH BOLLOCKS!",
-      "description": "Click {url} and then on \"Activate Flash\" as soon as you are prompted to do so . See you soon!",
-      "here": "here"
     }
   }
 }

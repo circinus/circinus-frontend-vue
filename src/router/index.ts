@@ -9,6 +9,7 @@ import middlewarePipeline from './middleware/middlewarePipeline';
 
 // Commmunity
 import { IContext } from '@/router/IContext';
+import Community from '@/views/Community/Home.vue';
 import CommunityStaff from '@/views/Community/Staff.vue';
 import Home from '@/views/Home.vue';
 import Register from '@/views/Auth/Register.vue';
@@ -44,9 +45,12 @@ const router = new Router({
             }
         },
         {
-            path: '/community/staff',
-            name: 'staff',
-            component: CommunityStaff
+            path: '/community',
+            name: 'community',
+            component: Community,
+            children: [
+                { path: '/community/staff', name: 'communityStaff', component: CommunityStaff }
+            ]
         },
         {
             path: '/hotel',
