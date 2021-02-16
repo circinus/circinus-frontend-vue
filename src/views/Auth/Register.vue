@@ -70,13 +70,17 @@
                                                 </div>
                                             </ValidationProvider>
 
-                                            <ValidationProvider name="gender" rules="required"
-                                                                v-slot="{ classes, errors }">
+                                            <ValidationProvider name="gender" rules="required">
                                                 <select class="form-control display" v-model="form.gender"
                                                         @change="changeGender($event)">
                                                     <option value="" :selected="true" disabled>Gender</option>
-                                                    <option v-for="gender in genders" :value="gender.value"
-                                                            :data-gender="gender.gender">{{ gender.text }}
+                                                    <option
+                                                        v-for="gender in genders"
+                                                        :value="gender.value"
+                                                        :key="gender.value"
+                                                        :data-gender="gender.gender"
+                                                    >
+                                                        {{ gender.text }}
                                                     </option>
                                                 </select>
                                             </ValidationProvider>
@@ -140,11 +144,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator';
 
-import { Action, State } from 'vuex-class'
-import { INewUser } from '@/store/modules/user/INewUser'
-import Looks from '@/components/Auth/Register/Looks.vue'
+import { Action, State } from 'vuex-class';
+import { INewUser } from '@/store/modules/user/INewUser';
+import Looks from '@/components/Auth/Register/Looks.vue';
 
 @Component({
     components: {
@@ -176,37 +180,37 @@ export default class Register extends Vue {
         this.register(this.form).then(() => {
             this.$router.replace({
                 name: 'dashboard'
-            })
-        })
+            });
+        });
     }
 
     private preLoad(): void {
         if (this.avatarPreload > 0) {
             setTimeout(() => {
-                this.avatarPreload -= 1
-                this.preLoad()
-            }, 50)
+                this.avatarPreload -= 1;
+                this.preLoad();
+            }, 50);
         } else {
-            this.avatarPreload = 8
+            this.avatarPreload = 8;
         }
     }
 
     private changeAvatar(chosenLook: string): void {
         if (this.form.look === chosenLook) {
-            return
+            return;
         }
 
-        this.form.look = chosenLook
-        this.preLoad()
+        this.form.look = chosenLook;
+        this.preLoad();
     }
 
     private changeGender(event: Event) {
         // @ts-ignore
         this.look(event.target.selectedOptions[0].dataset.gender).then((response) => {
-            this.form.look = response[1] ?? response[5]
-            this.looks = response
-            this.preLoad()
-        })
+            this.form.look = response[1] ?? response[5];
+            this.looks = response;
+            this.preLoad();
+        });
     }
 }
 </script>

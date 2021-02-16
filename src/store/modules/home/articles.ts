@@ -6,6 +6,7 @@ import { IComment } from '@/store/modules/home/IComment';
 import { IUser } from '@/store/modules/user/IUser';
 import { IResponse } from '@/helpers/IResponse';
 import { AxiosResponse } from 'axios';
+import { IGetCommentCriteria } from '@/store/modules/articles/IGetCommentCriteria';
 
 export interface IState {
     article: IArticle | null;
@@ -70,7 +71,7 @@ const articles: Module<IState, IRootState> = {
                 });
         },
 
-        async getComments({ commit }: ActionContext<IState, IRootState>, form): Promise<void> {
+        async getComments({ commit }: ActionContext<IState, IRootState>, form: IGetCommentCriteria): Promise<void> {
             await api.get<IResponse<Array<IComment>>>(
                 'comments/' + form.id + '/list/' + form.page + '/' + form.offset + ''
             ).then((response: AxiosResponse<IResponse<Array<IComment>>>): void => {

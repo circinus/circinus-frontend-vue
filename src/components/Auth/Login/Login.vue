@@ -56,11 +56,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { Action, Getter } from 'vuex-class'
-import { ICredentials } from '@/store/modules/user/auth'
-import { IUser } from '@/store/modules/user/IUser'
-import ComponentLoader from '@/components/ComponentLoader.vue'
+import { Component, Vue } from 'vue-property-decorator';
+import { Action, Getter } from 'vuex-class';
+import { ICredentials } from '@/store/modules/user/auth';
+import { IUser } from '@/store/modules/user/IUser';
+import ComponentLoader from '@/components/ComponentLoader.vue';
 
 @Component({
     components: {
@@ -82,14 +82,14 @@ export default class Login extends Vue {
         this.signIn(this.form).then(() => {
             this.$router.replace({
                 name: 'dashboard'
-            })
-        })
+            });
+        });
     }
 
     private signOut() {
         this.signOutAction().then(() => {
-            this.$router.push('/')
-        })
+            this.$router.push('/');
+        });
     }
 }
 </script>

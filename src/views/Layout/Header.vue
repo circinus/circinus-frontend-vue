@@ -16,10 +16,10 @@
 </template>
 
 <script lang="ts">
-import bus from '@/helpers/bus'
-import { Component, Vue } from 'vue-property-decorator'
-import { Action, Getter } from 'vuex-class'
-import { IUser } from '@/store/modules/user/IUser'
+import bus from '@/helpers/bus';
+import { Component, Vue } from 'vue-property-decorator';
+import { Action, Getter } from 'vuex-class';
+import { IUser } from '@/store/modules/user/IUser';
 
 @Component
 export default class Header extends Vue {
@@ -29,8 +29,8 @@ export default class Header extends Vue {
     @Action('client/setClient') private setClient!: (loaded: boolean) => void;
 
     private toggleClientLoader() {
-        this.setClient(!this.client)
-        bus.$emit('loadClient')
+        this.setClient(!this.client);
+        bus.$emit('loadClient');
     }
 }
 </script>

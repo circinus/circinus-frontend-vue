@@ -72,23 +72,22 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { ComponentOptions } from 'vue'
-import { Getter } from 'vuex-class'
-import ComponentLoader from '@/components/ComponentLoader.vue'
-import LoadComponent from '@/components/ComponentLoader.vue'
+import { Component, Vue } from 'vue-property-decorator';
+import { ComponentOptions } from 'vue';
+import { Getter } from 'vuex-class';
+import ComponentLoader from '@/components/ComponentLoader.vue';
+import { IPermission } from '@/store/modules/permissions/IPermission';
 
 @Component({
     components: {
-        LoadComponent,
         ComponentLoader
     }
 })
 export default class CommunityStaff extends Vue implements ComponentOptions<Vue> {
-    @Getter('permissions/list') public list!: Array<any>;
+    @Getter('permissions/list') public list!: Array<IPermission>;
 
     public created(): void {
-        this.$store.dispatch('permissions/getStafflist')
+        this.$store.dispatch('permissions/getStafflist');
     }
 }
 </script>

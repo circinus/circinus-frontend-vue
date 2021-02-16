@@ -14,8 +14,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IComment } from '@/store/modules/home/IComment'
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { IComment } from '@/store/modules/home/IComment';
 
 @Component
 export default class ArticleComments extends Vue {

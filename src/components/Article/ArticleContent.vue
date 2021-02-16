@@ -86,16 +86,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IArticle } from '@/store/modules/home/IArticle'
-import bus from '@/helpers/bus'
-import { Action, Getter } from 'vuex-class'
-import { IComment } from '@/store/modules/home/IComment'
-import { AxiosResponse } from 'axios'
-import ArticleSidebar from '@/components/Article/ArticleSidebar.vue'
-import ArticleComments from '@/components/Article/ArticleComments.vue'
-import Modal from '@/components/Modal.vue'
-import { ComponentOptions } from 'vue'
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { IArticle } from '@/store/modules/home/IArticle';
+import bus from '@/helpers/bus';
+import { Action, Getter } from 'vuex-class';
+import { IComment } from '@/store/modules/home/IComment';
+import { AxiosResponse } from 'axios';
+import ArticleSidebar from '@/components/Article/ArticleSidebar.vue';
+import ArticleComments from '@/components/Article/ArticleComments.vue';
+import Modal from '@/components/Modal.vue';
+import { ComponentOptions } from 'vue';
+import { IGetCommentCriteria } from '@/store/modules/articles/IGetCommentCriteria';
 
 @Component({
     components: {
@@ -109,12 +110,12 @@ export default class ArticleContent extends Vue implements ComponentOptions<Vue>
     @Prop() private articles!: Array<IArticle>;
     @Getter('auth/authenticated') private authenticated!: boolean;
     @Getter('articles/comments') private articleComments!: Array<IComment>;
-    @Action('articles/storeComment') storeComment!: (form: any) => Promise<AxiosResponse | undefined>;
+    @Action('articles/storeComment') storeComment!: (form: e) => Promise<AxiosResponse | undefined>;
     public $refs!: {
         articleComment: Modal;
     }
 
-    private comment = {
+    private comment: IGetCommentCriteria = {
         id: this.article.id,
         page: 1,
         offset: 8
@@ -123,7 +124,7 @@ export default class ArticleContent extends Vue implements ComponentOptions<Vue>
     private articleComment = '';
 
     public mounted(): void {
-        this.getComments()
+        this.getComments();
     }
 
     public created(): void {
@@ -131,17 +132,17 @@ export default class ArticleContent extends Vue implements ComponentOptions<Vue>
             const formData: { content: string; article_id: number; } = {
                 content: this.articleComment,
                 article_id: this.article.id
-            }
+            };
 
             this.storeComment(formData).then(() => {
-                this.getComments()
-                this.$refs.articleComment.openClose()
-            })
-        })
+                this.getComments();
+                this.$refs.articleComment.openClose();
+            });
+        });
     }
 
     private getComments(): void {
-        this.$store.dispatch('articles/getComments', this.comment)
+        this.$store.dispatch('articles/getComments', this.comment);
     }
 }
 </script>

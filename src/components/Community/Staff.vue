@@ -48,15 +48,13 @@
 
 <script lang="ts">
 
-import { Component, Vue } from 'vue-property-decorator'
-import { IPermission } from '@/store/modules/permissions/IPermission'
-import { Getter } from 'vuex-class'
-import ComponentLoader from '@/components/ComponentLoader.vue'
-import LoadComponent from '@/components/ComponentLoader.vue'
+import { Component, Vue } from 'vue-property-decorator';
+import { IPermission } from '@/store/modules/permissions/IPermission';
+import { Getter } from 'vuex-class';
+import ComponentLoader from '@/components/ComponentLoader.vue';
 
 @Component({
     components: {
-        LoadComponent,
         ComponentLoader
     }
 })
@@ -65,7 +63,7 @@ export default class Staff extends Vue {
     @Getter('permissions/list') private list: Array<IPermission> = [];
 
     public created(): void {
-        this.$store.dispatch('permissions/getStafflist')
+        this.$store.dispatch('permissions/getStafflist');
     }
 }
 </script>

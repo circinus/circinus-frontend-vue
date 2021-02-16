@@ -19,11 +19,11 @@
 </template>
 
 <script lang="ts">
-import Component from 'vue-class-component'
-import { Prop, Vue } from 'vue-property-decorator'
-import { Action, Getter } from 'vuex-class'
-import { ComponentOptions } from 'vue'
-import { IIdentifier } from '@/store/modules/loader'
+import Component from 'vue-class-component';
+import { Prop, Vue } from 'vue-property-decorator';
+import { Action, Getter } from 'vuex-class';
+import { ComponentOptions } from 'vue';
+import { IIdentifier } from '@/store/modules/loader';
 
 @Component
 export default class ComponentLoader extends Vue implements ComponentOptions<Vue> {
@@ -39,13 +39,13 @@ export default class ComponentLoader extends Vue implements ComponentOptions<Vue
             component: this.$route.name,
             module: this.module,
             loading: true
-        })
+        });
     }
 
     public created(): void {
         setTimeout(() => {
-            this.timeout = false
-        }, this.seconds)
+            this.timeout = false;
+        }, this.seconds);
     }
 }
 </script>

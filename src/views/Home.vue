@@ -47,19 +47,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import Articles from '@/components/Home/Dashboard/Articles.vue'
-import { Getter } from 'vuex-class'
-import { IArticle } from '@/store/modules/home/IArticle'
-import { ComponentOptions } from 'vue'
-import Photos from '@/components/Home/Dashboard/Photos.vue'
-import ComponentLoader from '@/components/ComponentLoader.vue'
-import LoadComponent from '@/components/ComponentLoader.vue'
-import { IPhoto } from '@/store/modules/home/IPhoto'
+import { Component, Vue } from 'vue-property-decorator';
+import Articles from '@/components/Home/Dashboard/Articles.vue';
+import { Getter } from 'vuex-class';
+import { IArticle } from '@/store/modules/home/IArticle';
+import { ComponentOptions } from 'vue';
+import Photos from '@/components/Home/Dashboard/Photos.vue';
+import ComponentLoader from '@/components/ComponentLoader.vue';
+import { IPhoto } from '@/store/modules/home/IPhoto';
 
 @Component({
     components: {
-        LoadComponent,
         Articles,
         Photos,
         ComponentLoader
@@ -70,8 +68,8 @@ export default class Home extends Vue implements ComponentOptions<Vue> {
     @Getter('photos/photos') private photos!: Array<IPhoto>;
 
     public mounted(): void {
-        this.$store.dispatch('articles/getArticles')
-        this.$store.dispatch('photos/setPhotos')
+        this.$store.dispatch('articles/getArticles');
+        this.$store.dispatch('photos/setPhotos');
     }
 }
 </script>

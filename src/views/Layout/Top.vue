@@ -32,10 +32,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { Getter } from 'vuex-class'
-import { IUser } from '@/store/modules/user/IUser'
-import Login from '@/components/Auth/Login/Login.vue'
+import { Component, Vue } from 'vue-property-decorator';
+import { Getter } from 'vuex-class';
+import { IUser } from '@/store/modules/user/IUser';
+import Login from '@/components/Auth/Login/Login.vue';
 
 @Component({
     components: {

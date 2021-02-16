@@ -51,15 +51,15 @@
 
 <script lang="ts">
 // @ts-ignore
-import * as FlashDetect from 'flash-detect'
-import bus from '@/helpers/bus'
-import { Component, Vue } from 'vue-property-decorator'
-import { Action, Getter } from 'vuex-class'
-import { IUser } from '@/store/modules/user/IUser'
-import { ITicketResponse } from '@/store/modules/client/ITicketResponse'
-import { ComponentOptions } from 'vue'
-import { TranslateResult } from 'vue-i18n'
-import { IPhoto } from '@/store/modules/home/IPhoto'
+import * as FlashDetect from 'flash-detect';
+import bus from '@/helpers/bus';
+import { Component, Vue } from 'vue-property-decorator';
+import { Action, Getter } from 'vuex-class';
+import { IUser } from '@/store/modules/user/IUser';
+import { ITicketResponse } from '@/store/modules/client/ITicketResponse';
+import { ComponentOptions } from 'vue';
+import { TranslateResult } from 'vue-i18n';
+import { IPhoto } from '@/store/modules/home/IPhoto';
 
 @Component
 export default class Client extends Vue implements ComponentOptions<Vue> {
@@ -81,51 +81,51 @@ export default class Client extends Vue implements ComponentOptions<Vue> {
 
     public created(): void {
         bus.$on('loadClient', () => {
-            this.initialize()
-        })
+            this.initialize();
+        });
     }
 
     public mounted(): void {
         if (this.$router.currentRoute.name === 'hotel') {
-            this.setPhotos()
-            this.initialize()
+            this.setPhotos();
+            this.initialize();
         }
     }
 
     private flashDetect(): string {
-        const flashDetected = new FlashDetect()
-        return flashDetected.installed === false ? 'game' : 'game'
+        const flashDetected = new FlashDetect();
+        return flashDetected.installed === false ? 'game' : 'game';
     }
 
     private random(): number {
-        return Math.floor(Math.random() * this.photo.length)
+        return Math.floor(Math.random() * this.photo.length);
     }
 
     private hideClient(): void {
-        this.setClient(!this.client)
+        this.setClient(!this.client);
     }
 
     private getTicket(): Promise<void> {
         return this.setTicket().then((response: ITicketResponse) => {
-            this.ticket = response.ticket
-        })
+            this.ticket = response.ticket;
+        });
     }
 
     private loadClient(): void {
         if (this.active) {
-            return
+            return;
         }
 
         this.getTicket().then(() => {
-            this.hideLoader = false
-        })
-        this.setActive(true)
+            this.hideLoader = false;
+        });
+        this.setActive(true);
     }
 
     private initialize(): void {
-        this.isSessionActive = this.user.online === 1
+        this.isSessionActive = this.user.online === 1;
         if (!this.isSessionActive) {
-            this.loadClient()
+            this.loadClient();
         }
     }
 }

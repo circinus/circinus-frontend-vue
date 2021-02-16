@@ -19,14 +19,14 @@
 </template>
 
 <script lang="ts">
-import '@/assets/css/app.scss'
-import Top from '@/views/Layout/Top.vue'
-import Navigation from '@/views/Layout/Navigation.vue'
-import Header from '@/views/Layout/Header.vue'
-import { Component, Vue } from 'vue-property-decorator'
-import Client from '@/components/Client/Client.vue'
-import Notifications from '@/components/Notifications.vue'
-import Footer from '@/views/Layout/Footer.vue'
+import '@/assets/css/app.scss';
+import Top from '@/views/Layout/Top.vue';
+import Navigation from '@/views/Layout/Navigation.vue';
+import Header from '@/views/Layout/Header.vue';
+import { Component, Vue } from 'vue-property-decorator';
+import Client from '@/components/Client/Client.vue';
+import Notifications from '@/components/Notifications.vue';
+import Footer from '@/views/Layout/Footer.vue';
 
 @Component({
     components: {

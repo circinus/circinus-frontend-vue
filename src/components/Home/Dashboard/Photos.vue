@@ -43,13 +43,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
-import { Action, Getter } from 'vuex-class'
-import { INewVote } from '@/store/modules/home/INewVote'
-import { IVote } from '@/store/modules/user/votes/IVote'
-import { IVoteType } from '@/store/modules/user/votes/IVoteType'
-import { IVoteEntityType } from '@/store/modules/user/votes/IVoteEntityType'
-import { IPhoto } from '@/store/modules/home/IPhoto'
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Action, Getter } from 'vuex-class';
+import { INewVote } from '@/store/modules/home/INewVote';
+import { IVote } from '@/store/modules/user/votes/IVote';
+import { IVoteType } from '@/store/modules/user/votes/IVoteType';
+import { IVoteEntityType } from '@/store/modules/user/votes/IVoteEntityType';
+import { IPhoto } from '@/store/modules/home/IPhoto';
 
 @Component
 export default class Photos extends Vue {
@@ -62,23 +62,23 @@ export default class Photos extends Vue {
 
     private voted(type: number): string {
         if (this.authenticated) {
-            const voteColor = type === 1 ? 'green' : 'red'
-            return this.exists(this.photo.id, type) ? voteColor : 'black'
+            const voteColor = type === 1 ? 'green' : 'red';
+            return this.exists(this.photo.id, type) ? voteColor : 'black';
         }
 
-        return 'black'
+        return 'black';
     }
 
     private votePhoto(vote: 'likes' | 'dislikes') {
-        const form_data: INewVote = {
+        const formData: INewVote = {
             entity_id: this.photo.id,
             vote_entity: this.EntityType.photo_vote_entity,
             vote_type: this.VoteType[vote]
-        }
+        };
 
-        this.setVote(form_data).then(() => {
-            this.photo[vote] = this.photo[vote] + 1
-        })
+        this.setVote(formData).then(() => {
+            this.photo[vote] = this.photo[vote] + 1;
+        });
     }
 }
 </script>

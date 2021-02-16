@@ -33,8 +33,8 @@
 
 <script lang="ts">
 // @ts-ignore
-import DropdownMenu from '@innologica/vue-dropdown-menu'
-import { Component, Vue } from 'vue-property-decorator'
+import DropdownMenu from '@innologica/vue-dropdown-menu';
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
     components: {
