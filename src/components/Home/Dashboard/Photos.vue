@@ -3,8 +3,8 @@
         <div class="news--info d-flex flex-row align-items-center mb-3">
             <div class="user--rounded-image bg-white mr-2">
                 <img
-                    v-bind:src="'https://www.habbo.com/habbo-imaging/avatarimage?figure=' + this.photo.user.look + '&action=std&gesture=std&direction=3&head_direction=3'"
-                    alt="necmi"/>
+                    v-bind:src="this.avatarImaging + this.photo.user.look + '&action=std&gesture=std&direction=3&head_direction=3'"
+                    :alt="this.photo.user.username"/>
             </div>
 
             <div class="flex-fill d-inline-flex flex-column">
@@ -50,9 +50,11 @@ import { IVote } from '@/store/modules/user/votes/IVote';
 import { IVoteType } from '@/store/modules/user/votes/IVoteType';
 import { IVoteEntityType } from '@/store/modules/user/votes/IVoteEntityType';
 import { IPhoto } from '@/store/modules/home/IPhoto';
+import { environment } from '../../../../environment';
 
 @Component
 export default class Photos extends Vue {
+    private avatarImaging = environment.SITE.IMAGING
     @Prop({ required: true }) private photo!: IPhoto;
     @Getter('auth/authenticated') private authenticated!: boolean;
     @Getter('votes/EntityType') private EntityType!: IVoteEntityType;

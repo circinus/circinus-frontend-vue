@@ -42,9 +42,10 @@
             <div class="dropdown">
                 <button type="button" class="btn btn--light-dark dropdown-toggle" data-toggle="dropdown">
                     <img
-                        src="https://habbo.com.br/habbo-imaging/avatarimage?figure=hr-802-37.hd-185-1.ch-804-82.lg-280-73.sh-3068-1408-1408.wa-2001&amp;gesture=sml&size=s&amp;headonly=1"
-                        alt="Raizers" class="pixelated">
-                    {{ user.username }}
+                        :src="this.avatarImaging + this.user.look + '&amp;gesture=sml&size=s&amp;headonly=1'"
+                        :alt="this.user.username" class="pixelated"
+                    >
+                    {{ this.user.username }}
                 </button>
                 <div class="dropdown-menu">
                     <router-link class="dropdown-item" :to="{ name: 'logout' }" v-on:click.native="signOut"
@@ -61,6 +62,7 @@ import { Action, Getter } from 'vuex-class';
 import { ICredentials } from '@/store/modules/user/auth';
 import { IUser } from '@/store/modules/user/IUser';
 import ComponentLoader from '@/components/ComponentLoader.vue';
+import { environment } from '../../../../environment';
 
 @Component({
     components: {
@@ -68,6 +70,7 @@ import ComponentLoader from '@/components/ComponentLoader.vue';
     }
 })
 export default class Login extends Vue {
+    private avatarImaging = environment.SITE.IMAGING
     @Getter('auth/authenticated') private authenticated!: boolean;
     @Action('auth/signIn') private signIn!: (credentials: ICredentials) => Promise<void>;
     @Action('auth/signOut') private signOutAction!: () => Promise<void>;

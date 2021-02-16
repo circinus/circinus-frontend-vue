@@ -15,7 +15,7 @@
                     <div class="card-header d-inline-flex align-items-center flex-row px-0">
                         <div class="author--look mr-2">
                             <img class="looks"
-                                 v-bind:src="'https://www.habbo.com.tr/habbo-imaging/avatarimage?figure=' + this.article.user.look + '&amp;action=std&amp;direction=2&amp;head_direction=2&amp;img_format=png&amp;gesture=std&amp;headonly=0&amp;size=s'"
+                                 v-bind:src=" this.avatarImaging + this.article.user.look + '&amp;action=std&amp;direction=2&amp;head_direction=2&amp;img_format=png&amp;gesture=std&amp;headonly=0&amp;size=s'"
                                  :alt="this.article.user.look"/>
                         </div>
                         <span class="mr-2 flex-fill" style="font-size: 15px;">{{ this.article.user.username }}</span>
@@ -99,6 +99,7 @@ import { ComponentOptions } from 'vue';
 import { IGetCommentCriteria } from '@/store/modules/articles/IGetCommentCriteria';
 import { INewComment } from '@/store/modules/home/INewComment';
 import ComponentLoader from '@/components/ComponentLoader.vue';
+import { environment } from '../../../environment';
 
 @Component({
     components: {
@@ -109,6 +110,8 @@ import ComponentLoader from '@/components/ComponentLoader.vue';
     }
 })
 export default class ArticleContent extends Vue implements ComponentOptions<Vue> {
+    private avatarImaging = environment.SITE.IMAGING
+
     @Prop({ required: true }) private article!: IArticle;
     @Prop() private articles!: Array<IArticle>;
     @Getter('auth/authenticated') private authenticated!: boolean;
