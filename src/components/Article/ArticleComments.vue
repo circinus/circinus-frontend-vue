@@ -20,7 +20,7 @@ import { environment } from '../../../environment';
 
 @Component
 export default class ArticleComments extends Vue {
-    private avatarImaging = environment.SITE.IMAGING;
+    private avatarImaging = environment.SITE.FIGUREIMAGING;
     @Prop() private comment!: IComment;
 }
 </script>

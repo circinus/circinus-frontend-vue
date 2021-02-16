@@ -110,7 +110,7 @@ import { environment } from '../../../environment';
     }
 })
 export default class ArticleContent extends Vue implements ComponentOptions<Vue> {
-    private avatarImaging = environment.SITE.IMAGING
+    private avatarImaging = environment.SITE.FIGUREIMAGING
 
     @Prop({ required: true }) private article!: IArticle;
     @Prop() private articles!: Array<IArticle>;

@@ -1,6 +1,9 @@
 export interface IEnvironment {
     SITE: {
-        IMAGING: string;
+        API: string;
+        NITROPATH: string;
+        FIGUREIMAGING: string;
+        BADGEMIMAGING: string;
     };
     POINTS: {
         [key: string]: number;
@@ -8,7 +11,10 @@ export interface IEnvironment {
 }
 export const environment: IEnvironment = {
     SITE: {
-        IMAGING: 'https://www.habbo.com.tr/habbo-imaging/avatarimage?figure='
+        API: 'https://api.circinus.dev/en/',
+        NITROPATH: 'https://client.circinus.dev',
+        FIGUREIMAGING: 'https://www.habbo.com.tr/habbo-imaging/avatarimage?figure=',
+        BADGEMIMAGING: 'https://client.circinus.dev/assets/c_images/album1584'
     },
     POINTS: {
         DUCKETS: 0,

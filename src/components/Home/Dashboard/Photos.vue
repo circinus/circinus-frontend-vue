@@ -54,7 +54,7 @@ import { environment } from '../../../../environment';
 
 @Component
 export default class Photos extends Vue {
-    private avatarImaging = environment.SITE.IMAGING
+    private avatarImaging = environment.SITE.FIGUREIMAGING
     @Prop({ required: true }) private photo!: IPhoto;
     @Getter('auth/authenticated') private authenticated!: boolean;
     @Getter('votes/EntityType') private EntityType!: IVoteEntityType;

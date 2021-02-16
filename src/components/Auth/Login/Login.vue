@@ -70,7 +70,7 @@ import { environment } from '../../../../environment';
     }
 })
 export default class Login extends Vue {
-    private avatarImaging = environment.SITE.IMAGING
+    private avatarImaging = environment.SITE.FIGUREIMAGING
     @Getter('auth/authenticated') private authenticated!: boolean;
     @Action('auth/signIn') private signIn!: (credentials: ICredentials) => Promise<void>;
     @Action('auth/signOut') private signOutAction!: () => Promise<void>;
