@@ -1,10 +1,11 @@
 <template>
+    <div />
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { ComponentOptions } from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
-import { ComponentOptions } from 'vue';
+
 import { INotification } from '@/store/modules/notifications/INotification';
 
 @Component
@@ -16,7 +17,7 @@ export default class Notification extends Vue implements ComponentOptions<Vue> {
             this.$iziToast.success({
                 title: 'Success!',
                 message: this.notification.text,
-                icon: "fas fa fa-check-circle",
+                icon: 'fas fa fa-check-circle',
                 balloon: false,
                 close: true,
                 pauseOnHover: true,
@@ -26,7 +27,7 @@ export default class Notification extends Vue implements ComponentOptions<Vue> {
             this.$iziToast.error({
                 title: 'Oops..',
                 message: this.notification.text,
-                icon: "fas fa fa-exclamation-circle",
+                icon: 'fas fa fa-exclamation-circle',
                 balloon: false,
                 close: true,
                 pauseOnHover: true,

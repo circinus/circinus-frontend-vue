@@ -70,13 +70,17 @@
                                                 </div>
                                             </ValidationProvider>
 
-                                            <ValidationProvider name="gender" rules="required"
-                                                                v-slot="{ classes, errors }">
+                                            <ValidationProvider name="gender" rules="required">
                                                 <select class="form-control display" v-model="form.gender"
                                                         @change="changeGender($event)">
                                                     <option value="" :selected="true" disabled>Gender</option>
-                                                    <option v-for="gender in genders" :value="gender.value"
-                                                            :data-gender="gender.gender">{{ gender.text }}
+                                                    <option
+                                                        v-for="gender in genders"
+                                                        :value="gender.value"
+                                                        :key="gender.value"
+                                                        :data-gender="gender.gender"
+                                                    >
+                                                        {{ gender.text }}
                                                     </option>
                                                 </select>
                                             </ValidationProvider>
@@ -90,7 +94,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 <div class="col-md-6">
 
@@ -156,9 +159,10 @@ export default class Register extends Vue {
     private avatarPreload = 8;
     private looks: Array<string> = [];
     private genders = [
-        { value: 'M', text: 'Boys', 'gender': 'boys' },
-        { value: 'F', text: 'Girls', 'gender': 'girls' }
+        { value: 'M', text: 'Boys', gender: 'boys' },
+        { value: 'F', text: 'Girls', gender: 'girls' }
     ];
+
     private form: INewUser = {
         username: '',
         password: '',
@@ -167,6 +171,7 @@ export default class Register extends Vue {
         gender: '',
         look: ''
     };
+
     @Action('auth/register') private register!: (user: INewUser) => Promise<void>;
     @Action('register/getLooks') private look!: (gender: string) => Promise<Array<string>>;
     @State('register/looks') private getLooks!: Array<string>;
@@ -175,18 +180,18 @@ export default class Register extends Vue {
         this.register(this.form).then(() => {
             this.$router.replace({
                 name: 'dashboard'
-            })
-        })
+            });
+        });
     }
 
     private preLoad(): void {
         if (this.avatarPreload > 0) {
             setTimeout(() => {
-                this.avatarPreload -= 1
-                this.preLoad()
-            }, 50)
+                this.avatarPreload -= 1;
+                this.preLoad();
+            }, 50);
         } else {
-            this.avatarPreload = 8
+            this.avatarPreload = 8;
         }
     }
 
@@ -196,16 +201,16 @@ export default class Register extends Vue {
         }
 
         this.form.look = chosenLook;
-        this.preLoad()
+        this.preLoad();
     }
 
     private changeGender(event: Event) {
         // @ts-ignore
-      this.look(event.target.selectedOptions[0].dataset.gender).then((response) => {
+        this.look(event.target.selectedOptions[0].dataset.gender).then((response) => {
             this.form.look = response[1] ?? response[5];
             this.looks = response;
-            this.preLoad()
-        })
+            this.preLoad();
+        });
     }
 }
 </script>

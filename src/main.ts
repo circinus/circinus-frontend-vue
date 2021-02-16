@@ -1,33 +1,33 @@
-import { required } from 'vee-validate/dist/rules';
 
-require('./store/modules/user/subscriber');
+import '@babel/polyfill';
+import 'mutationobserver-shim';
 
-import '@babel/polyfill'
-import 'mutationobserver-shim'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
 
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-
-import '@/plugins/fontawesome'
+import '@/plugins/fontawesome';
 import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dist/dropdown';
-import i18n from '@/plugins/i18n'
+import i18n from '@/plugins/i18n';
 
-import interceptorsSetup from '@/helpers/interceptor'
-interceptorsSetup();
+import interceptorsSetup from '@/helpers/interceptor';
 
-import iziToast from './helpers/toaster'
-Vue.use(iziToast);
+import iziToast from './helpers/toaster';
 
 import moment from 'moment';
 import VueMoment from 'vue-moment';
-Vue.use(VueMoment, { moment });
 
 import '@/plugins/validation';
 import { authModule } from '@/store/modules/auth/AuthModule';
 
+require('./store/modules/user/subscriber');
+interceptorsSetup();
+Vue.use(iziToast);
+Vue.use(VueMoment, { moment });
+
+Vue.config.productionTip = false;
 Vue.config.productionTip = false;
 
 authModule.attempt(localStorage.getItem('token')).then(() => {

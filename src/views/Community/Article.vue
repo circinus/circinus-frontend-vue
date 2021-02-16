@@ -1,29 +1,27 @@
 <template>
     <div>
-        <LoadComponent module="getArticle">
-            <article-content
+        <ComponentLoader module="getArticle">
+            <ArticleContent
                 v-if="article"
                 :article="article"
                 :articles="articles"
             >
-            </article-content>
-        </LoadComponent>
+            </ArticleContent>
+        </ComponentLoader>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue } from 'vue-property-decorator';
 import { ComponentOptions } from 'vue';
 
 import { IArticle } from '@/store/modules/home/IArticle';
 import { Getter } from 'vuex-class';
 import ArticleContent from '@/components/Article/ArticleContent.vue';
 import ComponentLoader from '@/components/ComponentLoader.vue';
-import LoadComponent from '@/components/ComponentLoader.vue';
 
 @Component({
     components: {
-        LoadComponent,
         ArticleContent,
         ComponentLoader
     }

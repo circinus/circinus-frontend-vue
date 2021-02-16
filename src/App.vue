@@ -9,7 +9,7 @@
 
         <main class="flex-fill container">
             <Notifications></Notifications>
-            <router-view :key="$route.fullPath" />
+            <router-view :key="$route.fullPath"/>
         </main>
 
         <Client/>
@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import "@/assets/css/app.scss"
+import '@/assets/css/app.scss';
 import Top from '@/views/Layout/Top.vue';
 import Navigation from '@/views/Layout/Navigation.vue';
 import Header from '@/views/Layout/Header.vue';
@@ -27,6 +27,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import Client from '@/components/Client/Client.vue';
 import Notifications from '@/components/Notifications.vue';
 import Footer from '@/views/Layout/Footer.vue';
+
 @Component({
     components: {
         Top,
@@ -37,5 +38,6 @@ import Footer from '@/views/Layout/Footer.vue';
         Client
     }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+}
 </script>

@@ -32,9 +32,9 @@ const notifications: Module<IState, IRootState> = {
 
     getters: {
         list(state: IState): Array<INotification> {
-            return state.list
+            return state.list;
         }
     }
-}
+};
 
 export default notifications;

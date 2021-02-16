@@ -17,13 +17,14 @@
                         <div v-for="currency in authModule.user.currencies" :key="currency.name" class="col user--statics">
                             <div class="icon" :class="'icon--' + currency.name"></div>
                             <div class="pt-1" style="margin-left: 50px;">
-                                <div class="font-weight-bold">{{currency.amount}}</div> <span>{{ currency.name }}</span>
+                                <div class="font-weight-bold">{{ currency.amount }}</div>
+                                <span>{{ currency.name }}</span>
                             </div>
                         </div>
                     </div>
                 </ul>
 
-                <Login />
+                <Login/>
             </div>
         </div>
     </nav>
@@ -45,4 +46,3 @@ export default class Top extends Vue {
     private authModule = authModule;
 }
 </script>
-

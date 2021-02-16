@@ -1,7 +1,8 @@
 <template>
     <ul class="navbar-nav ml-auto" v-if="!authModule.authenticated">
         <li class="nav-item dropdown mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4">
-            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-t="'layout.header.login'"></a>
+            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               v-t="'layout.header.login'"></a>
             <div class="dropdown-menu user--login p-4" aria-labelledby="dropdownMenuLink">
 
                 <ValidationObserver v-slot="{ handleSubmit }">
@@ -9,14 +10,16 @@
 
                         <ValidationProvider name="username" rules="required" v-slot="{ classes }">
                             <div class="form-label-group">
-                                <input type="text" class="form-control" :class="classes" id="username" placeholder="Username" v-model="form.username" required="" autofocus="">
+                                <input type="text" class="form-control" :class="classes" id="username"
+                                       placeholder="Username" v-model="form.username" required="" autofocus="">
                                 <label for="username">Username</label>
                             </div>
                         </ValidationProvider>
 
                         <ValidationProvider name="password" rules="required" v-slot="{ classes }">
                             <div class="form-label-group">
-                                <input type="password" class="form-control" :class="classes" name="password" placeholder="Password" id="password" v-model="form.password">
+                                <input type="password" class="form-control" :class="classes" name="password"
+                                       placeholder="Password" id="password" v-model="form.password">
                                 <label for="password">Password</label>
                             </div>
                         </ValidationProvider>
@@ -29,7 +32,8 @@
             </div>
         </li>
         <li class="nav-item">
-            <router-link class="nav-link btn btn-warning" :to="{ name: 'register' }" v-t="'layout.header.create_account'"></router-link>
+            <router-link class="nav-link btn btn-warning" :to="{ name: 'register' }"
+                         v-t="'layout.header.create_account'"></router-link>
         </li>
     </ul>
 
@@ -41,7 +45,8 @@
                     {{ authModule.user.username }}
                 </button>
                 <div class="dropdown-menu">
-                    <router-link class="dropdown-item" :to="{ name: 'logout' }"  v-on:click.native="signOut" v-t="'layout.header.logout'"></router-link>
+                    <router-link class="dropdown-item" :to="{ name: 'logout' }" v-on:click.native="signOut"
+                                 v-t="'layout.header.logout'"></router-link>
                 </div>
             </div>
         </li>
@@ -74,14 +79,14 @@ export default class Login extends Vue {
         this.authModule.signIn(this.form).then(() => {
             this.$router.replace({
                 name: 'dashboard'
-            })
-        })
+            });
+        });
     }
 
     private signOut() {
         this.authModule.signOut().then(() => {
             this.$router.push('/')
-        })
+        });
     }
 }
 </script>

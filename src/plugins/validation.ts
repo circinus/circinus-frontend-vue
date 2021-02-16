@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { extend, ValidationObserver, ValidationProvider } from 'vee-validate'
+import { extend, ValidationObserver, ValidationProvider } from 'vee-validate';
 import { confirmed, email, max, min, regex, required } from 'vee-validate/dist/rules';
 
 Vue.component('ValidationProvider', ValidationProvider);

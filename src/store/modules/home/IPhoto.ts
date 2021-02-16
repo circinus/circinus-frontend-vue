@@ -5,4 +5,5 @@ export interface IPhoto {
     user: IUser;
     likes: number;
     dislikes: number;
+    timestamp: number;
 }
