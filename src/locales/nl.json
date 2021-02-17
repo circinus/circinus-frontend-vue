@@ -51,12 +51,5 @@
             "credits": "© 2021 door Raizer & Highrun",
             "description": "Alle rechten voorbehouden"
         }
-    },
-    "client": {
-        "flash_detected": {
-            "message": "OH BOLLOCKS!",
-            "description": "Click {url} and then on \"Activate Flash\" as soon as you are prompted to do so . See you soon!",
-            "here": "here"
-        }
     }
 }

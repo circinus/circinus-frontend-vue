@@ -16,11 +16,9 @@
                             v-model="show"
                             :hover="hover"
                         >
-                            <a class="nav-link dropdown-toggle">
-                                <span v-t="'layout.nav.community.nav'"></span>
-                            </a>
+                            <router-link class="nav-link" :to="{ name: 'community' }" v-t="'layout.nav.community.nav'"></router-link>
                             <div slot="dropdown">
-                                <router-link class="nav-dropdown" :to="{ name: 'staff' }"
+                                <router-link class="nav-dropdown" :to="{ name: 'communityStaff' }"
                                              v-t="'layout.nav.community.staff'"></router-link>
                             </div>
                         </dropdown-menu>

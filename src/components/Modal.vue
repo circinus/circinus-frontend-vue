@@ -22,7 +22,9 @@
                 </div>
 
                 <div class="modal__footer">
-                    <button @click.prevent="saveModal" class="btn btn--light-dark btn-block">Save</button>
+                    <template v-if="!saveButton">
+                        <button @click.prevent="saveModal" class="btn btn--light-dark btn-block">Save</button>
+                    </template>
                 </div>
             </div>
         </div>
@@ -36,7 +38,9 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Modal extends Vue {
-    @Prop({ required: true }) private title!: string;
+    @Prop() private title!: string;
+    @Prop() private saveButton!: string;
+
     private show = false;
 
     public openClose(): void {

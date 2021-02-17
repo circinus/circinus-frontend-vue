@@ -3,8 +3,8 @@
         <div class="news--info d-flex flex-row align-items-center mb-3">
             <div class="user--rounded-image bg-white mr-2">
                 <img
-                    v-bind:src="'https://www.habbo.com/habbo-imaging/avatarimage?figure=' + this.photo.user.look + '&action=std&gesture=std&direction=3&head_direction=3'"
-                    alt="necmi"/>
+                    v-bind:src="this.avatarImaging + this.photo.user.look + '&action=std&gesture=std&direction=3&head_direction=3'"
+                    :alt="this.photo.user.username"/>
             </div>
 
             <div class="flex-fill d-inline-flex flex-column">
@@ -16,7 +16,13 @@
             </div>
         </div>
 
-        <a href="#" class="opacity-1">
+        <modal ref="photo" saveButton="false">
+            <template v-slot:body>
+                <img src="https://static.habboon.pw/camera/266653-8iTjj05RfSGVETMwyAtiMLXJV7CaWKjM-1393602.jpeg">
+            </template>
+        </modal>
+
+        <a @click="$refs.photo.openClose()" class="opacity-1">
             <div class="card card--popular-news d-flex flex-column mb-4">
                 <div class="card-img-top"
                      v-bind:style="{ backgroundImage: 'url(' + this.photo.url + ')', backgroundSize: 'auto !important' }"></div>
@@ -55,8 +61,10 @@ import { Observer } from 'mobx-vue';
 @Component
 export default class Photos extends Vue {
     @Prop({ required: true }) private photo!: IPhoto;
+
     private authModule = authModule;
     private voteModule = voteModule;
+    private avatarImaging = environment.SITE.FIGUREIMAGING
 
     private voted(type: number): string {
         if (this.authModule.authenticated) {

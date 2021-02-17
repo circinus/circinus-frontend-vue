@@ -1,14 +1,6 @@
 <template>
     <div>
         <ComponentLoader :state="permissionModule.getLoadingState('get-permissions')">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="header">
-                        <h1 v-t="'layout.nav.members'"></h1>
-                        <h5 v-t="'layout.staff.subtitle'" class="text-muted">Lorem ipsum dolor sit amet!</h5>
-                    </div>
-                </div>
-            </div>
 
             <div class="row mt-5">
                 <div class="col-md-7 mt-0 pt-0">
@@ -26,8 +18,8 @@
                                         <div class="news--info d-flex flex-row align-items-center mb-3">
                                             <div class="user--rounded-image bg-white mr-2">
                                                 <img
-                                                    :src="'https://www.habbo.com/habbo-imaging/avatarimage?figure=' + user.look + '&amp;action=std&amp;gesture=std&amp;direction=3&amp;head_direction=3'"
-                                                    alt="necmi">
+                                                    :src="this.avatarImaging + user.look + '&amp;action=std&amp;gesture=std&amp;direction=3&amp;head_direction=3'"
+                                                    :alt="user.username">
                                             </div>
                                             <span :class="user.online === 3 ? 'onlineDot' : 'offlineDot'"></span>
                                         </div>
@@ -38,7 +30,7 @@
                                     </div>
                                     <div class="col-md-2 mt-3">
                                         <img
-                                            :src="'https://client.circinus.dev/assets/c_images/album1584/' + rank.badge + '.gif'">
+                                            :src="this.badgeImaging + rank.badge + '.gif'">
                                     </div>
                                 </div>
                             </div>
@@ -76,6 +68,7 @@ import { ComponentOptions } from 'vue';
 import ComponentLoader from '@/components/ComponentLoader.vue';
 import { permissionModule } from '@/store/modules/permissions/PermissionModule';
 import { Observer } from 'mobx-vue';
+import { environment } from '../../../environment';
 
 @Observer
 @Component({
@@ -85,6 +78,8 @@ import { Observer } from 'mobx-vue';
 })
 export default class CommunityStaff extends Vue implements ComponentOptions<Vue> {
     private title = process.env.VUE_APP_TITLE;
+    private avatarImaging = environment.SITE.FIGUREIMAGING;
+    private badgeImaging = environment.SITE.BADGEMIMAGING;
     private permissionModule = permissionModule;
 
     public created(): void {

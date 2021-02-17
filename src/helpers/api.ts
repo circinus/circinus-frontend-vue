@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { environment } from '../../environment';
 
 export default axios.create({
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    baseURL: process.env.VUE_APP_API
+    baseURL: environment.SITE.API
 });

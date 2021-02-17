@@ -15,7 +15,7 @@
                     <div class="card-header d-inline-flex align-items-center flex-row px-0">
                         <div class="author--look mr-2">
                             <img class="looks"
-                                 v-bind:src="'https://www.habbo.com.tr/habbo-imaging/avatarimage?figure=' + this.article.user.look + '&amp;action=std&amp;direction=2&amp;head_direction=2&amp;img_format=png&amp;gesture=std&amp;headonly=0&amp;size=s'"
+                                 v-bind:src=" this.avatarImaging + this.article.user.look + '&amp;action=std&amp;direction=2&amp;head_direction=2&amp;img_format=png&amp;gesture=std&amp;headonly=0&amp;size=s'"
                                  :alt="this.article.user.look"/>
                         </div>
                         <span class="mr-2 flex-fill" style="font-size: 15px;">{{ this.article.user.username }}</span>
@@ -72,7 +72,9 @@
                 </article-sidebar>
             </div>
 
-            <modal ref="articleComment" :title="$t('layout.article.react_on')" v-if="authModule.authenticated">
+
+                <modal ref="articleComment" :title="$t('layout.article.react_on')" saveButton="true" v-if="authModule.authenticated">
+
                 <template v-slot:body>
                     <div class="form-group">
                         <textarea v-model="newComment" class="form-control display-1" rows="3"></textarea>
@@ -100,6 +102,8 @@ import { authModule } from '@/store/modules/auth/AuthModule';
 import { articleModule } from '@/store/modules/articles/ArticleModule';
 import { IComment } from '@/store/modules/articles/IComment';
 import { Observer } from 'mobx-vue';
+import { environment } from '../../../environment';
+
 
 @Observer
 @Component({
@@ -111,6 +115,8 @@ import { Observer } from 'mobx-vue';
     }
 })
 export default class ArticleContent extends Vue implements ComponentOptions<Vue> {
+    private avatarImaging = environment.SITE.FIGUREIMAGING
+
     @Prop({ required: true }) private article!: IArticle;
     @Prop({ default: [] }) private articles!: Array<IArticle>;
     private authModule = authModule;

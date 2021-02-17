@@ -41,7 +41,10 @@
         <li class="nav-item">
             <div class="dropdown">
                 <button type="button" class="btn btn--light-dark dropdown-toggle" data-toggle="dropdown">
-                    <img src="https://habbo.com.br/habbo-imaging/avatarimage?figure=hr-802-37.hd-185-1.ch-804-82.lg-280-73.sh-3068-1408-1408.wa-2001&amp;gesture=sml&size=s&amp;headonly=1" alt="Raizers" class="pixelated">
+                    <img 
+                        :src="this.avatarImaging + this.user.look + '&amp;gesture=sml&size=s&amp;headonly=1'" 
+                        :alt="this.user.username" class="pixelated"
+                    >
                     {{ authModule.user.username }}
                 </button>
                 <div class="dropdown-menu">
@@ -60,6 +63,7 @@ import ComponentLoader from '@/components/ComponentLoader.vue';
 import { authModule } from '@/store/modules/auth/AuthModule';
 import { Observer } from 'mobx-vue';
 import { ICredentials } from '@/store/modules/auth/ICredentials';
+import { environment } from '../../../../environment';
 
 @Observer
 @Component({
@@ -69,6 +73,7 @@ import { ICredentials } from '@/store/modules/auth/ICredentials';
 })
 export default class Login extends Vue {
     private authModule = authModule;
+    private avatarImaging = environment.SITE.FIGUREIMAGING
 
     public form: ICredentials = {
         username: '',
