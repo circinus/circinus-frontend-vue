@@ -1,9 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import client from './modules/client/client';
-import loader from './modules/loader';
-
 import notifications from './modules/notifications/notifications';
 import permissions from './modules/permissions/permissions';
 
@@ -20,8 +17,6 @@ export default new Vuex.Store<IRootState>({
     },
     modules: {
         notifications,
-        client,
-        loader,
         permissions
     }
 });

@@ -13,6 +13,7 @@ import CommunityStaff from '@/views/Community/Staff.vue';
 import Home from '@/views/Home.vue';
 import Register from '@/views/Auth/Register.vue';
 import Article from '@/views/Community/Article.vue';
+import { clientModule } from '@/store/modules/client/ClientModule';
 
 Vue.use(Router);
 
@@ -57,8 +58,8 @@ const router = new Router({
                 ]
             },
             beforeEnter: (to, from, next) => {
-                if (!store.getters['client/loaded']) {
-                    store.dispatch('client/setClient', true);
+                if (!clientModule.loaded) {
+                    clientModule.setClient(true);
                 }
                 next();
             }

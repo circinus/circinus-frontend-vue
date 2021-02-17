@@ -21,17 +21,16 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Action, Getter } from 'vuex-class';
 import { authModule } from '@/store/modules/auth/AuthModule';
 import { Observer } from 'mobx-vue';
+import { clientModule } from '@/store/modules/client/ClientModule';
 
 @Observer
 @Component
 export default class Header extends Vue {
     private authModule = authModule;
-
-    @Getter('client/loaded') private client!: boolean;
-    @Action('client/setClient') private setClient!: (loaded: boolean) => void;
+    private clientModule = clientModule;
 
     private toggleClientLoader() {
-        this.setClient(!this.client);
+        this.clientModule.setClient(!this.clientModule.loaded);
         bus.$emit('loadClient');
     }
 }
