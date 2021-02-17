@@ -71,7 +71,7 @@
                 </article-sidebar>
             </div>
 
-            <modal ref="articleComment" :title="$t('layout.article.react_on')" v-if="authenticated">
+            <modal ref="articleComment" :title="$t('layout.article.react_on')" saveButton="true" v-if="authenticated">
                 <template v-slot:body>
                     <div class="form-group">
                         <textarea v-model="articleComment" class="form-control display-1" rows="3"></textarea>
