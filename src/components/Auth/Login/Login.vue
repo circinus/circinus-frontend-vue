@@ -56,7 +56,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-import { ICredentials } from '@/store/modules/user/auth';
+import { ICredentials } from '@/store/modules/users/auth';
 import ComponentLoader from '@/components/ComponentLoader.vue';
 import { authModule } from '@/store/modules/auth/AuthModule';
 import { Observer } from 'mobx-vue';

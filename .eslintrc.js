@@ -6,7 +6,8 @@ module.exports = {
     extends: [
         'plugin:vue/essential',
         '@vue/standard',
-        '@vue/typescript/recommended'
+        '@vue/typescript/recommended',
+        '@vue/typescript'
     ],
     parserOptions: {
         ecmaVersion: 2020
@@ -71,6 +72,7 @@ module.exports = {
             }
         }],
         "@typescript-eslint/camelcase": ["off"],
-        "semi": ["error", "always"]
+        "semi": ["error", "always"],
+        "lines-between-class-members": ["off"]
     }
 }

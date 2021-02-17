@@ -6,9 +6,9 @@ import api from '@/helpers/api';
 import { LoadingModule } from '@/store/modules/loading/LoadingModule';
 import { LoadingState } from '@/store/modules/loading/LoadingState';
 import { IResponse } from '@/helpers/IResponse';
-import { IComment } from '@/store/modules/home/IComment';
+import { IComment } from '@/store/modules/articles/IComment';
 import { IGetCommentCriteria } from '@/store/modules/articles/IGetCommentCriteria';
-import { INewComment } from '@/store/modules/home/INewComment';
+import { INewComment } from '@/store/modules/articles/INewComment';
 import { IPaginatedResponse } from '@/helpers/api/IPaginatedResponse';
 
 export class ArticleModule extends LoadingModule {

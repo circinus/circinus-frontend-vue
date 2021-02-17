@@ -2,7 +2,7 @@ import api from '../../../helpers/api';
 import { Module } from 'vuex';
 import { IRootState } from '@/store';
 import { AxiosResponse } from 'axios';
-import { ILooksResponse } from '@/store/modules/user/ILooksResponse';
+import { ILooksResponse } from '@/store/modules/users/ILooksResponse';
 
 export interface IState {
     looks: Record<string, string[]>;

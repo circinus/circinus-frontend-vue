@@ -55,11 +55,11 @@ import * as FlashDetect from 'flash-detect';
 import bus from '@/helpers/bus';
 import { Component, Vue } from 'vue-property-decorator';
 import { Action, Getter } from 'vuex-class';
-import { IUser } from '@/store/modules/user/IUser';
+import { IUser } from '@/store/modules/auth/IUser';
 import { ITicketResponse } from '@/store/modules/client/ITicketResponse';
 import { ComponentOptions } from 'vue';
 import { TranslateResult } from 'vue-i18n';
-import { IPhoto } from '@/store/modules/home/IPhoto';
+import { IPhoto } from '@/store/modules/photos/IPhoto';
 
 @Component
 export default class Client extends Vue implements ComponentOptions<Vue> {

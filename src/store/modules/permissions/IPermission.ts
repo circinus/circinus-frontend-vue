@@ -1,4 +1,4 @@
-import { IUser } from '@/store/modules/user/IUser';
+import { IUser } from '@/store/modules/auth/IUser';
 
 export interface IPermission {
     rank_name: string;

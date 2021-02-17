@@ -22,7 +22,6 @@ import VueMoment from 'vue-moment';
 import '@/plugins/validation';
 import { authModule } from '@/store/modules/auth/AuthModule';
 
-require('./store/modules/user/subscriber');
 interceptorsSetup();
 Vue.use(iziToast);
 Vue.use(VueMoment, { moment });

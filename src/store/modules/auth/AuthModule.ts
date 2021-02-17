@@ -1,21 +1,16 @@
 import { computed, observable } from 'mobx';
-import { AxiosInstance } from 'axios';
-import { IUser } from '@/store/modules/user/IUser';
+import { IUser } from '@/store/modules/auth/IUser';
 import { ICredentials } from '@/store/modules/auth/ICredentials';
 import api from '@/helpers/api';
 import { ITokenResponse } from '@/store/modules/auth/ITokenResponse';
 import { ICurrency } from '@/store/modules/currencies/ICurrency';
 import { environment } from '../../../../environment';
 import { IResponse } from '@/helpers/IResponse';
+import { voteModule } from '@/store/modules/votes/VoteModule';
 
 export class AuthModule {
     @observable private _token: string | null = null;
     @observable private _user: IUser | null = null;
-    private api: AxiosInstance;
-
-    public constructor() {
-        this.api = api;
-    }
 
     @computed
     public get authenticated(): boolean {
@@ -63,7 +58,7 @@ export class AuthModule {
                     .filter((k: string): boolean => environment.POINTS[k] === item.type).toString()
             }));
 
-            // @TODO votes
+            voteModule.getAll();
 
             this.setUser(response.data.data);
         } catch (e) {
@@ -73,13 +68,13 @@ export class AuthModule {
     }
 
     public async signIn(credentials: ICredentials): Promise<void> {
-        const response = await this.api.post<IResponse<ITokenResponse>>('login', credentials);
+        const response = await api.post<IResponse<ITokenResponse>>('login', credentials);
 
         return this.attempt(response.data.data.token);
     }
 
     public signOut(): Promise<void> {
-        return this.api.post('logout').then(() => {
+        return api.post('logout').then(() => {
             this.setToken(null);
             this.setUser(null);
         });

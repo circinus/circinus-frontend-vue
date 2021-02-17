@@ -30,15 +30,16 @@
                     <span class="section-description" v-t="'layout.dashboard.photos.description'"></span>
                 </div>
             </div>
-
-<!--            <div class="row">-->
-<!--                <photos-->
-<!--                    v-for="(photos, index) in photos"-->
-<!--                    :key="index"-->
-<!--                    :photo="photos"-->
-<!--                >-->
-<!--                </photos>-->
-<!--            </div>-->
+            <ComponentLoader :state="photoModule.getLoadingState('get-photos')">
+                <div class="row">
+                    <Photos
+                        v-for="(photos, index) in photoModule.photos"
+                        :key="index"
+                        :photo="photos"
+                    >
+                    </Photos>
+                </div>
+            </ComponentLoader>
         </section>
     </div>
 </template>
@@ -51,6 +52,7 @@ import Photos from '@/components/Home/Dashboard/Photos.vue';
 import ComponentLoader from '@/components/ComponentLoader.vue';
 import { articleModule } from '@/store/modules/articles/ArticleModule';
 import { Observer } from 'mobx-vue';
+import { photoModule } from '@/store/modules/photos/PhotoModule';
 
 @Observer
 @Component({
@@ -61,11 +63,12 @@ import { Observer } from 'mobx-vue';
     }
 })
 export default class Home extends Vue implements ComponentOptions<Vue> {
-    private articleModule = articleModule
+    private articleModule = articleModule;
+    private photoModule = photoModule;
 
     public mounted(): void {
         this.articleModule.getArticles();
-        this.$store.dispatch('photos/setPhotos');
+        this.photoModule.getPhotos();
     }
 }
 </script>

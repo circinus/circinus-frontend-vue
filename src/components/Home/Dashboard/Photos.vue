@@ -44,39 +44,37 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Action, Getter } from 'vuex-class';
-import { INewVote } from '@/store/modules/home/INewVote';
-import { IVote } from '@/store/modules/user/votes/IVote';
-import { IVoteType } from '@/store/modules/user/votes/IVoteType';
-import { IVoteEntityType } from '@/store/modules/user/votes/IVoteEntityType';
-import { IPhoto } from '@/store/modules/home/IPhoto';
+import { INewVote } from '@/store/modules/photos/INewVote';
+import { IVoteType } from '@/store/modules/votes/IVoteType';
+import { IPhoto } from '@/store/modules/photos/IPhoto';
+import { authModule } from '@/store/modules/auth/AuthModule';
+import { voteModule } from '@/store/modules/votes/VoteModule';
+import { Observer } from 'mobx-vue';
 
+@Observer
 @Component
 export default class Photos extends Vue {
     @Prop({ required: true }) private photo!: IPhoto;
-    @Getter('auth/authenticated') private authenticated!: boolean;
-    @Getter('votes/EntityType') private EntityType!: IVoteEntityType;
-    @Getter('votes/VoteType') private VoteType!: IVoteType;
-    @Getter('votes/exists') private exists!: (id: number, type: number) => IVote | undefined;
-    @Action('votes/create') private setVote!: (vote: INewVote) => Promise<IVote>;
+    private authModule = authModule;
+    private voteModule = voteModule;
 
     private voted(type: number): string {
-        if (this.authenticated) {
+        if (this.authModule.authenticated) {
             const voteColor = type === 1 ? 'green' : 'red';
-            return this.exists(this.photo.id, type) ? voteColor : 'black';
+            return this.voteModule.exists(this.photo.id, type) ? voteColor : 'black';
         }
 
         return 'black';
     }
 
-    private votePhoto(vote: 'likes' | 'dislikes') {
-        const formData: INewVote = {
+    private votePhoto(vote: keyof IVoteType) {
+        const newVote: INewVote = {
             entity_id: this.photo.id,
-            vote_entity: this.EntityType.photo_vote_entity,
-            vote_type: this.VoteType[vote]
+            vote_entity: this.voteModule.entityTypes.photo_vote_entity,
+            vote_type: this.voteModule.voteTypes[vote]
         };
 
-        this.setVote(formData).then(() => {
+        this.voteModule.createVote(newVote).then(() => {
             this.photo[vote] = this.photo[vote] + 1;
         });
     }

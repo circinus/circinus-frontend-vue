@@ -147,7 +147,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 import { Action, State } from 'vuex-class';
-import { INewUser } from '@/store/modules/user/INewUser';
+import { INewUser } from '@/store/modules/users/INewUser';
 import Looks from '@/components/Auth/Register/Looks.vue';
 
 @Component({

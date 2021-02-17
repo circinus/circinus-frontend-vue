@@ -94,11 +94,11 @@ import ArticleSidebar from '@/components/Article/ArticleSidebar.vue';
 import ArticleComments from '@/components/Article/ArticleComments.vue';
 import Modal from '@/components/Modal.vue';
 import { ComponentOptions } from 'vue';
-import { INewComment } from '@/store/modules/home/INewComment';
+import { INewComment } from '@/store/modules/articles/INewComment';
 import ComponentLoader from '@/components/ComponentLoader.vue';
 import { authModule } from '@/store/modules/auth/AuthModule';
 import { articleModule } from '@/store/modules/articles/ArticleModule';
-import { IComment } from '@/store/modules/home/IComment';
+import { IComment } from '@/store/modules/articles/IComment';
 import { Observer } from 'mobx-vue';
 
 @Observer

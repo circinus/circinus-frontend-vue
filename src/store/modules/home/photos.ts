@@ -3,7 +3,7 @@ import { ActionContext, Module } from 'vuex';
 import { IRootState } from '@/store';
 import { IResponse } from '@/helpers/IResponse';
 import { AxiosResponse } from 'axios';
-import { IPhoto } from '@/store/modules/home/IPhoto';
+import { IPhoto } from '@/store/modules/photos/IPhoto';
 
 export interface IState {
     photos: Array<IPhoto>;

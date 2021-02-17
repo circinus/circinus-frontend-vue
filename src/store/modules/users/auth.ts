@@ -1,7 +1,7 @@
 import api from '@/helpers/api';
 import { environment } from '../../../../environment';
 import { ActionContext, Module } from 'vuex';
-import { IUser } from '@/store/modules/user/IUser';
+import { IUser } from '@/store/modules/auth/IUser';
 import { IRootState } from '@/store';
 import { ICurrency } from '@/store/modules/currencies/ICurrency';
 import { ICurrencyResponse } from '@/store/modules/currencies/ICurrencyResponse';
