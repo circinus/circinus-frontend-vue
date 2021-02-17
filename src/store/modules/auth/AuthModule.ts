@@ -10,7 +10,7 @@ import { voteModule } from '@/store/modules/votes/VoteModule';
 import { LoadingModule } from '../loading/LoadingModule';
 import { LoadingState } from '@/store/modules/loading/LoadingState';
 import { ResponseStatus } from '@/helpers/api/ResponseStatus';
-import { ILooksResponse } from '@/store/modules/users/ILooksResponse';
+import { ILooksResponse } from '@/store/modules/auth/ILooksResponse';
 import { LooksNotFetchedError } from '@/store/modules/auth/errors/LooksNotFetchedError';
 import { RegisterError } from './errors/RegisterError';
 import { INewUser } from '@/store/modules/users/INewUser';

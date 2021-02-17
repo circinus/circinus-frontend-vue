@@ -69,6 +69,8 @@ export default class Client extends Vue implements ComponentOptions<Vue> {
     private hideLoader = false;
     private loadingText: TranslateResult = this.$t('layout.client.starting');
     private url = process.env.VUE_APP_NITRO_ASSETS_URL;
+    private authModule = authModule;
+
     @Getter('auth/user') private user!: IUser;
     @Getter('client/loaded') private client!: boolean;
     @Getter('client/active') private active!: boolean;
