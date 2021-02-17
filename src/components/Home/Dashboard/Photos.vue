@@ -17,14 +17,14 @@
         </div>
 
         <modal ref="photo" saveButton="false">
-            <template v-slot:body>
-                <img src="https://static.habboon.pw/camera/266653-8iTjj05RfSGVETMwyAtiMLXJV7CaWKjM-1393602.jpeg">
+            <template v-slot:body v-slot:[url]="{ photo }">
+                <img :src="photo.url" class="pixelated">
             </template>
         </modal>
 
-        <a @click="$refs.photo.openClose()" class="opacity-1">
+        <div class="opacity-1">
             <div class="card card--popular-news d-flex flex-column mb-4">
-                <div class="card-img-top"
+                <div @click="$refs.photo.openClose()" class="card-img-top"
                      v-bind:style="{ backgroundImage: 'url(' + this.photo.url + ')', backgroundSize: 'auto !important' }"></div>
 
                 <div class="card-body d-flex flex-column">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-        </a>
+        </div>
     </div>
 </template>
 
@@ -55,16 +55,25 @@ import { IVoteType } from '@/store/modules/votes/IVoteType';
 import { IPhoto } from '@/store/modules/photos/IPhoto';
 import { authModule } from '@/store/modules/auth/AuthModule';
 import { voteModule } from '@/store/modules/votes/VoteModule';
+import { environment } from '../../../../environment';
 import { Observer } from 'mobx-vue';
+import Modal from '@/components/Modal.vue';
 
 @Observer
-@Component
+@Component({
+    components: {
+        Modal
+    }
+})
 export default class Photos extends Vue {
     @Prop({ required: true }) private photo!: IPhoto;
 
     private authModule = authModule;
     private voteModule = voteModule;
     private avatarImaging = environment.SITE.FIGUREIMAGING
+    public $refs!: {
+        photo: Modal;
+    }
 
     private voted(type: number): string {
         if (this.authModule.authenticated) {

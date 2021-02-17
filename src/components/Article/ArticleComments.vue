@@ -16,6 +16,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { IComment } from '@/store/modules/articles/IComment';
+import { environment } from '../../../environment';
 
 @Component
 export default class ArticleComments extends Vue {

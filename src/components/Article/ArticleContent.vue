@@ -72,8 +72,7 @@
                 </article-sidebar>
             </div>
 
-
-                <modal ref="articleComment" :title="$t('layout.article.react_on')" saveButton="true" v-if="authModule.authenticated">
+            <modal ref="articleComment" :title="$t('layout.article.react_on')" saveButton="true" v-if="authModule.authenticated">
 
                 <template v-slot:body>
                     <div class="form-group">
@@ -103,7 +102,6 @@ import { articleModule } from '@/store/modules/articles/ArticleModule';
 import { IComment } from '@/store/modules/articles/IComment';
 import { Observer } from 'mobx-vue';
 import { environment } from '../../../environment';
-
 
 @Observer
 @Component({

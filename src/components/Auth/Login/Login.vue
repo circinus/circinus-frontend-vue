@@ -41,9 +41,9 @@
         <li class="nav-item">
             <div class="dropdown">
                 <button type="button" class="btn btn--light-dark dropdown-toggle" data-toggle="dropdown">
-                    <img 
-                        :src="this.avatarImaging + this.user.look + '&amp;gesture=sml&size=s&amp;headonly=1'" 
-                        :alt="this.user.username" class="pixelated"
+                    <img
+                        :src="this.avatarImaging + authModule.user.look + '&amp;gesture=sml&size=s&amp;headonly=1'"
+                        :alt="authModule.user.username" class="pixelated"
                     >
                     {{ authModule.user.username }}
                 </button>

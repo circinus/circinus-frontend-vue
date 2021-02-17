@@ -21,7 +21,6 @@ import bus from '@/helpers/bus';
 import { Component, Vue } from 'vue-property-decorator';
 import { ITicketResponse } from '@/store/modules/client/ITicketResponse';
 import { ComponentOptions } from 'vue';
-import { TranslateResult } from 'vue-i18n';
 import { photoModule } from '@/store/modules/photos/PhotoModule';
 import { clientModule } from '@/store/modules/client/ClientModule';
 import { authModule } from '@/store/modules/auth/AuthModule';
@@ -33,13 +32,11 @@ import { environment } from '../../../environment';
 export default class Client extends Vue implements ComponentOptions<Vue> {
     private ticket: string | null = null;
     private isSessionActive = false;
-    private loadingWidth = 0;
     private hideLoader = false;
-    private loadingText: TranslateResult = this.$t('layout.client.starting');
-    private url = process.env.VUE_APP_NITRO_ASSETS_URL;
     private authModule = authModule;
     private clientModule = clientModule;
     private photoModule = photoModule;
+    private nitroPath = environment.SITE.NITROPATH
 
     public created(): void {
         bus.$on('loadClient', () => {
