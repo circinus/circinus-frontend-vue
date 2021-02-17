@@ -7,8 +7,15 @@ import { ICurrency } from '@/store/modules/currencies/ICurrency';
 import { environment } from '../../../../environment';
 import { IResponse } from '@/helpers/IResponse';
 import { voteModule } from '@/store/modules/votes/VoteModule';
+import { LoadingModule } from '../loading/LoadingModule';
+import { LoadingState } from '@/store/modules/loading/LoadingState';
+import { ResponseStatus } from '@/helpers/api/ResponseStatus';
+import { ILooksResponse } from '@/store/modules/users/ILooksResponse';
+import { LooksNotFetchedError } from '@/store/modules/auth/errors/LooksNotFetchedError';
+import { RegisterError } from './errors/RegisterError';
+import { INewUser } from '@/store/modules/users/INewUser';
 
-export class AuthModule {
+export class AuthModule extends LoadingModule {
     @observable private _token: string | null = null;
     @observable private _user: IUser | null = null;
 
@@ -78,6 +85,33 @@ export class AuthModule {
             this.setToken(null);
             this.setUser(null);
         });
+    }
+
+    public async register(newUser: INewUser): Promise<void> {
+        this.setLoadingState('register', LoadingState.LOADING);
+
+        const response = await api.post<IResponse<ITokenResponse>>('register', newUser);
+
+        this.setLoadingState('register', LoadingState.LOADED);
+
+        if (response.status === ResponseStatus.CREATED) {
+            return this.attempt(response.data.data.token);
+        }
+
+        return Promise.reject(new RegisterError());
+    }
+
+    public async getRegisterLooks(gender: string): Promise<string[]> {
+        this.setLoadingState('get-register-looks', LoadingState.LOADING);
+        const response = await api.get<IResponse<ILooksResponse>>('register/looks');
+
+        this.setLoadingState('get-register-looks', LoadingState.LOADED);
+
+        if (response.status === ResponseStatus.OK) {
+            return response.data.data.looks[gender];
+        } else {
+            return Promise.reject(new LooksNotFetchedError());
+        }
     }
 }
 
