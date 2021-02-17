@@ -1,7 +1,7 @@
 import api from '../../../helpers/api';
 import { ActionContext, Module } from 'vuex';
 import { IRootState } from '@/store';
-import { IArticle } from '@/store/modules/home/IArticle';
+import { IArticle } from '@/store/modules/articles/IArticle';
 import { IComment } from '@/store/modules/home/IComment';
 import { IUser } from '@/store/modules/user/IUser';
 import { IResponse } from '@/helpers/IResponse';

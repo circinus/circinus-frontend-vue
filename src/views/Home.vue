@@ -9,10 +9,10 @@
                 </div>
             </div>
 
-            <ComponentLoader module="getArticles">
+            <ComponentLoader :state="articleModule.getLoadingState('get-articles')">
                 <div class="row">
                     <articles
-                        v-for="(article, index) in articles"
+                        v-for="(article, index) in articleModule.articles"
                         :key="index"
                         :article="article"
                         :index="index"
@@ -20,7 +20,6 @@
                     </articles>
                 </div>
             </ComponentLoader>
-
         </section>
 
         <section id="popular-news" class="habbo--section">
@@ -32,16 +31,14 @@
                 </div>
             </div>
 
-            <ComponentLoader module="getPhotos">
-                <div class="row">
-                    <photos
-                        v-for="(photos, index) in photos"
-                        :key="index"
-                        :photo="photos"
-                    >
-                    </photos>
-                </div>
-            </ComponentLoader>
+<!--            <div class="row">-->
+<!--                <photos-->
+<!--                    v-for="(photos, index) in photos"-->
+<!--                    :key="index"-->
+<!--                    :photo="photos"-->
+<!--                >-->
+<!--                </photos>-->
+<!--            </div>-->
         </section>
     </div>
 </template>
@@ -49,13 +46,13 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Articles from '@/components/Home/Dashboard/Articles.vue';
-import { Getter } from 'vuex-class';
-import { IArticle } from '@/store/modules/home/IArticle';
 import { ComponentOptions } from 'vue';
 import Photos from '@/components/Home/Dashboard/Photos.vue';
 import ComponentLoader from '@/components/ComponentLoader.vue';
-import { IPhoto } from '@/store/modules/home/IPhoto';
+import { articleModule } from '@/store/modules/articles/ArticleModule';
+import { Observer } from 'mobx-vue';
 
+@Observer
 @Component({
     components: {
         Articles,
@@ -64,11 +61,10 @@ import { IPhoto } from '@/store/modules/home/IPhoto';
     }
 })
 export default class Home extends Vue implements ComponentOptions<Vue> {
-    @Getter('articles/articles') private articles!: Array<IArticle>;
-    @Getter('photos/photos') private photos!: Array<IPhoto>;
+    private articleModule = articleModule
 
     public mounted(): void {
-        this.$store.dispatch('articles/getArticles');
+        this.articleModule.getArticles();
         this.$store.dispatch('photos/setPhotos');
     }
 }

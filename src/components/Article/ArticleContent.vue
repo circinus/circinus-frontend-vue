@@ -35,22 +35,23 @@
 
                             <h5 class="mt-3 p-1 flex-fill" v-t="'layout.article.reactions'"></h5>
 
-                            <div class="d-inline-flex flex-row align-items-center mr-2" v-if="authenticated">
+                            <div class="d-inline-flex flex-row align-items-center mr-2" v-if="authModule.authenticated">
                                 <button class="nav-link btn btn-warning" style="color:#fff"
                                         @click="$refs.articleComment.openClose()" v-t="'layout.article.react'"></button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="comments row mx-4" v-if="this.articleComments.length">
-                        <ArticleComments
-                            v-for="(stories, index) in this.articleComments"
-                            :key="index"
-                            :comment="stories"
-                            :index="index"
-                        >
-                        </ArticleComments>
-                    </div>
+                    <ComponentLoader :state="articleModule.getLoadingState('get-articles')">
+                        <div class="comments row mx-4">
+                            <ArticleComments
+                                v-for="(stories, index) in articleComments"
+                                :key="stories.id"
+                                :comment="stories"
+                                :index="index"
+                            />
+                        </div>
+                    </ComponentLoader>
                 </div>
             </div>
 
@@ -71,10 +72,10 @@
                 </article-sidebar>
             </div>
 
-            <modal ref="articleComment" :title="$t('layout.article.react_on')" v-if="authenticated">
+            <modal ref="articleComment" :title="$t('layout.article.react_on')" v-if="authModule.authenticated">
                 <template v-slot:body>
                     <div class="form-group">
-                        <textarea v-model="articleComment" class="form-control display-1" rows="3"></textarea>
+                        <textarea v-model="newComment" class="form-control display-1" rows="3"></textarea>
                     </div>
                 </template>
             </modal>
@@ -87,19 +88,20 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { IArticle } from '@/store/modules/home/IArticle';
+import { IArticle } from '@/store/modules/articles/IArticle';
 import bus from '@/helpers/bus';
-import { Action, Getter } from 'vuex-class';
-import { IComment } from '@/store/modules/home/IComment';
-import { AxiosResponse } from 'axios';
 import ArticleSidebar from '@/components/Article/ArticleSidebar.vue';
 import ArticleComments from '@/components/Article/ArticleComments.vue';
 import Modal from '@/components/Modal.vue';
 import { ComponentOptions } from 'vue';
-import { IGetCommentCriteria } from '@/store/modules/articles/IGetCommentCriteria';
 import { INewComment } from '@/store/modules/home/INewComment';
 import ComponentLoader from '@/components/ComponentLoader.vue';
+import { authModule } from '@/store/modules/auth/AuthModule';
+import { articleModule } from '@/store/modules/articles/ArticleModule';
+import { IComment } from '@/store/modules/home/IComment';
+import { Observer } from 'mobx-vue';
 
+@Observer
 @Component({
     components: {
         ArticleSidebar,
@@ -110,42 +112,40 @@ import ComponentLoader from '@/components/ComponentLoader.vue';
 })
 export default class ArticleContent extends Vue implements ComponentOptions<Vue> {
     @Prop({ required: true }) private article!: IArticle;
-    @Prop() private articles!: Array<IArticle>;
-    @Getter('auth/authenticated') private authenticated!: boolean;
-    @Getter('articles/comments') private articleComments!: Array<IComment>;
-    @Action('articles/storeComment') storeComment!: (form: INewComment) => Promise<AxiosResponse | undefined>;
+    @Prop({ default: [] }) private articles!: Array<IArticle>;
+    private authModule = authModule;
+    private articleModule = articleModule;
+    private articleComments: Array<IComment> = [];
     public $refs!: {
         articleComment: Modal;
     }
 
-    private comment: IGetCommentCriteria = {
-        id: this.article.id,
-        page: 1,
-        offset: 8
-    }
-
-    private articleComment = '';
+    private newComment = '';
 
     public mounted(): void {
-        this.getComments();
+        this.refreshComments();
+    }
+
+    private async refreshComments(): Promise<void> {
+        this.articleComments = await this.articleModule.getComments({
+            id: this.article.id,
+            page: 1,
+            offset: 8
+        });
     }
 
     public created(): void {
         bus.$on('saveModal', () => {
-            const formData: INewComment = {
-                content: this.articleComment,
+            const newComment: INewComment = {
+                content: this.newComment,
                 article_id: this.article.id
             };
 
-            this.storeComment(formData).then(() => {
-                this.getComments();
+            this.articleModule.createComment(newComment).then(() => {
+                this.refreshComments();
                 this.$refs.articleComment.openClose();
             });
         });
-    }
-
-    private getComments(): void {
-        this.$store.dispatch('articles/getComments', this.comment);
     }
 }
 </script>

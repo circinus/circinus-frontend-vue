@@ -15,7 +15,7 @@ export default function setup(): void {
 
     api.interceptors.response.use((response: AxiosResponse) => {
         // return data
-        return response.data;
+        return response;
     }, (error: AxiosError<IErrorResponse>) => {
         if (error.response) {
             // custom error handling
