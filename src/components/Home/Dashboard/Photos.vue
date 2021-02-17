@@ -16,7 +16,13 @@
             </div>
         </div>
 
-        <a href="#" class="opacity-1">
+        <modal ref="photo" saveButton="false">
+            <template v-slot:body>
+                <img src="https://static.habboon.pw/camera/266653-8iTjj05RfSGVETMwyAtiMLXJV7CaWKjM-1393602.jpeg">
+            </template>
+        </modal>
+
+        <a @click="$refs.photo.openClose()" class="opacity-1">
             <div class="card card--popular-news d-flex flex-column mb-4">
                 <div class="card-img-top"
                      v-bind:style="{ backgroundImage: 'url(' + this.photo.url + ')', backgroundSize: 'auto !important' }"></div>
@@ -51,8 +57,14 @@ import { IVoteType } from '@/store/modules/user/votes/IVoteType';
 import { IVoteEntityType } from '@/store/modules/user/votes/IVoteEntityType';
 import { IPhoto } from '@/store/modules/home/IPhoto';
 import { environment } from '../../../../environment';
+import Modal from '@/components/Modal.vue';
 
-@Component
+@Component({
+    components: {
+        Modal
+    }
+})
+
 export default class Photos extends Vue {
     private avatarImaging = environment.SITE.FIGUREIMAGING
     @Prop({ required: true }) private photo!: IPhoto;
@@ -61,6 +73,9 @@ export default class Photos extends Vue {
     @Getter('votes/VoteType') private VoteType!: IVoteType;
     @Getter('votes/exists') private exists!: (id: number, type: number) => IVote | undefined;
     @Action('votes/create') private setVote!: (vote: INewVote) => Promise<IVote>;
+    public $refs!: {
+        photo: Modal;
+    }
 
     private voted(type: number): string {
         if (this.authenticated) {
