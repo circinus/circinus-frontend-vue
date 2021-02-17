@@ -1,8 +1,6 @@
 import Vue from 'vue';
 import Router, { NavigationGuardNext, Route } from 'vue-router';
 
-import store from '../store';
-
 import guest from './middleware/guest';
 import auth from './middleware/auth';
 import middlewarePipeline from './middleware/middlewarePipeline';
@@ -96,8 +94,7 @@ router.beforeEach((to: Route, from: Route, next: NavigationGuardNext) => {
     const context: IContext = {
         to,
         from,
-        next,
-        store
+        next
     };
 
     return middleware[0]({

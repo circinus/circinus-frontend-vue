@@ -1,7 +1,7 @@
 <template>
     <div class="notifications">
         <Notification
-            v-for="(notification, index) in notifications"
+            v-for="(notification, index) in notificationModule.list"
             :key="(notification.text || '') + index"
             :notification="notification"
             @close-notification="removeNotification"
@@ -10,20 +10,22 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { Getter } from 'vuex-class';
+import { Observer } from 'mobx-vue';
 import { INotification } from '@/store/modules/notifications/INotification';
 import Notification from '@/components/Notification.vue';
+import { notificationModule } from '@/store/modules/notifications/NotificationModule';
 
+@Observer
 @Component({
     components: {
         Notification
     }
 })
 export default class Notifications extends Vue {
-    @Getter('notifications/list') private notifications!: Array<INotification>;
+    private notificationModule = notificationModule;
 
     private removeNotification(notification: INotification): void {
-        this.$store.commit('notifications/REMOVE_NOTIFICATION', notification);
+        this.notificationModule.removeNotification(notification);
     }
 }
 </script>

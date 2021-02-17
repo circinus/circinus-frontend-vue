@@ -18,7 +18,6 @@
 <script lang="ts">
 import bus from '@/helpers/bus';
 import { Component, Vue } from 'vue-property-decorator';
-import { Action, Getter } from 'vuex-class';
 import { authModule } from '@/store/modules/auth/AuthModule';
 import { Observer } from 'mobx-vue';
 import { clientModule } from '@/store/modules/client/ClientModule';

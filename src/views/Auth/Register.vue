@@ -203,7 +203,9 @@ export default class Register extends Vue {
     }
 
     private changeGender(event: Event): void {
-        this.authModule.getRegisterLooks(event.target.selectedOptions[0].dataset.gender).then((response) => {
+        this.authModule.getRegisterLooks(
+            (event.target as HTMLSelectElement).options[(event.target as HTMLSelectElement).selectedIndex].value
+        ).then((response) => {
             this.form.look = response[1] ?? response[5];
             this.looks = response;
             this.preLoad();
