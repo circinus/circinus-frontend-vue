@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import notifications from './modules/notifications/notifications';
-import permissions from './modules/permissions/permissions';
 
 Vue.use(Vuex);
 
@@ -16,7 +15,6 @@ export default new Vuex.Store<IRootState>({
     actions: {
     },
     modules: {
-        notifications,
-        permissions
+        notifications
     }
 });
