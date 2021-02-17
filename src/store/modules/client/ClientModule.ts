@@ -2,7 +2,6 @@ import { computed, observable } from 'mobx';
 import router from '@/router';
 import { ITicketResponse } from '@/store/modules/client/ITicketResponse';
 import api from '@/helpers/api';
-import { AxiosResponse } from 'axios';
 import { LoadingModule } from '@/store/modules/loading/LoadingModule';
 import { LoadingState } from '@/store/modules/loading/LoadingState';
 import { IResponse } from '@/helpers/IResponse';
