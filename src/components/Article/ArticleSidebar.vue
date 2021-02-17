@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { IArticle } from '@/store/modules/home/IArticle';
+import { IArticle } from '@/store/modules/articles/IArticle';
 
 @Component
 export default class ArticleSidebar extends Vue {

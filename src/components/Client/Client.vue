@@ -1,6 +1,7 @@
 <template>
-    <div id="client-loader" :class="this.client && 'hotel-visible'">
+    <div id="client-loader" :class="clientModule.loaded && 'hotel-visible'">
         <div id="hotel-container">
+
             <div class="row d-block align-items-center text-center">
                 <iframe v-if="ticket !== null" id="game" :src="this.nitroPath + '/?sso=' + ticket"/>
             </div>
@@ -18,14 +19,16 @@
 // @ts-ignore
 import bus from '@/helpers/bus';
 import { Component, Vue } from 'vue-property-decorator';
-import { Action, Getter } from 'vuex-class';
-import { IUser } from '@/store/modules/user/IUser';
 import { ITicketResponse } from '@/store/modules/client/ITicketResponse';
 import { ComponentOptions } from 'vue';
 import { TranslateResult } from 'vue-i18n';
-import { IPhoto } from '@/store/modules/home/IPhoto';
+import { photoModule } from '@/store/modules/photos/PhotoModule';
+import { clientModule } from '@/store/modules/client/ClientModule';
+import { authModule } from '@/store/modules/auth/AuthModule';
+import { Observer } from 'mobx-vue';
 import { environment } from '../../../environment';
 
+@Observer
 @Component
 export default class Client extends Vue implements ComponentOptions<Vue> {
     private ticket: string | null = null;
@@ -33,16 +36,10 @@ export default class Client extends Vue implements ComponentOptions<Vue> {
     private loadingWidth = 0;
     private hideLoader = false;
     private loadingText: TranslateResult = this.$t('layout.client.starting');
-    private nitroPath = environment.SITE.NITROPATH;
-    @Getter('auth/user') private user!: IUser;
-    @Getter('client/loaded') private client!: boolean;
-    @Getter('client/active') private active!: boolean;
-    @Getter('photos/photos') private photo!: Array<IPhoto>;
-
-    @Action('client/setClient') private setClient!: (loaded: boolean) => void;
-    @Action('client/setActive') private setActive!: (active: boolean) => void;
-    @Action('client/setTicket') private setTicket!: () => Promise<ITicketResponse>;
-    @Action('photos/setPhotos') private setPhotos!: () => void;
+    private url = process.env.VUE_APP_NITRO_ASSETS_URL;
+    private authModule = authModule;
+    private clientModule = clientModule;
+    private photoModule = photoModule;
 
     public created(): void {
         bus.$on('loadClient', () => {
@@ -52,34 +49,34 @@ export default class Client extends Vue implements ComponentOptions<Vue> {
 
     public mounted(): void {
         if (this.$router.currentRoute.name === 'hotel') {
-            this.setPhotos();
+            this.photoModule.getPhotos();
             this.initialize();
         }
     }
 
     private hideClient(): void {
-        this.setClient(!this.client);
+        this.clientModule.setClient(!this.clientModule.loaded);
     }
 
     private getTicket(): Promise<void> {
-        return this.setTicket().then((response: ITicketResponse) => {
+        return this.clientModule.getTicket().then((response: ITicketResponse) => {
             this.ticket = response.ticket;
         });
     }
 
     private loadClient(): void {
-        if (this.active) {
+        if (this.clientModule.pageActive) {
             return;
         }
 
         this.getTicket().then(() => {
             this.hideLoader = false;
         });
-        this.setActive(true);
+        this.clientModule.setPageActive(true);
     }
 
     private initialize(): void {
-        this.isSessionActive = this.user.online === 1;
+        this.isSessionActive = this.authModule.user?.online === 1;
         if (!this.isSessionActive) {
             this.loadClient();
         }

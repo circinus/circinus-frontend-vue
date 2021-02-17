@@ -6,7 +6,8 @@ module.exports = {
     extends: [
         'plugin:vue/essential',
         '@vue/standard',
-        '@vue/typescript/recommended'
+        '@vue/typescript/recommended',
+        '@vue/typescript'
     ],
     parserOptions: {
         ecmaVersion: 2020
@@ -47,7 +48,7 @@ module.exports = {
             {
                 "selector": "memberLike",
                 "modifiers": ["private"],
-                "format": ["camelCase", "snake_case"],
+                "format": ["camelCase", "snake_case"]
             },
 
             {
@@ -56,7 +57,8 @@ module.exports = {
             },
             {
                 "selector": "property",
-                "format": ["snake_case", "strictCamelCase", "PascalCase"]
+                "format": ["snake_case", "strictCamelCase", "PascalCase"],
+                "leadingUnderscore": "allow"
             }
         ],
         "@typescript-eslint/member-delimiter-style": ["error", {
@@ -70,6 +72,7 @@ module.exports = {
             }
         }],
         "@typescript-eslint/camelcase": ["off"],
-        "semi": ["error", "always"]
+        "semi": ["error", "always"],
+        "lines-between-class-members": ["off"]
     }
 }

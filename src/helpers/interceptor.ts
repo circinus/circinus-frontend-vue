@@ -1,8 +1,8 @@
 import api from '@/helpers/api';
-import store from '@/store';
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { IErrorResponse } from '@/helpers/IErrorResponse';
 import { IError } from '@/helpers/IError';
+import { notificationModule } from '@/store/modules/notifications/NotificationModule';
 
 export default function setup(): void {
     api.interceptors.request.use((config: AxiosRequestConfig) => {
@@ -15,7 +15,7 @@ export default function setup(): void {
 
     api.interceptors.response.use((response: AxiosResponse) => {
         // return data
-        return response.data;
+        return response;
     }, (error: AxiosError<IErrorResponse>) => {
         if (error.response) {
             // custom error handling
@@ -25,9 +25,9 @@ export default function setup(): void {
                 // check if notifications exists and show
                 error.response.data.errors.map((value: IError): void => {
                     if (value.message) {
-                        store.commit('notifications/ADD_NOTIFICATION', {
+                        notificationModule.addNotification({
                             text: value.message,
-                            type: error.response?.data.status || 'danger'
+                            type: 'danger'
                         });
                     }
                 });

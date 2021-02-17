@@ -1,5 +1,5 @@
 <template>
-    <ul class="navbar-nav ml-auto" v-if="!authenticated">
+    <ul class="navbar-nav ml-auto" v-if="!authModule.authenticated">
         <li class="nav-item dropdown mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4">
             <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                v-t="'layout.header.login'"></a>
@@ -37,15 +37,15 @@
         </li>
     </ul>
 
-    <ul v-else class="navbar-nav ml-auto">
+    <ul v-else-if="authModule.user" class="navbar-nav ml-auto">
         <li class="nav-item">
             <div class="dropdown">
                 <button type="button" class="btn btn--light-dark dropdown-toggle" data-toggle="dropdown">
-                    <img
-                        :src="this.avatarImaging + this.user.look + '&amp;gesture=sml&size=s&amp;headonly=1'"
+                    <img 
+                        :src="this.avatarImaging + this.user.look + '&amp;gesture=sml&size=s&amp;headonly=1'" 
                         :alt="this.user.username" class="pixelated"
                     >
-                    {{ this.user.username }}
+                    {{ authModule.user.username }}
                 </button>
                 <div class="dropdown-menu">
                     <router-link class="dropdown-item" :to="{ name: 'logout' }" v-on:click.native="signOut"
@@ -57,24 +57,23 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { Action, Getter } from 'vuex-class';
-import { ICredentials } from '@/store/modules/user/auth';
-import { IUser } from '@/store/modules/user/IUser';
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
 import ComponentLoader from '@/components/ComponentLoader.vue';
+import { authModule } from '@/store/modules/auth/AuthModule';
+import { Observer } from 'mobx-vue';
+import { ICredentials } from '@/store/modules/auth/ICredentials';
 import { environment } from '../../../../environment';
 
+@Observer
 @Component({
     components: {
         ComponentLoader
     }
 })
 export default class Login extends Vue {
+    private authModule = authModule;
     private avatarImaging = environment.SITE.FIGUREIMAGING
-    @Getter('auth/authenticated') private authenticated!: boolean;
-    @Action('auth/signIn') private signIn!: (credentials: ICredentials) => Promise<void>;
-    @Action('auth/signOut') private signOutAction!: () => Promise<void>;
-    @Getter('auth/user') private user!: IUser;
 
     public form: ICredentials = {
         username: '',
@@ -82,7 +81,7 @@ export default class Login extends Vue {
     }
 
     private submit(): void {
-        this.signIn(this.form).then(() => {
+        this.authModule.signIn(this.form).then(() => {
             this.$router.replace({
                 name: 'dashboard'
             });
@@ -90,7 +89,7 @@ export default class Login extends Vue {
     }
 
     private signOut() {
-        this.signOutAction().then(() => {
+        this.authModule.signOut().then(() => {
             this.$router.push('/');
         });
     }

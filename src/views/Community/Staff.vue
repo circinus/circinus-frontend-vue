@@ -1,10 +1,10 @@
 <template>
     <div>
-        <ComponentLoader module="getList">
+        <ComponentLoader :state="permissionModule.getLoadingState('get-permissions')">
 
-            <div class="row mt-6">
+            <div class="row mt-5">
                 <div class="col-md-7 mt-0 pt-0">
-                    <div v-for="(rank, index) in list" :key="index" :ranks="rank">
+                    <div v-for="(rank, index) in permissionModule.ranks" :key="index" :ranks="rank">
 
                         <div v-if="rank.users" class="card d-flex flex-row">
                             <i class="icon icon--community mr-2"></i>
@@ -65,11 +65,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { ComponentOptions } from 'vue';
-import { Getter } from 'vuex-class';
 import ComponentLoader from '@/components/ComponentLoader.vue';
-import { IPermission } from '@/store/modules/permissions/IPermission';
+import { permissionModule } from '@/store/modules/permissions/PermissionModule';
+import { Observer } from 'mobx-vue';
 import { environment } from '../../../environment';
 
+@Observer
 @Component({
     components: {
         ComponentLoader
@@ -79,10 +80,10 @@ export default class CommunityStaff extends Vue implements ComponentOptions<Vue>
     private title = process.env.VUE_APP_TITLE;
     private avatarImaging = environment.SITE.FIGUREIMAGING;
     private badgeImaging = environment.SITE.BADGEMIMAGING;
-    @Getter('permissions/list') public list!: Array<IPermission>;
+    private permissionModule = permissionModule;
 
     public created(): void {
-        this.$store.dispatch('permissions/getStafflist');
+        this.permissionModule.getRanks();
     }
 }
 </script>

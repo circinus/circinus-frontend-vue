@@ -145,17 +145,19 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-
-import { Action, State } from 'vuex-class';
-import { INewUser } from '@/store/modules/user/INewUser';
+import { INewUser } from '@/store/modules/users/INewUser';
 import Looks from '@/components/Auth/Register/Looks.vue';
+import { Observer } from 'mobx-vue';
+import { authModule } from '@/store/modules/auth/AuthModule';
 
+@Observer
 @Component({
     components: {
         Looks
     }
 })
 export default class Register extends Vue {
+    private authModule = authModule;
     private avatarPreload = 8;
     private looks: Array<string> = [];
     private genders = [
@@ -172,12 +174,8 @@ export default class Register extends Vue {
         look: ''
     };
 
-    @Action('auth/register') private register!: (user: INewUser) => Promise<void>;
-    @Action('register/getLooks') private look!: (gender: string) => Promise<Array<string>>;
-    @State('register/looks') private getLooks!: Array<string>;
-
-    private submit() {
-        this.register(this.form).then(() => {
+    private submit(): void {
+        this.authModule.register(this.form).then(() => {
             this.$router.replace({
                 name: 'dashboard'
             });
@@ -204,9 +202,10 @@ export default class Register extends Vue {
         this.preLoad();
     }
 
-    private changeGender(event: Event) {
-        // @ts-ignore
-        this.look(event.target.selectedOptions[0].dataset.gender).then((response) => {
+    private changeGender(event: Event): void {
+        this.authModule.getRegisterLooks(
+            (event.target as HTMLSelectElement).options[(event.target as HTMLSelectElement).selectedIndex].value
+        ).then((response) => {
             this.form.look = response[1] ?? response[5];
             this.looks = response;
             this.preLoad();
