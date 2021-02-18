@@ -33,11 +33,11 @@
                         <div class="card-header d-inline-flex align-items-center flex-row px-0">
                             <i class="sprite sprite--comments"></i>
 
-                            <h5 class="mt-3 p-1 flex-fill" v-t="'layout.article.reactions'"></h5>
+                            <h5 class="mt-3 p-1 flex-fill" v-t="'layout.component.news.article.reactions'"></h5>
 
                             <div class="d-inline-flex flex-row align-items-center mr-2" v-if="authModule.authenticated">
                                 <button class="nav-link btn btn-warning" style="color:#fff"
-                                        @click="$refs.articleComment.openClose()" v-t="'layout.article.react'"></button>
+                                        @click="$refs.articleComment.openClose()" v-t="'layout.component.news.article.react'"></button>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                 <div class="d-flex flex-row mb-4">
                     <img class="mr-2 object-contain image-pixelated" src="@/assets/images/icons/news.png" alt="News"/>
                     <div class="d-inline-flex flex-column justify-content-center">
-                        <span class="section-title" v-t="'layout.article.more_news'"></span>
+                        <span class="section-title" v-t="'layout.component.news.article.more_news'"></span>
                     </div>
 
                 </div>
@@ -72,7 +72,7 @@
                 </article-sidebar>
             </div>
 
-            <modal ref="articleComment" :title="$t('layout.article.react_on')" saveButton="true" v-if="authModule.authenticated">
+            <modal ref="articleComment" :title="$t('layout.component.news.article.react_on')" saveButton="true" v-if="authModule.authenticated">
 
                 <template v-slot:body>
                     <div class="form-group">

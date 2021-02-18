@@ -18,34 +18,40 @@
             "members": "Medewerkers",
             "helptool": "Helptool"
         },
-        "staff" : {
-            "subtitle" : "Bekijk hier al onze medewerkers"
-        },
-        "client" : {
-            "starting": "Hotel wordt geladen...",
-            "almost": "We zijn er bijna..."
-        },
-        "dashboard": {
+        "component": {
+            "useroftheweek": {
+                "title": "Habbo van de week",
+                "description": "Wordt jij het volgende week?"
+            },
+            "guild": {
+                "title": "Groepen",
+                "description": "Bij wie sluit jij aan?"
+            },
+            "friendlist": {
+                "title": "Jouw vrienden",
+                "description": "Zijn je vrienden online?"
+            },
+            "staff" : {
+                "description": "Bekijk hier al onze medewerkers"
+            },
             "news": {
                 "title": "Actuele nieuws",
-                "description": "Wat zijn de hoogtepunten binnen ons hotel?"
+                "description": "Wat zijn de hoogtepunten binnen ons hotel?",
+                "article": {
+                    "react": "Reageren",
+                    "reactions": "Reacties",
+                    "more_news": "MEER NIEUWSBERICHTEN",
+                    "react_on": "Reageren op nieuwsbericht"
+                }
             },
             "photos": {
                 "title": "FOTO- BERICHTEN",
-                "description": "Zie hier collage van leuke momenten!"
+                "description": "Zie hier collage van leuke momenten!",
+                "could_not_fetch_photos": "Fotos konden niet worden opgehaald"
+            },
+            "votes": {
+                "not_cast": "Stem kon niet verwerkt worden. Probeer het nogmaals"
             }
-        },
-        "photos": {
-            "could_not_fetch_photos": "Fotos konden niet worden opgehaald"
-        },
-        "article": {
-            "react": "Reageren",
-            "reactions": "Reacties",
-            "more_news": "MEER NIEUWSBERICHTEN",
-            "react_on": "Reageren op nieuwsbericht"
-        },
-        "votes": {
-            "not_cast": "Stem kon niet verwerkt worden. Probeer het nogmaals"
         },
         "footer": {
             "credits": "© 2021 door Raizer & Highrun",

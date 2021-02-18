@@ -48,7 +48,7 @@ const router = new Router({
             name: 'community',
             component: Community,
             children: [
-                { path: '/community/staff', name: 'communityStaff', component: CommunityStaff }
+                { path: 'staff', name: 'communityStaff', component: CommunityStaff }
             ]
         },
         {

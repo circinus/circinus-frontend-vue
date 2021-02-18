@@ -352,6 +352,12 @@ main {
 
   .habbo--section {
 
+    .icon--friends,
+    .icon--news {
+      margin-right: 0.5rem;
+      margin-top: 0.3rem
+    }
+
     .form-control {
       font-size: 14px !important;
     }
@@ -1084,6 +1090,38 @@ footer {
   }
 }
 
+#userOfTheWeekComponent {
+  .card-body {
+    background-color: #eaeaea;
+    height: 6rem;
+
+    img {
+      height: 220px;
+      clip-path: inset(0 0 35% 0);
+      transform: translateY(-4rem);
+    }
+
+    .offline {
+      opacity: 0.7;
+      transition: 250ms opacity;
+
+      &:hover,
+      &:focus {
+        opacity: 1;
+      }
+    }
+
+    .user--username {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .user--motto {
+      font-size: 1rem;
+    }
+  }
+}
+
 #friendComponent {
   .title {
     font-weight: 600;
@@ -1096,9 +1134,14 @@ footer {
     overflow-y: auto;
     overflow-x: hidden;
     height: 15rem;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .friend {
+
     &.offline {
       background-color: #eaeaea;
 

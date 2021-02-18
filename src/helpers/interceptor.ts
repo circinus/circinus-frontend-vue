@@ -18,20 +18,15 @@ export default function setup(): void {
         return response;
     }, (error: AxiosError<IErrorResponse>) => {
         if (error.response) {
-            // custom error handling
-            if (error.response.status === 404) {
-
-            } else {
-                // check if notifications exists and show
-                error.response.data.errors.map((value: IError): void => {
-                    if (value.message) {
-                        notificationModule.addNotification({
-                            text: value.message,
-                            type: 'danger'
-                        });
-                    }
-                });
-            }
+            // check if notifications exists and show
+            error.response.data.errors.map((value: IError): void => {
+                if (value.message) {
+                    notificationModule.addNotification({
+                        text: value.message,
+                        type: 'danger'
+                    });
+                }
+            });
         }
 
         // return error
