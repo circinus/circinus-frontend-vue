@@ -55,6 +55,7 @@
                 "not_cast": "Stem kon niet verwerkt worden. Probeer het nogmaals"
             },
             "settings": {
+                "alert_success": "Instellingen opgeslagen",
                 "user": {
                     "title": "Gebruikersinstellingen",
                     "account": {

@@ -1,4 +1,5 @@
 // vuex typings
+import { Error } from '@/store/errors/ValidationError';
 import { AxiosInstance } from 'axios';
 import { IziToast } from 'izitoast';
 import { ProviderInstance } from 'vee-validate/dist/types/types';
@@ -15,3 +16,12 @@ declare module 'vue/types/vue' {
         $iziToast: IziToast;
     }
 }
+
+declare module 'axios' {
+    export interface AxiosResponse<T = any> {
+        code: number;
+        status: string;
+        data: T;
+        errors?: Array<Error>;
+    };
+  }

@@ -68,7 +68,7 @@
                 </div>
             </div>
             <b-card class="card--content">
-                <i class="mb-2">Je huidge e-mailadres is</i>
+                <i class="mb-4 d-block">Je huidge e-mailadres is {{ authModule.user.mail }} </i>
                 <ValidationObserver v-slot="{ handleSubmit }" ref="emailObserver">
                     <form
                         @submit.prevent="handleSubmit(submitEmail)"
@@ -150,7 +150,7 @@ export default class SecuritySettings extends Vue {
     private async submitPassword(): Promise<void> {
         const response = await userModule.updatePassword(this.passwordSettings);
 
-        if (response.status === ResponseStatus.OK) {
+        if (response.code === ResponseStatus.OK) {
             notificationModule.addNotification({
                 text: 'Wachtwoord gewijzigd',
                 type: 'success'
@@ -167,7 +167,7 @@ export default class SecuritySettings extends Vue {
     private async submitEmail(): Promise<void> {
         const response = await userModule.updateEmail(this.emailSettings);
 
-        if (response.status === ResponseStatus.OK) {
+        if (response.code === ResponseStatus.OK) {
             notificationModule.addNotification({
                 text: 'E-mailadres gewijzigd',
                 type: 'success'

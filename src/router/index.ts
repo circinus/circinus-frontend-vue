@@ -96,12 +96,22 @@ const router = new Router({
                 {
                     name: 'settings',
                     path: '',
-                    component: () => import('@/views/Me/Settings/Account.vue')
+                    component: () => import('@/views/Me/Settings/Account.vue'),
+                    meta: {
+                        middleware: [
+                            auth
+                        ]
+                    }
                 },
                 {
                     path: 'security',
                     name: 'security-settings',
-                    component: () => import('@/views/Me/Settings/Security.vue')
+                    component: () => import('@/views/Me/Settings/Security.vue'),
+                    meta: {
+                        middleware: [
+                            auth
+                        ]
+                    }
                 }
             ]
         },

@@ -4,7 +4,6 @@ import { ITicketResponse } from '@/store/modules/client/ITicketResponse';
 import api from '@/helpers/api';
 import { LoadingModule } from '@/store/modules/loading/LoadingModule';
 import { LoadingState } from '@/store/modules/loading/LoadingState';
-import { IResponse } from '@/helpers/IResponse';
 import { ResponseStatus } from '@/helpers/api/ResponseStatus';
 import { CantFetchTicketError } from '@/store/modules/client/errors/CantFetchTicketError';
 
@@ -63,12 +62,12 @@ export class ClientModule extends LoadingModule {
     public async getTicket(): Promise<ITicketResponse> {
         this.setLoadingState('get-ticket', LoadingState.LOADING);
 
-        const response = await api.put<IResponse<ITicketResponse>>('user/ticket');
+        const response = await api.put<ITicketResponse>('user/ticket');
 
         this.setLoadingState('get-ticket', LoadingState.LOADED);
 
-        if (response.status === ResponseStatus.OK) {
-            return response.data.data;
+        if (response.code === ResponseStatus.OK) {
+            return response.data;
         }
 
         return Promise.reject(new CantFetchTicketError());

@@ -19,8 +19,8 @@ export class PhotoModule extends LoadingModule {
 
         this.setLoadingState('get-photos', LoadingState.LOADED);
 
-        if (response.status === ResponseStatus.OK) {
-            this._photos = response.data.data.data;
+        if (response.code === ResponseStatus.OK) {
+            this._photos = response.data.data;
         } else {
             return Promise.reject(new PhotosNotFetchedError());
         }

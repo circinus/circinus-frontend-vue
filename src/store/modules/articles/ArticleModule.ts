@@ -5,7 +5,6 @@ import { ResponseStatus } from '@/helpers/api/ResponseStatus';
 import api from '@/helpers/api';
 import { LoadingModule } from '@/store/modules/loading/LoadingModule';
 import { LoadingState } from '@/store/modules/loading/LoadingState';
-import { IResponse } from '@/helpers/IResponse';
 import { IComment } from '@/store/modules/articles/IComment';
 import { IGetCommentCriteria } from '@/store/modules/articles/IGetCommentCriteria';
 import { INewComment } from '@/store/modules/articles/INewComment';
@@ -32,20 +31,20 @@ export class ArticleModule extends LoadingModule {
 
         this.setLoadingState('get-articles', LoadingState.LOADED);
 
-        if (response.status === ResponseStatus.OK) {
-            this._articles = response.data.data.data;
+        if (response.code === ResponseStatus.OK) {
+            this._articles = response.data.data;
         }
     }
 
     public async getArticle(slug: string): Promise<IArticle | null> {
         this.setLoadingState('get-article', LoadingState.LOADING);
 
-        const response = await this.api.get<IResponse<IArticle>>(`/articles/${slug}`);
+        const response = await this.api.get<IArticle>(`/articles/${slug}`);
 
         this.setLoadingState('get-article', LoadingState.LOADED);
 
-        if (response.status === ResponseStatus.OK) {
-            return response.data.data;
+        if (response.code === ResponseStatus.OK) {
+            return response.data;
         }
 
         return null;
@@ -60,8 +59,8 @@ export class ArticleModule extends LoadingModule {
 
         this.setLoadingState('get-comments', LoadingState.LOADED);
 
-        if (response.status === ResponseStatus.OK) {
-            return response.data.data.data;
+        if (response.code === ResponseStatus.OK) {
+            return response.data.data;
         }
 
         return [];
@@ -69,11 +68,11 @@ export class ArticleModule extends LoadingModule {
 
     public async createComment(newComment: INewComment): Promise<IComment | null> {
         this.setLoadingState('create-comment', LoadingState.LOADING);
-        const response = await this.api.post('comments/create', newComment);
+        const response = await this.api.post<IComment>('comments/create', newComment);
         this.setLoadingState('create-comment', LoadingState.LOADED);
 
-        if (response.status === ResponseStatus.CREATED) {
-            return response.data.data;
+        if (response.code === ResponseStatus.CREATED) {
+            return response.data;
         }
 
         return null;

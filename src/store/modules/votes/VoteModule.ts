@@ -7,7 +7,6 @@ import { INewVote } from '@/store/modules/photos/INewVote';
 import { LoadingState } from '@/store/modules/loading/LoadingState';
 import api from '@/helpers/api';
 import { ResponseStatus } from '@/helpers/api/ResponseStatus';
-import { IResponse } from '@/helpers/IResponse';
 import { VoteNotCastError } from '@/store/modules/votes/errors/VoteNotCastError';
 
 export class VoteModule extends LoadingModule {
@@ -39,12 +38,12 @@ export class VoteModule extends LoadingModule {
 
     public async getAll(): Promise<void> {
         this.setLoadingState('get-total', LoadingState.LOADING);
-        const response = await api.get<IResponse<IVote[]>>('votes/total');
+        const response = await api.get<IVote[]>('votes/total');
 
         this.setLoadingState('get-total', LoadingState.LOADED);
 
-        if (response.status === ResponseStatus.OK) {
-            response.data.data.map((vote: IVote): void => {
+        if (response.code === ResponseStatus.OK) {
+            response.data.map((vote: IVote): void => {
                 this._votes.push(vote);
             });
         }
@@ -53,10 +52,10 @@ export class VoteModule extends LoadingModule {
     public async createVote(newVote: INewVote): Promise<IVote> {
         this.setLoadingState('create-vote', LoadingState.LOADING);
 
-        const response = await api.post<IResponse<IVote>>('votes/create', newVote);
+        const response = await api.post<IVote>('votes/create', newVote);
 
-        if (response.status === ResponseStatus.CREATED) {
-            return response.data.data;
+        if (response.code === ResponseStatus.CREATED) {
+            return response.data;
         } else {
             return Promise.reject(new VoteNotCastError());
         }

@@ -3,7 +3,6 @@ import { IRank } from './IRank';
 import { LoadingModule } from '@/store/modules/loading/LoadingModule';
 import { LoadingState } from '@/store/modules/loading/LoadingState';
 import api from '@/helpers/api';
-import { IResponse } from '@/helpers/IResponse';
 import { ResponseStatus } from '@/helpers/api/ResponseStatus';
 import { CantFetchRanks } from '@/store/modules/permissions/errors/CantFetchRanks';
 
@@ -17,12 +16,12 @@ export class PermissionModule extends LoadingModule {
     public async getRanks(): Promise<void> {
         this.setLoadingState('get-permissions', LoadingState.LOADING);
 
-        const response = await api.get<IResponse<Array<IRank>>>('permissions/staff/list');
+        const response = await api.get<Array<IRank>>('permissions/staff/list');
 
         this.setLoadingState('get-permissions', LoadingState.LOADED);
 
-        if (response.status === ResponseStatus.OK) {
-            this._ranks = response.data.data;
+        if (response.code === ResponseStatus.OK) {
+            this._ranks = response.data;
         } else {
             return Promise.reject(new CantFetchRanks());
         }
