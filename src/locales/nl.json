@@ -9,16 +9,17 @@
         },
         "nav": {
             "homepage": "Homepage",
-            "community": {
-                "nav": "Community",
-                "staff": "Medewerkers"
-            },
+            "community": "Community",
+            "staff": "Medewerkers",
             "gallery": "Gallerij",
             "highscores": "Highscores",
-            "members": "Medewerkers",
             "helptool": "Helptool"
         },
         "component": {
+            "rooms": {
+                "title": "Rooms",
+                "description": "Bekijk de trending kamers!"
+            },
             "useroftheweek": {
                 "title": "Habbo van de week",
                 "description": "Wordt jij het volgende week?"
@@ -54,7 +55,7 @@
             }
         },
         "footer": {
-            "credits": "© 2021 door Raizer & Highrun",
+            "credits": "© 2021 door Raizer & Eran",
             "description": "Alle rechten voorbehouden"
         }
     }

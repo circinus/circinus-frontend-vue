@@ -46,10 +46,12 @@ const router = new Router({
         {
             path: '/community',
             name: 'community',
-            component: Community,
-            children: [
-                { path: 'staff', name: 'communityStaff', component: CommunityStaff }
-            ]
+            component: Community
+        },
+        {
+            path: '/community/staff',
+            name: 'communityStaff',
+            component: CommunityStaff
         },
         {
             path: '/hotel',
