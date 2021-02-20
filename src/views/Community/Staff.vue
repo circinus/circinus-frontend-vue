@@ -16,12 +16,14 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="news--info d-flex flex-row align-items-center mb-3">
-                                            <div class="user--rounded-image bg-white mr-2">
+                                            <div class="user--rounded-image online mr-2">
+                                                <div class="status" :class="user.online === 1 ? 'offline' : 'online'"></div>
                                                 <img
-                                                    :src="this.avatarImaging + user.look + '&amp;action=std&amp;gesture=std&amp;direction=3&amp;head_direction=3'"
-                                                    :alt="user.username">
+                                                    v-bind:src="avatarImaging + user.look + '&action=std&gesture=std&direction=3&head_direction=3&headonly=1'"
+                                                    :alt="user.username"
+                                                />
                                             </div>
-                                            <span :class="user.online === 3 ? 'onlineDot' : 'offlineDot'"></span>
+
                                         </div>
                                     </div>
                                     <div class="col-md-5 mt-3">
@@ -30,7 +32,7 @@
                                     </div>
                                     <div class="col-md-2 mt-3">
                                         <img
-                                            :src="this.badgeImaging + rank.badge + '.gif'">
+                                            :src="badgeImaging + rank.badge + '.gif'">
                                     </div>
                                 </div>
                             </div>
