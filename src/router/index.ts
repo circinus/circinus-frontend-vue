@@ -46,7 +46,12 @@ const router = new Router({
         {
             path: '/community',
             name: 'community',
-            component: Community
+            component: Community,
+            meta: {
+                middleware: [
+                    auth
+                ]
+            }
         },
         {
             path: '/community/staff',

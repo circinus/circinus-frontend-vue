@@ -18,18 +18,16 @@
                                 </div>
                             </div>
                             <div id="friends" class="row">
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                                    <ComponentLoader :state="friendListModule.getLoadingState('get-friendList')">
-                                        <div class="row">
-                                            <FriendList
-                                                v-for="(friends, index) in friendListModule.friends"
-                                                :key="index"
-                                                :friends="friends"
-                                            >
-                                            </FriendList>
-                                        </div>
-                                    </ComponentLoader>
-                                </div>
+                                <ComponentLoader :state="friendListModule.getLoadingState('get-friendList')">
+                                    <div class="row">
+                                        <FriendList
+                                            v-for="(friend, index) in friendListModule.friends"
+                                            :key="index"
+                                            :friend="friend"
+                                        >
+                                        </FriendList>
+                                    </div>
+                                </ComponentLoader>
                             </div>
                         </div>
                     </div>

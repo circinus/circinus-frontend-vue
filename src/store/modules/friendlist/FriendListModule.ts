@@ -19,6 +19,22 @@ export class FriendListModule extends LoadingModule {
 
         this.setLoadingState('get-friendList', LoadingState.LOADED);
 
+        let amount = response.data.data.data.length;
+
+        const data = {
+            id: 0,
+            relation: 0,
+            friends_since: 0,
+            username: 'Friend',
+            motto: 'Test',
+            look: '',
+            online: -1
+        };
+
+        for (amount; amount < 9; amount++) {
+            response.data.data.data.push(data);
+        }
+
         if (response.status === ResponseStatus.OK) {
             this._friends = response.data.data.data;
         } else {

@@ -16,7 +16,7 @@
                             <span v-t="'layout.nav.homepage'"></span>
                         </router-link>
                     </li>
-                    <li>
+                    <li v-if="authModule.authenticated">
                         <div class="icon">
                             <div class="icon--chair p-lg-1 mt-2"></div>
                         </div>
@@ -39,17 +39,13 @@
 </template>
 
 <script lang="ts">
-// @ts-ignore
-import DropdownMenu from '@innologica/vue-dropdown-menu';
-import { Component, Vue } from 'vue-property-decorator';
+import { Vue, Component } from 'vue-property-decorator';
+import { authModule } from '@/store/modules/auth/AuthModule';
+import { Observer } from 'mobx-vue';
 
-@Component({
-    components: {
-        DropdownMenu
-    }
-})
+@Observer
+@Component({})
 export default class Navigation extends Vue {
-    private show = false;
-    private hover = true;
+    private authModule = authModule;
 }
 </script>
