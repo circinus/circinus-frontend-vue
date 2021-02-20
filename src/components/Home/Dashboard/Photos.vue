@@ -2,7 +2,7 @@
     <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12">
         <div class="news--info d-flex flex-row align-items-center mb-3">
             <div class="user--rounded-image online mr-2">
-                <div class="status online"></div>
+                <div class="status" :class="this.photo.user.online === 1 ? 'offline' : 'online'"></div>
                 <img
                     v-bind:src="this.avatarImaging + this.photo.user.look + '&action=std&gesture=std&direction=3&head_direction=3&headonly=1'"
                     :alt="this.photo.user.username"/>
