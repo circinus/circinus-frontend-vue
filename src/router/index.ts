@@ -89,7 +89,7 @@ const router = new Router({
                 {
                     name: 'settings',
                     path: '',
-                    component: () => import('@/views/Me/Settings/Global.vue')
+                    component: () => import('@/views/Me/Settings/Account.vue')
                 },
                 {
                     path: 'security',

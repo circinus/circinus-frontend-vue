@@ -6,14 +6,27 @@ import { IUser } from '@/store/modules/auth/IUser';
 import { IResponse } from '@/helpers/IResponse';
 import { AxiosResponse } from 'axios';
 import { INewEmail } from '@/store/modules/users/INewEmail';
+import { observable } from 'mobx';
+import { IUserSettings } from '@/store/modules/users/IUserSettings';
+import { ResponseStatus } from '@/helpers/api/ResponseStatus';
 
 export class UserModule extends LoadingModule {
+    @observable private _userSettings?: IUserSettings;
+
+    public get userSettings(): IUserSettings | undefined {
+        return this._userSettings;
+    }
+
     public async getUserSettings(): Promise<void> {
         this.setLoadingState('get-user-settings', LoadingState.LOADING);
 
-        // const response = await api.get('settings/list/1/50');
+        const response = await api.get<IResponse<IUserSettings>>('suser/settings');
 
         this.setLoadingState('get-user-settings', LoadingState.LOADED);
+
+        if (response.status === ResponseStatus.OK) {
+            this._userSettings = response.data.data;
+        }
     }
 
     public async updatePassword(newPassword: INewPassword): Promise<AxiosResponse<IResponse<IUser>>> {
