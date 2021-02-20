@@ -48,9 +48,16 @@ const router = new Router({
             path: '/community',
             name: 'community',
             component: Community,
-            children: [
-                { path: 'staff', name: 'communityStaff', component: CommunityStaff }
-            ]
+            meta: {
+                middleware: [
+                    auth
+                ]
+            }
+        },
+        {
+            path: '/community/staff',
+            name: 'communityStaff',
+            component: CommunityStaff
         },
         {
             path: '/hotel',

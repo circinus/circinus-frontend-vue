@@ -1,6 +1,7 @@
 import { ICurrency } from '@/store/modules/currencies/ICurrency';
 
 export interface IUser {
+    id: number;
     username: string;
     mail: string;
     look: string;

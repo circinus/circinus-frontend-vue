@@ -6,22 +6,31 @@
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbar--secondary-collapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <router-link class="nav-link" :to="{ name: 'home' }" v-t="'layout.nav.homepage'"></router-link>
+            <div class="collapse navbar-collapse navigation" id="navbar--secondary-collapse">
+                <ul>
+                    <li>
+                        <div class="icon">
+                            <div class="icon--home p-lg-1 mt-2"></div>
+                        </div>
+                        <router-link :to="{ name: 'home' }">
+                            <span v-t="'layout.nav.homepage'"></span>
+                        </router-link>
                     </li>
-                    <li class="nav-item">
-                        <dropdown-menu
-                            v-model="show"
-                            :hover="hover"
-                        >
-                            <router-link class="nav-link" :to="{ name: 'community' }" v-t="'layout.nav.community.nav'"></router-link>
-                            <div slot="dropdown">
-                                <router-link class="nav-dropdown" :to="{ name: 'communityStaff' }"
-                                             v-t="'layout.nav.community.staff'"></router-link>
-                            </div>
-                        </dropdown-menu>
+                    <li v-if="authModule.authenticated">
+                        <div class="icon">
+                            <div class="icon--chair p-lg-1 mt-2"></div>
+                        </div>
+                        <router-link :to="{ name: 'community' }">
+                            <span v-t="'layout.nav.community'"></span>
+                        </router-link>
+                    </li>
+                    <li>
+                        <div class="icon">
+                            <div class="icon--pixel p-lg-1 mt-2"></div>
+                        </div>
+                        <router-link :to="{ name: 'communityStaff' }">
+                            <span v-t="'layout.nav.staff'"></span>
+                        </router-link>
                     </li>
                 </ul>
             </div>
@@ -30,17 +39,13 @@
 </template>
 
 <script lang="ts">
-// @ts-ignore
-import DropdownMenu from '@innologica/vue-dropdown-menu';
-import { Component, Vue } from 'vue-property-decorator';
+import { Vue, Component } from 'vue-property-decorator';
+import { authModule } from '@/store/modules/auth/AuthModule';
+import { Observer } from 'mobx-vue';
 
-@Component({
-    components: {
-        DropdownMenu
-    }
-})
+@Observer
+@Component({})
 export default class Navigation extends Vue {
-    private show = false;
-    private hover = true;
+    private authModule = authModule;
 }
 </script>
