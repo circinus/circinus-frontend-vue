@@ -13,6 +13,7 @@ import Home from '@/views/Home.vue';
 import Register from '@/views/Auth/Register.vue';
 import Article from '@/views/Community/Article.vue';
 import { clientModule } from '@/store/modules/client/ClientModule';
+import Settings from '@/views/Me/Settings.vue';
 
 Vue.use(Router);
 
@@ -75,6 +76,27 @@ const router = new Router({
                     auth
                 ]
             }
+        },
+        {
+            path: '/settings',
+            component: Settings,
+            meta: {
+                middleware: [
+                    auth
+                ]
+            },
+            children: [
+                {
+                    name: 'settings',
+                    path: '',
+                    component: () => import('@/views/Me/Settings/Global.vue')
+                },
+                {
+                    path: 'security',
+                    name: 'security-settings',
+                    component: () => import('@/views/Me/Settings/Security.vue')
+                }
+            ]
         },
         {
             path: '/articles/:id/:slug',

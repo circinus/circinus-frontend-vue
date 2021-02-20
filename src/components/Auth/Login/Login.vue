@@ -48,6 +48,9 @@
                     {{ authModule.user.username }}
                 </button>
                 <div class="dropdown-menu">
+                    <router-link class="dropdown-item" :to="{ name: 'settings' }"
+                                 v-t="'layout.header.settings'"></router-link>
+                    <b-dropdown-divider></b-dropdown-divider>
                     <router-link class="dropdown-item" :to="{ name: 'logout' }" v-on:click.native="signOut"
                                  v-t="'layout.header.logout'"></router-link>
                 </div>
@@ -59,6 +62,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
+import { BDropdownDivider } from 'bootstrap-vue';
 import ComponentLoader from '@/components/ComponentLoader.vue';
 import { authModule } from '@/store/modules/auth/AuthModule';
 import { Observer } from 'mobx-vue';
@@ -68,7 +72,8 @@ import { environment } from '../../../../environment';
 @Observer
 @Component({
     components: {
-        ComponentLoader
+        ComponentLoader,
+        BDropdownDivider
     }
 })
 export default class Login extends Vue {

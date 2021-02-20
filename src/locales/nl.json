@@ -3,6 +3,7 @@
         "header": {
             "login": "Inloggen",
             "logout": "Uitloggen",
+            "settings": "Instellingen",
             "create_account": "Maak account",
             "go_hotel": "Ga naar binnen",
             "description": "Chatten, vrienden maken en lekker jezelf zijn, dat bieden wij op de gezelligste community van Nederland! Kom jij ook?"
@@ -51,6 +52,17 @@
             },
             "votes": {
                 "not_cast": "Stem kon niet verwerkt worden. Probeer het nogmaals"
+            },
+            "settings": {
+                "user": {
+                    "title": "Gebruikersinstellingen",
+                    "account": {
+                        "title": "Account"
+                    },
+                    "security": {
+                        "title": "Beveiliging"
+                    }
+                }
             }
         },
         "footer": {
