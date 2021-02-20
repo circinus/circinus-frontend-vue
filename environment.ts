@@ -1,5 +1,6 @@
 export interface IEnvironment {
     SITE: {
+        LANG: string;
         API: string;
         NITROPATH: string;
         FIGUREIMAGING: string;
@@ -11,6 +12,7 @@ export interface IEnvironment {
 }
 export const environment: IEnvironment = {
     SITE: {
+        LANG: 'nl',
         API: 'https://api.circinus.dev/en/',
         NITROPATH: 'https://client.circinus.dev',
         FIGUREIMAGING: 'https://www.habbo.com.tr/habbo-imaging/avatarimage?figure=',
