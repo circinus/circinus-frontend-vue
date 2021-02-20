@@ -1,6 +1,7 @@
 <template>
     <section class="habbo--section">
         <div class="d-flex flex-row mb-4">
+            <i class="icon--settings mr-2"></i>
             <div class="d-inline-flex flex-column justify-content-center">
                 <span class="section-title">Wachtwoord</span>
             </div>
