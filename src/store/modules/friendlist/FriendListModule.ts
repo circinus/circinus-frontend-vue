@@ -29,8 +29,8 @@ export class FriendListModule extends LoadingModule {
 
         this.setLoadingState('get-friendList', LoadingState.LOADED);
 
-        if (response.status === ResponseStatus.OK) {
-            this._friends = response.data.data.data;
+        if (response.code === ResponseStatus.OK) {
+            this._friends = response.data.data;
 
             let amount = this._friends.length;
             for (amount; amount < 9; amount++) {

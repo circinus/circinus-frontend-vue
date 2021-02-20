@@ -5,7 +5,6 @@ import api from '@/helpers/api';
 import { ITokenResponse } from '@/store/modules/auth/ITokenResponse';
 import { ICurrency } from '@/store/modules/currencies/ICurrency';
 import { environment } from '../../../../environment';
-import { IResponse } from '@/helpers/IResponse';
 import { voteModule } from '@/store/modules/votes/VoteModule';
 import { LoadingModule } from '../loading/LoadingModule';
 import { LoadingState } from '@/store/modules/loading/LoadingState';
@@ -57,9 +56,9 @@ export class AuthModule extends LoadingModule {
         this.setToken(token);
 
         try {
-            const response = await api.get<IResponse<IUser>>('user');
+            const response = await api.get<IUser>('user');
 
-            response.data.data.currencies = response.data.data.currencies.map((item: ICurrency) => ({
+            response.data.currencies = response.data.currencies.map((item: ICurrency) => ({
                 ...item,
                 name: Object.keys(environment.POINTS)
                     .filter((k: string): boolean => environment.POINTS[k] === item.type).toString()
@@ -67,7 +66,7 @@ export class AuthModule extends LoadingModule {
 
             voteModule.getAll();
 
-            this.setUser(response.data.data);
+            this.setUser(response.data);
         } catch (e) {
             this.setToken(null);
             this.setUser(null);
@@ -75,9 +74,9 @@ export class AuthModule extends LoadingModule {
     }
 
     public async signIn(credentials: ICredentials): Promise<void> {
-        const response = await api.post<IResponse<ITokenResponse>>('login', credentials);
+        const response = await api.post<ITokenResponse>('login', credentials);
 
-        return this.attempt(response.data.data.token);
+        return this.attempt(response.data.token);
     }
 
     public signOut(): Promise<void> {
@@ -90,12 +89,12 @@ export class AuthModule extends LoadingModule {
     public async register(newUser: INewUser): Promise<void> {
         this.setLoadingState('register', LoadingState.LOADING);
 
-        const response = await api.post<IResponse<ITokenResponse>>('register', newUser);
+        const response = await api.post<ITokenResponse>('register', newUser);
 
         this.setLoadingState('register', LoadingState.LOADED);
 
-        if (response.status === ResponseStatus.CREATED) {
-            return this.attempt(response.data.data.token);
+        if (response.code === ResponseStatus.CREATED) {
+            return this.attempt(response.data.token);
         }
 
         return Promise.reject(new RegisterError());
@@ -103,12 +102,12 @@ export class AuthModule extends LoadingModule {
 
     public async getRegisterLooks(gender: string): Promise<string[]> {
         this.setLoadingState('get-register-looks', LoadingState.LOADING);
-        const response = await api.get<IResponse<ILooksResponse>>('register/looks');
+        const response = await api.get<ILooksResponse>('register/looks');
 
         this.setLoadingState('get-register-looks', LoadingState.LOADED);
 
-        if (response.status === ResponseStatus.OK) {
-            return response.data.data.looks[gender];
+        if (response.code === ResponseStatus.OK) {
+            return response.data.looks[gender];
         } else {
             return Promise.reject(new LooksNotFetchedError());
         }

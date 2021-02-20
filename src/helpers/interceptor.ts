@@ -15,7 +15,7 @@ export default function setup(): void {
 
     api.interceptors.response.use((response: AxiosResponse) => {
         // return data
-        return response;
+        return response.data;
     }, (error: AxiosError<IErrorResponse>) => {
         if (error.response) {
             // check if notifications exists and show
