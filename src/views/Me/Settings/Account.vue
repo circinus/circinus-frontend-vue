@@ -4,17 +4,16 @@
             <div class="d-flex flex-row mb-4">
                 <i class="icon--settings mr-2"></i>
                 <div class="d-inline-flex flex-column justify-content-center">
-                    <span class="section-title">Hotelinstellingen</span>
+                    <span class="section-title" v-t="'layout.component.settings.account.avatar.title'" />
                 </div>
             </div>
             <b-card class="card--content">
                 <form
                     @submit.prevent="submitHotel"
-                    class="d-flex flex-column"
                 >
                     <div class="d-flex mb-4 align-items-center">
                         <div>
-                             <strong class="d-block">Vrienden mogen je volgen</strong>
+                             <strong class="d-block" v-t="'layout.component.settings.account.avatar.friends_can_follow_label'" />
                         </div>
                         <b-form-checkbox
                             class="ml-auto"
@@ -26,8 +25,8 @@
                     </div>
                     <div class="d-flex mb-4 align-items-center">
                         <div>
-                             <strong class="d-block">Vriendschapsverzoeken</strong>
-                             Sta het toe dat onbekenden je vriendschapsverzoeken sturen
+                             <strong class="d-block" v-t="'layout.component.settings.account.avatar.friend_requests_label'" />
+                             <span v-t="'layout.component.settings.account.avatar.friend_requests_desc'"></span>
                         </div>
                         <b-form-checkbox
                             class="ml-auto"
@@ -39,8 +38,8 @@
                     </div>
                     <div class="d-flex mb-4 align-items-center">
                         <div>
-                             <strong class="d-block">Kameruitnodigingen</strong>
-                             Sta het toe dat vrienden je een uitnodiging mogen sturen voor hun kamer
+                             <strong class="d-block" v-t="'layout.component.settings.account.avatar.roominvites_label'" />
+                             <span v-t="'layout.component.settings.account.avatar.roominvites_desc'"></span>
                         </div>
                         <b-form-checkbox
                             class="ml-auto"
@@ -52,8 +51,8 @@
                     </div>
                     <div class="d-flex align-items-center mb-4">
                         <div>
-                             <strong class="d-block">Camera volgt je</strong>
-                             Sta het toe dat de camera in het hotel gefocust blijft op je avatar
+                             <strong class="d-block" v-t="'layout.component.settings.account.avatar.camera_follow_label'" />
+                             <span v-t="'layout.component.settings.account.avatar.camera_follow_desc'"></span>
                         </div>
                         <b-form-checkbox
                             class="ml-auto"
@@ -65,8 +64,8 @@
                     </div>
                     <div class="d-flex align-items-center mb-4">
                         <div>
-                             <strong class="d-block">Notificaties</strong>
-                             Sta het toe dat je notificaties krijgt van gebeurtenissen, bijvoorbeeld wanneer een vriend online komt
+                             <strong class="d-block" v-t="'layout.component.settings.account.avatar.notifications_label'" />
+                             <span v-t="'layout.component.settings.account.avatar.notifications_desc'"></span>
                         </div>
                         <b-form-checkbox
                             class="ml-auto"
@@ -78,8 +77,8 @@
                     </div>
                     <div class="d-flex align-items-center mb-4">
                         <div>
-                             <strong class="d-block">Negeer bots</strong>
-                             Hoor bots niet praten
+                             <strong class="d-block" v-t="'layout.component.settings.account.avatar.ignore_bots_label'" />
+                             <span v-t="'layout.component.settings.account.avatar.ignore_bots_desc'"></span>
                         </div>
                         <b-form-checkbox
                             class="ml-auto"
@@ -91,8 +90,8 @@
                     </div>
                     <div class="d-flex align-items-center mb-4">
                         <div>
-                             <strong class="d-block">Negeer huisdieren</strong>
-                             Hoor huisdieren niet praten
+                             <strong class="d-block" v-t="'layout.component.settings.account.avatar.ignore_pets_label'" />
+                             <span v-t="'layout.component.settings.account.avatar.ignore_pets_desc'"></span>
                         </div>
                         <b-form-checkbox
                             class="ml-auto"
@@ -102,7 +101,13 @@
                             @change="changeSetting('ignore_pets', $event)"
                         />
                     </div>
-                    <button type="submit" class="btn btn-primary mt-4">Verander instellingen</button>
+                    <div class="d-flex">
+                        <button
+                        type="submit"
+                        class="btn btn-primary mt-4 ml-auto"
+                        v-t="'layout.component.settings.account.avatar.button_save'"
+                        />
+                    </div>
                 </form>
             </b-card>
         </section>

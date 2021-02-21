@@ -9,11 +9,11 @@
                     <div class="list-group-header" v-t="'layout.component.settings.user.title'"></div>
                     <b-list-group-item
                         :to="{ name: 'settings' }"
-                        v-t="'layout.component.settings.user.account.title'"
+                        v-t="'layout.component.settings.account.title'"
                     />
                     <b-list-group-item
                         :to="{ name: 'security-settings' }"
-                        v-t="'layout.component.settings.user.security.title'"
+                        v-t="'layout.component.settings.security.title'"
                     />
                 </b-list-group>
             </div>
