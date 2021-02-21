@@ -13,12 +13,12 @@ $navbar-light-hover-color: #2C3039;
 $navbar-light-active-color: #2C3039;
 
 $theme-colors: ('primary': #7DD4E5,
-    'danger': #ff4136,
-    'orange': #EEB425,
-    'light': #fff);
+        'danger': #ff4136,
+        'orange': #EEB425,
+        'light': #fff);
 
 $container-max-widths: (lg: 1200px,
-    xl: 1400px);
+        xl: 1400px);
 
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
@@ -800,26 +800,9 @@ footer {
 
 .user--rounded-image {
 
-  box-shadow: 0 0 0 2px #cfcfcf;
-  border: 2px solid #fff;
-  background-color: #DFE1E4;
-  border-radius: 50%;
-  width: 46px;
-  height: 46px !important;
-
-  & > img {
-    top: -0.7rem !important;
-    left: -0.35rem;
-  }
-
-  .status {
-    z-index: 1;
-    background-color: #D4D7DB;
-    border: 3px solid #fff;
-    box-shadow: 0 1px 3px rgb(0 0 0 / 22%);
-    width: 14px;
-    height: 14px;
-
+    box-shadow: 0 0 0 2px #cfcfcf;
+    border: 2px solid #fff;
+    background-color: #DFE1E4;
     border-radius: 50%;
     width: 46px;
     height: 46px !important;

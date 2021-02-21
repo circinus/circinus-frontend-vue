@@ -19,12 +19,12 @@ export class UserOfTheWeekModule extends LoadingModule {
     public async getUser(): Promise<IUserOfTheWeek | null> {
         this.setLoadingState('get-userOfTheWeek', LoadingState.LOADING);
 
-        const response = await this.api.get<IResponse<IUserOfTheWeek>>('user-of-the-hotel');
+        const response = await this.api.get<IUserOfTheWeek>('user-of-the-hotel');
 
         this.setLoadingState('get-userOfTheWeek', LoadingState.LOADED);
 
-        if (response.status === ResponseStatus.OK) {
-            return response.data.data;
+        if (response.code === ResponseStatus.OK) {
+            return response.data;
         }
 
         return null;
