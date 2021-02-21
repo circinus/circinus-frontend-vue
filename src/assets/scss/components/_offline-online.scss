@@ -1,0 +1,22 @@
+.onlineDot {
+    margin-bottom: 1px;
+    height: 12px;
+    width: 12px;
+    background-color: #447741;
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid white;
+}
+
+.offlineDot {
+    margin-bottom: 1px;
+    height: 18px;
+    z-index: 100000;
+    margin-top: -20px;
+    margin-left: -20px;
+    width: 18px;
+    background-color: #723030;
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid white;
+}

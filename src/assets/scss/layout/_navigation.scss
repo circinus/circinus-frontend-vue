@@ -1,0 +1,80 @@
+@use "../variables";
+
+.navigation {
+    background-color: #fff;
+    height: 89px;
+    overflow: hidden;
+    color: #000;
+
+    a {
+        color: #313137 !important;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .hide {
+        margin-right: 22px;
+        font-weight: 600;
+        color: rgb(var(--color));
+        cursor: pointer;
+    }
+
+    ul {
+        height: 60px;
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-right: 1px solid rgba(221, 219, 219, 0.4);
+        margin-right: 1px;
+
+        li {
+            padding: 0 36px;
+            border-left: 1px solid rgba(221, 219, 219, 0.4);
+            font-size: 14px;
+            color: #6D6C6C;
+            font-weight: 700;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            margin-right: -1px;
+
+            .icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: variables.$body-bg;
+                box-shadow: 0 2px 10px #acacac;
+                width: 26px;
+                height: 26px;
+                margin-top: -26px;
+                border-radius: 50%;
+                transition: all 0.2s;
+                overflow: hidden;
+                transform: scale(0);
+                padding: 4px;
+            }
+
+            &:hover {
+                .icon {
+                    height: 26px;
+                    transform: scale(1);
+                    margin-top: 0;
+                    margin-bottom: 8px;
+                }
+
+                img {
+                    image-rendering: pixelated;
+                }
+            }
+        }
+    }
+}

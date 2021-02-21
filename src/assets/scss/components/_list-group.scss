@@ -1,0 +1,20 @@
+@use "../variables";
+
+.list-group {
+    border-radius: 0.25rem;
+
+    .list-group-header {
+        background: #fff;
+        padding: 0.75rem 1.25rem;
+        font-weight: bold;
+    }
+
+    .list-group-item {
+        border: none;
+        border-left: solid 2px transparent;
+
+        &.router-link-exact-active {
+            border-left-color: map-get(variables.$theme-colors, 'primary');
+        }
+    }
+}

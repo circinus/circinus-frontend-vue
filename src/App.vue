@@ -1,7 +1,7 @@
 <template>
     <div id="app">
 
-        <header class="bg-primary mb-4">
+        <header class="bg-primary mb-4 app-header">
             <Top/>
             <Header/>
             <Navigation/>
@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import '@/assets/css/app.scss';
+import '@/assets/scss/index.scss';
 import Top from '@/views/Layout/Top.vue';
 import Navigation from '@/views/Layout/Navigation.vue';
 import Header from '@/views/Layout/Header.vue';

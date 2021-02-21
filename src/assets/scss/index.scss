@@ -1,0 +1,30 @@
+// pre-vendors
+@use "../../../node_modules/bootstrap/scss/bootstrap";
+
+// components
+@use "components/button";
+@use "components/modal";
+@use "components/icons";
+@use "components/form";
+@use "components/list-group";
+@use "components/dropdown";
+@use "components/offline-online";
+
+// layout 
+@use "layout/navigation";
+@use "layout/header";
+@use "layout/habbo-section";
+
+// pages
+@use "pages/register";
+@use "pages/community";
+@use "pages/hotel";
+
+// vendors
+@use "vendors/izi-toast";
+
+:root {
+    --header-color: #fff;
+    --footer-background-color: #232730;
+    --footer-secondary-background-color: #2C3039;
+}
