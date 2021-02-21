@@ -56,13 +56,46 @@
             },
             "settings": {
                 "alert_success": "Instellingen opgeslagen",
-                "user": {
+                "account": {
                     "title": "Gebruikersinstellingen",
-                    "account": {
-                        "title": "Account"
+                    "avatar": {
+                        "title": "Avatarinstellingen",
+                        "friends_can_follow_label": "Vrienden mogen je volgen",
+                        "friend_requests_label": "Vriendschapsverzoeken",
+                        "friend_requests_desc": "Sta het toe dat onbekenden je vriendschapsverzoeken sturen",
+                        "roominvites_label": "Kameruitnodigingen",
+                        "roominvites_desc": "Sta het toe dat vrienden je een uitnodiging mogen sturen voor hun kamer",
+                        "camera_follow_label": "Camera volgt je",
+                        "camera_follow_desc": "Sta het toe dat de camera in het hotel gefocust blijft op je avatar",
+                        "notifications_label": "Notificaties",
+                        "notifications_desc": "Sta het toe dat je notificaties krijgt van gebeurtenissen, bijvoorbeeld wanneer een vriend online komt",
+                        "ignore_bots_label": "Negeer bots",
+                        "ignore_bots_desc": "Hoor bots niet praten",
+                        "ignore_pets_label": "Negeer huisdieren",
+                        "ignore_pets_desc": "Hoor huisdieren niet praten",
+                        "button_save": "Avatarinstellingen opslaan"
+                    }
+                },
+                "security": {
+                    "title": "Beveiligingsinstellingen",
+                    "password": {
+                        "title": "Wachtwoord",
+                        "current_password": "Wat is je huidige wachtwoord?",
+                        "current_password_label": "Je huidige wachtwoord",
+                        "new_password": "Wat wordt je nieuwe wachtwoord?",
+                        "new_password_label": "Nieuw wachtwoord",
+                        "new_password_confirmation": "Je nieuwe wachtwoord nogmaals, ter controle",
+                        "new_password_confirmation_label": "Nieuwe wachtwoord opnieuw",
+                        "button_save": "Wachtwoord veranderen"
                     },
-                    "security": {
-                        "title": "Beveiliging"
+                    "email": {
+                        "title": "E-mailadres",
+                        "current_password": "Wat is je wachtwoord?",
+                        "current_password_label": "Je wachtwoord",
+                        "current_email": "Je huidge e-mailadres is {email}",
+                        "new_email": "Wat wordt je nieuwe e-mailadres?",
+                        "new_email_label": "Nieuw e-mailadres",
+                        "button_save": "Verander e-mailadres"
                     }
                 }
             }
