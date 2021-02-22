@@ -1,5 +1,25 @@
 // pre-vendors
-@use "../../../node_modules/bootstrap/scss/bootstrap";
+
+@use "../../../node_modules/bootstrap/scss/bootstrap" with (
+    $body-bg: #EAF2F5,
+    $body-color: #000,
+
+    $navbar-light-color: #222,
+    $navbar-light-hover-color: #2C3039,
+    $navbar-light-active-color: #2C3039,
+
+    $theme-colors: ('primary': #7DD4E5,
+            'danger': #ff4136,
+            'orange': #EEB425,
+            'light': #fff),
+
+    $container-max-widths: (lg: 1200px,
+            xl: 1400px),
+);
+
+
+// ulitities
+@use "utilities/helpers";
 
 // components
 @use "components/button";
@@ -9,11 +29,15 @@
 @use "components/list-group";
 @use "components/dropdown";
 @use "components/offline-online";
+@use "components/card";
+@use "components/sprites";
 
 // layout 
 @use "layout/navigation";
 @use "layout/header";
 @use "layout/habbo-section";
+@use "layout/articles";
+@use "layout/validation";
 
 // pages
 @use "pages/register";

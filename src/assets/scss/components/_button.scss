@@ -1,3 +1,21 @@
 .btn {
-    
+    padding: .6rem;
+    font-size: 14px
+}
+
+.btn--light-dark {
+    color: #000 !important;
+    background-color: #efefef;
+    border-color: #e6e6e647;
+}
+
+.btn--light {
+    background-color: RGB(255 255 255 / 27%);
+    color: #fff;
+
+    &:hover,
+    &:focus {
+        color: #fff;
+        box-shadow: 0 2px 5px 0 RGB(0 0 0 / 10%);
+    }
 }

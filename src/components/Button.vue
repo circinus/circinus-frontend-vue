@@ -26,6 +26,6 @@ export default class Button extends Vue {
     @Prop({ default: ButtonType.BUTTON }) private type!: ButtonType;
     @Prop() private to?: { name: string; };
     @Prop({ default: Variant.PRIMARY }) private variant!: Variant;
-    @Prop({ default: false }) private loading: boolean;
+    @Prop({ default: false }) private loading!: boolean;
 }
 </script>
