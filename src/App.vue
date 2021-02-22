@@ -1,20 +1,20 @@
 <template>
     <div id="app">
+        <b-container>
+            <header class="bg-primary mb-4 app-header">
+                <Top/>
+                <Header/>
+                <Navigation/>
+            </header>
 
-        <header class="bg-primary mb-4 app-header">
-            <Top/>
-            <Header/>
-            <Navigation/>
-        </header>
+            <main class="flex-fill container">
+                <Notifications></Notifications>
+                <router-view :key="$route.fullPath"/>
+            </main>
 
-        <main class="flex-fill container">
-            <Notifications></Notifications>
-            <router-view :key="$route.fullPath"/>
-        </main>
-
-        <Client/>
-        <Footer/>
-
+            <Client/>
+            <Footer/>
+        </b-container>
     </div>
 </template>
 
