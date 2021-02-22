@@ -3,7 +3,7 @@
             <b-container>
                 <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
                 <b-collapse id="nav-collapse" is-nav>
-                    <b-list-group class="navbar-nav mr-auto" v-if="authModule.authenticated">
+                    <div class="navbar-nav mr-auto" v-if="authModule.authenticated">
                         <b-row>
                             <b-col class="user--statics">
                                 <div class="icon icon--credits"></div>
@@ -19,7 +19,7 @@
                                 </div>
                             </b-col>
                         </b-row>
-                    </b-list-group>
+                    </div>
                     <Login/>
                 </b-collapse>
             </b-container>

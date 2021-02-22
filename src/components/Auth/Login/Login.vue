@@ -1,8 +1,11 @@
 <template>
-    <ul class="navbar-nav ml-auto" v-if="!authModule.authenticated">
-        <li class="nav-item dropdown mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4">
+    <b-list-group class="navbar-nav ml-auto" v-if="!authModule.authenticated">
+
+        <b-list-group-item class="dropdown mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4">
+
             <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                v-t="'layout.header.login'"></a>
+
             <div class="dropdown-menu user--login p-4" aria-labelledby="dropdownMenuLink">
 
                 <ValidationObserver v-slot="{ handleSubmit }">
@@ -30,12 +33,13 @@
                     </form>
                 </ValidationObserver>
             </div>
-        </li>
-        <li class="nav-item">
+        </b-list-group-item>
+
+        <b-list-group-item>
             <router-link class="nav-link btn btn-warning" :to="{ name: 'register' }"
                          v-t="'layout.header.create_account'"></router-link>
-        </li>
-    </ul>
+        </b-list-group-item>
+    </b-list-group>
 
     <ul v-else-if="authModule.user" class="navbar-nav ml-auto">
         <li class="nav-item">
@@ -62,7 +66,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-import { BDropdownDivider } from 'bootstrap-vue';
+import { BDropdownDivider, BListGroup, BListGroupItem } from 'bootstrap-vue';
 import ComponentLoader from '@/components/ComponentLoader.vue';
 import { authModule } from '@/store/modules/auth/AuthModule';
 import { Observer } from 'mobx-vue';
@@ -73,7 +77,9 @@ import { environment } from '../../../../environment';
 @Component({
     components: {
         ComponentLoader,
-        BDropdownDivider
+        BDropdownDivider,
+        BListGroupItem,
+        BListGroup
     }
 })
 export default class Login extends Vue {
