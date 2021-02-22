@@ -1,15 +1,12 @@
 <template>
     <b-list-group class="navbar-nav ml-auto" v-if="!authModule.authenticated">
+        <b-list-group-item class="dropdown mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4 nav-item">
 
-        <b-list-group-item class="dropdown mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4">
-
-            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-               v-t="'layout.header.login'"></a>
+            <b-link v-t="'layout.header.login'" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></b-link>
 
             <div class="dropdown-menu user--login p-4" aria-labelledby="dropdownMenuLink">
-
                 <ValidationObserver v-slot="{ handleSubmit }">
-                    <form class="d-flex flex-column " @submit.prevent="handleSubmit(submit)">
+                    <b-form @submit.prevent="handleSubmit(submit)">
 
                         <ValidationProvider name="username" rules="required" v-slot="{ classes }">
                             <div class="form-label-group">
@@ -27,46 +24,46 @@
                             </div>
                         </ValidationProvider>
 
-                        <button class="btn btn-primary btn-block" type="submit">
-                            <span>Login</span>
-                        </button>
-                    </form>
+                        <b-button block variant="warning" type="submit">Login</b-button>
+                    </b-form>
                 </ValidationObserver>
             </div>
         </b-list-group-item>
 
-        <b-list-group-item>
-            <router-link class="nav-link btn btn-warning" :to="{ name: 'register' }"
-                         v-t="'layout.header.create_account'"></router-link>
+        <b-list-group-item class="p-0">
+            <router-link :to="{ name: 'register' }">
+                <b-button variant="warning" v-t="'layout.header.create_account'"></b-button>
+            </router-link>
         </b-list-group-item>
     </b-list-group>
 
-    <ul v-else-if="authModule.user" class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <div class="dropdown">
-                <button type="button" class="btn btn--light-dark dropdown-toggle" data-toggle="dropdown">
+    <b-list-group v-else-if="authModule.user" class="navbar-nav ml-auto">
+        <b-list-group-item class="nav-item p-0">
+
+            <b-dropdown variant="outline-dark">
+                <template #button-content>
                     <img
-                        :src="this.avatarImaging + authModule.user.look + '&amp;gesture=sml&size=s&amp;headonly=1'"
+                        :src="avatarImaging + authModule.user.look + '&amp;gesture=sml&size=s&amp;headonly=1'"
                         :alt="authModule.user.username" class="pixelated"
                     >
                     {{ authModule.user.username }}
-                </button>
-                <div class="dropdown-menu">
-                    <router-link class="dropdown-item" :to="{ name: 'settings' }"
-                                 v-t="'layout.header.settings'"></router-link>
-                    <b-dropdown-divider></b-dropdown-divider>
-                    <router-link class="dropdown-item" :to="{ name: 'logout' }" v-on:click.native="signOut"
-                                 v-t="'layout.header.logout'"></router-link>
-                </div>
-            </div>
-        </li>
-    </ul>
+                </template>
+                <b-dropdown-item>
+                    <router-link class="dropdown-item" :to="{ name: 'settings' }" v-t="'layout.header.settings'"></router-link>
+                </b-dropdown-item>
+                <b-dropdown-divider></b-dropdown-divider>
+                <b-dropdown-item>
+                    <router-link class="dropdown-item" :to="{ name: 'logout' }" v-on:click.native="signOut" v-t="'layout.header.logout'"></router-link>
+                </b-dropdown-item>
+            </b-dropdown>
+        </b-list-group-item>
+    </b-list-group>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-import { BDropdownDivider, BListGroup, BListGroupItem } from 'bootstrap-vue';
+import { BDropdownDivider, BDropdownItem, BListGroup, BListGroupItem, BDropdown, BButton, BLink, BForm } from 'bootstrap-vue';
 import ComponentLoader from '@/components/ComponentLoader.vue';
 import { authModule } from '@/store/modules/auth/AuthModule';
 import { Observer } from 'mobx-vue';
@@ -79,7 +76,12 @@ import { environment } from '../../../../environment';
         ComponentLoader,
         BDropdownDivider,
         BListGroupItem,
-        BListGroup
+        BDropdownItem,
+        BListGroup,
+        BDropdown,
+        BButton,
+        BLink,
+        BForm
     }
 })
 export default class Login extends Vue {

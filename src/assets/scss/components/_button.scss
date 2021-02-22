@@ -1,6 +1,14 @@
 .btn {
     padding: .6rem;
-    font-size: 14px
+    font-size: 14px;
+
+    &.btn-warning {
+        color: #fff;
+    }
+
+    &.btn-outline-dark {
+        color: #000;
+    }
 }
 
 .btn--light-dark {

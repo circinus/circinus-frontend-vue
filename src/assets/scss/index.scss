@@ -17,6 +17,8 @@
             xl: 1400px),
 );
 
+// base
+@use "base/_typography";
 
 // ulitities
 @use "utilities/helpers";
