@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="row mt-5">
-            <div class="col-xl-6 col-lg-9 col-md-12 col-sm-12 mb-4">
+        <b-row class="mt-5">
+            <b-col xl="6" lg="9" md="12" sm="12" class="mb-4">
                 <section id="friendComponent" class="habbo--section">
                     <div class="d-flex flex-row mb-4">
                         <i class="icon--friends"></i>
@@ -10,54 +10,51 @@
                             <span class="section-description" v-t="'layout.component.friendlist.description'"></span>
                         </div>
                     </div>
-                    <div class="card friends">
-                        <div class="card-body d-flex flex-column">
-                            <div class="d-inline-flex align-items-center">
-                                <div id="search" class="input-group bg-white w-50">
-                                    <input placeholder="..." type="search" class="form-control" maxlength="12">
-                                </div>
+
+                    <b-card>
+                        <b-card-title>
+                            <div id="search" class="input-group bg-white w-50">
+                                <input placeholder="..." type="search" class="form-control" maxlength="12">
                             </div>
-                            <div id="friends" class="row">
+                        </b-card-title>
+                        <b-card-body class="d-flex flex-column">
+                            <b-row id="friends">
                                 <ComponentLoader :state="friendListModule.getLoadingState('get-friendList')">
-                                    <div class="row">
+                                    <b-row>
                                         <FriendList
                                             v-for="(friend, index) in friendListModule.friends"
                                             :key="index"
                                             :friend="friend"
                                         >
                                         </FriendList>
-                                    </div>
+                                    </b-row>
                                 </ComponentLoader>
-                            </div>
-                        </div>
-                    </div>
+                            </b-row>
+                        </b-card-body>
+                    </b-card>
                 </section>
                 <section id="roomComponent" class="habbo--section mt-5">
                     <div class="d-flex flex-row mb-4">
-                        <i class="icon--friends"></i>
+                        <i class="icon--other pl-5"></i>
                         <div class="d-inline-flex flex-column justify-content-center">
                             <span class="section-title" v-t="'layout.component.rooms.title'"></span>
                             <span class="section-description" v-t="'layout.component.rooms.description'"></span>
                         </div>
                     </div>
-                    <div class="card p-3">
-                        <table class="table rooms table-striped table-borderless align-middle">
-                            <tbody>
-                            <ComponentLoader :state="roomModule.getLoadingState('get-roomList')">
-                                <Room
-                                    v-for="(rooms, index) in roomModule.rooms"
-                                    :key="index"
-                                    :room="rooms"
-                                >
-                                </Room>
-                            </ComponentLoader>
-                            </tbody>
-                        </table>
-                    </div>
+                    <b-container>
+                        <ComponentLoader :state="roomModule.getLoadingState('get-roomList')" class="row row-cols-3">
+                            <Room
+                                v-for="(rooms, index) in roomModule.rooms"
+                                :key="index"
+                                :room="rooms"
+                            >
+                            </Room>
+                        </ComponentLoader>
+                    </b-container>
                 </section>
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 mb-4">
+            </b-col>
+            <b-col md="1"></b-col>
+            <b-col xl="4" lg="3" md="12" sm="12" class="mb-4">
                 <section id="userOfTheWeekComponent" class="habbo--section">
                     <div class="d-flex flex-row mb-4">
                         <i class="sprite sprite--user-of-the-hotel"></i>
@@ -66,15 +63,13 @@
                             <span class="section-description" v-t="'layout.component.useroftheweek.description'"></span>
                         </div>
                     </div>
-                    <div class="card d-flex flex-column p-4">
-                        <ComponentLoader :state="userOfTheWeekModule.getLoadingState('get-userOfTheWeek')">
-                            <UserOfTheWeek
-                                v-if="userOfTheWeek"
-                                :userOfTheWeek="userOfTheWeek"
-                            >
-                            </UserOfTheWeek>
-                        </ComponentLoader>
-                    </div>
+                    <ComponentLoader :state="userOfTheWeekModule.getLoadingState('get-userOfTheWeek')">
+                        <UserOfTheWeek
+                            v-if="userOfTheWeek"
+                            :userOfTheWeek="userOfTheWeek"
+                        >
+                        </UserOfTheWeek>
+                    </ComponentLoader>
                 </section>
                 <section id="guildComponent" class="habbo--section mt-5">
                     <div class="d-flex flex-row mb-4">
@@ -84,23 +79,21 @@
                             <span class="section-description" v-t="'layout.component.guild.description'"></span>
                         </div>
                     </div>
-                    <div class="card d-flex flex-column p-1">
-                        <div class="card-body d-flex flex-row align-content-center">
-                            <ul class="guild">
-                                <ComponentLoader :state="guildModule.getLoadingState('get-guildList')">
-                                        <Guild
-                                            v-for="(guilds, index) in guildModule.guilds"
-                                            :key="index"
-                                            :guild="guilds"
-                                        >
-                                        </Guild>
-                                </ComponentLoader>
-                            </ul>
-                        </div>
-                    </div>
+                    <b-card>
+                        <b-nav class="guild">
+                            <ComponentLoader :state="guildModule.getLoadingState('get-guildList')">
+                                <Guild
+                                    v-for="(guilds, index) in guildModule.guilds"
+                                    :key="index"
+                                    :guild="guilds"
+                                >
+                                </Guild>
+                            </ComponentLoader>
+                        </b-nav>
+                    </b-card>
                 </section>
-            </div>
-        </div>
+            </b-col>
+        </b-row>
     </div>
 </template>
 
@@ -119,6 +112,7 @@ import { RoomModule, roomModule } from '@/store/modules/rooms/RoomModule';
 import { UserOfTheWeekModule, userOfTheWeekModule } from '@/store/modules/useroftheweek/UserOfTheWeekModule';
 import { IUserOfTheWeek } from '@/store/modules/useroftheweek/IUserOfTheWeek';
 import { environment } from '../../../environment';
+import { BRow, BCol, BCard, BNav, BCardBody, BCardTitle, BContainer } from 'bootstrap-vue';
 
 @Observer
 @Component({
@@ -127,7 +121,14 @@ import { environment } from '../../../environment';
         FriendList,
         Guild,
         Room,
-        ComponentLoader
+        ComponentLoader,
+        BCardBody,
+        BContainer,
+        BNav,
+        BRow,
+        BCol,
+        BCard,
+        BCardTitle
     }
 })
 export default class Home extends Vue implements ComponentOptions<Vue> {

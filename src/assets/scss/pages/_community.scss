@@ -1,10 +1,12 @@
 @use "../../../../node_modules/bootstrap/scss/bootstrap";
 
-.rooms .table th,
-.table td {
-    vertical-align: middle !important;
-    text-align: justify;
-    word-break: break-word;
+#roomComponent {
+    .title {
+        font-size: 13px;
+        white-space:nowrap;
+        text-overflow: ellipsis;
+        overflow:hidden;
+    }
 }
 
 #friendComponent {
@@ -133,6 +135,10 @@
 }
 
 #userOfTheWeekComponent {
+    .card {
+        padding: 18px
+    }
+
     .card-body {
         background-color: #eaeaea;
         height: 6rem;
@@ -165,7 +171,12 @@
 }
 
 #guildComponent {
+
     .card-body {
+
+        .nav {
+            display: block !important;
+        }
 
         ul.guild {
             list-style: none;
@@ -218,16 +229,10 @@
                 align-items: center;
                 animation: highlight 2s;
 
-                .avatar {
-                    background-color: #DFE1E4;
-                    width: 32px;
-                    height: 32px;
-                    border-radius: 50%;
-                    margin-right: 16px;
-                }
 
                 .description {
                     width: 180px;
+                    font-size: 12px;
                     overflow: hidden;
                     display: inline-block;
                     text-overflow: ellipsis;

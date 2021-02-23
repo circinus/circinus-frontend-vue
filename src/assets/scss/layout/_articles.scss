@@ -45,6 +45,40 @@
         image-rendering: -moz-crisp-edges;
         image-rendering: pixelated;
     }
+
+    .card--article--sidebar {
+        margin-top: 8px;
+        margin-left: 14px;
+    }
+
+    .list {
+        height: 90px;
+        background: #fff;
+        margin-left: -8px;
+    }
+    .card-bg {
+        height: 90px;
+        width: 70%;
+        float: left;
+        position: absolute;
+    }
+    .left {
+        clip-path: polygon(0 0,60% 0,40% 100%,0 100%);
+        width: 306px;
+        margin-left: -8px;
+        display: inline-table;
+    }
+    .background {
+        margin-left: -14px;
+        width: 100%;
+        height: 100%;
+        background-position: right !important;
+    }
+    .article--info {
+        display: block;
+        right: 0;
+        position: absolute;
+    }
 }
 
 .article--card {

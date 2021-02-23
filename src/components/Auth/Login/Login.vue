@@ -1,6 +1,6 @@
 <template>
-    <b-list-group class="navbar-nav ml-auto" v-if="!authModule.authenticated">
-        <b-list-group-item class="dropdown mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4 nav-item">
+    <b-nav class="navbar-nav ml-auto" v-if="!authModule.authenticated">
+        <b-list-group-item class="dropdown mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4 nav-item border-0">
 
             <b-link v-t="'layout.header.login'" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></b-link>
 
@@ -30,15 +30,15 @@
             </div>
         </b-list-group-item>
 
-        <b-list-group-item class="p-0">
-            <router-link :to="{ name: 'register' }">
+        <b-nav>
+            <router-link tag="li" :to="{ name: 'register' }">
                 <b-button variant="warning" v-t="'layout.header.create_account'"></b-button>
             </router-link>
-        </b-list-group-item>
-    </b-list-group>
+        </b-nav>
+    </b-nav>
 
-    <b-list-group v-else-if="authModule.user" class="navbar-nav ml-auto">
-        <b-list-group-item class="nav-item p-0">
+    <b-nav v-else-if="authModule.user" class="navbar-nav ml-auto">
+        <b-nav-item class="nav-item p-0">
 
             <b-dropdown variant="outline-dark">
                 <template #button-content>
@@ -56,14 +56,14 @@
                     <router-link class="dropdown-item" :to="{ name: 'logout' }" v-on:click.native="signOut" v-t="'layout.header.logout'"></router-link>
                 </b-dropdown-item>
             </b-dropdown>
-        </b-list-group-item>
-    </b-list-group>
+        </b-nav-item>
+    </b-nav>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-import { BDropdownDivider, BDropdownItem, BListGroup, BListGroupItem, BDropdown, BButton, BLink, BForm } from 'bootstrap-vue';
+import { BDropdownDivider, BDropdownItem, BDropdown, BButton, BLink, BForm, BNav, BNavItem, BListGroupItem } from 'bootstrap-vue';
 import ComponentLoader from '@/components/ComponentLoader.vue';
 import { authModule } from '@/store/modules/auth/AuthModule';
 import { Observer } from 'mobx-vue';
@@ -74,14 +74,15 @@ import { environment } from '../../../../environment';
 @Component({
     components: {
         ComponentLoader,
-        BDropdownDivider,
         BListGroupItem,
+        BDropdownDivider,
         BDropdownItem,
-        BListGroup,
         BDropdown,
         BButton,
         BLink,
-        BForm
+        BForm,
+        BNav,
+        BNavItem
     }
 })
 export default class Login extends Vue {

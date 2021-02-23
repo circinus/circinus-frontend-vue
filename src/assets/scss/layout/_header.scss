@@ -122,36 +122,6 @@
         }
     }
 
-    #navbar--secondary {
-        padding: 0;
-
-        @include bootstrap.media-breakpoint-down(sm) {
-            padding: 1.5rem 1rem;
-        }
-
-
-        .navbar-nav {
-            .nav-item {
-                text-transform: uppercase;
-                padding: 1.5rem 0;
-                font-weight: bold;
-
-
-                &:not(:last-child) {
-                    margin-right: 2.5rem;
-                }
-            }
-
-            .router-link-active {
-                .nav-link {
-                    opacity: 1;
-                }
-
-                border-bottom: 4px solid map-get(variables.$theme-colors, 'orange');
-            }
-        }
-    }
-
     #header--title {
         font-weight: bold;
         text-shadow: 0 2px 2px RGB(0 0 0 / 65%);

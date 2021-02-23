@@ -2,9 +2,9 @@
     <div id="client-loader" :class="clientModule.loaded && 'hotel-visible'">
         <div id="hotel-container">
 
-            <div class="row d-block align-items-center text-center">
+            <b-row class="d-block align-items-center text-center">
                 <iframe v-if="ticket !== null" id="game" :src="this.nitroPath + '/?sso=' + ticket"/>
-            </div>
+            </b-row>
 
             <div class="client-buttons">
                 <button class="client-close rounded-button blue plain" @click="hideClient">
@@ -26,9 +26,14 @@ import { clientModule } from '@/store/modules/client/ClientModule';
 import { authModule } from '@/store/modules/auth/AuthModule';
 import { Observer } from 'mobx-vue';
 import { environment } from '../../../environment';
+import { BRow } from 'bootstrap-vue';
 
 @Observer
-@Component
+@Component({
+    components: {
+        BRow
+    }
+})
 export default class Client extends Vue implements ComponentOptions<Vue> {
     private ticket: string | null = null;
     private isSessionActive = false;

@@ -1,6 +1,7 @@
 <template>
     <div>
         <section id="current-news" class="habbo--section mt-5">
+
             <div class="d-flex flex-row mb-4">
                 <i class="icon--news"></i>
                 <div class="d-inline-flex flex-column justify-content-center">
@@ -10,7 +11,7 @@
             </div>
 
             <ComponentLoader :state="articleModule.getLoadingState('get-articles')">
-                <div class="row">
+                <b-row>
                     <articles
                         v-for="(article, index) in articleModule.articles"
                         :key="index"
@@ -18,11 +19,12 @@
                         :index="index"
                     >
                     </articles>
-                </div>
+                </b-row>
             </ComponentLoader>
         </section>
 
         <section id="popular-news" class="habbo--section">
+
             <div class="d-flex flex-row mb-4">
                 <i class="icon--friends"></i>
                 <div class="d-inline-flex flex-column justify-content-center">
@@ -30,15 +32,16 @@
                     <span class="section-description" v-t="'layout.component.photos.description'"></span>
                 </div>
             </div>
+
             <ComponentLoader :state="photoModule.getLoadingState('get-photos')">
-                <div class="row">
+                <b-row>
                     <Photos
                         v-for="(photos, index) in photoModule.photos"
                         :key="index"
                         :photo="photos"
                     >
                     </Photos>
-                </div>
+                </b-row>
             </ComponentLoader>
         </section>
     </div>
@@ -53,13 +56,15 @@ import ComponentLoader from '@/components/ComponentLoader.vue';
 import { articleModule } from '@/store/modules/articles/ArticleModule';
 import { Observer } from 'mobx-vue';
 import { photoModule } from '@/store/modules/photos/PhotoModule';
+import { BRow } from 'bootstrap-vue';
 
 @Observer
 @Component({
     components: {
         Articles,
         Photos,
-        ComponentLoader
+        ComponentLoader,
+        BRow
     }
 })
 export default class Home extends Vue implements ComponentOptions<Vue> {

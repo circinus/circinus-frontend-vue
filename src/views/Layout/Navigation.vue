@@ -1,50 +1,48 @@
 <template>
-    <nav id="navbar--secondary" class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbar--secondary-collapse"
-                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse navigation" id="navbar--secondary-collapse">
-                <ul>
-                    <li>
-                        <div class="icon">
-                            <div class="icon--home p-lg-1 mt-2"></div>
-                        </div>
+    <b-navbar toggleable="lg" type="light" variant="light">
+        <b-container>
+            <b-navbar-toggle target="nav-collapse-bottom"></b-navbar-toggle>
+
+            <b-collapse class="navbar-collapse-bottom navigation" is-nav>
+                <b-nav>
+                    <b-nav-item>
                         <router-link :to="{ name: 'home' }">
                             <span v-t="'layout.nav.homepage'"></span>
                         </router-link>
-                    </li>
-                    <li v-if="authModule.authenticated">
-                        <div class="icon">
-                            <div class="icon--chair p-lg-1 mt-2"></div>
-                        </div>
+                    </b-nav-item>
+                    <b-nav-item v-if="authModule.authenticated">
                         <router-link :to="{ name: 'community' }">
                             <span v-t="'layout.nav.community'"></span>
                         </router-link>
-                    </li>
-                    <li>
-                        <div class="icon">
-                            <div class="icon--pixel p-lg-1 mt-2"></div>
-                        </div>
+                    </b-nav-item>
+                    <b-nav-item>
                         <router-link :to="{ name: 'communityStaff' }">
                             <span v-t="'layout.nav.staff'"></span>
                         </router-link>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+                    </b-nav-item>
+                </b-nav>
+            </b-collapse>
+        </b-container>>
+    </b-navbar>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import { authModule } from '@/store/modules/auth/AuthModule';
 import { Observer } from 'mobx-vue';
+import { BNavbar, BContainer, BNavbarToggle, BCollapse, BNav, BNavItem } from 'bootstrap-vue';
 
 @Observer
-@Component({})
+@Component({
+    components: {
+        BNavbar,
+        BContainer,
+        BNavbarToggle,
+        BCollapse,
+        BNav,
+        BNavItem
+    }
+})
 export default class Navigation extends Vue {
     private authModule = authModule;
 }
