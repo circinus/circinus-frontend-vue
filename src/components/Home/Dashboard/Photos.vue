@@ -1,5 +1,5 @@
 <template>
-    <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12">
+    <b-col xl="3" lg="4" md="12" sm="12">
         <div class="news--info d-flex flex-row align-items-center mb-3">
             <div class="user--rounded-image online mr-2">
                 <div class="status" :class="this.photo.user.online === 1 ? 'offline' : 'online'"></div>
@@ -24,11 +24,11 @@
         </modal>
 
         <div class="opacity-1">
-            <div class="card card--popular-news d-flex flex-column mb-4">
+            <b-card no-body class="card--popular-news d-flex flex-column mb-4">
                 <div @click="$refs.photo.openClose()" class="card-img-top"
                      v-bind:style="{ backgroundImage: 'url(' + this.photo.url + ')', backgroundSize: 'auto !important' }"></div>
 
-                <div class="card-body d-flex flex-column">
+                <b-card-body class="d-flex flex-column">
                     <div class="d-inline-flex flex-row align-items-center">
 
                         <span class="mr-3 font-weight-bold" @click="votePhoto('likes')">
@@ -43,10 +43,10 @@
                             {{ this.photo.dislikes }}
                         </span>
                     </div>
-                </div>
-            </div>
+                </b-card-body>
+            </b-card>
         </div>
-    </div>
+    </b-col>
 </template>
 
 <script lang="ts">
@@ -59,11 +59,15 @@ import { voteModule } from '@/store/modules/votes/VoteModule';
 import { environment } from '../../../../environment';
 import { Observer } from 'mobx-vue';
 import Modal from '@/components/Modal.vue';
+import { BCard, BCardBody, BCol } from 'bootstrap-vue';
 
 @Observer
 @Component({
     components: {
-        Modal
+        Modal,
+        BCard,
+        BCardBody,
+        BCol
     }
 })
 export default class Photos extends Vue {

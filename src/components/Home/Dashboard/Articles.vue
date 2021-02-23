@@ -1,7 +1,7 @@
 <template>
-    <div class="col-xl-4 col-lg-5 col-md-12 col-sm-12">
+    <b-col xl="4" lg="5" md="12" sm="12">
       <router-link :to="'/articles/' + this.article.id + '/' + this.article.slug" class="opacity-1">
-        <div class="card card--news d-flex flex-column p-4 mb-4" v-bind:style="{ backgroundImage: 'url(' + this.article.image + ')' }">
+        <b-card no-body class="card--news d-flex flex-column p-4 mb-4" v-bind:style="{ backgroundImage: 'url(' + this.article.image + ')' }">
           <div class="flex-fill d-inline-flex flex-row justify-content-center" >
             <div class="flex-fill">
               <span class="news--category">Algemeen</span>
@@ -12,16 +12,22 @@
           <span class="news--description">
                 {{ this.article.description }}
             </span>
-        </div>
+        </b-card>
       </router-link>
-      </div>
+      </b-col>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { IArticle } from '@/store/modules/articles/IArticle';
+import { BCard, BCol } from 'bootstrap-vue';
 
-@Component
+@Component({
+    components: {
+        BCard,
+        BCol
+    }
+})
 export default class Articles extends Vue {
     @Prop({ required: true }) private article!: IArticle;
 }
