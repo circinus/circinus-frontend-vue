@@ -72,7 +72,7 @@
                 </article-sidebar>
             </b-col>
 
-            <modal ref="articleComment" :title="$t('layout.component.news.article.react_on')" saveButton="true" v-if="authModule.authenticated">
+            <modal ref="articleComment" :title="$t('layout.component.news.article.react_on')" :saveButton="true" v-if="authModule.authenticated">
 
                 <template v-slot:body>
                     <div class="form-group">

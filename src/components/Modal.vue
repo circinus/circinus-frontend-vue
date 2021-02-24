@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="modal__footer">
-                    <template v-if="!saveButton">
+                    <template v-if="saveButton">
                         <button @click.prevent="saveModal" class="btn btn--light-dark btn-block">Save</button>
                     </template>
                 </div>

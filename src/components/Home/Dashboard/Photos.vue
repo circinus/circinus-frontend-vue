@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <modal ref="photo" saveButton="false">
+        <modal ref="photo" :saveButton="false">
             <template v-slot:body v-slot:[url]="{ photo }">
                 <img :src="photo.url" class="pixelated">
             </template>
