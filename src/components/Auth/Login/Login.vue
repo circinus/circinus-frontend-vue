@@ -40,7 +40,7 @@
     <b-nav v-else-if="authModule.user" class="navbar-nav ml-auto">
         <b-nav-item class="nav-item p-0">
 
-            <b-dropdown variant="outline-dark">
+            <b-dropdown variant="light">
                 <template #button-content>
                     <img
                         :src="avatarImaging + authModule.user.look + '&amp;gesture=sml&size=s&amp;headonly=1'"
