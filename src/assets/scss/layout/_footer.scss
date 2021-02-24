@@ -1,6 +1,8 @@
 .page-footer {
     background-color: var(--footer-background-color);
     color: #fff;
+    display: flex;
+    align-items: center;
 
     small {
         color: #6A6E77;

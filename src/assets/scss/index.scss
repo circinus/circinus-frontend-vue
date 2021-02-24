@@ -19,6 +19,7 @@
 
 // base
 @use "base/_typography";
+@use "base/reset";
 
 // ulitities
 @use "utilities/helpers";
@@ -40,6 +41,7 @@
 @use "layout/habbo-section";
 @use "layout/articles";
 @use "layout/validation";
+@use "layout/footer";
 
 // pages
 @use "pages/register";
