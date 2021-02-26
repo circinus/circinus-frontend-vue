@@ -4,7 +4,7 @@
             <b-col xl="6" lg="9" md="12" sm="12" class="mb-4">
                 <section id="friendComponent" class="habbo--section">
                     <div class="d-flex flex-row mb-4">
-                        <i class="icon--friends"></i>
+                        <i class="icon--friends mt-2 mr-2"></i>
                         <div class="d-inline-flex flex-column justify-content-center">
                             <span class="section-title" v-t="'layout.component.friendlist.title'"></span>
                             <span class="section-description" v-t="'layout.component.friendlist.description'"></span>
