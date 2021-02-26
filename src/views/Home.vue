@@ -26,7 +26,7 @@
         <section id="popular-news" class="habbo--section">
 
             <div class="d-flex flex-row mb-4">
-                <i class="icon--friends"></i>
+                <i class="icon--friends mt-2 mr-2"></i>
                 <div class="d-inline-flex flex-column justify-content-center">
                     <span class="section-title" v-t="'layout.component.photos.title'"></span>
                     <span class="section-description" v-t="'layout.component.photos.description'"></span>
