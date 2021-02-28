@@ -32,7 +32,6 @@
 </template>
 
 <script lang="ts">
-import '@/assets/css/modal.scss';
 import bus from '@/helpers/bus';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
