@@ -1,0 +1,14 @@
+.sprite {
+    background-image: url('../images/web/sprites.png');
+}
+
+#sprite--container {
+    background-color: #FF0000;
+    border-radius: 50em;
+    height: 4rem;
+    width: 4rem;
+    padding: .7rem 0 0 .7rem;
+    box-shadow: inset 0 0 3px 1px #000;
+    position: relative;
+    left: -.2rem;
+}

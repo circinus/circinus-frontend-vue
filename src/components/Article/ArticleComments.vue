@@ -1,5 +1,5 @@
 <template>
-    <div class="col-12 comment ng-star-inserted">
+    <b-col sm="12" class="comment ng-star-inserted">
         <div class="d-flex justify-content-start">
             <img class="align-self-start offline"
                  v-bind:src="this.avatarImaging + this.comment.user.look + '&amp;action=std&amp;gesture=sml&amp;direction=2&amp;head_direction=2&amp;size=l'">
@@ -10,15 +10,20 @@
                 <span class="pb-3 mr-2">{{ this.comment.content }}</span>
             </div>
         </div>
-    </div>
+    </b-col>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { IComment } from '@/store/modules/articles/IComment';
 import { environment } from '../../../environment';
+import { BRow, BCol } from 'bootstrap-vue';
 
-@Component
+@Component({
+    components: {
+        BRow, BCol
+    }
+})
 export default class ArticleComments extends Vue {
     private avatarImaging = environment.SITE.FIGUREIMAGING;
     @Prop() private comment!: IComment;

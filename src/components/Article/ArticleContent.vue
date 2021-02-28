@@ -1,8 +1,8 @@
 <template>
     <section id="current-news" class="habbo--section mt-5">
 
-        <div class="row">
-            <div class="col-xl-8 col-lg-8 col-sm-12">
+        <b-row>
+            <b-col xl="8" lg="8" sm="12">
                 <div class="d-flex flex-row mb-4">
                     <img class="mr-2 object-contain image-pixelated" src="@/assets/images/icons/news.png" alt="News"/>
                     <div class="d-inline-flex flex-column justify-content-center">
@@ -11,8 +11,8 @@
                     </div>
                 </div>
 
-                <div class="card article--card d-flex px-4 py-2 mb-4">
-                    <div class="card-header d-inline-flex align-items-center flex-row px-0">
+                <b-card no-body class="article--card d-flex px-4 py-2 mb-4">
+                    <b-card-header class=" d-inline-flex align-items-center flex-row px-0">
                         <div class="author--look mr-2">
                             <img class="looks"
                                  v-bind:src=" this.avatarImaging + this.article.user.look + '&amp;action=std&amp;direction=2&amp;head_direction=2&amp;img_format=png&amp;gesture=std&amp;headonly=0&amp;size=s'"
@@ -23,13 +23,13 @@
                             <i class="sprite sprite--date mr-2"></i>
                             <span>23/09/2020 - 09:09</span>
                         </div>
-                    </div>
-                    <div class="card-body" v-html="this.article.content"></div>
-                </div>
+                    </b-card-header>
+                    <b-card-body v-html="this.article.content"></b-card-body>
+                </b-card>
 
-                <div class="card card--comments mb-4">
+                <b-card no-body class="card--comments mb-4">
 
-                    <div class="card article--card d-flex px-4 py-2 mb-4">
+                    <b-card no-body class="article--card d-flex px-4 py-2 mb-4">
                         <div class="card-header d-inline-flex align-items-center flex-row px-0">
                             <i class="sprite sprite--comments"></i>
 
@@ -40,22 +40,22 @@
                                         @click="$refs.articleComment.openClose()" v-t="'layout.component.news.article.react'"></button>
                             </div>
                         </div>
-                    </div>
+                    </b-card>
 
                     <ComponentLoader :state="articleModule.getLoadingState('get-articles')">
-                        <div class="comments row mx-4">
+                        <b-row class="mx-4 comments">
                             <ArticleComments
                                 v-for="(stories, index) in articleComments"
                                 :key="stories.id"
                                 :comment="stories"
                                 :index="index"
                             />
-                        </div>
+                        </b-row>
                     </ComponentLoader>
-                </div>
-            </div>
+                </b-card>
+            </b-col>
 
-            <div class="col-xl-4 col-lg-4 col-sm-12">
+            <b-col xl="4" lg="4" sm="12">
                 <div class="d-flex flex-row mb-4">
                     <img class="mr-2 object-contain image-pixelated" src="@/assets/images/icons/news.png" alt="News"/>
                     <div class="d-inline-flex flex-column justify-content-center">
@@ -70,9 +70,9 @@
                     :index="index"
                 >
                 </article-sidebar>
-            </div>
+            </b-col>
 
-            <modal ref="articleComment" :title="$t('layout.component.news.article.react_on')" saveButton="true" v-if="authModule.authenticated">
+            <modal ref="articleComment" :title="$t('layout.component.news.article.react_on')" :saveButton="true" v-if="authModule.authenticated">
 
                 <template v-slot:body>
                     <div class="form-group">
@@ -81,7 +81,7 @@
                 </template>
             </modal>
 
-        </div>
+        </b-row>
 
     </section>
 
@@ -102,6 +102,7 @@ import { articleModule } from '@/store/modules/articles/ArticleModule';
 import { IComment } from '@/store/modules/articles/IComment';
 import { Observer } from 'mobx-vue';
 import { environment } from '../../../environment';
+import { BRow, BCard, BCol, BCardHeader, BCardBody } from 'bootstrap-vue';
 
 @Observer
 @Component({
@@ -109,7 +110,12 @@ import { environment } from '../../../environment';
         ArticleSidebar,
         ArticleComments,
         Modal,
-        ComponentLoader
+        ComponentLoader,
+        BRow,
+        BCard,
+        BCol,
+        BCardHeader,
+        BCardBody
     }
 })
 export default class ArticleContent extends Vue implements ComponentOptions<Vue> {

@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="modal__footer">
-                    <template v-if="!saveButton">
+                    <template v-if="saveButton">
                         <button @click.prevent="saveModal" class="btn btn--light-dark btn-block">Save</button>
                     </template>
                 </div>
@@ -32,7 +32,6 @@
 </template>
 
 <script lang="ts">
-import '@/assets/css/modal.scss';
 import bus from '@/helpers/bus';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 

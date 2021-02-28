@@ -1,26 +1,34 @@
 <template>
-    <li>
-        <div class="avatar">
-            <img :src="guildImaging + '/' + this.guild.badge">
-        </div>
-        <div class="row">
-            <div class="col">
-                <span class="title">{{ this.guild.name }}</span>
-            </div>
-            <div class="w-100"></div>
-            <div class="col">
-                <span class="description">{{ this.guild.description }}</span>
-            </div>
-        </div>
-    </li>
+    <b-nav-item>
+    <b-col>
+        <b-card no-body>
+            <b-row no-gutters>
+                <b-col md="3" class="text-center d-flex">
+                    <img :src="guildImaging + '/' + this.guild.badge">
+                </b-col>
+                    <b-col md="7">
+                        <span class="title">{{ this.guild.name }}</span>
+                        <span class="description">{{ this.guild.description }}</span>
+                    </b-col>
+            </b-row>
+        </b-card>
+    </b-col>
+    </b-nav-item>
 </template>
 
 <script lang="ts">
 import { IGuild } from '@/store/modules/guilds/IGuild';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { environment } from '../../../environment';
+import { BNavItem, BRow, BCol } from 'bootstrap-vue';
 
-@Component({})
+@Component({
+    components: {
+        BNavItem,
+        BRow,
+        BCol
+    }
+})
 export default class Guilds extends Vue {
     @Prop({ required: true }) private guild!: IGuild;
 

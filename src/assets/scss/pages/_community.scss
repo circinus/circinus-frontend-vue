@@ -1,0 +1,245 @@
+@use "../../../../node_modules/bootstrap/scss/bootstrap";
+
+#roomComponent {
+    .title {
+        font-size: 13px;
+        white-space:nowrap;
+        text-overflow: ellipsis;
+        overflow:hidden;
+    }
+}
+
+#friendComponent {
+    .title {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 2.5rem;
+    }
+
+    #friends {
+        margin-top: .5rem;
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: 15rem;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .friend {
+
+        &.offline {
+            background-color: #eaeaea;
+
+            &:hover,
+            &:focus {
+                opacity: 1;
+
+                img {
+                    opacity: 1;
+                }
+            }
+
+            img {
+                opacity: .5;
+            }
+        }
+
+        background-color: var(--main-bg-red-alt);
+        border: unset;
+        height: 3.5rem;
+        border-radius: 4px;
+        transition: .25s opacity;
+
+        &:first-child {
+            margin-top: 1rem;
+        }
+
+        .card-body {
+            padding-top: .7rem;
+        }
+
+        img {
+            object-fit: cover;
+            width: 4rem;
+            position: relative;
+            clip-path: inset(0 0 20% 0);
+            transition: 0.35s all;
+            height: 6rem;
+        }
+
+        .user-info {
+            height: fit-content;
+
+            .username {
+                font-size: 0.8rem;
+                font-weight: 600;
+                width: 5rem;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+
+                @include bootstrap.media-breakpoint-between(sm, lg) {
+                    width: 100%;
+                }
+            }
+
+            .motto {
+                width: 5rem;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                font-size: .71rem;
+                font-weight: 300;
+
+                @include bootstrap.media-breakpoint-between(sm, lg) {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    #search {
+        border-radius: 50rem;
+
+        &>input {
+            background-color: #f1f1f1;
+            border: 5px solid #e4e4e4 !important;
+            border-radius: 50rem !important;
+            color: #d6d6d6;
+            font-size: 15px;
+            padding: 14px;
+            font-weight: 700;
+
+            &::placeholder {
+                color: #3D3D44;
+                font-weight: 700;
+            }
+        }
+
+        #search-icon {
+            border-top-right-radius: 50rem;
+            border-bottom-right-radius: 50rem;
+            color: #6E6E6E;
+            border: 1px solid #fff;
+            width: 2rem;
+            padding: 0;
+            font-size: 1.1rem;
+
+            &>fa-icon {
+                margin-left: .25rem
+            }
+        }
+    }
+}
+
+#userOfTheWeekComponent {
+    .card {
+        padding: 18px
+    }
+
+    .card-body {
+        background-color: #eaeaea;
+        height: 6rem;
+
+        img {
+            height: 220px;
+            clip-path: inset(0 0 35% 0);
+            transform: translateY(-4rem);
+        }
+
+        .offline {
+            opacity: 0.7;
+            transition: 250ms opacity;
+
+            &:hover,
+            &:focus {
+                opacity: 1;
+            }
+        }
+
+        .user--username {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .user--motto {
+            font-size: 1rem;
+        }
+    }
+}
+
+#guildComponent {
+
+    .card-body {
+
+        .nav {
+            display: block !important;
+        }
+
+        ul.guild {
+            list-style: none;
+            position: relative;
+            z-index: 3;
+            margin: 0;
+            margin-bottom: -8px;
+            padding: 1px;
+            counter-reset: number;
+            width: 100%;
+
+            li:nth-child(1):before {
+                background-color: #E7A629;
+                color: #5E4310;
+            }
+
+            li:before {
+                content: counter(number);
+                background-color: #E5E6E8;
+                width: 48px;
+                height: 34px;
+                text-align: center;
+                line-height: 34px;
+                border-radius: 5px 0 0 5px;
+                position: absolute;
+                right: 0;
+                font-size: 12px;
+                color: #49494D;
+                font-weight: 600;
+            }
+
+            li:hover {
+                border-color: transparent;
+                box-shadow: 0 1px 7px rgba(0, 0, 0, 0.1);
+                transform: scale(1.05);
+                z-index: 4;
+                border-radius: 5px;
+                transition: all 0.15s;
+            }
+
+            li {
+                counter-increment: number;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 1px 7px rgb(0 0 0 / 10%);
+                margin-bottom: 15px;
+                padding: 14px;
+                position: relative;
+                display: flex;
+                align-items: center;
+                animation: highlight 2s;
+
+
+                .description {
+                    width: 180px;
+                    font-size: 12px;
+                    overflow: hidden;
+                    display: inline-block;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+        }
+
+    }
+}

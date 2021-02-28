@@ -7,13 +7,7 @@ import middlewarePipeline from './middleware/middlewarePipeline';
 
 // Commmunity
 import { IContext } from '@/router/IContext';
-import Community from '@/views/Community/Home.vue';
-import CommunityStaff from '@/views/Community/Staff.vue';
-import Home from '@/views/Home.vue';
-import Register from '@/views/Auth/Register.vue';
-import Article from '@/views/Community/Article.vue';
 import { clientModule } from '@/store/modules/client/ClientModule';
-import Settings from '@/views/Me/Settings.vue';
 
 Vue.use(Router);
 
@@ -23,7 +17,7 @@ const router = new Router({
         {
             path: '/',
             name: 'home',
-            component: Home
+            component: () => import('@/views/Home.vue')
         },
         {
             path: '/logout',
@@ -37,7 +31,7 @@ const router = new Router({
         {
             path: '/register',
             name: 'register',
-            component: Register,
+            component: () => import('@/views/Auth/Register.vue'),
             meta: {
                 middleware: [
                     guest
@@ -47,7 +41,7 @@ const router = new Router({
         {
             path: '/community',
             name: 'community',
-            component: Community,
+            component: () => require('@/views/Community/Home.vue'),
             meta: {
                 middleware: [
                     auth
@@ -57,7 +51,7 @@ const router = new Router({
         {
             path: '/community/staff',
             name: 'communityStaff',
-            component: CommunityStaff
+            component: () => import('@/views/Community/Staff.vue')
         },
         {
             path: '/hotel',
@@ -77,7 +71,7 @@ const router = new Router({
         {
             path: '/dashboard',
             name: 'dashboard',
-            component: Home,
+            component: () => import('@/views/Home.vue'),
             meta: {
                 middleware: [
                     auth
@@ -86,7 +80,7 @@ const router = new Router({
         },
         {
             path: '/settings',
-            component: Settings,
+            component: () => import('@/views/Me/Settings.vue'),
             meta: {
                 middleware: [
                     auth
@@ -118,7 +112,7 @@ const router = new Router({
         {
             path: '/articles/:id/:slug',
             name: 'article',
-            component: Article
+            component: () => import('@/views/Community/Article.vue')
         }
     ]
 });
