@@ -1,5 +1,6 @@
 // pre-vendors
 
+@use "base/tailwind";
 @use "../../../node_modules/bootstrap/scss/bootstrap" with (
     $body-bg: #EAF2F5,
     $body-color: #000,
