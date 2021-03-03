@@ -1,16 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600');
 
 body {
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
 }
 
 a {
-  color: #000;
+    color: #000;
 }
 
 a:hover {
-  color: #000;
-  cursor: pointer;
-  text-decoration: none;
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: 1.5rem;
 }

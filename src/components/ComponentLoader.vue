@@ -11,8 +11,7 @@
 </template>
 
 <script lang="ts">
-import Component from 'vue-class-component';
-import { Prop, Vue } from 'vue-property-decorator';
+import { Prop, Vue, Component } from 'vue-property-decorator';
 import { LoadingState } from '@/store/modules/loading/LoadingState';
 
 @Component

@@ -1,5 +1,8 @@
 <template>
-    <b-container fluid class="text-light text-center container-fluid">
+    <div class="app-header">
+        <slot />
+    </div>
+    <!-- <b-container fluid class="text-light text-center container-fluid">
         <b-row id="header--image">
             <b-col class="d-flex flex-column justify-content-center align-items-center my-4"
                    style="position: absolute; width: 100%;">
@@ -14,7 +17,7 @@
                         v-t="'layout.header.go_hotel'"></button>
             </b-col>
         </b-row>
-    </b-container>
+    </b-container> -->
 </template>
 
 <script lang="ts">

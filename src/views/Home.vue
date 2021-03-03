@@ -1,6 +1,25 @@
 <template>
-    <div>
-        <section id="current-news" class="habbo--section mt-5">
+    <Fragment>
+        <Header>
+            Header
+        </Header>
+        <section class="home-landing-section">
+            <Container>
+                <Grid cols="2">
+                    <div>
+                        <h2>Welkom in Circinus</h2>
+                        <h1>Word nu gratis lid!</h1>
+                        <span>
+                            Wat leuke welkomsttekst bladiebla
+                        </span>
+                    </div>
+                    <div>
+                        Image
+                    </div>
+                </Grid>
+            </Container>
+        </section>
+        <!-- <section id="current-news" class="habbo--section mt-5">
 
             <div class="d-flex flex-row mb-4">
                 <i class="icon--news"></i>
@@ -43,28 +62,32 @@
                     </Photos>
                 </b-row>
             </ComponentLoader>
-        </section>
-    </div>
+        </section> -->
+    </Fragment>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Articles from '@/components/Home/Dashboard/Articles.vue';
+import { BRow } from 'bootstrap-vue';
 import { ComponentOptions } from 'vue';
+import { Observer } from 'mobx-vue';
+import { Fragment } from 'vue-fragment';
+import Articles from '@/components/Home/Dashboard/Articles.vue';
 import Photos from '@/components/Home/Dashboard/Photos.vue';
 import ComponentLoader from '@/components/ComponentLoader.vue';
 import { articleModule } from '@/store/modules/articles/ArticleModule';
-import { Observer } from 'mobx-vue';
 import { photoModule } from '@/store/modules/photos/PhotoModule';
-import { BRow } from 'bootstrap-vue';
+import Header from '@/views/Layout/Header.vue';
+import Container from '@/components/Container/index.vue';
+import Grid from '@/components/Grid/index.vue';
 
 @Observer
 @Component({
     components: {
-        Articles,
-        Photos,
-        ComponentLoader,
-        BRow
+        Header,
+        Container,
+        Fragment,
+        Grid
     }
 })
 export default class Home extends Vue implements ComponentOptions<Vue> {

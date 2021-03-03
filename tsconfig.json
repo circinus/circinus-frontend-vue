@@ -17,7 +17,8 @@
         "types": [
             "webpack-env",
             "reflect-metadata",
-            "node"
+            "node",
+            "./src/shims-vue"
         ],
         "paths": {
             "@/*": [

@@ -1,6 +1,7 @@
 <template>
     <div id="app">
-        <header class="bg-primary mb-4 app-header">
+        <router-view :key="$route.fullPath"/>
+        <!-- <header class="bg-primary mb-4 app-header">
             <Top/>
             <Header/>
             <Navigation/>
@@ -12,7 +13,7 @@
         </main>
 
         <Client/>
-        <Footer/>
+        <Footer/> -->
     </div>
 </template>
 

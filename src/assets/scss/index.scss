@@ -1,22 +1,5 @@
 // pre-vendors
 
-// @use "../../../node_modules/bootstrap/scss/bootstrap" with (
-//     $body-bg: #EAF2F5,
-//     $body-color: #000,
-
-//     $navbar-light-color: #222,
-//     $navbar-light-hover-color: #2C3039,
-//     $navbar-light-active-color: #2C3039,
-
-//     $theme-colors: ('primary': #7DD4E5,
-//             'danger': #ff4136,
-//             'orange': #EEB425,
-//             'light': #fff),
-
-//     $container-max-widths: (lg: 1200px,
-//             xl: 1400px),
-// );
-
 // base
 @use "base/tailwind";
 @use "base/_typography";
@@ -26,32 +9,33 @@
 @use "utilities/helpers";
 
 // components
-@use "components/button";
-@use "components/modal";
-@use "components/icons";
-@use "components/form";
-@use "components/list-group";
-@use "components/dropdown";
-@use "components/offline-online";
-@use "components/card";
-@use "components/sprites";
-@use "components/pane";
+// @use "components/button";
+// @use "components/modal";
+// @use "components/icons";
+// @use "components/form";
+// @use "components/list-group";
+// @use "components/dropdown";
+// @use "components/offline-online";
+// @use "components/card";
+// @use "components/sprites";
+// @use "components/pane";
 
 // layout 
-@use "layout/navigation";
+// @use "layout/navigation";
 @use "layout/header";
-@use "layout/habbo-section";
-@use "layout/articles";
-@use "layout/validation";
-@use "layout/footer";
+// @use "layout/habbo-section";
+// @use "layout/articles";
+// @use "layout/validation";
+// @use "layout/footer";
 
 // pages
-@use "pages/register";
-@use "pages/community";
-@use "pages/hotel";
+@use "pages/home";
+// @use "pages/register";
+// @use "pages/community";
+// @use "pages/hotel";
 
 // vendors
-@use "vendors/izi-toast";
+// @use "vendors/izi-toast";
 
 :root {
     --header-color: #fff;
