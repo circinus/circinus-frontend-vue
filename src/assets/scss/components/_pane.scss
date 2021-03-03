@@ -1,0 +1,23 @@
+.pane-container {
+    display: flex;
+
+    &.vertical {
+        flex-direction: column;
+    }
+}
+
+.pane {
+    background: var(--panel-background);
+    display: flex;
+    flex-direction: column;
+    flex: 1 auto;
+    position: relative;
+
+    &.horizontal {
+        flex-direction: row;
+    }
+
+    .pane-content {
+        padding: var(--base-gutter);
+    }
+}

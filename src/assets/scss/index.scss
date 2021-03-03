@@ -1,24 +1,24 @@
 // pre-vendors
 
-@use "base/tailwind";
-@use "../../../node_modules/bootstrap/scss/bootstrap" with (
-    $body-bg: #EAF2F5,
-    $body-color: #000,
+// @use "../../../node_modules/bootstrap/scss/bootstrap" with (
+//     $body-bg: #EAF2F5,
+//     $body-color: #000,
 
-    $navbar-light-color: #222,
-    $navbar-light-hover-color: #2C3039,
-    $navbar-light-active-color: #2C3039,
+//     $navbar-light-color: #222,
+//     $navbar-light-hover-color: #2C3039,
+//     $navbar-light-active-color: #2C3039,
 
-    $theme-colors: ('primary': #7DD4E5,
-            'danger': #ff4136,
-            'orange': #EEB425,
-            'light': #fff),
+//     $theme-colors: ('primary': #7DD4E5,
+//             'danger': #ff4136,
+//             'orange': #EEB425,
+//             'light': #fff),
 
-    $container-max-widths: (lg: 1200px,
-            xl: 1400px),
-);
+//     $container-max-widths: (lg: 1200px,
+//             xl: 1400px),
+// );
 
 // base
+@use "base/tailwind";
 @use "base/_typography";
 @use "base/reset";
 
@@ -35,6 +35,7 @@
 @use "components/offline-online";
 @use "components/card";
 @use "components/sprites";
+@use "components/pane";
 
 // layout 
 @use "layout/navigation";
