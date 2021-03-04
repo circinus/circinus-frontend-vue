@@ -119,7 +119,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { BCard, BFormCheckbox, BFormGroup } from 'bootstrap-vue';
 import { userModule } from '@/store/modules/users/UserModule';
 import { Observer } from 'mobx-vue';
-import ComponentLoader from '@/components/ComponentLoader.vue';
+import ComponentLoader from '@/components/ComponentLoader';
 import { IChangableUserSettings } from '@/store/modules/users/interfaces/IChangableUserSettings';
 import { notificationModule } from '@/store/modules/notifications/NotificationModule';
 

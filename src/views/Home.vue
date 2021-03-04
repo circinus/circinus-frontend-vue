@@ -3,7 +3,7 @@
         <Header>
             Header
         </Header>
-        <section class="home-landing-section">
+        <section class="home-landing-section mb-32">
             <Container>
                 <Grid cols="2">
                     <div class="flex justify-center">
@@ -31,6 +31,18 @@
                 </Grid>
             </Container>
         </section>
+        <Container>
+            <h2>Laatste nieuws</h2>
+            <Grid cols="3" gap="4">
+                <ComponentLoader :state="articleModule.getLoadingState('get-articles')">
+                    <ArticlePreview
+                        v-for="(article) in articleModule.articles"
+                        :article="article"
+                        :key="article.id"
+                    />
+                </ComponentLoader>
+            </Grid>
+        </Container>
         <!-- <section id="current-news" class="habbo--section mt-5">
 
             <div class="d-flex flex-row mb-4">
@@ -86,17 +98,22 @@ import { Observer } from 'mobx-vue';
 import { Fragment } from 'vue-fragment';
 import Articles from '@/components/Home/Dashboard/Articles.vue';
 import Photos from '@/components/Home/Dashboard/Photos.vue';
-import ComponentLoader from '@/components/ComponentLoader.vue';
+import ComponentLoader from '@/components/ComponentLoader';
 import { articleModule } from '@/store/modules/articles/ArticleModule';
 import { photoModule } from '@/store/modules/photos/PhotoModule';
 import Header from '@/views/Layout/Header.vue';
 import Container from '@/components/Container/index.vue';
 import Grid from '@/components/Grid/index.vue';
 import Button from '@/components/Button/index.vue';
+import Article from '@/views/Community/Article.vue';
+import ArticlePreview from '@/components/Article/Preview.vue';
 
 @Observer
 @Component({
     components: {
+        ArticlePreview,
+        Article,
+        ComponentLoader,
         Header,
         Container,
         Fragment,

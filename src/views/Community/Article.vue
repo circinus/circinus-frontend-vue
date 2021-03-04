@@ -15,7 +15,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { ComponentOptions } from 'vue';
 import ArticleContent from '@/components/Article/ArticleContent.vue';
-import ComponentLoader from '@/components/ComponentLoader.vue';
+import ComponentLoader from '@/components/ComponentLoader';
 import { ArticleModule, articleModule } from '@/store/modules/articles/ArticleModule';
 import { IArticle } from '@/store/modules/articles/IArticle';
 import { Observer } from 'mobx-vue';

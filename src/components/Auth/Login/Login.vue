@@ -64,7 +64,7 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import { BDropdownDivider, BDropdownItem, BDropdown, BButton, BLink, BForm, BNav, BNavItem, BListGroupItem } from 'bootstrap-vue';
-import ComponentLoader from '@/components/ComponentLoader.vue';
+import ComponentLoader from '@/components/ComponentLoader';
 import { authModule } from '@/store/modules/auth/AuthModule';
 import { Observer } from 'mobx-vue';
 import { ICredentials } from '@/store/modules/auth/ICredentials';
