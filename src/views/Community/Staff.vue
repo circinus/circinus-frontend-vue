@@ -66,7 +66,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { ComponentOptions } from 'vue';
-import ComponentLoader from '@/components/ComponentLoader';
+import ComponentLoader from '@/components/ComponentLoader.vue';
 import { permissionModule } from '@/store/modules/permissions/PermissionModule';
 import { Observer } from 'mobx-vue';
 import { environment } from '../../../environment';

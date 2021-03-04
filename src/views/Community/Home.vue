@@ -104,7 +104,7 @@ import FriendList from '@/components/Community/FriendList.vue';
 import UserOfTheWeek from '@/components/Community/UserOfTheWeek.vue';
 import Guild from '@/components/Community/Guild.vue';
 import Room from '@/components/Community/Rooms.vue';
-import ComponentLoader from '@/components/ComponentLoader';
+import ComponentLoader from '@/components/ComponentLoader.vue';
 import { ComponentOptions } from 'vue';
 import { FriendListModule, friendListModule } from '@/store/modules/friendlist/FriendListModule';
 import { GuildModule, guildModule } from '@/store/modules/guilds/GuildModule';

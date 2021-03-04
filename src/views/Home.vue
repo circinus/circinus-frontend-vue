@@ -98,7 +98,6 @@ import { Observer } from 'mobx-vue';
 import { Fragment } from 'vue-fragment';
 import Articles from '@/components/Home/Dashboard/Articles.vue';
 import Photos from '@/components/Home/Dashboard/Photos.vue';
-import ComponentLoader from '@/components/ComponentLoader';
 import { articleModule } from '@/store/modules/articles/ArticleModule';
 import { photoModule } from '@/store/modules/photos/PhotoModule';
 import Header from '@/views/Layout/Header.vue';
@@ -107,6 +106,7 @@ import Grid from '@/components/Grid/index.vue';
 import Button from '@/components/Button/index.vue';
 import Article from '@/views/Community/Article.vue';
 import ArticlePreview from '@/components/Article/Preview.vue';
+import ComponentLoader from '@/components/ComponentLoader.vue';
 
 @Observer
 @Component({
