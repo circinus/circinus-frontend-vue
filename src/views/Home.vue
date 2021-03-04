@@ -6,12 +6,19 @@
         <section class="home-landing-section">
             <Container>
                 <Grid cols="2">
-                    <div>
+                    <div class="flex justify-center">
                         <h2>Welkom in Circinus</h2>
                         <h1>Word nu gratis lid!</h1>
-                        <span>
+                        <p>
                             Wat leuke welkomsttekst bladiebla
-                        </span>
+                        </p>
+                        <Button
+                            variant="success"
+                            :big="true"
+                            :round="true"
+                        >
+                            Registreer nu
+                        </Button>
                     </div>
                     <div>
                         Image
@@ -80,6 +87,7 @@ import { photoModule } from '@/store/modules/photos/PhotoModule';
 import Header from '@/views/Layout/Header.vue';
 import Container from '@/components/Container/index.vue';
 import Grid from '@/components/Grid/index.vue';
+import Button from '@/components/Button/index.vue';
 
 @Observer
 @Component({
@@ -87,7 +95,8 @@ import Grid from '@/components/Grid/index.vue';
         Header,
         Container,
         Fragment,
-        Grid
+        Grid,
+        Button
     }
 })
 export default class Home extends Vue implements ComponentOptions<Vue> {

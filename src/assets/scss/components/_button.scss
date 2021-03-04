@@ -1,29 +1,24 @@
+@use "../variables";
+
 .btn {
-    padding: .6rem;
-    font-size: 14px;
+    padding: variables.$base-gutter;
+    display: inline-flex;
+    border-radius: variables.$border-radius;
+    outline: none;
 
-    &.btn-warning {
-        color: #fff;
+    &.btn-big {
+        padding: variables.$base-gutter * 1.5;
     }
 
-    &.btn-outline-dark {
-        color: #000;
+    &.btn-round {
+        border-radius: 500px;
     }
-}
 
-.btn--light-dark {
-    color: #000 !important;
-    background-color: #efefef;
-    border-color: #e6e6e647;
-}
+    &.btn-primary {
+        background: variables.$primary-color;
+    }
 
-.btn--light {
-    background-color: RGB(255 255 255 / 27%);
-    color: #fff;
-
-    &:hover,
-    &:focus {
-        color: #fff;
-        box-shadow: 0 2px 5px 0 RGB(0 0 0 / 10%);
+    &.btn-success {
+        background: variables.$success-color;
     }
 }
