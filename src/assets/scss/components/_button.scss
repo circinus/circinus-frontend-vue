@@ -1,17 +1,24 @@
 @use "../variables";
 
 .btn {
-    padding: variables.$base-gutter;
+    padding: 0 variables.$base-gutter;
     display: inline-flex;
     border-radius: variables.$border-radius;
     outline: none;
+    font-weight: 600;
+    align-items: center;
 
-    &.btn-big {
-        padding: variables.$base-gutter * 1.5;
+    .btn-text {
+        padding: variables.$base-gutter 0;
+    }
+
+    &.btn-big .btn-text {
+        padding: (variables.$base-gutter * 1.5) 0;
     }
 
     &.btn-round {
         border-radius: 500px;
+        padding: 0 (variables.$base-gutter * 1.5);
     }
 
     &.btn-primary {
@@ -20,5 +27,31 @@
 
     &.btn-success {
         background: variables.$success-color;
+    }
+
+    .icon-container {
+        background: rgba(0, 0, 0, .2);
+        height: 2.7rem;
+        width: 2.7rem;
+        border-radius: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0.3rem 0;
+
+        &.left {
+            margin-right: 1rem;
+            margin-left: variables.$base-gutter * -1.2;
+        }
+
+        &.right {
+            margin-left: 1rem;
+            margin-right: variables.$base-gutter * -1.2;
+        }
+    }
+
+    &.btn-big .icon-container{
+        height: 3.7rem;
+        width: 3.7rem;
     }
 }

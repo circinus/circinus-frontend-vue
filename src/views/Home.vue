@@ -7,18 +7,23 @@
             <Container>
                 <Grid cols="2">
                     <div class="flex justify-center">
-                        <h2>Welkom in Circinus</h2>
-                        <h1>Word nu gratis lid!</h1>
-                        <p>
-                            Wat leuke welkomsttekst bladiebla
-                        </p>
-                        <Button
-                            variant="success"
-                            :big="true"
-                            :round="true"
-                        >
-                            Registreer nu
-                        </Button>
+                        <div>
+                            <h2>Welkom in Circinus</h2>
+                            <h1>Word nu gratis lid!</h1>
+                            <p class="mb-4">
+                                Wat leuke welkomsttekst bladiebla
+                            </p>
+                            <Button
+                                variant="success"
+                                :big="true"
+                                :round="true"
+                            >
+                                Registreer nu
+                                <template v-slot:iconRight>
+                                    +
+                                </template>
+                            </Button>
+                        </div>
                     </div>
                     <div>
                         Image
