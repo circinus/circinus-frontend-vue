@@ -76,7 +76,7 @@ const router = new Router({
         {
             path: '/dashboard',
             name: 'dashboard',
-            component: () => import('@/views/Home.vue'),
+            component: () => import('@/views/Dashboard/index.vue'),
             meta: {
                 middleware: [
                     auth

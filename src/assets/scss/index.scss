@@ -18,10 +18,11 @@
 // @use "components/offline-online";
 // @use "components/card";
 // @use "components/sprites";
-// @use "components/pane";
+ @use "components/pane";
 
 // layout
-// @use "layout/navigation";
+@use "layout/page";
+ @use "layout/navigation";
 @use "layout/header";
 // @use "layout/habbo-section";
  @use "layout/articles";

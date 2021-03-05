@@ -1,0 +1,10 @@
+@use "../variables";
+
+.page {
+    min-height: 100vh;
+
+    .page-navigation {
+        max-width: 300px;
+        background: variables.$page-navigation-background;
+    }
+}

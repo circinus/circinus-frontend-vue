@@ -1,7 +1,7 @@
 <template>
     <Fragment>
         <Header>
-            Header
+            <Login />
         </Header>
         <section class="home-landing-section mb-32">
             <Container>
@@ -107,6 +107,7 @@ import Button from '@/components/Button/index.vue';
 import Article from '@/views/Community/Article.vue';
 import ArticlePreview from '@/components/Article/Preview.vue';
 import ComponentLoader from '@/components/ComponentLoader.vue';
+import Login from '@/components/Auth/Login/Login.vue';
 
 @Observer
 @Component({
@@ -118,7 +119,8 @@ import ComponentLoader from '@/components/ComponentLoader.vue';
         Container,
         Fragment,
         Grid,
-        Button
+        Button,
+        Login
     }
 })
 export default class Home extends Vue implements ComponentOptions<Vue> {
